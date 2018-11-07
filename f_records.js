@@ -1,8 +1,6 @@
 function getSortOrder(RecordTitle) {
-	var varRecord	=	arguments[0];
-	
-	if (varRecord.indexOf("Most") > -1)		{ return "desc"; }
-	if (varRecord.indexOf("Highest") > -1)	{ return "desc"; }
+	if (arguments[0].indexOf("Most") > -1)		{ return "desc"; }
+	if (arguments[0].indexOf("Highest") > -1)	{ return "desc"; }
 	
 	return "asc";
 }
