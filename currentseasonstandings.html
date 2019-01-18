@@ -1,0 +1,101 @@
+<html>
+	
+	<style>
+		body, h1,h2,h3,h4,h5,h6 {font-family: "Verdana", sans-serif}
+		.w3-row-padding img {margin-bottom: 12px}
+		/* Set the width of the sidebar to 120px */
+		.w3-sidebar {width: 120px;background: #222;}
+		/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+		#main {margin-left: 120px}
+		/* Remove margins from "page content" on small screens */
+		@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+		table {
+		  border-collapse: collapse;
+		}
+
+		table, th, td {
+		  border: 1px solid gray;
+		}
+	</style>
+	
+	<head>
+		<script src="d_courses.js"></script>
+		<script src="d_events.js"></script>
+		<script src="d_golfers.js"></script>
+		<script src="d_recordslist.js"></script>
+		<script src="d_rounds.js"></script>
+		<script src="d_seasons.js"></script>
+		
+		<script src="f_global.js"></script>
+	</head>
+	
+	<body style="background-color: white;">
+		<table width="100%" border="1px" cellpadding="5px" style="font-size: 0.9em;">
+			<tr>
+				<th width="11%" align="center">Rank</th>
+				<th width="23%" align="center">Golfer</th>
+				<th width="11%" align="center">Earnings</th>
+				<th width="11%" align="center">Events</th>
+				<th width="11%" align="center">Avg Earned</th>
+				<th width="11%" align="center">Wins</th>
+				<th width="11%" align="center">Top 3s</th>
+				<th width="11%" align="center">Avg Score</th>
+			</tr>
+
+<script>
+	
+	var arrStandingsArray = getRecord_MostEarnings_SingleSeason("All Events","All Courses",2018,2018);
+	var arrGolfers = arrStandingsArray[0];
+	var arrStats = arrStandingsArray[1];
+	
+	var arrDisplay = new Array();
+	
+	for (z = 0; z < arrGolfers.length; z++)
+	{
+		tmpGolfer = arrGolfers[z];
+		tmpStat = arrStats[z];
+		
+		arrDisplay[z] = new Array();
+		
+		arrDisplay[z][0] = tmpGolfer;
+		arrDisplay[z][1] = tmpStat;
+	}
+	
+	rnk = 0; 
+	arrDisplay = sortMDArray(arrDisplay, 1, getSortOrder("Highest"));
+	var eventCount = new Array();
+	var avgEarn = new Array();
+	var wins = new Array();
+	var top3s = new Array();
+	var avgscore = new Array();
+	
+	for (q = 0; q < arrDisplay.length; q++) {
+		if (arrDisplay[q][1] > 0) {
+			rnk++;
+			golfer = arrDisplay[q][0];
+			earnings = arrDisplay[q][1];
+			eventCount = getGolferEventCount(golfer,"","",2018,2018);
+			avgEarn = getGolferEarningsAvg(golfer,"","",2018,2018);
+			wins = getGolferPosCount(golfer,"","",2018,2018,1);
+			top3s = getGolferTopXCount(golfer,"","",2018,3,2018);
+			avgscore = getGolferAvgScore(golfer,"","",2018,2018,false);
+			
+			document.write("<tr>");
+			document.write("<td align='center'>" + rnk + "</td>");
+			document.write("<td align='center'>" + golfer + "</td>");
+			document.write("<td align='center'>" + earnings + "</td>");
+			document.write("<td align='center'>" + eventCount[0] + "</td>");
+			document.write("<td align='center'>" + Math.round(avgEarn[0] * 100) / 100 + "</td>");
+			document.write("<td align='center'>" + wins[0] + "</td>");
+			document.write("<td align='center'>" + top3s[0] + "</td>");
+			document.write("<td align='center'>" + avgscore[0] + "</td>");
+			document.write("</tr>");
+		}
+	}
+	
+</script>
+
+		<table>
+	</body>
+	
+</html>
