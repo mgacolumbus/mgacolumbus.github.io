@@ -83,12 +83,12 @@
 			document.write("<tr>");
 			document.write("<td align='center'>" + rnk + "</td>");
 			document.write("<td align='center'>" + golfer + "</td>");
-			document.write("<td align='center'>" + earnings + "</td>");
+			document.write("<td align='center'>" + earnings.toFixed(2) + "</td>");
 			document.write("<td align='center'>" + eventCount[0] + "</td>");
-			document.write("<td align='center'>" + Math.round(avgEarn[0] * 100) / 100 + "</td>");
+			document.write("<td align='center'>" + (Math.round(avgEarn[0] * 100) / 100).toFixed(2) + "</td>");
 			document.write("<td align='center'>" + wins[0] + "</td>");
 			document.write("<td align='center'>" + top3s[0] + "</td>");
-			document.write("<td align='center'>" + avgscore[0] + "</td>");
+			document.write("<td align='center'>" + avgscore[0].toFixed(3) + "</td>");
 			document.write("</tr>");
 		}
 	}
