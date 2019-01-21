@@ -68,6 +68,7 @@
 	var wins = new Array();
 	var top3s = new Array();
 	var avgscore = new Array();
+	var earnhold = 0;
 	
 	for (q = 0; q < arrDisplay.length; q++) {
 		if (arrDisplay[q][1] > 0) {
@@ -81,7 +82,11 @@
 			avgscore = getGolferAvgScore(golfer,"","",2018,2018,false);
 			
 			document.write("<tr>");
-			document.write("<td align='center'>" + rnk + "</td>");
+			if (earnings == earnhold) {
+				document.write("<td align='center'>&nbsp;</td>");
+			} else {
+				document.write("<td align='center'>" + rnk + "</td>");
+			}
 			document.write("<td align='center'>" + golfer + "</td>");
 			document.write("<td align='center'>" + earnings.toFixed(2) + "</td>");
 			document.write("<td align='center'>" + eventCount[0] + "</td>");
@@ -90,6 +95,8 @@
 			document.write("<td align='center'>" + top3s[0] + "</td>");
 			document.write("<td align='center'>" + avgscore[0].toFixed(3) + "</td>");
 			document.write("</tr>");
+			
+			earnhold = earnings;
 		}
 	}
 	
