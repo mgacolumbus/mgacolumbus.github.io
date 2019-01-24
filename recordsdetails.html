@@ -43,7 +43,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <!--<i class="fa fa-user w3-xxlarge"></i>-->
     <p>STATS</p>
   </a>
-  <a href="records.html" class="w3-bar-item w3-button w3-padding-large w3-white">
+  <a href="recordssummary.html" class="w3-bar-item w3-button w3-padding-large w3-white">
     <!--<i class="fa fa-eye w3-xxlarge"></i>-->
     <p>RECORDS</p>
   </a>
@@ -59,7 +59,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
     <a href="index.html" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
     <a href="golferstats.html" class="w3-bar-item w3-button" style="width:25% !important">STATS</a>
-    <a href="records.html" class="w3-bar-item w3-button" style="width:25% !important">RECORDS</a>
+    <a href="recordssummary.html" class="w3-bar-item w3-button" style="width:25% !important">RECORDS</a>
     <!--<a href="contact.html" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>-->
   </div>
 </div>
@@ -68,7 +68,35 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 	var arr = document.URL.match(/r=([^?=&]+)(=([^&]*))?/);
 	var pRecord = arr[1];
 	pRecord = decodeURI(pRecord);
-
+	var pRecordHold = pRecord;
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	
+	if (pRecord == 1) { pRecord = "Most Wins"; }
+	if (pRecord == 2) { pRecord = "Most Runner-Ups"; }
+	if (pRecord == 3) { pRecord = "Most Missed Cashes"; }
+	if (pRecord == 4) { pRecord = "Most Top 3s"; }
+	if (pRecord == 5) { pRecord = "Most Top 5s"; }
+	if (pRecord == 6) { pRecord = "Most Top 10s"; }
+	if (pRecord == 7) { pRecord = "-- Most Runner-Ups - No Wins in Range"; }
+	if (pRecord == 8) { pRecord = "-- Most Top 3s - No Wins in Range"; }
+	if (pRecord == 9) { pRecord = "-- Most Top 5s - No Wins in Range"; }
+	if (pRecord == 10) { pRecord = "-- Most Top 10s - No Wins in Range"; }
+	if (pRecord == 11) { pRecord = "-- Most Runner-Ups - No Wins in Career"; }
+	if (pRecord == 12) { pRecord = "-- Most Top 3s - No Wins in Career"; }
+	if (pRecord == 13) { pRecord = "-- Most Top 5s - No Wins in Career"; }
+	if (pRecord == 14) { pRecord = "-- Most Top 10s - No Wins in Career"; }
+	if (pRecord == 15) { pRecord = "Highest Earnings"; }
+	if (pRecord == 16) { pRecord = "-- Highest Earnings - No Wins in Range"; }
+	if (pRecord == 17) { pRecord = "-- Highest Earnings - No Wins in Career"; }
+	if (pRecord == 18) { pRecord = "-- Highest Earnings - Single Season"; }
+	if (pRecord == 19) { pRecord = "-- Highest Earnings - Single Season - No Wins"; }
+	
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+	
 	arr = document.URL.match(/e=([^?=&]+)(=([^&]*))?/);
 	var pEvent = arr[1]
 	
@@ -119,14 +147,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <!-- About Section -->
   <div class="w3-content w3-justify w3-text-black w3-padding-16">
   <table width="400px" align="center" cellpadding="6px" border="0">
-    <tr>
-      <th align="right" width="20%">Record:</th>
-      <td align="left" width="80%" style="font-size: 0.8em;">
-        <select id="selectRecords">
-			<option>--- Choose a Record ---</option>
-        </select>
-      </td>
-    </tr>
 	<tr>
       <th align="right" width="20%">Event:</th>
       <td align="left" width="80%" style="font-size: 0.8em;">
@@ -154,7 +174,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     </tr>
 	<tr>
 		<td colspan="2" align="center">
-			<button type="button" onClick="window.location.replace('records.html?r=' + document.getElementById('selectRecords').value + '&c=' + document.getElementById('selectCourses').selectedIndex + '&e=' + document.getElementById('selectEvents').selectedIndex  + '&s1=' + document.getElementById('selectSeason').value + '&s2=' + document.getElementById('selectSeason2').value);">
+			<button type="button" onClick="window.location.replace('recordsdetails.html?r=' + pRecordHold + '&c=' + document.getElementById('selectCourses').selectedIndex + '&e=' + document.getElementById('selectEvents').selectedIndex  + '&s1=' + document.getElementById('selectSeason').value + '&s2=' + document.getElementById('selectSeason2').value);">
 				Run Report ...
 			</button>
 		</td>
@@ -302,16 +322,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 		el.value = options[i];
 		select.appendChild(el);
 	}
-
-	arrRecordsList = getData_RecordsList();
-	var select = document.getElementById("selectRecords"); 
-	var options = arrRecordsList; 
-	for(var i = 0; i < options.length; i++) {
-		var el = document.createElement("option");
-		el.textContent = options[i];
-		el.value = options[i];
-		select.appendChild(el);
-	}
 	
 	if (pEvent == "All Events")
 	{
@@ -326,7 +336,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 		pEvent = "--- All Non-Majors ---";
 	}
 	
-	setSelectedValue(document.getElementById("selectRecords"), pRecord);
 	setSelectedValue(document.getElementById("selectEvents"), pEvent);
 	setSelectedValue(document.getElementById("selectCourses"), pCourse);
 	setSelectedValue(document.getElementById("selectSeason"), pSeason1);

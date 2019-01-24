@@ -1,11 +1,89 @@
+function processRecordSummary(RecordArray, SortOrder, optRecordType) {
+	var arrRecordArray = arguments[0];
+	var varSortOrder = arguments[1];
+	var varRecordType = arguments[2];
+	var arrDisplay = new Array();
+	var varRecordStat = 0;
+	var varNamesList = "";
+	
+	var arrGolfers = new Array();
+	var arrStats = new Array();
+	var arrSeasons = new Array();
+	var arrExtraInfo = new Array();
+	
+	arrGolfers = arrRecordArray[0];
+	arrStats = arrRecordArray[1];
+	arrSeasons = arrRecordArray[2];
+	arrExtraInfo = arrRecordArray[3];
+	
+	if (varRecordType == null) {
+		varRecordType = "";
+	}
+	
+	for (z = 0; z < arrGolfers.length; z++)
+	{
+		tmpGolfer = arrGolfers[z];
+		tmpStat = arrStats[z];
+		tmpSeason = arrSeasons[z];
+		tmpExtraInfo = arrExtraInfo[z];
+		
+		arrDisplay[z] = new Array();
+		
+		arrDisplay[z][0] = tmpGolfer;
+		arrDisplay[z][1] = tmpStat;
+		arrDisplay[z][2] = tmpSeason;
+		arrDisplay[z][3] = tmpExtraInfo;
+	}
+	
+	arrDisplay = sortMDArray(arrDisplay, 1, varSortOrder);
+	varRecordStat = formatNumber(varRecordType, arrDisplay[0][1]);
+	varNamesList = "";
+	
+	document.write("<td align='center'>" + varRecordStat + "</td>");
+	document.write("<td align='center'>");
+	
+	for (z = 0; z < arrDisplay.length; z++) {
+		if (varRecordStat == 0) {
+			varNamesList = "-";
+		} else {
+			if (arrDisplay[z][1] == varRecordStat) {
+				varNamesList += arrDisplay[z][0] + "<br />";
+			}
+		}
+	}
+	
+	document.write(varNamesList + "</td>");
+}
+
+/********************************************************************************************/
+
+function getCurrentSeason() {
+	var varCurrentSeason	=	0;
+	var varSeasonTemp		=	0;
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	
+	for (xx = 0; xx < arrRounds.length; xx++) {
+		varSeasonTemp = arrRounds[xx][0].substr(6,9);
+		
+		if (varSeasonTemp > varCurrentSeason) {
+			varCurrentSeason = varSeasonTemp;
+		}
+	}	
+	
+	return varCurrentSeason;
+}
+
+/********************************************************************************************/
+
 function checkMajor(RoundsArray, X) {
 	var arrGolferRounds		=	arguments[0];
 	var varX				=	arguments[1];
 	
-	if (arrGolferRounds[varX][1] == "Bastards")			{return true;}
-	if (arrGolferRounds[varX][1] == "F.U. Open")		{return true;}
-	if (arrGolferRounds[varX][1] == "Bratish Open")		{return true;}
-	if (arrGolferRounds[varX][1] == "MGA Championship")	{return true;}
+	if (arrGolferRounds[varX][1] == "Bastards")			{ return true; }
+	if (arrGolferRounds[varX][1] == "F.U. Open")		{ return true; }
+	if (arrGolferRounds[varX][1] == "Bratish Open")		{ return true; }
+	if (arrGolferRounds[varX][1] == "MGA Championship")	{ return true; }
 	
 	return false;
 }
@@ -13,9 +91,9 @@ function checkMajor(RoundsArray, X) {
 /********************************************************************************************/
 
 function sortMDArray(arr, sortcol, sortdir) {
-	var arrArray		=	arguments[0];
-	var varX			=	arguments[1];
-	var varAscDesc		=	arguments[2];
+	var arrArray	=	arguments[0];
+	var varX		=	arguments[1];
+	var varAscDesc	=	arguments[2];
 	
 	if (varAscDesc == "asc") {
 		arrArray.sort(function(a, b) {
@@ -70,14 +148,14 @@ function setSelectedValue(selectObj, valueToSet) {
 /********************************************************************************************/
 
 function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
-	varRecord		=	arguments[0];
-	varEvent		=	arguments[1];
-	varCourse		=	arguments[2];
-	varSeason1		=	arguments[3];
-	varSeason2		=	arguments[4];
+	varRecord	=	arguments[0];
+	varEvent	=	arguments[1];
+	varCourse	=	arguments[2];
+	varSeason1	=	arguments[3];
+	varSeason2	=	arguments[4];
 	
 	arrRecordData	=	new Array();
-
+	
 	if (varRecord == "Most Wins") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,1);
 	}
@@ -192,6 +270,19 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Par or Better") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
 	}
+	if (varRecord == "Most Missed Cashes") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,17,999);
+	}
+	if (varRecord == "Most Top 3s") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3);
+	}
+	if (varRecord == "-- Most Top 3s - No Wins in Range") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Range");
+	}
+	if (varRecord == "-- Most Top 3s - No Wins in Career") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Career");
+	}
+	
 	
 	return arrRecordData;
 }
@@ -206,12 +297,12 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 
 
 function getRecordTitle(MainTitle, optSingleSeason, optSingleEvent, optNoWins, optNoDQs, optTerm) {
-	var varMainTitle	=	arguments[0];
-	var varSingleSeason	=	arguments[1];
-	var varSingleEvent	=	arguments[2];
-	var varNoWins		=	arguments[3];
-	var varNoDQs		=	arguments[4];
-	var varTerm			=	arguments[5];
+	var varMainTitle		=	arguments[0];
+	var varSingleSeason		=	arguments[1];
+	var varSingleEvent		=	arguments[2];
+	var varNoWins			=	arguments[3];
+	var varNoDQs			=	arguments[4];
+	var varTerm				=	arguments[5];
 
 	if (varSingleSeason == 0) {
 		if (varSingleEvent == 0) {
@@ -292,12 +383,16 @@ function getPositionalTitle(PositionBegin, PositionEnd) {
 	if (varBegin == 1){
 		if (varEnd == 1)	{varReturnTitle = "Most Tournament Wins";}
 		if (varEnd == 2)	{varReturnTitle = "Most Top 2 Finishes";}
+		if (varEnd == 3)	{varReturnTitle = "Most Top 3 Finishes";}
 		if (varEnd == 5)	{varReturnTitle = "Most Top 5 Finishes";}
 		if (varEnd == 10)	{varReturnTitle = "Most Top 10 Finishes";}
 		if (varEnd == 16)	{varReturnTitle = "Most Cashes";}
 	}
 	if (varBegin == 2) {
 		if (varEnd == 2)	{varReturnTitle = "Most Runner-Up Finishes";}
+	}
+	if (varBegin == 17) {
+		if (varEnd == 999)	{varReturnTitle = "Most Missed Cashes";}
 	}
 	
 	return varReturnTitle;
@@ -317,6 +412,19 @@ function getScoringTitle(Target, optNet) {
 		else			{varReturnTitle = varReturnTitle + " (Gross)";}
 	
 	return varReturnTitle;
+}
+
+/********************************************************************************************/
+
+function formatNumber(Title, NumberToFormat) {
+	var varTitle			=	arguments[0];
+	var varNumberToFormat	=	arguments[1];
+	
+	if (varTitle.indexOf("Earnings") > -1)	{ return varNumberToFormat.toFixed(2); }
+	if (varTitle.indexOf("Score") > -1)		{ return varNumberToFormat.toFixed(3); }
+	if (varTitle.indexOf("Avg") > -1)		{ return varNumberToFormat.toFixed(3); }
+	
+	return varNumberToFormat;
 }
 
 /********************************************************************************************/
@@ -459,9 +567,8 @@ function checkExclusionInRange(Golfer, Event, Course, SeasonBegin, SeasonEnd, op
 	var varNoDQ			=	arguments[6];
 	
 	var	arrRnds			=	new Array;
+		arrRnds			=	getData_Rounds();
 	var varSeasonTemp	=	0;
-	
-	arrRnds = getData_Rounds();
 	
 	for (q = 0; q < arrRnds.length; q++) {
 		
@@ -560,7 +667,8 @@ function getParOffset(ScoreType) {
 /********************************************************************************************/
 
 function getRoundTotal(RoundArray, X, optNet) {
-	var arrRound	=	new Array();			arrRound	=	arguments[0];
+	var arrRound	=	new Array();
+		arrRound	=	arguments[0];
 	var varX		=	arguments[1];
 	var varNet		=	arguments[2];
 	
@@ -580,7 +688,8 @@ function getRoundTotal(RoundArray, X, optNet) {
 /********************************************************************************************/
 
 function getScoreTypeTotal(RoundArray, X, Offset, Comparison) {
-	var arrRound	=	new Array();			arrRound	=	arguments[0];
+	var arrRound	=	new Array();
+		arrRound	=	arguments[0];
 	var varX		=	arguments[1];
 	var varOffset	=	arguments[2];
 	var varCompare	=	arguments[3];
@@ -628,8 +737,10 @@ function getRecord_MostFinishPositional(Event, Course, SeasonBegin, SeasonEnd, P
 	var varNoDQ				=	arguments[7];
 	var varTerm				=	arguments[8];
 	
-	var	arrRounds			=	new Array();		arrRounds	=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers().sort();
+	var	arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -686,9 +797,12 @@ function getRecord_MostFinishPositional_Season(Event, Course, SeasonBegin, Seaso
 	var varNoDQ				=	arguments[7];
 	var varTerm				=	arguments[8];
 	
-	var arrRounds			=	new Array();		arrRounds		=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers		=	getData_Golfers().sort();
-	var arrSeasonLoop		=	new Array();		arrSeasonLoop	=	getData_Seasons().reverse();
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
+	var arrSeasonLoop		=	new Array();
+		arrSeasonLoop		=	getData_Seasons().reverse();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -752,8 +866,10 @@ function getRecord_MostEarnings(Event, Course, SeasonBegin, SeasonEnd, optNoWins
 	var varNoWin			=	arguments[4];
 	var varTerm				=	arguments[5];
 	
-	var arrRounds			=	new Array();		arrRounds	=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers().sort();
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -802,9 +918,12 @@ function getRecord_MostEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonE
 	var varNoWin			=	arguments[4];
 	var varTerm				=	arguments[5];
 	
-	var arrRounds			=	new Array();		arrRounds		=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers		=	getData_Golfers().sort();
-	var arrSeasonLoop		=	new Array();		arrSeasonLoop	=	getData_Seasons().reverse();
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
+	var arrSeasonLoop		=	new Array();
+		arrSeasonLoop		=	getData_Seasons().reverse();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -866,8 +985,10 @@ function getRecord_ScoringMisc(Event, Course, SeasonBegin, SeasonEnd, Target, op
 	var varNoDQ				=	arguments[7];
 	var varPar				=	arguments[8];
 	
-	var arrRounds			=	new Array();		arrRounds	=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers().sort();
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -933,8 +1054,10 @@ function getRecord_HoleScoringMisc(Event, Course, SeasonBegin, SeasonEnd, Target
 	var varNoDQ				=	arguments[7];
 	var varPar				=	arguments[8];
 	
-	var arrRounds			=	new Array();		arrRounds	=	getData_Rounds();
-	var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers().sort();
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
 	var arrStat				=	new Array();
 	var arrYear				=	new Array();
 	var arrExtraInfo		=	new Array();
@@ -1011,9 +1134,9 @@ function displayGolferInfo(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 	document.getElementById("GolferWinsNonMajor").innerHTML = arrDisplay[2];
 
 	arrDisplay = getGolferPosCountPercent(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],1);
-	document.getElementById("GolferWinsPerc").innerHTML = arrDisplay[0] + " %";
-	document.getElementById("GolferWinsMajorPerc").innerHTML = arrDisplay[1] + " %";
-	document.getElementById("GolferWinsNonMajorPerc").innerHTML = arrDisplay[2] + " %";
+	document.getElementById("GolferWinsPerc").innerHTML = arrDisplay[0].toFixed(2) + " %";
+	document.getElementById("GolferWinsMajorPerc").innerHTML = arrDisplay[1].toFixed(2) + " %";
+	document.getElementById("GolferWinsNonMajorPerc").innerHTML = arrDisplay[2].toFixed(2) + " %";
 
 	arrDisplay = getGolferPosCount(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],2);
 	document.getElementById("GolferRunnerUps").innerHTML = arrDisplay[0];
@@ -1021,9 +1144,9 @@ function displayGolferInfo(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 	document.getElementById("GolferRunnerUpsNonMajor").innerHTML = arrDisplay[2];
 
 	arrDisplay = getGolferPosCountPercent(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],2);
-	document.getElementById("GolferRunnerUpsPerc").innerHTML = arrDisplay[0] + " %";
-	document.getElementById("GolferRunnerUpsMajorPerc").innerHTML = arrDisplay[1] + " %";
-	document.getElementById("GolferRunnerUpsNonMajorPerc").innerHTML = arrDisplay[2] + " %";
+	document.getElementById("GolferRunnerUpsPerc").innerHTML = arrDisplay[0].toFixed(2) + " %";
+	document.getElementById("GolferRunnerUpsMajorPerc").innerHTML = arrDisplay[1].toFixed(2) + " %";
+	document.getElementById("GolferRunnerUpsNonMajorPerc").innerHTML = arrDisplay[2].toFixed(2) + " %";
 
 	arrDisplay =  getGolferPosCount(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],0);
 	document.getElementById("GolferDQs").innerHTML = arrDisplay[0];
@@ -1080,10 +1203,30 @@ function displayGolferInfo(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 	document.getElementById("GolferAvgScorePar5Major").innerHTML = arrDisplay[1].toFixed(3);
 	document.getElementById("GolferAvgScorePar5NonMajor").innerHTML = arrDisplay[2].toFixed(3);
 
-	arrDisplay = getGolferAvgFinish(arguments[0],arguments[1],arguments[2],arguments[3],5,arguments[4]);
+	arrDisplay = getGolferAvgFinish(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4]);
 	document.getElementById("GolferAvgFinish").innerHTML = arrDisplay[0].toFixed(3);
 	document.getElementById("GolferAvgFinishMajor").innerHTML = arrDisplay[1].toFixed(3);
 	document.getElementById("GolferAvgFinishNonMajor").innerHTML = arrDisplay[2].toFixed(3);
+	
+	arrDisplay = getGolferLowRound(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],false);
+	document.getElementById("GolferLowRoundGross").innerHTML = arrDisplay[0];
+	document.getElementById("GolferLowRoundGrossMajor").innerHTML = arrDisplay[1];
+	document.getElementById("GolferLowRoundGrossNonMajor").innerHTML = arrDisplay[2];
+	
+	arrDisplay = getGolferLowRound(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],true);
+	document.getElementById("GolferLowRoundNet").innerHTML = arrDisplay[0];
+	document.getElementById("GolferLowRoundNetMajor").innerHTML = arrDisplay[1];
+	document.getElementById("GolferLowRoundNetNonMajor").innerHTML = arrDisplay[2];
+	
+	arrDisplay = getGolferHighRound(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],false);
+	document.getElementById("GolferHighRoundGross").innerHTML = arrDisplay[0];
+	document.getElementById("GolferHighRoundGrossMajor").innerHTML = arrDisplay[1];
+	document.getElementById("GolferHighRoundGrossNonMajor").innerHTML = arrDisplay[2];
+	
+	arrDisplay = getGolferHighRound(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],true);
+	document.getElementById("GolferHighRoundNet").innerHTML = arrDisplay[0];
+	document.getElementById("GolferHighRoundNetMajor").innerHTML = arrDisplay[1];
+	document.getElementById("GolferHighRoundNetNonMajor").innerHTML = arrDisplay[2];
 }
 
 /********************************************************************************************/
@@ -1119,13 +1262,13 @@ function changeSeason2Dropdown(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 /********************************************************************************************/
 
 function checkDropdownSelections(Golfer, Event, Course, SeasonBegin, RoundArray, X, SeasonEnd) {
-	var varGolferName		= arguments[0];
-	var varEventName		= arguments[1];
-	var varCourseName		= arguments[2];
-	var varSeason			= arguments[3];
-	var arrGolferRounds		= arguments[4];
-	var varX				= arguments[5];
-	var varSeason2			= arguments[6];
+	var varGolferName		=	arguments[0];
+	var varEventName		=	arguments[1];
+	var varCourseName		=	arguments[2];
+	var varSeason			=	arguments[3];
+	var arrGolferRounds		=	arguments[4];
+	var varX				=	arguments[5];
+	var varSeason2			=	arguments[6];
 	
 	var varSeasonTemp = arrGolferRounds[varX][0].substr(6,9);
 	
@@ -1145,15 +1288,23 @@ function checkDropdownSelections(Golfer, Event, Course, SeasonBegin, RoundArray,
 /********************************************************************************************/
 
 function getGolferEventCount(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		 arrGolferRounds	=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varEventCount		=	new Array();
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
 	
 	varEventCount[0] = 0;
 	varEventCount[1] = 0;
 	varEventCount[2] = 0;
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
+		
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
 			
 			varEventCount[0]++;
 			
@@ -1172,16 +1323,26 @@ function getGolferEventCount(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 /********************************************************************************************/
 
 function getGolferPosCount(Golfer, Event, Course, SeasonBegin, SeasonEnd, Pos) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var arrPosCount			=	new Array();
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
+	var varPos				=	arguments[5];
 	
 	arrPosCount[0] = 0;
 	arrPosCount[1] = 0;
 	arrPosCount[2] = 0;
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
-			if (arrGolferRounds[x][4] == arguments[5]) {
+		
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
+			if (arrGolferRounds[x][4] == varPos) {
 				
 				arrPosCount[0]++;
 				
@@ -1201,20 +1362,30 @@ function getGolferPosCount(Golfer, Event, Course, SeasonBegin, SeasonEnd, Pos) {
 /********************************************************************************************/
 
 function getGolferPosCountPercent(Golfer, Event, Course, SeasonBegin, SeasonEnd, Pos) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var arrEventCounts		=	new Array();
 	var arrPosCount			=	new Array();
 	var varTotal			=	0;
 	var varTotMajor			=	0;
 	var varTotNonMajor		=	0;
 	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
+	var varPos				=	arguments[5];
+	
 	arrPosCount[0] = 0;
 	arrPosCount[1] = 0;
 	arrPosCount[2] = 0;
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
-			if (arrGolferRounds[x][4] == arguments[5]) {
+		
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
+			if (arrGolferRounds[x][4] == varPos) {
 				
 				arrPosCount[0]++;
 				
@@ -1228,7 +1399,7 @@ function getGolferPosCountPercent(Golfer, Event, Course, SeasonBegin, SeasonEnd,
 		}
 	}
 	
-	arrEventCounts = getGolferEventCount(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4]);
+	arrEventCounts = getGolferEventCount(varGolfer,varEvent,varCourse,varSeasonBegin,varSeasonEnd);
 	
 	if (arrEventCounts[0] > 0) {
 		varTotal = arrPosCount[0] / arrEventCounts[0];
@@ -1249,19 +1420,27 @@ function getGolferPosCountPercent(Golfer, Event, Course, SeasonBegin, SeasonEnd,
 /********************************************************************************************/
 
 function getGolferTopXCount(Golfer, Event, Course, SeasonBegin, TopX, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varTopXCount		=	new Array();
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varPos				=	arguments[4];
+	var varSeasonEnd		=	arguments[5];
 	
 	varTopXCount[0] = 0;
 	varTopXCount[1] = 0;
 	varTopXCount[2] = 0;
 
-	for (x = 0; x < arrGolferRounds.length; x++)
-	{
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
+	for (x = 0; x < arrGolferRounds.length; x++) {
 		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[5])) {
-		    if (arrGolferRounds[x][4] <= arguments[4]) {
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+		    
+			if (arrGolferRounds[x][4] <= varPos) {
+				
 				if (arrGolferRounds[x][4] > 0) {
 					
 					varTopXCount[0]++;
@@ -1283,8 +1462,15 @@ function getGolferTopXCount(Golfer, Event, Course, SeasonBegin, TopX, SeasonEnd)
 /********************************************************************************************/
 
 function getGolferEarnings(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varEarnings			=	new Array();
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
 	
 	varEarnings[0] = 0;
 	varEarnings[1] = 0;
@@ -1292,9 +1478,7 @@ function getGolferEarnings(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
 		
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
-		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
 			
 			varEarnings[0] += arrGolferRounds[x][6];
 			
@@ -1313,12 +1497,19 @@ function getGolferEarnings(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 /********************************************************************************************/
 
 function getGolferEarningsAvg(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var arrEventCounts		=	new Array();
 	var arrEarnings			=	new Array();
 	var varTotal			=	0;
 	var varTotMajor			=	0;
 	var varTotNonMajor		=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
 	
 	arrEarnings[0] = 0;
 	arrEarnings[1] = 0;
@@ -1326,9 +1517,7 @@ function getGolferEarningsAvg(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
 		
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
-		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
 			
 			arrEarnings[0] += arrGolferRounds[x][6];
 			
@@ -1341,7 +1530,7 @@ function getGolferEarningsAvg(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 		}
 	}
 	
-	arrEventCounts = getGolferEventCount(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4]);
+	arrEventCounts = getGolferEventCount(varGolfer,varEvent,varCourse,varSeasonBegin,varSeasonEnd);
 	
 	if (arrEventCounts[0] > 0) {
 		varTotal = arrEarnings[0] / arrEventCounts[0];
@@ -1362,12 +1551,20 @@ function getGolferEarningsAvg(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 /********************************************************************************************/
 
 function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varTotalScores		=	new Array();
 	var varTotalRounds		=	new Array();
 	var varTempTotal		=	0;
 	var varTempMajor		=	0;
 	var varTempNonMajor		=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
+	var varIsNet			=	arguments[5];
 	
 	varTotalScores[0] = 0;
 	varTotalScores[1] = 0;
@@ -1378,9 +1575,8 @@ function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet)
 	
 	for (x = 0; x < arrGolferRounds.length; x++) {
 		
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
-		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
 			for (z = 8; z <= 25; z++) {
 				
 				varTotalScores[0] += arrGolferRounds[x][z];
@@ -1396,7 +1592,7 @@ function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet)
 			
 			varTotalRounds[0]++;
 			
-			if (arguments[5]) {
+			if (varIsNet) {
 				varTotalScores[0] += arrGolferRounds[x][7];
 			}
 			
@@ -1404,7 +1600,7 @@ function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet)
 				
 				varTotalRounds[1]++;
 				
-				if (arguments[5]) {
+				if (varIsNet) {
 					varTotalScores[1] += arrGolferRounds[x][7];
 				}
 			}
@@ -1413,7 +1609,7 @@ function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet)
 				
 				varTotalRounds[2]++;
 				
-				if (arguments[5]) {
+				if (varIsNet) {
 					varTotalScores[2] += arrGolferRounds[x][7];
 				}
 			}
@@ -1439,12 +1635,20 @@ function getGolferAvgScore(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet)
 /********************************************************************************************/
 
 function getGolferAvgScoreForPar(Golfer, Event, Course, SeasonBegin, Par, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varTotalScores		=	new Array();
 	var varTotalRounds		=	new Array();
 	var varTempTotal		=	0;
 	var varTempMajor		=	0;
 	var varTempNonMajor		=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varPar				=	arguments[4];
+	var varSeasonEnd		=	arguments[5];
 	
 	varTotalScores[0] = 0;
 	varTotalScores[1] = 0;
@@ -1455,14 +1659,13 @@ function getGolferAvgScoreForPar(Golfer, Event, Course, SeasonBegin, Par, Season
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
 		
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
-		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[5])) {
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
 			for (z = 8; z <= 25; z++) {
 				
 				q = z + 18;
 				
-				if (arrGolferRounds[x][q] == arguments[4]) {
+				if (arrGolferRounds[x][q] == varPar) {
 					
 					varTotalScores[0] += arrGolferRounds[x][z];
 					varTotalRounds[0]++;
@@ -1500,7 +1703,8 @@ function getGolferAvgScoreForPar(Golfer, Event, Course, SeasonBegin, Par, Season
 /********************************************************************************************/
 
 function getGolferAvgFinish(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
-	var arrGolferRounds		=	new Array();		arrGolferRounds		=	getData_Rounds();
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
 	var varAvgFinish		=	new Array();
 	var varReturn			=	new Array();
 	var varFinishTotal		=	new Array();
@@ -1508,6 +1712,12 @@ function getGolferAvgFinish(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 	var varTempAvg			=	0;
 	var varTempMajor		=	0;
 	var varTempNonMajor		=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
 	
 	varAvgFinish[0]		=	0;
 	varAvgFinish[1]		=	0;
@@ -1520,11 +1730,9 @@ function getGolferAvgFinish(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 	varRoundCount[2]	=	0;
 
 	for (x = 0; x < arrGolferRounds.length; x++) {
-		
-		varSeasonTemp = arrGolferRounds[x][0].substr(6,9);
-		
-		if (checkDropdownSelections(arguments[0],arguments[1],arguments[2],arguments[3],arrGolferRounds,x,arguments[4])) {
-			
+
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+
 			varFinishTotal[0] += arrGolferRounds[x][4];
 			varRoundCount[0]++;
 			
@@ -1544,16 +1752,184 @@ function getGolferAvgFinish(Golfer, Event, Course, SeasonBegin, SeasonEnd) {
 		varTempAvg = varFinishTotal[0] / varRoundCount[0];
 		varTempAvg = Math.round(varTempAvg * 1000) / 1000;
 	}
-	if (varRoundCount[1] > 0)
-	{
+	if (varRoundCount[1] > 0) {
 		varTempMajor = varFinishTotal[1] / varRoundCount[1];
 		varTempMajor = Math.round(varTempMajor * 1000) / 1000;
 	}
-	if (varRoundCount[2] > 0)
-	{
+	if (varRoundCount[2] > 0) {
 		varTempNonMajor = varFinishTotal[2] / varRoundCount[2];
 		varTempNonMajor = Math.round(varTempNonMajor * 1000) / 1000;
 	}
 
 	return [varTempAvg, varTempMajor, varTempNonMajor];
+}
+
+/********************************************************************************************/
+
+function getGolferLowRound(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet) {
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
+	var arrLowRound			=	new Array();
+	var arrTotalScores		=	new Array();
+	var arrLowRoundHold		=	new Array();
+	var varReturn			=	0;
+	var varReturnMajor		=	0;
+	var varReturnNonMajor	=	0;
+	var varPenalty			=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
+	var varIsNet			=	arguments[5];
+	
+	arrLowRoundHold[0]		=	999;
+	arrLowRoundHold[1]		=	999;
+	arrLowRoundHold[2]		=	999;
+	
+	for (x = 0; x < arrGolferRounds.length; x++) {
+		
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
+			arrTotalScores[0]	=	0;
+			arrTotalScores[1]	=	0;
+			arrTotalScores[2]	=	0;
+			varPenalty			=	0;
+			
+			if (varIsNet) {
+				varPenalty = arrGolferRounds[x][7];
+			}
+			
+			for (z = 8; z <= 25; z++) {
+				
+				arrTotalScores[0] += arrGolferRounds[x][z];
+				
+				if (checkMajor(arrGolferRounds, x) == 1) {
+					arrTotalScores[1] += arrGolferRounds[x][z];
+				} else {
+					arrTotalScores[1] = (999 + varPenalty);
+				}
+
+				if (checkMajor(arrGolferRounds, x) == 0) {
+					arrTotalScores[2] += arrGolferRounds[x][z];
+				} else {
+					arrTotalScores[2] = (999 + varPenalty);
+				}
+			}
+			
+			arrTotalScores[0] = arrTotalScores[0] + varPenalty;
+			arrTotalScores[1] = arrTotalScores[1] + varPenalty;
+			arrTotalScores[2] = arrTotalScores[2] + varPenalty;
+			
+			if (arrTotalScores[0] < arrLowRoundHold[0]) {
+				arrLowRoundHold[0] = arrTotalScores[0];
+			}
+			
+			if (arrTotalScores[1] < arrLowRoundHold[1]) {
+				arrLowRoundHold[1] = arrTotalScores[1];
+			}
+			
+			if (arrTotalScores[2] < arrLowRoundHold[2]) {
+				arrLowRoundHold[2] = arrTotalScores[2];
+			}
+		}
+	}
+
+	varReturn = arrLowRoundHold[0];
+	
+	if (arrLowRoundHold[1] != (999 + varPenalty)) {
+		varReturnMajor = arrLowRoundHold[1];
+	}
+	
+	if (arrLowRoundHold[2] != (999 + varPenalty)) {
+		varReturnNonMajor = arrLowRoundHold[2];
+	}
+	
+	return [varReturn, varReturnMajor, varReturnNonMajor];
+}
+
+/********************************************************************************************/
+
+function getGolferHighRound(Golfer, Event, Course, SeasonBegin, SeasonEnd, isNet) {
+	var arrGolferRounds		=	new Array();
+		arrGolferRounds		=	getData_Rounds();
+	var arrLowRound			=	new Array();
+	var arrTotalScores		=	new Array();
+	var arrLowRoundHold		=	new Array();
+	var varReturn			=	0;
+	var varReturnMajor		=	0;
+	var varReturnNonMajor	=	0;
+	var varPenalty			=	0;
+	
+	var varGolfer			=	arguments[0];
+	var varEvent			=	arguments[1];
+	var varCourse			=	arguments[2];
+	var varSeasonBegin		=	arguments[3];
+	var varSeasonEnd		=	arguments[4];
+	var varIsNet			=	arguments[5];
+	
+	arrLowRoundHold[0]		=	0;
+	arrLowRoundHold[1]		=	0;
+	arrLowRoundHold[2]		=	0;
+	
+	for (x = 0; x < arrGolferRounds.length; x++) {
+		
+		if (checkDropdownSelections(varGolfer,varEvent,varCourse,varSeasonBegin,arrGolferRounds,x,varSeasonEnd)) {
+			
+			arrTotalScores[0]	=	0;
+			arrTotalScores[1]	=	0;
+			arrTotalScores[2]	=	0;
+			varPenalty			=	0;
+			
+			if (varIsNet) {
+				varPenalty = arrGolferRounds[x][7];
+			}
+			
+			for (z = 8; z <= 25; z++) {
+				
+				arrTotalScores[0] += arrGolferRounds[x][z];
+				
+				if (checkMajor(arrGolferRounds, x) == 1) {
+					arrTotalScores[1] += arrGolferRounds[x][z];
+				} else {
+					arrTotalScores[1] = (0 + varPenalty);
+				}
+
+				if (checkMajor(arrGolferRounds, x) == 0) {
+					arrTotalScores[2] += arrGolferRounds[x][z];
+				} else {
+					arrTotalScores[2] = (0 + varPenalty);
+				}
+			}
+			
+			arrTotalScores[0] = arrTotalScores[0] + varPenalty;
+			arrTotalScores[1] = arrTotalScores[1] + varPenalty;
+			arrTotalScores[2] = arrTotalScores[2] + varPenalty;
+			
+			if (arrTotalScores[0] > arrLowRoundHold[0]) {
+				arrLowRoundHold[0] = arrTotalScores[0];
+			}
+			
+			if (arrTotalScores[1] > arrLowRoundHold[1]) {
+				arrLowRoundHold[1] = arrTotalScores[1];
+			}
+			
+			if (arrTotalScores[2] > arrLowRoundHold[2]) {
+				arrLowRoundHold[2] = arrTotalScores[2];
+			}
+		}
+	}
+
+	varReturn = arrLowRoundHold[0];
+	
+	if (arrLowRoundHold[1] != (0 + varPenalty)) {
+		varReturnMajor = arrLowRoundHold[1];
+	}
+	
+	if (arrLowRoundHold[2] != (0 + varPenalty)) {
+		varReturnNonMajor = arrLowRoundHold[2];
+	}
+	
+	return [varReturn, varReturnMajor, varReturnNonMajor];
 }
