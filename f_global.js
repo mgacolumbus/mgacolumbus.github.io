@@ -38,6 +38,7 @@ function processRecordSummary(RecordArray, SortOrder, optRecordType) {
 	arrDisplay = sortMDArray(arrDisplay, 1, varSortOrder);
 	varRecordStat = formatNumber(varRecordType, arrDisplay[0][1]);
 	varNamesList = "";
+	arrDisplay = sortMDArray(arrDisplay, 0, "asc");
 	
 	document.write("<td align='center'>" + varRecordStat + "</td>");
 	document.write("<td align='center'>");
@@ -47,7 +48,9 @@ function processRecordSummary(RecordArray, SortOrder, optRecordType) {
 			varNamesList = "-";
 		} else {
 			if (arrDisplay[z][1] == varRecordStat) {
-				varNamesList += arrDisplay[z][0] + "<br />";
+				if (varNamesList.indexOf(arrDisplay[z][0]) < 0) {
+					varNamesList += arrDisplay[z][0] + "<br />";
+				}
 			}
 		}
 	}
@@ -159,128 +162,185 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Wins") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,1);
 	}
-	if (varRecord == "-- Most Wins - Single Season") {
+	if (varRecord == "Most Wins - Single Season") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,1);
 	}
 	if (varRecord == "Most Runner-Ups") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,2,2);
 	}
-	if (varRecord == "-- Most Runner-Ups - Single Season") {
+	if (varRecord == "Most Runner-Ups - Single Season") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,2,2);
 	}
-	if (varRecord == "-- Most Runner-Ups - Single Season - No Wins") {
+	if (varRecord == "Most Runner-Ups - Single Season - No Wins") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,2,2,1,0,"Range");
 	}
-	if (varRecord == "-- Most Runner-Ups - No Wins in Range") {
+	if (varRecord == "Most Runner-Ups - No Wins in Range") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,2,2,1,0,"Range");
 	}
-	if (varRecord == "-- Most Runner-Ups - No Wins in Career") {
+	if (varRecord == "Most Runner-Ups - No Wins in Career") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,2,2,1,0,"Career");
+	}
+	if (varRecord == "Most Top 2s") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,2);
+	}
+	if (varRecord == "Most Top 2s - Single Season") {
+		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,2);
+	}
+	if (varRecord == "Most Top 3s") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3);
+	}
+	if (varRecord == "Most Top 3s - Single Season") {
+		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,3);
+	}
+	if (varRecord == "Most Top 3s - Single Season - No Wins") {
+		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Range");
+	}
+	if (varRecord == "Most Top 3s - No Wins in Range") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Range");
+	}
+	if (varRecord == "Most Top 3s - No Wins in Career") {
+		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Career");
 	}
 	if (varRecord == "Most Top 5s") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,5);
 	}
-	if (varRecord == "-- Most Top 5s - Single Season") {
+	if (varRecord == "Most Top 5s - Single Season") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,5);
 	}
-	if (varRecord == "-- Most Top 5s - Single Season - No Wins") {
+	if (varRecord == "Most Top 5s - Single Season - No Wins") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,5,1,0,"Range");
 	}
-	if (varRecord == "-- Most Top 5s - No Wins in Range") {
+	if (varRecord == "Most Top 5s - No Wins in Range") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,5,1,0,"Range");
 	}
-	if (varRecord == "-- Most Top 5s - No Wins in Career") {
+	if (varRecord == "Most Top 5s - No Wins in Career") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,5,1,0,"Career");
 	}
 	if (varRecord == "Most Top 10s") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,10);
 	}
-	if (varRecord == "-- Most Top 10s - Single Season") {
+	if (varRecord == "Most Top 10s - Single Season") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,10);
 	}
-	if (varRecord == "-- Most Top 10s - Single Season - No Wins") {
+	if (varRecord == "Most Top 10s - Single Season - No Wins") {
 		arrRecordData = getRecord_MostFinishPositional_Season(varEvent,varCourse,varSeason1,varSeason2,1,10,1,0,"Range");
 	}
-	if (varRecord == "-- Most Top 10s - No Wins in Range") {
+	if (varRecord == "Most Top 10s - No Wins in Range") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,10,1,0,"Range");
 	}
-	if (varRecord == "-- Most Top 10s - No Wins in Career") {
+	if (varRecord == "Most Top 10s - No Wins in Career") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,10,1,0,"Career");
 	}
 	if (varRecord == "Highest Earnings") {
 		arrRecordData = getRecord_MostEarnings(varEvent,varCourse,varSeason1,varSeason2);
 	}
-	if (varRecord == "-- Highest Earnings - Single Season") {
+	if (varRecord == "Highest Earnings - Single Season") {
 		arrRecordData = getRecord_MostEarnings_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
 	}
-	if (varRecord == "-- Highest Earnings - Single Season - No Wins") {
+	if (varRecord == "Highest Earnings - Single Season - No Wins") {
 		arrRecordData = getRecord_MostEarnings_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,'Range');
 	}
-	if (varRecord == "-- Highest Earnings - No Wins in Range") {
+	if (varRecord == "Highest Earnings - No Wins in Range") {
 		arrRecordData = getRecord_MostEarnings(varEvent,varCourse,varSeason1,varSeason2,1,"Range");
 	}
-	if (varRecord == "-- Highest Earnings - No Wins in Career") {
+	if (varRecord == "Highest Earnings - No Wins in Career") {
 		arrRecordData = getRecord_MostEarnings(varEvent,varCourse,varSeason1,varSeason2,1,"Career");
 	}
 	if (varRecord == "Lowest Round (Gross)") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",0);
 	}
-	if (varRecord == "-- Lowest Round (Gross) - No Wins") {
+	if (varRecord == "Lowest Round (Gross) - No Wins") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",0,1);
 	}
-	if (varRecord == "-- Lowest Round (Gross) - No DQs") {
+	if (varRecord == "Lowest Round (Gross) - No DQs") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",0,0,1);
 	}
-	if (varRecord == "-- Lowest Round (Gross) - No Wins, No DQs") {
+	if (varRecord == "Lowest Round (Gross) - No Wins, No DQs") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",0,1,1);
 	}
 	if (varRecord == "Lowest Round (Net)") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",1);
 	}
-	if (varRecord == "-- Lowest Round (Net) - No Wins") {
+	if (varRecord == "Lowest Round (Net) - No Wins") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",1,1);
 	}
-	if (varRecord == "-- Lowest Round (Net) - No DQs") {
+	if (varRecord == "Lowest Round (Net) - No DQs") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",1,0,1);
 	}
-	if (varRecord == "-- Lowest Round (Net) - No Wins, No DQs") {
+	if (varRecord == "Lowest Round (Net) - No Wins, No DQs") {
 		arrRecordData = getRecord_ScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"Round",1,1,1);
 	}
 	if (varRecord == "Most Eagles") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Eagle",0,0,0,0);
 	}
+	if (varRecord == "Most Eagles (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=Eagle",0,0,0,0);
+	}
+	if (varRecord == "Most Eagles (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Eagle",0,0,0,0);
+	}
 	if (varRecord == "Most Birdies") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
+	}
+	if (varRecord == "Most Birdies (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
+	}
+	if (varRecord == "Most Birdies (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
 	}
 	if (varRecord == "Most Pars") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
 	}
+	if (varRecord == "Most Pars (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
+	}
+	if (varRecord == "Most Pars (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
+	}
 	if (varRecord == "Most Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Bogeys (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Bogeys (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
 	}
 	if (varRecord == "Most Double Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
 	}
+	if (varRecord == "Most Double Bogeys (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Double Bogeys (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
+	}
 	if (varRecord == "Most Triple Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Triple Bogeys (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Triple Bogeys (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
 	}
 	if (varRecord == "Most Worse Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
 	}
+	if (varRecord == "Most Worse Bogeys (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Worse Bogeys (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
+	}
 	if (varRecord == "Most Par or Better") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
 	}
+	if (varRecord == "Most Bogey or Better") {
+		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"<DblBogey",0,0,0,0);
+	}
 	if (varRecord == "Most Missed Cashes") {
 		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,17,999);
-	}
-	if (varRecord == "Most Top 3s") {
-		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3);
-	}
-	if (varRecord == "-- Most Top 3s - No Wins in Range") {
-		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Range");
-	}
-	if (varRecord == "-- Most Top 3s - No Wins in Career") {
-		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,1,3,1,0,"Career");
 	}
 	
 	
@@ -367,6 +427,7 @@ function getScoreTypeTitle(Target, Comparison) {
 	}
 	if (varCompare == "<") {
 		if (varTarget == "Bogey")		{varReturnTitle = "Most Par or Better";}
+		if (varTarget == "DblBogey")	{varReturnTitle = "Most Bogey or Better";}
 	}
 	
 	return varReturnTitle;
@@ -1098,6 +1159,137 @@ function getRecord_HoleScoringMisc(Event, Course, SeasonBegin, SeasonEnd, Target
 		arrYear[varResultIndex] = "-";
 		arrExtraInfo[varResultIndex] = "-";
 	}
+	return [arrResultGolfers, arrStat, arrYear, arrExtraInfo, varReturnTitle];
+}
+
+/********************************************************************************************/
+
+function getRecord_HoleScoringMisc_SingleSeason(Event, Course, SeasonBegin, SeasonEnd, Target, optNet, optNoWins, optNoDQs, optPar) {
+	var varEvent			=	arguments[0];
+	var varCourse			=	arguments[1];
+	var varSeason1			=	arguments[2];
+	var varSeason2			=	arguments[3];
+	var varTarget			=	arguments[4];
+	var varNet				=	arguments[5];
+	var varNoWin			=	arguments[6];
+	var varNoDQ				=	arguments[7];
+	var varPar				=	arguments[8];
+	
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
+	var arrStat				=	new Array();
+	var arrYear				=	new Array();
+	var arrExtraInfo		=	new Array();
+	var arrResultGolfers	=	new Array();
+	var arrSeasonLoop		=	new Array();
+		arrSeasonLoop		=	getData_Seasons().reverse();
+	var varSeasonHold		=	0;
+	var varTerm				=	""
+	var varSeasonTemp		=	0;
+	var varEventCount		=	0;
+	var varTotal			=	0;
+	var varResultIndex		=	-1;
+	var varCompare 			=	varTarget[0];
+	var varTarget			=	varTarget.slice(1, varTarget.length);
+	var varOffset			=	getParOffset(varTarget);
+	var varSingleSeason		=	0;
+	var varSingleEvent		=	0;
+	var varReturnTitle		=	getScoreTypeTitle(varTarget, varCompare);
+		varReturnTitle		=	getRecordTitle(varReturnTitle,varSingleSeason,varSingleEvent,varNoWin,varNoDQ,varTerm);
+
+	arrStat[varResultIndex] = 0;
+
+	for (z = 0; z < arrSeasonLoop.length; z++) {
+		
+		varSeasonHold = arrSeasonLoop[z];
+		
+		for (x = 0; x < arrGolfers.length; x++) {
+			
+			varEventCount = 0;
+			varTotal = 0;
+			varResultIndex++;
+			arrStat[varResultIndex] = 0;	
+			
+			for (y = 0; y < arrRounds.length; y++) {
+				
+				varSeasonTemp = arrRounds[y][0].substr(6,9);
+				
+				if (checkValidRound(arrRounds,arrGolfers,varEvent,varCourse,varSeasonTemp,varSeason1,varSeason2,x,y,varSeasonHold)) {
+					varEventCount++;
+					varTotal += getScoreTypeTotal(arrRounds,y,varOffset,varCompare);
+				}
+			}
+			arrStat[varResultIndex] = varTotal;
+			arrResultGolfers[varResultIndex] = arrGolfers[x];
+			arrYear[varResultIndex] = varSeasonHold;
+			arrExtraInfo[varResultIndex] = getExtraInfoDetails(true,varEventCount);
+		}
+	}
+	return [arrResultGolfers, arrStat, arrYear, arrExtraInfo, varReturnTitle];
+}
+
+/********************************************************************************************/
+
+function getRecord_HoleScoringMisc_SingleEvent(Event, Course, SeasonBegin, SeasonEnd, Target, optNet, optNoWins, optNoDQs, optPar) {
+	var varEvent			=	arguments[0];
+	var varCourse			=	arguments[1];
+	var varSeason1			=	arguments[2];
+	var varSeason2			=	arguments[3];
+	var varTarget			=	arguments[4];
+	var varNet				=	arguments[5];
+	var varNoWin			=	arguments[6];
+	var varNoDQ				=	arguments[7];
+	var varPar				=	arguments[8];
+	
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
+	var arrStat				=	new Array();
+	var arrYear				=	new Array();
+	var arrExtraInfo		=	new Array();
+	var arrResultGolfers	=	new Array();
+	var arrSeasonLoop		=	new Array();
+		arrSeasonLoop		=	getData_Seasons().reverse();
+	var varSeasonHold		=	0;
+	var varTerm				=	""
+	var varSeasonTemp		=	0;
+	var varDateHold			=	"";
+	var varCourseHold		=	"";
+	var varTotal			=	0;
+	var varResultIndex		=	-1;
+	var varCompare 			=	varTarget[0];
+	var varTarget			=	varTarget.slice(1, varTarget.length);
+	var varOffset			=	getParOffset(varTarget);
+	var varSingleSeason		=	0;
+	var varSingleEvent		=	0;
+	var varReturnTitle		=	getScoreTypeTitle(varTarget, varCompare);
+		varReturnTitle		=	getRecordTitle(varReturnTitle,varSingleSeason,varSingleEvent,varNoWin,varNoDQ,varTerm);
+
+	for (x = 0; x < arrGolfers.length; x++) {
+		
+		for (y = 0; y < arrRounds.length; y++) {
+			
+			varResultIndex++;
+			varDateHold = arrRounds[y][0];
+			varCourseHold = arrRounds[y][2];
+			arrStat[varResultIndex] = 0;
+			varTotal = 0;
+			varSeasonTemp = arrRounds[y][0].substr(6,9);
+			
+			if (checkValidRound(arrRounds,arrGolfers,varEvent,varCourse,varSeasonTemp,varSeason1,varSeason2,x,y,varSeasonHold)) {
+				varTotal += getScoreTypeTotal(arrRounds,y,varOffset,varCompare);
+				
+				arrStat[varResultIndex] = varTotal;
+				arrResultGolfers[varResultIndex] = arrGolfers[x];
+				arrYear[varResultIndex] = varDateHold;
+				arrExtraInfo[varResultIndex] = varCourseHold;
+			}		
+		}
+	}
+			
 	return [arrResultGolfers, arrStat, arrYear, arrExtraInfo, varReturnTitle];
 }
 
