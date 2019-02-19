@@ -265,19 +265,6 @@ hr {border: 1px solid black;}
 			</script>
         </tr>
 		<tr><td colspan="99"><hr /></td></tr>
-		<!--
-		<tr>
-			<th align="center">
-				<script>
-					document.write("<a href='recordsdetails.html?r=3&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Missed Cashes</a>");
-				</script>
-			</th>
-			<script>
-				processRecordSummary(getRecord_MostFinishPositional(pEvent,pCourse,pSeason1,pSeason2,17,999),"desc");
-			</script>
-        </tr>
-		<tr><td colspan="99"><hr /></td></tr>
-		-->
 		<tr>
 			<th align="center">
 				<script>
@@ -515,6 +502,88 @@ hr {border: 1px solid black;}
 		<tr>
 			<th align="center">
 				<script>
+					document.write("<a href='recordsdetails.html?r=3&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Gross)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",0),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=54&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Gross) - No Wins in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",0,1),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=55&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Gross) - No DQ's in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",0,0,1),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=56&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Gross) - No Wins &amp; No DQ's in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",0,1,1),"asc");
+			</script>
+        </tr>
+		<tr><td colspan="99"><hr /></td></tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=57&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Net)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",1),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=58&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Net) - No Wins in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",1,1),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=59&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Net) - No DQ's in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",1,0,1),"asc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=60&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Low Round (Net) - No Wins &amp; No DQ's in Range</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_ScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"Round",1,1,1),"asc");
+			</script>
+        </tr>
+		<tr><td colspan="99"><hr /></td></tr>
+		<tr>
+			<th align="center">
+				<script>
 					document.write("<a href='recordsdetails.html?r=46&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Par or Better</a>");
 				</script>
 			</th>
@@ -525,11 +594,72 @@ hr {border: 1px solid black;}
 		<tr>
 			<th align="center">
 				<script>
+					document.write("<a href='recordsdetails.html?r=61&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Par or Better (Season)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_SingleSeason(pEvent,pCourse,pSeason1,pSeason2,"<Bogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=62&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Par or Better (Event)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"<Bogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=72&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Par or Better</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"<Bogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr><td colspan="99"><hr /></td></tr>
+		<tr>
+			<th align="center">
+				<script>
 					document.write("<a href='recordsdetails.html?r=45&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Bogey or Better</a>");
 				</script>
 			</th>
 			<script>
 				processRecordSummary(getRecord_HoleScoringMisc(pEvent,pCourse,pSeason1,pSeason2,"<DblBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=63&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Bogey or Better (Season)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_SingleSeason(pEvent,pCourse,pSeason1,pSeason2,"<DblBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=64&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Bogey or Better (Event)</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"<DblBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=73&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Bogey or Better</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"<DblBogey",0,0,0,0),"desc");
 			</script>
         </tr>
 		<tr><td colspan="99"><hr /></td></tr>
@@ -563,6 +693,16 @@ hr {border: 1px solid black;}
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=Eagle",0,0,0,0),"desc");
 			</script>
         </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=68&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Eagles</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=Eagle",0,0,0,0),"desc");
+			</script>
+        </tr>
 		<tr><td colspan="99"><hr /></td></tr>
 		<tr>
 			<th align="center">
@@ -592,6 +732,16 @@ hr {border: 1px solid black;}
 			</th>
 			<script>
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=Birdie",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=67&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Birdies</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=Birdie",0,0,0,0),"desc");
 			</script>
         </tr>
 		<tr><td colspan="99"><hr /></td></tr>
@@ -625,6 +775,16 @@ hr {border: 1px solid black;}
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=Par",0,0,0,0),"desc");
 			</script>
         </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=65&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Pars</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=Par",0,0,0,0),"desc");
+			</script>
+        </tr>
 		<tr><td colspan="99"><hr /></td></tr>
 		<tr>
 			<th align="center">
@@ -654,6 +814,16 @@ hr {border: 1px solid black;}
 			</th>
 			<script>
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=Bogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=66&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Bogeys</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=Bogey",0,0,0,0),"desc");
 			</script>
         </tr>
 		<tr><td colspan="99"><hr /></td></tr>
@@ -687,6 +857,16 @@ hr {border: 1px solid black;}
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=DblBogey",0,0,0,0),"desc");
 			</script>
         </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=69&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Double Bogeys</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=DblBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
 		<tr><td colspan="99"><hr /></td></tr>
 		<tr>
 			<th align="center">
@@ -718,6 +898,16 @@ hr {border: 1px solid black;}
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,"=TrpBogey",0,0,0,0),"desc");
 			</script>
         </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=70&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Triple Bogeys</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,"=TrpBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
 		<tr><td colspan="99"><hr /></td></tr>
 		<tr>
 			<th align="center">
@@ -747,6 +937,16 @@ hr {border: 1px solid black;}
 			</th>
 			<script>
 				processRecordSummary(getRecord_HoleScoringMisc_SingleEvent(pEvent,pCourse,pSeason1,pSeason2,">TrpBogey",0,0,0,0),"desc");
+			</script>
+        </tr>
+		<tr>
+			<th align="center">
+				<script>
+					document.write("<a href='recordsdetails.html?r=71&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>Most Consecutive Worse Bogeys</a>");
+				</script>
+			</th>
+			<script>
+				processRecordSummary(getRecord_HoleScoringMisc_Consecutive(pEvent,pCourse,pSeason1,pSeason2,">TrpBogey",0,0,0,0),"desc");
 			</script>
         </tr>
     <table>

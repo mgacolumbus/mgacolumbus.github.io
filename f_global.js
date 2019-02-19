@@ -2,14 +2,15 @@ function processRecordSummary(RecordArray, SortOrder, optRecordType) {
 	var arrRecordArray = arguments[0];
 	var varSortOrder = arguments[1];
 	var varRecordType = arguments[2];
-	var arrDisplay = new Array();
 	var varRecordStat = 0;
 	var varNamesList = "";
+	var varDisplayCounter = 0;
 	
 	var arrGolfers = new Array();
 	var arrStats = new Array();
 	var arrSeasons = new Array();
 	var arrExtraInfo = new Array();
+	var arrDisplay = new Array();
 	
 	arrGolfers = arrRecordArray[0];
 	arrStats = arrRecordArray[1];
@@ -22,17 +23,21 @@ function processRecordSummary(RecordArray, SortOrder, optRecordType) {
 	
 	for (z = 0; z < arrGolfers.length; z++)
 	{
-		tmpGolfer = arrGolfers[z];
-		tmpStat = arrStats[z];
-		tmpSeason = arrSeasons[z];
-		tmpExtraInfo = arrExtraInfo[z];
-		
-		arrDisplay[z] = new Array();
-		
-		arrDisplay[z][0] = tmpGolfer;
-		arrDisplay[z][1] = tmpStat;
-		arrDisplay[z][2] = tmpSeason;
-		arrDisplay[z][3] = tmpExtraInfo;
+		if (arrStats[z] > 0) {
+			tmpGolfer = arrGolfers[z];
+			tmpStat = arrStats[z];
+			tmpSeason = arrSeasons[z];
+			tmpExtraInfo = arrExtraInfo[z];
+			
+			arrDisplay[varDisplayCounter] = new Array();
+			
+			arrDisplay[varDisplayCounter][0] = tmpGolfer;
+			arrDisplay[varDisplayCounter][1] = tmpStat;
+			arrDisplay[varDisplayCounter][2] = tmpSeason;
+			arrDisplay[varDisplayCounter][3] = tmpExtraInfo;
+			
+			varDisplayCounter++
+		}
 	}
 	
 	arrDisplay = sortMDArray(arrDisplay, 1, varSortOrder);
@@ -279,6 +284,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Eagles (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Eagle",0,0,0,0);
 	}
+	if (varRecord == "Most Consecutive Eagles") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=Eagle",0,0,0,0);
+	}
 	if (varRecord == "Most Birdies") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
 	}
@@ -287,6 +295,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	}
 	if (varRecord == "Most Birdies (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
+	}
+	if (varRecord == "Most Consecutive Birdies") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=Birdie",0,0,0,0);
 	}
 	if (varRecord == "Most Pars") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
@@ -297,6 +308,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Pars (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
 	}
+	if (varRecord == "Most Consecutive Pars") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=Par",0,0,0,0);
+	}
 	if (varRecord == "Most Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
 	}
@@ -305,6 +319,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	}
 	if (varRecord == "Most Bogeys (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Consecutive Bogeys") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=Bogey",0,0,0,0);
 	}
 	if (varRecord == "Most Double Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
@@ -315,6 +332,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Double Bogeys (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
 	}
+	if (varRecord == "Most Consecutive Double Bogeys") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=DblBogey",0,0,0,0);
+	}
 	if (varRecord == "Most Triple Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
 	}
@@ -323,6 +343,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	}
 	if (varRecord == "Most Triple Bogeys (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Consecutive Triple Bogeys") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"=TrpBogey",0,0,0,0);
 	}
 	if (varRecord == "Most Worse Bogeys") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
@@ -333,14 +356,32 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	if (varRecord == "Most Worse Bogeys (Event)") {
 		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
 	}
+	if (varRecord == "Most Consecutive Worse Bogeys") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,">TrpBogey",0,0,0,0);
+	}
 	if (varRecord == "Most Par or Better") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Par or Better (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Par or Better (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
+	}
+	if (varRecord == "Most Consecutive Par or Better") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"<Bogey",0,0,0,0);
 	}
 	if (varRecord == "Most Bogey or Better") {
 		arrRecordData = getRecord_HoleScoringMisc(varEvent,varCourse,varSeason1,varSeason2,"<DblBogey",0,0,0,0);
 	}
-	if (varRecord == "Most Missed Cashes") {
-		arrRecordData = getRecord_MostFinishPositional(varEvent,varCourse,varSeason1,varSeason2,17,999);
+	if (varRecord == "Most Bogey or Better (Season)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<DblBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Bogey or Better (Event)") {
+		arrRecordData = getRecord_HoleScoringMisc_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<DblBogey",0,0,0,0);
+	}
+	if (varRecord == "Most Consecutive Bogey or Better") {
+		arrRecordData = getRecord_HoleScoringMisc_Consecutive(varEvent,varCourse,varSeason1,varSeason2,"<DblBogey",0,0,0,0);
 	}
 	
 	
@@ -1271,7 +1312,7 @@ function getRecord_HoleScoringMisc_SingleEvent(Event, Course, SeasonBegin, Seaso
 	for (x = 0; x < arrGolfers.length; x++) {
 		
 		for (y = 0; y < arrRounds.length; y++) {
-			
+
 			varResultIndex++;
 			varDateHold = arrRounds[y][0];
 			varCourseHold = arrRounds[y][2];
@@ -1286,6 +1327,99 @@ function getRecord_HoleScoringMisc_SingleEvent(Event, Course, SeasonBegin, Seaso
 				arrResultGolfers[varResultIndex] = arrGolfers[x];
 				arrYear[varResultIndex] = varDateHold;
 				arrExtraInfo[varResultIndex] = varCourseHold;
+			}		
+		}
+	}
+			
+	return [arrResultGolfers, arrStat, arrYear, arrExtraInfo, varReturnTitle];
+}
+
+/********************************************************************************************/
+
+function getRecord_HoleScoringMisc_Consecutive(Event, Course, SeasonBegin, SeasonEnd, Target, optNet, optNoWins, optNoDQs, optPar) {
+	var varEvent			=	arguments[0];
+	var varCourse			=	arguments[1];
+	var varSeason1			=	arguments[2];
+	var varSeason2			=	arguments[3];
+	var varTarget			=	arguments[4];
+	var varNet				=	arguments[5];
+	var varNoWin			=	arguments[6];
+	var varNoDQ				=	arguments[7];
+	var varPar				=	arguments[8];
+	
+	var arrRounds			=	new Array();
+		arrRounds			=	getData_Rounds();
+	var arrGolfers			=	new Array();
+		arrGolfers			=	getData_Golfers().sort();
+	var arrStat				=	new Array();
+	var arrYear				=	new Array();
+	var arrExtraInfo		=	new Array();
+	var arrResultGolfers	=	new Array();
+	var arrSeasonLoop		=	new Array();
+		arrSeasonLoop		=	getData_Seasons().reverse();
+	var varSeasonHold		=	0;
+	var varTerm				=	""
+	var varSeasonTemp		=	0;
+	var varTotal			=	0;
+	var varResultIndex		=	0;
+	var varCompare 			=	varTarget[0];
+	var varTarget			=	varTarget.slice(1, varTarget.length);
+	var varOffset			=	getParOffset(varTarget);
+	var varSingleSeason		=	0;
+	var varSingleEvent		=	0;
+	var varReturnTitle		=	getScoreTypeTitle(varTarget, varCompare);
+		//varReturnTitle		=	getRecordTitle(varReturnTitle,varSingleSeason,varSingleEvent,varNoWin,varNoDQ,varTerm);
+	var varKeepCounting		=	true;
+
+	for (x = 0; x < arrGolfers.length; x++) {
+		
+		varTotal = 0;
+		
+		for (y = 0; y < arrRounds.length; y++) {
+			
+			varSeasonTemp = arrRounds[y][0].substr(6,9);
+			
+			if (checkValidRound(arrRounds,arrGolfers,varEvent,varCourse,varSeasonTemp,varSeason1,varSeason2,x,y,varSeasonHold)) {
+				
+				arrStat[varResultIndex] = 0;
+				
+				for (r = 0; r < 18; r++) {
+					if (varCompare == "=") {
+						if (arrRounds[y][r + 8] == arrRounds[y][r + 26] + varOffset) {
+							varTotal++;
+						} else {
+							varKeepCounting = false;
+						}
+					}
+					if (varCompare == ">") {
+						if (arrRounds[y][r + 8] > arrRounds[y][r + 26] + varOffset) {
+							varTotal++;
+						} else {
+							varKeepCounting = false;
+						}
+					}
+					if (varCompare == "<") {
+						if (arrRounds[y][r + 8] < arrRounds[y][r + 26] + varOffset) {
+							varTotal++;
+						} else {
+							varKeepCounting = false;
+						}
+					}
+					
+					if (varKeepCounting == false) {
+						if (varTotal > 1) {
+							//alert(arrGolfers[x] + " | " + varTotal);
+							arrStat[varResultIndex] = varTotal;
+							arrResultGolfers[varResultIndex] = arrGolfers[x];
+							arrYear[varResultIndex] = "-";
+							arrExtraInfo[varResultIndex] = "-";
+							
+							varResultIndex++;
+						}
+							varKeepCounting = true;
+							varTotal = 0;
+					}
+				}
 			}		
 		}
 	}
