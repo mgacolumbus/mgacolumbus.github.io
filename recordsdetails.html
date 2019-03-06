@@ -15,6 +15,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 #main {margin-left: 120px}
 /* Remove margins from "page content" on small screens */
 @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
 </style>
 
 <head>
@@ -26,7 +27,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 	<script src="d_seasons.js"></script>
 	
 	<script src="f_global.js"></script>
-	<!--<script src="f_records.js"></script>-->
+	<script src="f_records.js"></script>
 </head>
 
 <body class="w3-white">
@@ -73,7 +74,8 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-	
+
+	/*
 	if (pRecord ==  1) { pRecord = "Most Wins"; }
 	if (pRecord ==  2) { pRecord = "Most Runner-Ups"; }
 	if (pRecord ==  3) { pRecord = "Lowest Round (Gross)"; }
@@ -159,7 +161,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     //Most Bogey or Better % - Single Season
     //Most Bogey or Better % - Single Event
 	
-	
+	*/
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 	//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -301,7 +303,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 	}
 
 	rnk = 0; 
-	arrDisplay = sortMDArray(arrDisplay, 1, getSortOrder(pRecord));
+	arrDisplay = sortMDArray(arrDisplay, 1, getRecordSortOrder(pRecord));
 
     for (x = 0; x < arrDisplay.length; x++)
     {
@@ -313,7 +315,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 			if ( oldstat != arrDisplay[x][1] )
 			{
 				document.write("<td align='center'>" + rnk + "</td>");
-				oldstat = arrDisplay[x][1];
+				oldstat = formatNumber(arrRecordArray[4],arrDisplay[x][1])
 			}
 			else
 			{
@@ -321,7 +323,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 			}
             
 			document.write("<td align='center'>" + arrDisplay[x][0] + "</td>");
-            document.write("<td align='center'>" + formatNumber(pRecord,arrDisplay[x][1]) + "</td>");
+            document.write("<td align='center'>" + formatNumber(arrRecordArray[4],arrDisplay[x][1]) + "</td>");
             document.write("<td align='center'>" + arrDisplay[x][2] + "</td>");
             document.write("<td align='center'>" + arrDisplay[x][3] + "</td>");
             document.write("</tr>");
