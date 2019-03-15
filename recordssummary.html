@@ -209,7 +209,7 @@ a {text-decoration: none;}
 				
 				if (!(vHeader == "N/A")) {
 					document.write("<tr><th align='center'>");
-					document.write("<a href='recordsdetails.html?r="+vDisplayCounter+"&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"'>"+vHeader+"</a>");
+					document.write("<a href='recordsdetails.html?r="+vDisplayCounter+"&c="+pCourseHold+"&e="+pEventHold+"&s1="+pSeason1Hold+"&s2="+pSeason2Hold+"' target='_details'>"+vHeader+"</a>");
 					document.write("</th>");
 					processRecordSummary(vDisplayCounter,pEvent,pCourse,pSeason1,pSeason2);
 					document.write("</tr>");
