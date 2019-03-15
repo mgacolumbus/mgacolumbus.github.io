@@ -6,11 +6,14 @@ function getRecordNumberFormat(RecordID) {
     var pRecordID = arguments[0] * 1;
 
     switch(pRecordID) {
-        case  25:
-        case  26:
-		case  27:
-		case  28:
-		case  29:	return "Earnings";
+        case  2500:	case  2600:	case  2700:	case  2800:	case  2900:	return "Earnings";
+		
+		case  2945:	case  2946:	case  2947:	case  2948:	case  2952:	case  2953:	case  2954:
+		case  2955:
+		case  4200:	case  4300:	case  4800:	case  4900:	case  5400:	case  5500:
+		case  6000:	case  6100:	case  6600:	case  6700:	case  7200:	case  7300:
+		case  7800:	case  7900:	case  8400:	case  8500:	case  9000:	case  9100:	return "Avg";
+		
         default:    return "";
     }
 }
@@ -24,14 +27,11 @@ function getRecordSortOrder(RecordID) {
 	var pRecordID = arguments[0] * 1;
 	
 	switch(pRecordID) {
-		case  30:
-		case  31:
-		case  32:
-		case  33:
-		case  34:
-		case  35:
-		case  36:
-		case  37:	return "asc";
+		case  2945:	case  2946:	case  2947:	case  2948:	case  2952:	case  2953:	case  2954:
+		case  2955:
+		case  3000:	case  3100:	case  3200:	case  3300:	case  3400:	case  3500:	case  3600:
+		case  3700:	return "asc";
+		
 		default:    return "desc";
 	}
 }
@@ -58,97 +58,154 @@ function getRecordHeader(RecordID) {
 	var pRecordID = arguments[0] * 1;
 
 	switch (pRecordID) {
-		case   1:	return "Most Wins";
-		case   2:	return "Most Wins / Single Season";
-		case   3:	return "Most Runner-Ups";
-		case   4:	return "Most Runner-Ups / Single Season";
-		case   5:	return "Most Runner-Ups / Single Season / No Wins";
-		case   6:	return "Most Runner-Ups / No Wins in Range";
-		case   7:	return "Most Runner-Ups / No Wins in Career";
-		case   8:	return "Most Top 2s";
-        case   9:   return "Most Top 2s / Single Season"
-		case  10:	return "Most Top 3s";
-        case  11:   return "Most Top 3s / Single Season"
-		case  12:	return "Most Top 3s / Single Season / No Wins";
-		case  13:	return "Most Top 3s / No Wins in Range";
-		case  14:	return "Most Top 3s / No Wins in Career";
-		case  15:	return "Most Top 5s";
-        case  16:   return "Most Top 5s / Single Season"
-		case  17:	return "Most Top 5s / Single Season / No Wins";
-		case  18:	return "Most Top 5s / No Wins in Range";
-		case  19:	return "Most Top 5s / No Wins in Career";
-		case  20:	return "Most Top 10s";
-        case  21:   return "Most Top 10s / Single Season"
-		case  22:	return "Most Top 10s / Single Season / No Wins";
-		case  23:	return "Most Top 10s / No Wins in Range";
-		case  24:	return "Most Top 10s / No Wins in Career";
-        case  25:   return "Most Earnings";
-		case  26:   return "Most Earnings / Single Season";
-		case  27:   return "Most Earnings / Single Season / No Wins";
-		case  28:	return "Most Earnings / No Wins in Range";
-		case  29:	return "Most Earnings / No Wins in Career";
-		case  30:	return "Lowest Round (Gross)";
-		case  31:	return "Lowest Round (Gross) / No Wins in Range"
-		case  32:	return "Lowest Round (Gross) / No DQ's in Range"
-		case  33:	return "Lowest Round (Gross) / No Wins or DQ's in Range"
-		case  34:	return "Lowest Round (Net)";
-		case  35:	return "Lowest Round (Net) / No Wins in Range"
-		case  36:	return "Lowest Round (Net) / No DQ's in Range"
-		case  37:	return "Lowest Round (Net) / No Wins or DQ's in Range"
-		case  38:	return "Most Par or Better"
-		case  39:	return "Most Par or Better / Single Season"
-		case  40:	return "Most Par or Better / Single Event"
-		case  41:	return "Most Consecutive Par or Better"
-		case  42:	return "Highest % Par or Better"
-		case  43:	return "Highest % Par or Better / Single Season"
-		case  44:	return "Most Bogey or Better"
-		case  45:	return "Most Bogey or Better / Single Season"
-		case  46:	return "Most Bogey or Better / Single Event"
-		case  47:	return "Most Consecutive Bogey or Better"
-		case  48:	return "Highest % Bogey or Better"
-		case  49:	return "Highest % Bogey or Better / Single Season"
-		case  50:	return "Most Eagles"
-		case  51:	return "Most Eagles / Single Season"
-		case  52:	return "Most Eagles / Single Event"
-		case  53:	return "Most Consecutive Eagles"
-		case  54:	return "Highest % Eagles"
-		case  55:	return "Highest % Eagles / Single Season"
-		case  56:	return "Most Birdies"
-		case  57:	return "Most Birdies / Single Season"
-		case  58:	return "Most Birdies / Single Event"
-		case  59:	return "Most Consecutive Birdies"
-		case  60:	return "Highest % Birdies"
-		case  61:	return "Highest % Birdies / Single Season"
-		case  62:	return "Most Pars"
-		case  63:	return "Most Pars / Single Season"
-		case  64:	return "Most Pars / Single Event"
-		case  65:	return "Most Consecutive Pars"
-		case  66:	return "Highest % Pars"
-		case  67:	return "Highest % Pars / Single Season"
-		case  68:	return "Most Bogeys"
-		case  69:	return "Most Bogeys / Single Season"
-		case  70:	return "Most Bogeys / Single Event"
-		case  71:	return "Most Consecutive Bogeys"
-		case  72:	return "Highest % Bogeys"
-		case  73:	return "Highest % Bogeys / Single Season"
-		case  74:	return "Most Double Bogeys"
-		case  75:	return "Most Double Bogeys / Single Season"
-		case  76:	return "Most Double Bogeys / Single Event"
-		case  77:	return "Most Consecutive Double Bogeys"
-		case  78:	return "Highest % Double Bogeys"
-		case  79:	return "Highest % Double Bogeys / Single Season"
-		case  80:	return "Most Triple Bogeys"
-		case  81:	return "Most Triple Bogeys / Single Season"
-		case  82:	return "Most Triple Bogeys / Single Event"
-		case  83:	return "Most Consecutive Triple Bogeys"
-		case  84:	return "Highest % Triple Bogeys"
-		case  85:	return "Highest % Triple Bogeys / Single Season"
-		case  86:	return "Most Worse Bogeys"
-		case  87:	return "Most Worse Bogeys / Single Season"
-		case  88:	return "Most Worse Bogeys / Single Event"
-		case  89:	return "Most Consecutive Worse Bogeys"
-		case  90:	return "Highest % Worse Bogeys"
-		case  91:	return "Highest % Worse Bogeys / Single Season"
+		case   100:		return "Most Wins";
+		case   200:		return "Most Runner-Ups";
+		case   300:		return "Most Top 2s";
+		case   400:		return "Most Top 3s";
+		case   500:		return "Most Top 5s";
+		case   600:		return "Most Top 10s";
+		
+		case   700:		return "Most Wins<br />[ Single Season ]";
+		case   800:		return "Most Runner-Ups<br />[ Single Season ]";
+        case   900:		return "Most Top 2s<br />[ Single Season ]"
+        case  1000:		return "Most Top 3s<br />[ Single Season ]"
+        case  1100:		return "Most Top 5s<br />[ Single Season ]"
+        case  1200:		return "Most Top 10s<br />[ Single Season ]"
+		
+		case  1300:		return "Most Runner-Ups<br />[ Single Season - No Wins ]";
+		case  1400:		return "Most Top 3s<br />[ Single Season - No Wins ]";
+		case  1500:		return "Most Top 5s<br />[ Single Season - No Wins ]";
+		case  1600:		return "Most Top 10s<br />[ Single Season - No Wins ]";
+		
+		case  1700:		return "Most Runner-Ups<br />[ No Wins in Range ]";
+		case  1800:		return "Most Top 3s<br />[ No Wins in Range ]";
+		case  1900:		return "Most Top 5s<br />[ No Wins in Range ]";
+		case  2000:		return "Most Top 10s<br />[ No Wins in Range ]";
+		
+		case  2100:		return "Most Runner-Ups<br />[ No Wins in Career ]";
+		case  2200:		return "Most Top 3s<br />[ No Wins in Career ]";
+		case  2300:		return "Most Top 5s<br />[ No Wins in Career ]";
+		case  2400:		return "Most Top 10s<br />[ No Wins in Career ]";
+		
+        case  2500:		return "Most Earnings";
+		case  2600:		return "Most Earnings<br />[ Single Season ]";
+		case  2700:		return "Most Earnings<br />[ Single Season - No Wins ]";
+		case  2800:		return "Most Earnings<br />[ No Wins in Range ]";
+		case  2900:		return "Most Earnings<br />[ No Wins in Career ]";
+		
+		case  2945:		return "Lowest Scoring Average (Gross)";
+		case  2946:		return "Lowest Scoring Average (Gross)<br />[ No Wins in Range ]";
+		case  2947:		return "Lowest Scoring Average (Gross)<br />[ No DQ's in Range ]";
+		case  2948:		return "Lowest Scoring Average (Gross)<br />[ No Wins or DQ's in Range ]";
+		/*
+		case  xx:	return "Lowest Scoring Avg (Gross) / No Wins in Career";
+		case  xx:	return "Lowest Scoring Avg (Gross) / No DQ's in Career";
+		case  xx:	return "Lowest Scoring Avg (Gross) / No Wins or DQ's in Career";
+		
+		SINGLE SEASON
+		*/
+		case  2952:		return "Lowest Scoring Average (Net)";
+		case  2953:		return "Lowest Scoring Average (Net)<br />[ No Wins in Range ]";
+		case  2954:		return "Lowest Scoring Average (Net)<br />[ No DQ's in Range ]";
+		case  2955:		return "Lowest Scoring Average (Net)<br />[ No Wins or DQ's in Range ]";
+		/*
+		case  xx:	return "Lowest Scoring Avg (Net) / No Wins in Career";
+		case  xx:	return "Lowest Scoring Avg (Net) / No DQ's in Career";
+		case  xx:	return "Lowest Scoring Avg (Net) / No Wins or DQ's in Career";
+		
+		SINGLE SEASON
+		*/
+		case  3000:		return "Lowest Round (Gross)";
+		case  3100:		return "Lowest Round (Gross)<br />[ No Wins in Range ]"
+		case  3200:		return "Lowest Round (Gross)<br />[ No DQ's in Range ]"
+		case  3300:		return "Lowest Round (Gross)<br />[ No Wins or DQ's in Range ]"
+		/*
+		case  xx:	return "Lowest Round (Gross) / No Wins in Career"
+		case  xx:	return "Lowest Round (Gross) / No DQ's in Career"
+		case  xx:	return "Lowest Round (Gross) / No Wins or DQ's in Career"
+		*/
+		case  3400:		return "Lowest Round (Net)";
+		case  3500:		return "Lowest Round (Net)<br />[ No Wins in Range ]"
+		case  3600:		return "Lowest Round (Net)<br />[ No DQ's in Range ]"
+		case  3700:		return "Lowest Round (Net)<br />[ No Wins or DQ's in Range ]"
+		/*
+		case  xx:	return "Lowest Round (Net) / No Wins in Career"
+		case  xx:	return "Lowest Round (Net) / No DQ's in Career"
+		case  xx:	return "Lowest Round (Net) / No Wins or DQ's in Career"
+
+		case  xx:	return "Lowest 9"
+		case  xx:	return "Lowest 9 / No Wins in Range"
+		case  xx:	return "Lowest 9 / No DQ's in Range"
+		case  xx:	return "Lowest 9 / No Wins or DQ's in Range"
+		case  xx:	return "Lowest 9 / No Wins in Career"
+		case  xx:	return "Lowest 9 / No DQ's in Career"
+		case  xx:	return "Lowest 9 / No Wins or DQ's in Career"
+		
+		case  xx:	return "Most Rounds Under Mar"
+		case  xx:	return "Most Rounds Under Mar / No Wins in Range"
+		case  xx:	return "Most Rounds Under Mar / No DQ's in Range"
+		case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Range"
+		case  xx:	return "Most Rounds Under Mar / No Wins in Career"
+		case  xx:	return "Most Rounds Under Mar / No DQ's in Career"
+		case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Career"
+		*/
+		case  3800:		return "Most Par or Better"
+		/*
+		case  xx:	return "Most Par or Better / No Wins in Range"
+		*/
+		case  3900:		return "Most Par or Better<br />[ Single Season ]"
+		case  4000:		return "Most Par or Better<br />[ Single Event ]"
+		case  4100:		return "Most Consecutive Par or Better"
+		case  4200:		return "Highest % Par or Better"
+		case  4300:		return "Highest % Par or Better<br />[ Single Season ]"
+		case  4400:		return "Most Bogey or Better"
+		case  4500:		return "Most Bogey or Better<br />[ Single Season ]"
+		case  4600:		return "Most Bogey or Better<br />[ Single Event ]"
+		case  4700:		return "Most Consecutive Bogey or Better"
+		case  4800:		return "Highest % Bogey or Better"
+		case  4900:		return "Highest % Bogey or Better<br />[ Single Season ]"
+		case  5000:		return "Most Eagles"
+		case  5100:		return "Most Eagles<br />[ Single Season ]"
+		case  5200:		return "Most Eagles<br />[ Single Event ]"
+		case  5300:		return "Most Consecutive Eagles"
+		case  5400:		return "Highest % Eagles"
+		case  5500:		return "Highest % Eagles<br />[ Single Season ]"
+		case  5600:		return "Most Birdies"
+		case  5700:		return "Most Birdies<br />[ Single Season ]"
+		case  5800:		return "Most Birdies<br />[ Single Event ]"
+		case  5900:		return "Most Consecutive Birdies"
+		case  6000:		return "Highest % Birdies"
+		case  6100:		return "Highest % Birdies<br />[ Single Season ]"
+		case  6200:		return "Most Pars"
+		case  6300:		return "Most Pars<br />[ Single Season ]"
+		case  6400:		return "Most Pars<br />[ Single Event ]"
+		case  6500:		return "Most Consecutive Pars"
+		case  6600:		return "Highest % Pars"
+		case  6700:		return "Highest % Pars<br />[ Single Season ]"
+		case  6800:		return "Most Bogeys"
+		case  6900:		return "Most Bogeys<br />[ Single Season ]"
+		case  7000:		return "Most Bogeys<br />[ Single Event ]"
+		case  7100:		return "Most Consecutive Bogeys"
+		case  7200:		return "Highest % Bogeys"
+		case  7300:		return "Highest % Bogeys<br />[ Single Season ]"
+		case  7400:		return "Most Double Bogeys"
+		case  7500:		return "Most Double Bogeys<br />[ Single Season ]"
+		case  7600:		return "Most Double Bogeys<br />[ Single Event ]"
+		case  7700:		return "Most Consecutive Double Bogeys"
+		case  7800:		return "Highest % Double Bogeys"
+		case  7900:		return "Highest % Double Bogeys<br />[ Single Season ]"
+		case  8000:		return "Most Triple Bogeys"
+		case  8100:		return "Most Triple Bogeys<br />[ Single Season ]"
+		case  8200:		return "Most Triple Bogeys<br />[ Single Event ]"
+		case  8300:		return "Most Consecutive Triple Bogeys"
+		case  8400:		return "Highest % Triple Bogeys"
+		case  8500:		return "Highest % Triple Bogeys<br />[ Single Season ]"
+		case  8600:		return "Most Worse Bogeys"
+		case  8700:		return "Most Worse Bogeys<br />[ Single Season ]"
+		case  8800:		return "Most Worse Bogeys<br />[ Single Event ]"
+		case  8900:		return "Most Consecutive Worse Bogeys"
+		case  9000:		return "Highest % Worse Bogeys"
+		case  9100:		return "Highest % Worse Bogeys<br />[ Single Season ]"
 
         default:    return "N/A";
 	}
@@ -166,97 +223,108 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	var arrRecordData = new Array();
 	
 	switch (varRecord) {
-		case   1:	return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
-		case   2:	return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,1);
-		case   3:	return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
-		case   4:	return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,2,2);
-		case   5:	return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
-		case   6:	return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
-		case   7:	return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
-		case   8:	return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,2);
-        case   9:   return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,2);
-        case  10:   return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,3);
-        case  11:   return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,3);
-		case  12:	return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
-		case  13:	return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
-		case  14:	return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
-        case  15:   return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,5);
-        case  16:   return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,5);
-		case  17:	return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
-		case  18:	return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
-		case  19:	return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
-		case  20:   return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,10);
-		case  21:   return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,10);
-		case  22:	return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
-		case  23:	return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
-		case  24:	return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
-		case  25:   return getRecord_MostEarnings_Range(varEvent,varCourse,varSeason1,varSeason2);
-		case  26:   return getRecord_MostEarnings_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
-		case  27:   return getRecord_MostEarnings_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2);
-		case  28:   return getRecord_MostEarnings_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2);
-		case  29:   return getRecord_MostEarnings_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2);
-		case  30:	return getRecord_LowRound_Range_Gross(varEvent,varCourse,varSeason1,varSeason2);
-		case  31:	return getRecord_LowRound_Range_Gross_NoWins(varEvent,varCourse,varSeason1,varSeason2);
-		case  32:	return getRecord_LowRound_Range_Gross_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
-		case  33:	return getRecord_LowRound_Range_Gross_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
-		case  34:	return getRecord_LowRound_Range_Net(varEvent,varCourse,varSeason1,varSeason2);
-		case  35:	return getRecord_LowRound_Range_Net_NoWins(varEvent,varCourse,varSeason1,varSeason2);
-		case  36:	return getRecord_LowRound_Range_Net_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
-		case  37:	return getRecord_LowRound_Range_Net_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
-		case  38:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  39:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  40:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  41:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  42:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  43:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
-		case  44:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  45:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  46:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  47:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  48:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  49:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
-		case  50:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  51:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  52:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  53:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  54:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  55:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
-		case  56:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  57:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  58:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  59:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  60:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  61:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
-		case  62:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  63:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  64:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  65:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  66:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  67:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
-		case  68:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  69:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  70:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  71:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  72:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  73:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
-		case  74:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  75:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  76:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  77:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  78:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  79:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
-		case  80:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  81:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  82:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  83:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  84:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  85:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
-		case  86:	return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
-		case  87:	return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
-		case  88:	return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
-		case  89:	return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
-		case  90:	return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
-		case  91:	return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case   100:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
+		case   200:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
+		case   300:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,2);
+        case   400:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,3);
+        case   500:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,5);
+		case   600:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,10);
+		case   700:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,1);
+		case   800:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,2,2);
+        case   900:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,2);
+        case  1000:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,3);
+        case  1100:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,5);
+		case  1200:		return getRecord_MostFinishPositional_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,1,10);
+		case  1300:		return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
+		case  1400:		return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
+		case  1500:		return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
+		case  1600:		return getRecord_MostFinishPositional_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
+		case  1700:		return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
+		case  1800:		return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
+		case  1900:		return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
+		case  2000:		return getRecord_MostFinishPositional_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
+		case  2100:		return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,2,2);
+		case  2200:		return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,3);
+		case  2300:		return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,5);
+		case  2400:		return getRecord_MostFinishPositional_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2,1,10);
+		
+		case  2500:		return getRecord_MostEarnings_Range(varEvent,varCourse,varSeason1,varSeason2);
+		case  2600:		return getRecord_MostEarnings_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case  2700:		return getRecord_MostEarnings_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2800:		return getRecord_MostEarnings_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2900:		return getRecord_MostEarnings_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		
+		case  2945:		return getRecord_LowRoundAvg_Range_Gross(varEvent,varCourse,varSeason1,varSeason2);
+		case  2946:		return getRecord_LowRoundAvg_Range_Gross_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2947:		return getRecord_LowRoundAvg_Range_Gross_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  2948:		return getRecord_LowRoundAvg_Range_Gross_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  2952:		return getRecord_LowRoundAvg_Range_Net(varEvent,varCourse,varSeason1,varSeason2);
+		case  2953:		return getRecord_LowRoundAvg_Range_Net_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2954:		return getRecord_LowRoundAvg_Range_Net_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  2955:		return getRecord_LowRoundAvg_Range_Net_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		
+		case  3000:		return getRecord_LowRound_Range_Gross(varEvent,varCourse,varSeason1,varSeason2);
+		case  3100:		return getRecord_LowRound_Range_Gross_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  3200:		return getRecord_LowRound_Range_Gross_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3300:		return getRecord_LowRound_Range_Gross_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3400:		return getRecord_LowRound_Range_Net(varEvent,varCourse,varSeason1,varSeason2);
+		case  3500:		return getRecord_LowRound_Range_Net_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  3600:		return getRecord_LowRound_Range_Net_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3700:		return getRecord_LowRound_Range_Net_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3800:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  3900:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  4000:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  4100:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  4200:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  4300:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
+		case  4400:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  4500:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  4600:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  4700:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  4800:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  4900:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
+		case  5000:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5100:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5200:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5300:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5400:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5500:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
+		case  5600:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  5700:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  5800:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  5900:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  6000:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  6100:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie");
+		case  6200:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6300:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6400:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6500:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6600:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6700:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par");
+		case  6800:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  6900:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  7000:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  7100:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  7200:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  7300:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey");
+		case  7400:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  7500:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  7600:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  7700:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  7800:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  7900:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey");
+		case  8000:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8100:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8200:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8300:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8400:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8500:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey");
+		case  8600:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case  8700:		return getRecord_MostScoreType_FullRound_Range_SingleSeason(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case  8800:		return getRecord_MostScoreType_FullRound_Range_SingleEvent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case  8900:		return getRecord_MostScoreType_Consecutive_Range(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case  9000:		return getRecord_MostScoreType_FullRound_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
+		case  9100:		return getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey");
 	}
 }
 
@@ -271,9 +339,10 @@ function getRecordHeaderBreak(RecordID) {
 	pRecordID = getRecordDisplayOrder(pRecordID);
 	
 	switch (pRecordID) {
-		case   2:	case   7:	case   9:	case  14:	case  19:	case  24:	case  29:
-		case  33:	case  37:	case  43:	case  49:	case  55:	case  61:	case  67:
-		case  73:	case  79:	case  85:	case  91:	return true;
+		case   600:	case  1200:	case  1600:	case  2000:	case  2400:	case  2900:	case  2948:
+		case  2955:
+		case  3300:	case  3700:	case  4300:	case  4900:	case  5500:	case  6100:	case  6700:
+		case  7300:	case  7900:	case  8500:	case  9100:	return true;
 
         default:    return false;
 	}
@@ -288,9 +357,10 @@ function getRecordCategoryHeader(RecordID) {
     var pRecordID = arguments[0] * 1;
 
     switch(pRecordID) {
-        case   1:	return "Placement Records";
-        case  25:	return "Earnings Records";
-		case  30:	return "Scoring Records";
+        case   100:		return "Placement Records";
+        case  2500:		return "Earnings Records";
+		case  2945:		return "Scoring Records";
+		case  3800:		return "Score Type Records";
         default:    return "N/A";
     }
 }
@@ -381,6 +451,30 @@ function processRecordSummaryDisplay(RecordsArray, SortOrder, optRecordType) {
 }
 
 
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
 /********************************************************************************************/
 /********************************************************************************************/
 /********************************************************************************************/
@@ -2135,6 +2229,628 @@ function getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(Event, Cou
 	}
 	
 	vReturnTitle = vReturnTitle + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Gross(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Net(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+				
+				vRoundTotal += aRounds[r][7];
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Gross_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No Wins in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 1 && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Gross_NoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No DQs in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 0 && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Gross_NoWinsNoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No Wins or DQs in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if ((aRounds[r][4] == 0 || aRounds[r][4] == 1) && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Net_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No Wins in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 1 && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+				
+				vRoundTotal += aRounds[r][7];
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Net_NoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No DQs in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 0 && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+				
+				vRoundTotal += aRounds[r][7];
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowRoundAvg_Range_Net_NoWinsNoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events][No Wins or DQs in Range]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	var vRoundTotal = 0;	var vAverage = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		vEventCounter = 0;
+		vReturnIndex++;
+		aReturnStat[vReturnIndex] = 0;
+		vRoundTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if ((aRounds[r][4] == 0 || aRounds[r][4] == 1) && aRounds[r][3] == aGolfers[g]) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				for (h = 0; h < 18; h++) {
+					vRoundTotal += aRounds[r][h + 8];
+				}
+				
+				vRoundTotal += aRounds[r][7];
+			}
+		}
+		
+		vAverage = (vRoundTotal / vEventCounter);
+		vAverage = Math.round(vAverage * 1000) / 1000;
+		
+		if (vEventCounter < 3) {
+			vAverage = 0;
+		}
+		
+		aReturnStat[vReturnIndex] = vAverage;
+		aReturnGolfers[vReturnIndex] = aGolfers[g];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+	}
+	
+	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }

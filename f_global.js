@@ -224,6 +224,8 @@ function formatNumber(Title, NumberToFormat) {
 	if (varTitle.indexOf("Earnings") > -1)	{ return varNumberToFormat.toFixed(2); }
 	if (varTitle.indexOf("Score") > -1)		{ return varNumberToFormat.toFixed(3); }
 	if (varTitle.indexOf("Avg") > -1)		{ return varNumberToFormat.toFixed(3); }
+	if (varTitle.indexOf("Average") > -1)	{ return varNumberToFormat.toFixed(3); }
+	if (varTitle.indexOf("%") > -1)			{ return varNumberToFormat.toFixed(3); }
 	
 	return varNumberToFormat;
 }
