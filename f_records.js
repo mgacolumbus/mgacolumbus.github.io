@@ -1959,8 +1959,18 @@ function getRecord_MostScoreType_Consecutive_Range(Event, Course, SeasonBegin, S
 	vOffset = getParOffset(pTarget);
 
 	for (g = 0; g < aGolfers.length; g++) {
-		
+
+		if (vTotal > 1) {
+			aReturnStat[vReturnIndex] = vTotal;
+			aReturnGolfers[vReturnIndex] = aGolfers[g-1];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = "-";
+			
+			vReturnIndex++;
+		}
+		vKeepCounting = true;
 		vTotal = 0;
+		//vTotal = 0;
 		
 		for (r = 0; r < aRounds.length; r++) {
 			
