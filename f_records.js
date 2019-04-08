@@ -97,62 +97,62 @@ function getRecordHeader(RecordID) {
 		case  2946:		return "Lowest Scoring Average (Gross)<br />[ No Wins in Range ]";
 		case  2947:		return "Lowest Scoring Average (Gross)<br />[ No DQ's in Range ]";
 		case  2948:		return "Lowest Scoring Average (Gross)<br />[ No Wins or DQ's in Range ]";
-		/*
-		case  xx:	return "Lowest Scoring Avg (Gross) / No Wins in Career";
-		case  xx:	return "Lowest Scoring Avg (Gross) / No DQ's in Career";
-		case  xx:	return "Lowest Scoring Avg (Gross) / No Wins or DQ's in Career";
 		
-		SINGLE SEASON
-		*/
+		//case  xx:	return "Lowest Scoring Avg (Gross) / No Wins in Career";
+		//case  xx:	return "Lowest Scoring Avg (Gross) / No DQ's in Career";
+		//case  xx:	return "Lowest Scoring Avg (Gross) / No Wins or DQ's in Career";
+		
+		//SINGLE SEASON
+		
 		case  2952:		return "Lowest Scoring Average (Net)";
 		case  2953:		return "Lowest Scoring Average (Net)<br />[ No Wins in Range ]";
 		case  2954:		return "Lowest Scoring Average (Net)<br />[ No DQ's in Range ]";
 		case  2955:		return "Lowest Scoring Average (Net)<br />[ No Wins or DQ's in Range ]";
-		/*
-		case  xx:	return "Lowest Scoring Avg (Net) / No Wins in Career";
-		case  xx:	return "Lowest Scoring Avg (Net) / No DQ's in Career";
-		case  xx:	return "Lowest Scoring Avg (Net) / No Wins or DQ's in Career";
 		
-		SINGLE SEASON
-		*/
+		//case  xx:	return "Lowest Scoring Avg (Net) / No Wins in Career";
+		//case  xx:	return "Lowest Scoring Avg (Net) / No DQ's in Career";
+		//case  xx:	return "Lowest Scoring Avg (Net) / No Wins or DQ's in Career";
+		
+		//SINGLE SEASON
+		
 		case  3000:		return "Lowest Round (Gross)";
 		case  3100:		return "Lowest Round (Gross)<br />[ No Wins in Range ]"
 		case  3200:		return "Lowest Round (Gross)<br />[ No DQ's in Range ]"
 		case  3300:		return "Lowest Round (Gross)<br />[ No Wins or DQ's in Range ]"
-		/*
-		case  xx:	return "Lowest Round (Gross) / No Wins in Career"
-		case  xx:	return "Lowest Round (Gross) / No DQ's in Career"
-		case  xx:	return "Lowest Round (Gross) / No Wins or DQ's in Career"
-		*/
+		
+		//case  xx:	return "Lowest Round (Gross) / No Wins in Career"
+		//case  xx:	return "Lowest Round (Gross) / No DQ's in Career"
+		//case  xx:	return "Lowest Round (Gross) / No Wins or DQ's in Career"
+		
 		case  3400:		return "Lowest Round (Net)";
 		case  3500:		return "Lowest Round (Net)<br />[ No Wins in Range ]"
 		case  3600:		return "Lowest Round (Net)<br />[ No DQ's in Range ]"
 		case  3700:		return "Lowest Round (Net)<br />[ No Wins or DQ's in Range ]"
-		/*
-		case  xx:	return "Lowest Round (Net) / No Wins in Career"
-		case  xx:	return "Lowest Round (Net) / No DQ's in Career"
-		case  xx:	return "Lowest Round (Net) / No Wins or DQ's in Career"
-
-		case  xx:	return "Lowest 9"
-		case  xx:	return "Lowest 9 / No Wins in Range"
-		case  xx:	return "Lowest 9 / No DQ's in Range"
-		case  xx:	return "Lowest 9 / No Wins or DQ's in Range"
-		case  xx:	return "Lowest 9 / No Wins in Career"
-		case  xx:	return "Lowest 9 / No DQ's in Career"
-		case  xx:	return "Lowest 9 / No Wins or DQ's in Career"
 		
-		case  xx:	return "Most Rounds Under Mar"
-		case  xx:	return "Most Rounds Under Mar / No Wins in Range"
-		case  xx:	return "Most Rounds Under Mar / No DQ's in Range"
-		case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Range"
-		case  xx:	return "Most Rounds Under Mar / No Wins in Career"
-		case  xx:	return "Most Rounds Under Mar / No DQ's in Career"
-		case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Career"
-		*/
+		//case  xx:	return "Lowest Round (Net) / No Wins in Career"
+		//case  xx:	return "Lowest Round (Net) / No DQ's in Career"
+		//case  xx:	return "Lowest Round (Net) / No Wins or DQ's in Career"
+
+		//case  xx:	return "Lowest 9"
+		//case  xx:	return "Lowest 9 / No Wins in Range"
+		//case  xx:	return "Lowest 9 / No DQ's in Range"
+		//case  xx:	return "Lowest 9 / No Wins or DQ's in Range"
+		//case  xx:	return "Lowest 9 / No Wins in Career"
+		//case  xx:	return "Lowest 9 / No DQ's in Career"
+		//case  xx:	return "Lowest 9 / No Wins or DQ's in Career"
+		
+		//case  xx:	return "Most Rounds Under Mar"
+		//case  xx:	return "Most Rounds Under Mar / No Wins in Range"
+		//case  xx:	return "Most Rounds Under Mar / No DQ's in Range"
+		//case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Range"
+		//case  xx:	return "Most Rounds Under Mar / No Wins in Career"
+		//case  xx:	return "Most Rounds Under Mar / No DQ's in Career"
+		//case  xx:	return "Most Rounds Under Mar / No Wins or DQ's in Career"
+		
 		case  3800:		return "Most Par or Better"
-		/*
-		case  xx:	return "Most Par or Better / No Wins in Range"
-		*/
+		
+		//case  xx:	return "Most Par or Better / No Wins in Range"
+		
 		case  3900:		return "Most Par or Better<br />[ Single Season ]"
 		case  4000:		return "Most Par or Better<br />[ Single Event ]"
 		case  4100:		return "Most Consecutive Par or Better"
@@ -427,7 +427,9 @@ function processRecordSummaryDisplay(RecordsArray, SortOrder, optRecordType) {
 	}
 
 	arrDisplay = sortMDArray(arrDisplay, 1, pSortOrder);
-	varRecordStat = formatNumber(pRecordType, arrDisplay[0][1]);
+	if (arrDisplay[0][1] != "-") {
+		varRecordStat = formatNumber(pRecordType, arrDisplay[0][1]);
+	}
 	varNamesList = "";
 	arrDisplay = sortMDArray(arrDisplay, 0, "asc");
 	
@@ -2090,12 +2092,12 @@ function getRecord_MostScoreType_FullRound_Range_Percent(Event, Course, SeasonBe
 			}
 		}
 		
-		vPercent = (vTotal / vHoleCounter) * 100;
-		vPercent = Math.round(vPercent * 1000) / 1000;
-		
 		if (vHoleCounter < 54) {
 			vTotal = 0;
 			vPercent = 0;
+		} else {
+			vPercent = (vTotal / vHoleCounter) * 100;
+			vPercent = Math.round(vPercent * 1000) / 1000;
 		}
 		
 		aReturnStat[g] = vPercent;
@@ -2124,7 +2126,7 @@ function getRecord_MostScoreType_FullRound_Range_Percent(Event, Course, SeasonBe
 	}
 	
 	vReturnTitle = vReturnTitle + vReturnSubTitle;
-	
+
 	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
 
@@ -2193,12 +2195,12 @@ function getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(Event, Cou
 				}
 			}
 			
-			vPercent = (vTotal / vHoleCounter) * 100;
-			vPercent = Math.round(vPercent * 1000) / 1000;
-			
 			if (vHoleCounter < 54) {
 				vTotal = 0;
 				vPercent = 0;
+			} else {
+				vPercent = (vTotal / vHoleCounter) * 100;
+				vPercent = Math.round(vPercent * 1000) / 1000;
 			}
 			
 			aReturnStat[vReturnIndex] = vPercent;
@@ -2288,7 +2290,7 @@ function getRecord_LowRoundAvg_Range_Gross(Event, Course, SeasonBegin, SeasonEnd
 		aReturnSeason[vReturnIndex] = "-";
 		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
 	}
-	
+
 	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
