@@ -186,7 +186,7 @@ a {text-decoration: none;}
 			<th align="left" colspan="2" id="Seasonss"><script>document.getElementById("Seasonss").innerHTML = dispSeasons;</script></th>
 		</tr>
 	</table><br /><br />
-	<table width="100%" cellpadding="10px" style="font-size: 0.72em;">
+	<table width="100%" cellpadding="0px" cellspacing="12px" style="font-size: 0.65em;">
 		<script>
 			var fLoop = true;	var vHeader = "";	var vCounter = 0;	var vDisplayCounter = 0;	var vCategory = "";
 			
@@ -197,13 +197,14 @@ a {text-decoration: none;}
 				vHeader = getRecordHeader(vDisplayCounter);
 
 				if (!(vCategory == "N/A")) {
-					document.write("<tr><th align='center' colspan='3' style='color: #cd143c; font-size: 1.8em;'>");
+					document.write("<tr><th align='center' colspan='99' style='color: #cd143c; font-size: 1.8em;'>");
 					document.write(vCategory);
 					document.write("</th></tr>");
 					document.write("<tr style='color: #cd143c;'>");
-					document.write("<th width='50%' align='center'>[ Click for full list ]</th>");
+					document.write("<th width='35%' align='center'>[ Click for full list ]</th>");
+					document.write("<th width='20%' align='center'>Rules</th>");
 					document.write("<th width='20%' align='center'>Record</th>");
-					document.write("<th width='30%' align='center'>Record Holder(s)</th>");
+					document.write("<th width='25%' align='center'>Record Holder(s)</th>");
 					document.write("</tr><tr><td colspan='99'><hr /></td></tr>");
 				}
 				
