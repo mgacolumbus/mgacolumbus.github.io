@@ -20,7 +20,6 @@ function getRecordNumberFormat(RecordID) {
 		case  2953:
 		case  2954:
 		case  2955:
-		case  3760:
 		case  4200:
 		case  4300:
 		case  4800:
@@ -53,6 +52,10 @@ function getRecordSortOrder(RecordID) {
 	var pRecordID = arguments[0] * 1;
 	
 	switch(pRecordID) {
+		case    12:
+		case    13:
+		case    17:
+		case    37:
 		case  2945:
 		case  2946:
 		case  2947:
@@ -69,7 +72,11 @@ function getRecordSortOrder(RecordID) {
 		case  3500:
 		case  3600:
 		case  3700:
-		case  3760:		return "asc";
+		case  3710:
+		case  3720:		
+		case  3730:
+		case  3740:		
+		case  3746:		return "asc";
 		
 		default:		return "desc";
 	}
@@ -97,6 +104,12 @@ function getRecordRules(RecordID) {
 	var pRecordID = arguments[0] * 1;
 	
 	switch(pRecordID) {
+		case     9:
+		case    16:
+		case    21:
+		case    26:
+		case    31:
+		case    36:
 		case   700:		
 		case   800:
 		case   900:
@@ -137,7 +150,8 @@ function getRecordRules(RecordID) {
 		case  2946:
 		case  2953:
 		case  3100:
-		case  3500:		return "No Wins in Range";
+		case  3500:		
+		case  3720:		return "No Wins in Range";
 		
 		case  2100:
 		case  2200:
@@ -148,12 +162,14 @@ function getRecordRules(RecordID) {
 		case  2947:
 		case  2954:
 		case  3200:
-		case  3600:		return "No DQ's in Range";
+		case  3600:		
+		case  3730:		return "No DQ's in Range";
 		
 		case  2948:
 		case  2955:
 		case  3300:
-		case  3700:		return "No Wins in Range<br />No DQ's in Range";
+		case  3700:		
+		case  3740:		return "No Wins in Range<br />No DQ's in Range";
 		
 		case  4000:
 		case  4010:
@@ -241,13 +257,13 @@ function getRecordHeader(RecordID) {
 		case  1500:
 		case  1900:
 		case  2300:		return "Most Top 5s";
-		
+		/*
 		case   600:
         case  1200:
 		case  1600:
 		case  2000:
 		case  2400:		return "Most Top 10s";
-		
+		*/
         case  2500:
 		case  2600:
 		case  2700:
@@ -310,6 +326,11 @@ function getRecordHeader(RecordID) {
 		//case  xx:		return "Most Rounds Under Mar / No DQ's in Career"
 		//case  xx:		return "Most Rounds Under Mar / No Wins or DQ's in Career"
 		//case  xx:		return "Most Par or Better / No Wins in Range"
+		
+		case  3710:
+		case  3720:		
+		case  3730:
+		case  3740:		return "Lowest Nine Holes"
 		
 		case  3800:
 		case  3900:
@@ -393,6 +414,29 @@ function getRecordHeader(RecordID) {
 		case  4370:		return "Highest % Triple Bogeys"
 		case  4280:		
 		case  4380:		return "Highest % Worse Bogeys"
+		
+		case     8:		
+		case     9:		return "Most Meltdown Awards"
+		case    10:		return "Biggest Meltdown"
+		case    11:		return "Biggest Anti-Meltdown"
+		case	12:		return "Lowest Meltdown Position"
+		case    13:		return "Lowest Meltdown Round"
+		case    14:		return "Highest Meltdown Front Nine"
+		case    15:		
+		case    16:		return "Most Mediocre Awards"
+		case    17:		return "Lowest Mediocre Round"
+		case    20:		
+		case    21:		return "Most Gross Awards"
+		case    25:		
+		case    26:		return "Most Long Drive Awards"
+		case    30:		
+		case    31:		return "Most Closest to the Pin Awards"
+		case    35:		
+		case    36:		return "Most Red Key Awards"
+		case    37:		return "Lowest Red Key Round"
+		
+		case  3745:		return "Highest Winning Round"
+		case  3746:		return "Lowest Non-Winning Round"
 
         default:		return "N/A";
 	}
@@ -410,6 +454,25 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	var arrRecordData = new Array();
 	
 	switch (varRecord) {
+		case	 8:		return getRecord_Awards_MostMeltdowns(varEvent,varCourse,varSeason1,varSeason2);
+		case	 9:		return getRecord_Awards_MostMeltdowns_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    10:		return getRecord_Awards_BiggestMeltdown(varEvent,varCourse,varSeason1,varSeason2);
+		case    11:		return getRecord_Awards_BiggestImprovement(varEvent,varCourse,varSeason1,varSeason2);
+		case    12:		return getRecord_Awards_LowestMeltdownPosition(varEvent,varCourse,varSeason1,varSeason2);
+		case    13:		return getRecord_Awards_LowestMeltdownScore(varEvent,varCourse,varSeason1,varSeason2);
+		case    14:		return getRecord_Awards_HighestMeltdownFrontNine(varEvent,varCourse,varSeason1,varSeason2);
+		case    15:		return getRecord_Awards_MostMediocres(varEvent,varCourse,varSeason1,varSeason2);
+		case    16:		return getRecord_Awards_MostMediocres_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    17:		return getRecord_Awards_LowestMediocreRound(varEvent,varCourse,varSeason1,varSeason2);
+		case    20:		return getRecord_Awards_MostGross(varEvent,varCourse,varSeason1,varSeason2);
+		case    21:		return getRecord_Awards_MostGross_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    25:		return getRecord_Awards_MostLongDrives(varEvent,varCourse,varSeason1,varSeason2);
+		case    26:		return getRecord_Awards_MostLongDrives_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    30:		return getRecord_Awards_MostClosePins(varEvent,varCourse,varSeason1,varSeason2);
+		case    31:		return getRecord_Awards_MostClosePins_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    35:		return getRecord_Awards_MostRedKeys(varEvent,varCourse,varSeason1,varSeason2);
+		case    36:		return getRecord_Awards_MostRedKeys_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case    37:		return getRecord_Awards_LowestRedKeyRound(varEvent,varCourse,varSeason1,varSeason2);
 		case   100:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
 		case   200:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
 		case   300:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,2);
@@ -455,7 +518,23 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case  3500:		return getRecord_LowRound_Range_Net_NoWins(varEvent,varCourse,varSeason1,varSeason2);
 		case  3600:		return getRecord_LowRound_Range_Net_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
 		case  3700:		return getRecord_LowRound_Range_Net_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
-		//case  3760:		return getRecord_LowParAvg_Range(varEvent,varCourse,varSeason1,varSeason2,varParNum);
+		case  3710:		return getRecord_LowNine_Range(varEvent,varCourse,varSeason1,varSeason2);
+		case  3720:		return getRecord_LowNine_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  3730:		return getRecord_LowNine_Range_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3740:		return getRecord_LowNine_Range_NoWinsNoDQs(varEvent,varCourse,varSeason1,varSeason2);
+		case  3745:		return getRecord_HighestWinningRound(varEvent,varCourse,varSeason1,varSeason2);
+		case  3746:		return getRecord_LowestNonWinningRound(varEvent,varCourse,varSeason1,varSeason2);
+		/*
+		case  xxxx:		return getRecord_LowParAvg_Range(varEvent,varCourse,varSeason1,varSeason2,3);
+		case  xxxx:		return getRecord_LowParAvg_Range(varEvent,varCourse,varSeason1,varSeason2,4);
+		case  xxxx:		return getRecord_LowParAvg_Range(varEvent,varCourse,varSeason1,varSeason2,5);
+		case  xxxx:		return getRecord_LowParAvg_Range_Season(varEvent,varCourse,varSeason1,varSeason2,3);
+		case  xxxx:		return getRecord_LowParAvg_Range_Season(varEvent,varCourse,varSeason1,varSeason2,4);
+		case  xxxx:		return getRecord_LowParAvg_Range_Season(varEvent,varCourse,varSeason1,varSeason2,5);
+		case  xxxx:		return getRecord_LowParAvg_Range_Event(varEvent,varCourse,varSeason1,varSeason2,3);
+		case  xxxx:		return getRecord_LowParAvg_Range_Event(varEvent,varCourse,varSeason1,varSeason2,4);
+		case  xxxx:		return getRecord_LowParAvg_Range_Event(varEvent,varCourse,varSeason1,varSeason2,5);
+		*/
 		case  3800:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey");
 		case  3810:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey");
 		case  3820:		return getRecord_MostScoreType_FullRound_Range(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle");
@@ -537,6 +616,35 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case  4660:		return getRecord_MostScoreType_ParX_Range(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey",5);
 		case  4670:		return getRecord_MostScoreType_ParX_Range(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey",5);
 		case  4680:		return getRecord_MostScoreType_ParX_Range(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey",5);
+		/*
+		case  4700:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey",3);
+		case  4710:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey",3);
+		case  4720:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle",3);
+		case  4730:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie",3);
+		case  4740:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par",3);
+		case  4750:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey",3);
+		case  4760:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey",3);
+		case  4770:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey",3);
+		case  4780:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey",3);
+		case  4800:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey",4);
+		case  4810:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey",4);
+		case  4820:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle",4);
+		case  4830:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie",4);
+		case  4840:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par",4);
+		case  4850:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey",4);
+		case  4860:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey",4);
+		case  4870:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey",4);
+		case  4880:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey",4);
+		case  4900:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","Bogey",5);
+		case  4910:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"<","DblBogey",5);
+		case  4920:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Eagle",5);
+		case  4930:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Birdie",5);
+		case  4940:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Par",5);
+		case  4950:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","Bogey",5);
+		case  4960:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","DblBogey",5);
+		case  4970:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,"=","TrpBogey",5);
+		case  4980:		return getRecord_MostScoreType_ParX_Range_Percent(varEvent,varCourse,varSeason1,varSeason2,">","TrpBogey",5);
+		*/
 	}
 }
 
@@ -551,17 +659,32 @@ function getRecordHeaderBreak(RecordID) {
 	pRecordID = getRecordDisplayOrder(pRecordID);
 	
 	switch (pRecordID) {
-		
+		/*
 		case   600:
 		case  1200:
 		case  1600:
 		case  2000:
 		case  2400:
+		*/
+		
+		case    14:
+		case    17:
+		case    21:
+		case    26:
+		case    31:
+		case    37:
+		case   500:
+		case  1100:
+		case  1500:
+		case  1900:
+		case  2300:
 		case  2900:
 		case  2948:
 		case  2955:
 		case  3300:
 		case  3700:
+		case  3740:
+		case  3746:
 		case  3880:
 		case  3980:
 		case  4080:
@@ -586,6 +709,7 @@ function getRecordCategoryHeader(RecordID) {
     var pRecordID = arguments[0] * 1;
 
     switch(pRecordID) {
+		case     8:		return "MGA Awards Records";
         case   100:		return "Placement Records";
         case  2500:		return "Earnings Records";
 		case  2945:		return "Scoring Records";
@@ -1375,8 +1499,7 @@ function getRecord_LowRound_Range_Gross(Event, Course, SeasonBegin, SeasonEnd) {
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;
 	
 	/**---------------------------------------------------------------------**/
 
@@ -1389,17 +1512,11 @@ function getRecord_LowRound_Range_Gross(Event, Course, SeasonBegin, SeasonEnd) {
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal;
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, false);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}
 	}
@@ -1426,8 +1543,7 @@ function getRecord_LowRound_Range_Net(Event, Course, SeasonBegin, SeasonEnd) {
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;
 	
 	/**---------------------------------------------------------------------**/
 
@@ -1440,17 +1556,11 @@ function getRecord_LowRound_Range_Net(Event, Course, SeasonBegin, SeasonEnd) {
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal + aRounds[r][7];
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, true);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}
 	}
@@ -1477,8 +1587,7 @@ function getRecord_LowRound_Range_Gross_NoWins(Event, Course, SeasonBegin, Seaso
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsWinner = false;
 	
 	/**---------------------------------------------------------------------**/
 
@@ -1494,7 +1603,7 @@ function getRecord_LowRound_Range_Gross_NoWins(Event, Course, SeasonBegin, Seaso
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if (aRounds[r][4] == 1 && aRounds[r][3] == aGolfers[g]) {
+				if (calcIsWinner(aRounds, r)) {
 					fIsWinner = true;
 					break;
 				}
@@ -1512,17 +1621,11 @@ function getRecord_LowRound_Range_Gross_NoWins(Event, Course, SeasonBegin, Seaso
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal;
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, false);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -1549,8 +1652,7 @@ function getRecord_LowRound_Range_Net_NoWins(Event, Course, SeasonBegin, SeasonE
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsWinner = false;
 	
 	/**---------------------------------------------------------------------**/
 
@@ -1566,7 +1668,7 @@ function getRecord_LowRound_Range_Net_NoWins(Event, Course, SeasonBegin, SeasonE
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if (aRounds[r][4] == 1 && aRounds[r][3] == aGolfers[g]) {
+				if (calcIsWinner(aRounds, r)) {
 					fIsWinner = true;
 					break;
 				}
@@ -1584,17 +1686,11 @@ function getRecord_LowRound_Range_Net_NoWins(Event, Course, SeasonBegin, SeasonE
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal + aRounds[r][7];
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, true);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -1621,15 +1717,14 @@ function getRecord_LowRound_Range_Gross_NoDQs(Event, Course, SeasonBegin, Season
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No DQ's in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsDQ = false;
 	
 	/**---------------------------------------------------------------------**/
 
 	for (g = 0; g < aGolfers.length; g++) {
 		
-		if (fIsWinner == true) {
-			fIsWinner = false;
+		if (fIsDQ == true) {
+			fIsDQ = false;
 		}
 		
 		for (r = 0; r < aRounds.length; r++) {
@@ -1638,14 +1733,14 @@ function getRecord_LowRound_Range_Gross_NoDQs(Event, Course, SeasonBegin, Season
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if (aRounds[r][4] == 0 && aRounds[r][3] == aGolfers[g]) {
-					fIsWinner = true;
+				if (calcIsDQ(aRounds, r)) {
+					fIsDQ = true;
 					break;
 				}
 			}
 		}
 				
-		if (fIsWinner == true) {
+		if (fIsDQ == true) {
 			continue;
 		}		
 				
@@ -1656,17 +1751,11 @@ function getRecord_LowRound_Range_Gross_NoDQs(Event, Course, SeasonBegin, Season
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal;
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, false);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -1693,15 +1782,14 @@ function getRecord_LowRound_Range_Net_NoDQs(Event, Course, SeasonBegin, SeasonEn
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No DQ's in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsDQ = false;
 	
 	/**---------------------------------------------------------------------**/
 
 	for (g = 0; g < aGolfers.length; g++) {
 		
-		if (fIsWinner == true) {
-			fIsWinner = false;
+		if (fIsDQ == true) {
+			fIsDQ = false;
 		}
 		
 		for (r = 0; r < aRounds.length; r++) {
@@ -1710,14 +1798,14 @@ function getRecord_LowRound_Range_Net_NoDQs(Event, Course, SeasonBegin, SeasonEn
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if (aRounds[r][4] == 0 && aRounds[r][3] == aGolfers[g]) {
-					fIsWinner = true;
+				if (calcIsDQ(aRounds, r)) {
+					fIsDQ = true;
 					break;
 				}
 			}
 		}
 				
-		if (fIsWinner == true) {
+		if (fIsDQ == true) {
 			continue;
 		}		
 				
@@ -1728,17 +1816,11 @@ function getRecord_LowRound_Range_Net_NoDQs(Event, Course, SeasonBegin, SeasonEn
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal + aRounds[r][7];
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, true);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -1765,15 +1847,14 @@ function getRecord_LowRound_Range_Gross_NoWinsNoDQs(Event, Course, SeasonBegin, 
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins or DQ's in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsRemove = false;
 	
 	/**---------------------------------------------------------------------**/
 
 	for (g = 0; g < aGolfers.length; g++) {
 		
-		if (fIsWinner == true) {
-			fIsWinner = false;
+		if (fIsRemove == true) {
+			fIsRemove = false;
 		}
 		
 		for (r = 0; r < aRounds.length; r++) {
@@ -1782,14 +1863,14 @@ function getRecord_LowRound_Range_Gross_NoWinsNoDQs(Event, Course, SeasonBegin, 
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if ((aRounds[r][4] == 0 || aRounds[r][4] == 1) && aRounds[r][3] == aGolfers[g]) {
-					fIsWinner = true;
+				if (calcIsWinner(aRounds, r) || calcIsDQ(aRounds, r)) {
+					fIsRemove = true;
 					break;
 				}
 			}
 		}
 				
-		if (fIsWinner == true) {
+		if (fIsRemove == true) {
 			continue;
 		}		
 				
@@ -1800,17 +1881,11 @@ function getRecord_LowRound_Range_Gross_NoWinsNoDQs(Event, Course, SeasonBegin, 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal;
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, false);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -1837,15 +1912,14 @@ function getRecord_LowRound_Range_Net_NoWinsNoDQs(Event, Course, SeasonBegin, Se
 	
 	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins or DQ's in Date Range]</div>";
 	
-	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
-	var vRoundTotal = 0;
+	var vSeasonHold = 0;	var fIsRemove = false;
 	
 	/**---------------------------------------------------------------------**/
 
 	for (g = 0; g < aGolfers.length; g++) {
 		
-		if (fIsWinner == true) {
-			fIsWinner = false;
+		if (fIsRemove == true) {
+			fIsRemove = false;
 		}
 		
 		for (r = 0; r < aRounds.length; r++) {
@@ -1854,14 +1928,14 @@ function getRecord_LowRound_Range_Net_NoWinsNoDQs(Event, Course, SeasonBegin, Se
 
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
-				if ((aRounds[r][4] == 0 || aRounds[r][4] == 1) && aRounds[r][3] == aGolfers[g]) {
-					fIsWinner = true;
+				if (calcIsWinner(aRounds, r) || calcIsDQ(aRounds, r)) {
+					fIsRemove = true;
 					break;
 				}
 			}
 		}
 				
-		if (fIsWinner == true) {
+		if (fIsRemove == true) {
 			continue;
 		}		
 				
@@ -1872,17 +1946,11 @@ function getRecord_LowRound_Range_Net_NoWinsNoDQs(Event, Course, SeasonBegin, Se
 			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
 				
 				vReturnIndex++;
-				aReturnStat[vReturnIndex] = 0;
-				vRoundTotal = 0;
 				
-				for (h = 0; h < 18; h++) {
-					vRoundTotal += aRounds[r][h + 8];
-				}
-				
-				aReturnStat[vReturnIndex] = vRoundTotal + aRounds[r][7];
+				aReturnStat[vReturnIndex] = getFullRoundScore(aRounds, r, true);
 				aReturnGolfers[vReturnIndex] = aGolfers[g];
-				aReturnSeason[vReturnIndex] = vSeasonHold;
-				aReturnExtraInfo[vReturnIndex] = aRounds[r][1];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
 			}
 		}		
 	}
@@ -3191,6 +3259,1351 @@ function getRecord_LowRoundAvg_Range_Net_NoWinsNoDQs(Event, Course, SeasonBegin,
 	}
 	
 	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowNine_Range(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, true);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Front 9 )';
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, false);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Back 9 )';
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Nine Holes" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowNine_Range_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins in Date Range]</div>";
+	
+	var vSeasonHold = 0;	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (calcIsWinner(aRounds, r)) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}		
+				
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, true);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Front 9 )';
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, false);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Back 9 )';
+			}
+		}		
+	}
+
+	vReturnTitle = "Lowest Nine Holes" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowNine_Range_NoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No DQs in Date Range]</div>";
+	
+	var vSeasonHold = 0;	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (calcIsDQ(aRounds, r)) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}		
+				
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, true);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Front 9 )';
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, false);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Back 9 )';
+			}
+		}		
+	}
+
+	vReturnTitle = "Lowest Nine Holes" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowNine_Range_NoWinsNoDQs(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins or DQs in Range]</div>";
+	
+	var vSeasonHold = 0;	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (calcIsWinner(aRounds, r) || calcIsDQ(aRounds, r)) {
+					fIsWinner = true;
+					break;
+				}
+			}
+		}
+				
+		if (fIsWinner == true) {
+			continue;
+		}		
+				
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, true);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Front 9 )';
+				
+				vReturnIndex++;
+				
+				aReturnStat[vReturnIndex] = getNineHoleScore(aRounds, r, false);
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( Back 9 )';
+			}
+		}		
+	}
+
+	vReturnTitle = "Lowest Nine Holes" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_BiggestMeltdown(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vFront9 = 0;	var vBack9 = 0;		var vMeltdown = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				vFront9 = getNineHoleScore(aRounds, r, true);
+				vBack9 = getNineHoleScore(aRounds, r, false);
+				vMeltdown = vBack9 - vFront9;
+				
+				aReturnStat[vReturnIndex] = vMeltdown;
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( ' + vFront9 + ' - ' + vBack9 + ' )';
+			}
+		}
+	}
+
+	vReturnTitle = "Biggest Meltdown" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_BiggestImprovement(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vFront9 = 0;	var vBack9 = 0;		var vMeltdown = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vReturnIndex++;
+				
+				vFront9 = getNineHoleScore(aRounds, r, true);
+				vBack9 = getNineHoleScore(aRounds, r, false);
+				vMeltdown = vFront9 - vBack9;
+				
+				aReturnStat[vReturnIndex] = vMeltdown;
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+				aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( ' + vFront9 + ' - ' + vBack9 + ' )';
+			}
+		}
+	}
+
+	vReturnTitle = "Biggest Anti-Meltdown" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostMeltdowns(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][44] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Meltdown Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostMeltdowns_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][44] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Meltdown Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostMediocres(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][45] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Mediocre Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostMediocres_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][45] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Mediocre Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostGross(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][46] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Gross Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostGross_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][46] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Gross Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostLongDrives(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][47] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Long Drive Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostLongDrives_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][47] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Long Drive Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostClosePins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][48] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Closest to the Pin Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostClosePins_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][48] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Closest to the Pin Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+function getRecord_Awards_MostRedKeys(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];	var pPosBegin = arguments[4];	var pPosEnd = arguments[5];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			vRoundPosHold = aRounds[r][4];
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				
+				if (aRounds[r][49] == "x") {
+					aReturnStat[g]++;
+				}
+			}
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Most Red Key Awards" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_MostRedKeys_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+				
+					if (aRounds[r][49] == "x") {
+						aReturnStat[vReturnIndex]++;
+					}
+				}
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex];
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Most Red Key Awards" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_LowestMeltdownPosition(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vFront9 = 0;	var vBack9 = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][44] == "x") {
+					
+					vReturnIndex++;
+					
+					vFront9 = getNineHoleScore(aRounds, r, true);
+					vBack9 = getNineHoleScore(aRounds, r, false);
+					
+					aReturnStat[vReturnIndex] = aRounds[r][4];
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( ' + vFront9 + ' - ' + vBack9 + ' )';
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Meltdown-Winning Position" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_LowestMeltdownScore(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vFront9 = 0;	var vBack9 = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][44] == "x") {
+					
+					vReturnIndex++;
+					
+					vFront9 = getNineHoleScore(aRounds, r, true);
+					vBack9 = getNineHoleScore(aRounds, r, false);
+					
+					aReturnStat[vReturnIndex] = vFront9 + vBack9;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( ' + vFront9 + ' - ' + vBack9 + ' )';
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Meltdown-Winning Round" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_HighestMeltdownFrontNine(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vFront9 = 0;	var vBack9 = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][44] == "x") {
+					
+					vReturnIndex++;
+					
+					vFront9 = getNineHoleScore(aRounds, r, true);
+					vBack9 = getNineHoleScore(aRounds, r, false);
+					
+					aReturnStat[vReturnIndex] = vFront9;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2] + '<br />( ' + vFront9 + ' - ' + vBack9 + ' )';
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Highest Meltdown-Winning Front 9" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_LowestMediocreRound(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vRoundTotal = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][45] == "x") {
+					
+					vReturnIndex++;
+					
+					vRoundTotal = getFullRoundScore(aRounds, r, true);
+					
+					aReturnStat[vReturnIndex] = vRoundTotal;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Mediocre-Winning Round" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Awards_LowestRedKeyRound(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vRoundTotal = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][49] == "x") {
+					
+					vReturnIndex++;
+					
+					vRoundTotal = getFullRoundScore(aRounds, r, true);
+					
+					aReturnStat[vReturnIndex] = vRoundTotal;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Red Key-Winning Round" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_HighestWinningRound(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "";
+	
+	var vSeasonHold = 0;	var vRoundTotal = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 1) {
+					
+					vReturnIndex++;
+					
+					vRoundTotal = getFullRoundScore(aRounds, r, true);
+					
+					aReturnStat[vReturnIndex] = vRoundTotal;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Highest Winning Round" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_LowestNonWinningRound(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Disqualifications]</div>";
+	
+	var vSeasonHold = 0;	var vRoundTotal = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] > 1) {
+					
+					vReturnIndex++;
+					
+					vRoundTotal = getFullRoundScore(aRounds, r, true);
+					
+					aReturnStat[vReturnIndex] = vRoundTotal;
+					aReturnGolfers[vReturnIndex] = aGolfers[g];
+					aReturnSeason[vReturnIndex] = vSeasonHold + ' ' + aRounds[r][1];
+					aReturnExtraInfo[vReturnIndex] = aRounds[r][2];
+				}
+			}
+		}
+	}
+
+	vReturnTitle = "Lowest Non-Winning Round" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
