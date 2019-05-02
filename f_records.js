@@ -12,6 +12,11 @@ function getRecordNumberFormat(RecordID) {
 		case  2800:
 		case  2900:		return "Earnings";
 		
+		case  2910:
+		case  2915:
+		case  2920:
+		case  2925:
+		case  2930:
 		case  2945:
 		case  2946:
 		case  2947:
@@ -117,6 +122,7 @@ function getRecordRules(RecordID) {
 		case  1100:
 		case  1200:
 		case  2600:
+		case  2915:
 		case  3900:
 		case  3910:
 		case  3920:
@@ -140,13 +146,15 @@ function getRecordRules(RecordID) {
 		case  1400:
 		case  1500:
 		case  1600:
-		case  2700:		return "Single Season<br />No Wins";
+		case  2700:		
+		case  2920:		return "Single Season<br />No Wins";
 		
 		case  1700:
 		case  1800:
 		case  1900:
 		case  2000:
 		case  2800:
+		case  2925:
 		case  2946:
 		case  2953:
 		case  3100:
@@ -157,7 +165,8 @@ function getRecordRules(RecordID) {
 		case  2200:
 		case  2300:
 		case  2400:
-		case  2900:		return "No Wins in Career";
+		case  2900:		
+		case  2930:		return "No Wins in Career";
 		
 		case  2947:
 		case  2954:
@@ -269,6 +278,12 @@ function getRecordHeader(RecordID) {
 		case  2700:
 		case  2800:
 		case  2900:		return "Most Earnings";
+		
+		case  2910:		
+		case  2915:		
+		case  2920:		
+		case  2925:		
+		case  2930:		return "Average Earnings";
 		
 		case  2945:
 		case  2946:
@@ -502,6 +517,11 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case  2700:		return getRecord_MostEarnings_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2);
 		case  2800:		return getRecord_MostEarnings_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2);
 		case  2900:		return getRecord_MostEarnings_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2910:		return getRecord_AvgEarnings_Range(varEvent,varCourse,varSeason1,varSeason2);
+		case  2915:		return getRecord_AvgEarnings_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
+		case  2920:		return getRecord_AvgEarnings_SingleSeason_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2925:		return getRecord_AvgEarnings_Range_NoWins(varEvent,varCourse,varSeason1,varSeason2);
+		case  2930:		return getRecord_AvgEarnings_Career_NoWins(varEvent,varCourse,varSeason1,varSeason2);
 		case  2945:		return getRecord_LowRoundAvg_Range_Gross(varEvent,varCourse,varSeason1,varSeason2);
 		case  2946:		return getRecord_LowRoundAvg_Range_Gross_NoWins(varEvent,varCourse,varSeason1,varSeason2);
 		case  2947:		return getRecord_LowRoundAvg_Range_Gross_NoDQs(varEvent,varCourse,varSeason1,varSeason2);
@@ -679,6 +699,7 @@ function getRecordHeaderBreak(RecordID) {
 		case  1900:
 		case  2300:
 		case  2900:
+		case  2930:
 		case  2948:
 		case  2955:
 		case  3300:
@@ -4606,6 +4627,315 @@ function getRecord_LowestNonWinningRound(Event, Course, SeasonBegin, SeasonEnd) 
 	vReturnTitle = "Lowest Non-Winning Round" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_AvgEarnings_Range(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				aReturnStat[g] += aRounds[r][6];
+			}
+		}
+		
+		if (vEventCounter < 3) {
+			aReturnStat[g] = 0;
+		} else {
+			aReturnStat[g] = aReturnStat[g] / vEventCounter;
+		}
+		
+        aReturnStat[g] = parseFloat(aReturnStat[g].toFixed(3));
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+	
+	vReturnTitle = "Average Earnings" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_AvgEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season][Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				vRoundPosHold = aRounds[r][4];
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					vEventCounter++;
+					aReturnStat[vReturnIndex] += aRounds[r][6];
+				}
+			}
+			
+			if (vEventCounter < 3) {
+				aReturnStat[vReturnIndex] = 0;
+			} else {
+				aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex] / vEventCounter;
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = parseFloat(aReturnStat[vReturnIndex].toFixed(3));
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Average Earnings" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_AvgEarnings_SingleSeason_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	var aSeasons = new Array();		aSeasons = getData_Seasons().reverse();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	var aReturnGolfers = new Array();	var vReturnIndex = -1;
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[Single Season without a Win][Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;	var vSeasonLoopHold = 0;	var vRoundPosHold = 0;
+	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (s = 0; s < aSeasons.length; s++) {
+		
+		vSeasonLoopHold = aSeasons[s];
+		
+		for (g = 0; g < aGolfers.length; g++) {
+			
+			vEventCounter = 0;
+			vReturnIndex++;
+			aReturnStat[vReturnIndex] = 0;
+			
+			if (fIsWinner == true) {
+				fIsWinner = false;
+			}
+			
+			for (r = 0; r < aRounds.length; r++) {
+				
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				vRoundPosHold = aRounds[r][4];
+
+				if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,vSeasonLoopHold)) {
+
+					if (aRounds[r][4] == 1 && vSeasonLoopHold == vSeasonHold) {
+						fIsWinner = true;
+						aReturnStat[vReturnIndex] = 0;
+						break;
+					}
+					
+					vEventCounter++;
+					aReturnStat[vReturnIndex] += aRounds[r][6];
+				}
+			}
+			
+			if (vEventCounter < 3) {
+				aReturnStat[vReturnIndex] = 0;
+			} else {
+				aReturnStat[vReturnIndex] = aReturnStat[vReturnIndex] / vEventCounter;
+			}
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = parseFloat(aReturnStat[vReturnIndex].toFixed(3));
+			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " events";
+		}
+	}
+	
+	vReturnTitle = "Average Earnings" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_AvgEarnings_Range_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins in Date Range][Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				if (aRounds[r][4] == 1) {
+					fIsWinner = true;
+					aReturnStat[g] = 0;
+					break;
+				}
+				
+				vEventCounter++;
+				aReturnStat[g] += aRounds[r][6];
+			}
+		}
+		
+		if (vEventCounter < 3) {
+			aReturnStat[g] = 0;
+		} else {
+			aReturnStat[g] = aReturnStat[g] / vEventCounter;
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+
+	vReturnTitle = "Average Earnings" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_AvgEarnings_Career_NoWins(Event, Course, SeasonBegin, SeasonEnd) {
+	var pEvent = arguments[0];		var pCourse = arguments[1];		var pSeasonBegin = arguments[2];
+	var pSeasonEnd = arguments[3];
+	
+	var aRounds = new Array();		aRounds = getData_Rounds();
+	var aGolfers = new Array();		aGolfers = getData_Golfers();
+	
+	var aReturnStat = new Array();	var aReturnSeason = new Array();	var aReturnExtraInfo = new Array();
+	
+	var vReturnTitle = "";	var vReturnSubTitle = "<div style='font-size: 0.6em;'>[No Wins in Career][Minimum 3 Events]</div>";
+	
+	var vSeasonHold = 0;	var vEventCounter = 0;		var vRoundPosHold = 0;	var fIsWinner = false;
+	
+	/**---------------------------------------------------------------------**/
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[g] = 0;
+		
+		if (fIsWinner == true) {
+			fIsWinner = false;
+		}
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			vSeasonHold = aRounds[r][0].substr(6,9);
+			
+			if (aRounds[r][4] == 1 && aRounds[r][3] == aGolfers[g]) {
+				fIsWinner = true;
+				aReturnStat[g] = 0;
+				break;
+			}
+
+			if (checkValidRound(aRounds,aGolfers,pEvent,pCourse,vSeasonHold,pSeasonBegin,pSeasonEnd,g,r,0)) {
+				
+				vEventCounter++;
+				aReturnStat[g] += aRounds[r][6];
+			}
+		}
+		
+		if (vEventCounter < 3) {
+			aReturnStat[g] = 0;
+		} else {
+			aReturnStat[g] = aReturnStat[g] / vEventCounter;
+		}
+		
+		aReturnSeason[g] = "-";
+		aReturnExtraInfo[g] = vEventCounter + " events";
+	}
+
+	vReturnTitle = "Average Earnings" + vReturnSubTitle;
+	
+	return [aGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
 
 

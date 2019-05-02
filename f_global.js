@@ -305,11 +305,11 @@ function formatNumber(Title, NumberToFormat) {
 	var varTitle			=	arguments[0];
 	var varNumberToFormat	=	arguments[1];
 	
-	if (varTitle.indexOf("Earnings") > -1)	{ return varNumberToFormat.toFixed(2); }
 	if (varTitle.indexOf("Score") > -1)		{ return varNumberToFormat.toFixed(3); }
 	if (varTitle.indexOf("Avg") > -1)		{ return varNumberToFormat.toFixed(3); }
 	if (varTitle.indexOf("Average") > -1)	{ return varNumberToFormat.toFixed(3); }
 	if (varTitle.indexOf("%") > -1)			{ return varNumberToFormat.toFixed(3); }
+	if (varTitle.indexOf("Earnings") > -1)	{ return varNumberToFormat.toFixed(2); }
 	
 	return varNumberToFormat;
 }
