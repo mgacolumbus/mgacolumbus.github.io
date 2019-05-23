@@ -174,7 +174,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 		<tr><td>&nbsp;</td></tr>
         <tr style="color: #cd143c;">
             <th align="center" width="10%">Rank</th>
-            <th align="center" width="25%">Golfer</th>
+            <th align="center" width="25%">Name</th>
             <th align="center" width="17%">Stat</th>
             <th align="center" width="22%">Season</th>
             <th align="center" width="26%">Xtra Info</th>
@@ -211,13 +211,13 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 	arrDisplay = sortMDArray(arrDisplay, 1, getRecordSortOrder(pRecord));
 
     for (x = 0; x < arrDisplay.length; x++)
-    {
-        if (arrDisplay[x][1] > 0)
-        {
+    {		
+		//if (arrDisplay[x][1] > 0)
+        //{
 			rnk++;
 			document.write("<tr class='w3-text-black'>");
-            
-			if ( oldstat != arrDisplay[x][1] )
+
+			if ( oldstat != formatNumber(arrRecordArray[4],arrDisplay[x][1]) )
 			{
 				document.write("<td align='center'>" + rnk + "</td>");
 				oldstat = formatNumber(arrRecordArray[4],arrDisplay[x][1])
@@ -232,7 +232,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             document.write("<td align='center'>" + arrDisplay[x][2] + "</td>");
             document.write("<td align='center'>" + arrDisplay[x][3] + "</td>");
             document.write("</tr>");
-        }
+        //}
     }
 </script>
 
