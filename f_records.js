@@ -628,6 +628,8 @@ function getRecordHeader(RecordID) {
 		
 		case  3745:		return "Highest Winning Round"
 		case  3746:		return "Lowest Non-Winning Round"
+		
+		case    50:		return "Largest Field Size"
 
         default:		return "N/A";
 	}
@@ -669,6 +671,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case    35:		return getRecord_Awards_MostRedKeys(varEvent,varCourse,varSeason1,varSeason2);
 		case    36:		return getRecord_Awards_MostRedKeys_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
 		case    37:		return getRecord_Awards_LowestRedKeyRound(varEvent,varCourse,varSeason1,varSeason2);
+		
+		case    50:		return getRecord_Chapter_LargestFieldSize(varEvent,varCourse,varSeason1,varSeason2);
+		
 		case   100:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
 		case   200:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
 		case   300:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,2);
@@ -885,6 +890,7 @@ function getRecordHeaderBreak(RecordID) {
 		case    26:
 		case    31:
 		case    37:
+		case    50:
 		case   500:
 		case  1100:
 		case  1500:
@@ -928,6 +934,7 @@ function getRecordCategoryHeader(RecordID) {
     
 	switch(pRecordID) {
 		case     8:		return "MGA Awards Records";
+		case    50:		return "Chapter Records";
         case   100:		return "Placement Records";
         case  2500:		return "Earnings Records";
 		case  2945:		return "Scoring Records";
@@ -2595,6 +2602,103 @@ function getRecord_Awards_LowestRedKeyRound(Event, Course, SeasonBegin, SeasonEn
 	}
 
 	vReturnTitle = "Lowest Red Key-Winning Round" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LargestFieldSize(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	var aDates				= new Array();
+	var aEvents				= new Array();
+	var aCourses			= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vNewDateFlag		= true;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vEventDateHold		= "01-01-1900";
+	
+	var vSeasonHold			= 0;
+	var vGolferCounter		= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vLoopCounter		= 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+	
+	for (r = 0; r < aRounds.length; r++) {
+				
+		if (aRounds[r][2] == pCourse || vAllCourses) {
+		
+			if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+			
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				
+				if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+					
+					for (l = 0; l < vLoopCounter; l++) {
+						
+						if (aRounds[r][0] == aDates[l]) {
+							vNewDateFlag = false;
+						}
+					}
+					
+					if (vNewDateFlag == true) {
+						aDates[vLoopCounter] = aRounds[r][0]; //date
+						aEvents[vLoopCounter] = aRounds[r][1]; //event
+						aCourses[vLoopCounter] = aRounds[r][2]; //course
+						vLoopCounter++;
+					}
+					
+					vNewDateFlag = true;
+				}
+			}
+		}
+	}
+	
+	for (d = 0; d < aDates.length; d++) {
+		
+		vGolferCounter = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aDates[d] == aRounds[r][0]) {
+				vGolferCounter++;
+			}
+		}
+		
+		aReturnStat[vReturnIndex] = vGolferCounter; 
+		aReturnGolfers[vReturnIndex] = aDates[d].substr(6,9) + ' ' + aEvents[d];
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = aCourses[d];
+		vReturnIndex++;
+	}
+	
+	vReturnTitle = "Largest Field Size" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
