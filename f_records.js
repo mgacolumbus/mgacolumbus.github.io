@@ -144,6 +144,11 @@ function getRecordNumberFormat(RecordID) {
 		case  2800:
 		case  2900:		return "Earnings";
 		
+		case    60:
+		case    61:
+		case    62:
+		case    63:
+		case    64:
 		case  2910:
 		case  2915:
 		case  2920:
@@ -204,6 +209,11 @@ function getRecordSortOrder(RecordID) {
 		case    13:
 		case    17:
 		case    37:
+		case    60:
+		case    61:
+		case    62:
+		case    63:
+		case    64:
 		case  2945:
 		case  2946:
 		case  2947:
@@ -361,6 +371,7 @@ function getRecordRules(RecordID) {
 		case  4170:
 		case  4180:		return "Consecutive"
 		
+		case    62:
 		case  4400:		
 		case  4410:		
 		case  4420:		
@@ -372,6 +383,7 @@ function getRecordRules(RecordID) {
 		case  4480:		
 		case 10002:		return "Par 3's"
 		
+		case    63:
 		case  4500:		
 		case  4510:		
 		case  4520:		
@@ -383,6 +395,7 @@ function getRecordRules(RecordID) {
 		case  4580:		
 		case 10003:		return "Par 4's"
 		
+		case    64:
 		case  4600:		
 		case  4610:		
 		case  4620:		
@@ -432,13 +445,13 @@ function getRecordHeader(RecordID) {
 		case  1500:
 		case  1900:
 		case  2300:		return "Most Top 5s";
-		/*
+		
 		case   600:
         case  1200:
 		case  1600:
 		case  2000:
 		case  2400:		return "Most Top 10s";
-		*/
+		
         case  2500:
 		case  2600:
 		case  2700:
@@ -630,6 +643,18 @@ function getRecordHeader(RecordID) {
 		case  3746:		return "Lowest Non-Winning Round"
 		
 		case    50:		return "Largest Field Size"
+		case    60:		return "Lowest Event Scoring Average (Gross)"
+		case    61:		return "Lowest Event Scoring Average (Net)"
+		case    62:		return "Lowest Event Scoring Average"
+		case    63:		return "Lowest Event Scoring Average"
+		case    64:		return "Lowest Event Scoring Average"
+		
+		case     1:		return "Legs of the Mrand Slam<br />(Majors)"
+		case     2:		return "Legs of the Meh Slam<br />(Non-Majors)"
+		case     3:		return "Legs of the Mega Slam<br />(All 8 Events)"
+		case     4:		return "Legs of the Mrand Choke Slam<br />(Runner-Up - Majors)"
+		case     5:		return "Legs of the Meh Choke Slam<br />(Runner-Up - Non-Majors)"
+		case     6:		return "Legs of the Mega Choke Slam<br />(Runner Up - All 8 Events)"
 
         default:		return "N/A";
 	}
@@ -652,6 +677,13 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 	/**---------------------------------------------------------------------**/
 	
 	switch (varRecord) {
+		case     1:		return getRecord_Chapter_LegsOfTheMrandSlam(varEvent,varCourse,varSeason1,varSeason2);
+		case     2:		return getRecord_Chapter_LegsOfTheMehSlam(varEvent,varCourse,varSeason1,varSeason2);
+		case     3:		return getRecord_Chapter_LegsOfTheMegaSlam(varEvent,varCourse,varSeason1,varSeason2);
+		case     4:		return getRecord_Chapter_LegsOfTheMrandChokeSlam(varEvent,varCourse,varSeason1,varSeason2);
+		case     5:		return getRecord_Chapter_LegsOfTheMehChokeSlam(varEvent,varCourse,varSeason1,varSeason2);
+		case     6:		return getRecord_Chapter_LegsOfTheMegaChokeSlam(varEvent,varCourse,varSeason1,varSeason2);
+		
 		case	 8:		return getRecord_Awards_MostMeltdowns(varEvent,varCourse,varSeason1,varSeason2);
 		case	 9:		return getRecord_Awards_MostMeltdowns_SingleSeason(varEvent,varCourse,varSeason1,varSeason2);
 		case    10:		return getRecord_Awards_BiggestMeltdown(varEvent,varCourse,varSeason1,varSeason2);
@@ -673,6 +705,11 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case    37:		return getRecord_Awards_LowestRedKeyRound(varEvent,varCourse,varSeason1,varSeason2);
 		
 		case    50:		return getRecord_Chapter_LargestFieldSize(varEvent,varCourse,varSeason1,varSeason2);
+		case    60:		return getRecord_Chapter_LowEventScoringAvg_Gross(varEvent,varCourse,varSeason1,varSeason2);
+		case    61:		return getRecord_Chapter_LowEventScoringAvg_Net(varEvent,varCourse,varSeason1,varSeason2);
+		case    62:		return getRecord_Chapter_LowEventScoringAvg_ParX(varEvent,varCourse,varSeason1,varSeason2,3);
+		case    63:		return getRecord_Chapter_LowEventScoringAvg_ParX(varEvent,varCourse,varSeason1,varSeason2,4);
+		case    64:		return getRecord_Chapter_LowEventScoringAvg_ParX(varEvent,varCourse,varSeason1,varSeason2,5);
 		
 		case   100:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
 		case   200:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
@@ -876,26 +913,27 @@ function getRecordHeaderBreak(RecordID) {
 	pRecordID = getRecordDisplayOrder(pRecordID);
 	
 	switch (pRecordID) {
-		/*
 		case   600:
 		case  1200:
 		case  1600:
 		case  2000:
 		case  2400:
-		*/
-		
+		case     6:
 		case    14:
 		case    17:
 		case    21:
 		case    26:
 		case    31:
 		case    37:
-		case    50:
+		case    61:
+		case    64:
+		/*
 		case   500:
 		case  1100:
 		case  1500:
 		case  1900:
 		case  2300:
+		*/
 		case  2900:
 		case  2930:
 		case  2948:
@@ -933,8 +971,8 @@ function getRecordCategoryHeader(RecordID) {
 	/**---------------------------------------------------------------------**/
     
 	switch(pRecordID) {
-		case     8:		return "MGA Awards Records";
-		case    50:		return "Chapter Records";
+		case     1:		return "MGA Misc. Records";
+		case    50:		return "Event Records";
         case   100:		return "Placement Records";
         case  2500:		return "Earnings Records";
 		case  2945:		return "Scoring Records";
@@ -1094,6 +1132,834 @@ function processRecordSummaryDisplay(RecordsArray, SortOrder, optRecordType, Rec
 /********************************************************************************************/
 /********************************************************************************************/
 /********************************************************************************************/
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMrandSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vBastards			= false;
+	var vFUOpen				= false;
+	var vBratishOpen		= false;
+	var vMGAChampionship	= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vBastards = false;
+		vFUOpen = false;
+		vBratishOpen = false;
+		vMGAChampionship = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Bastards" && aRounds[r][4] == 1) {
+								vBastards = true;
+							}
+							if (aRounds[r][1] == "F.U. Open" && aRounds[r][4] == 1) {
+								vFUOpen = true;
+							}
+							if (aRounds[r][1] == "Bratish Open" && aRounds[r][4] == 1) {
+								vBratishOpen = true;
+							}
+							if (aRounds[r][1] == "MGA Championship" && aRounds[r][4] == 1) {
+								vMGAChampionship = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vBastards == true) {
+			vEventCounter += 1;
+			vLegsWon += "Bastards";
+		}
+		if (vFUOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "F.U. Open";
+		}
+		if (vBratishOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bratish Open";
+		}
+		if (vMGAChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "MGA Championship";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Mrand Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMehSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vRebelBeach			= false;
+	var vFOREChampionship	= false;
+	var vDBI				= false;
+	var vLastGasp			= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vRebelBeach = false;
+		vFOREChampionship = false;
+		vDBI = false;
+		vLastGasp = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Rebel Beach Am-Am" && aRounds[r][4] == 1) {
+								vRebelBeach = true;
+							}
+							if (aRounds[r][1] == "FORE Championship" && aRounds[r][4] == 1) {
+								vFOREChampionship = true;
+							}
+							if (aRounds[r][1] == "Douche Bag Invitational" && aRounds[r][4] == 1) {
+								vDBI = true;
+							}
+							if (aRounds[r][1] == "Last Gasp" && aRounds[r][4] == 1) {
+								vLastGasp = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vRebelBeach == true) {
+			vEventCounter += 1;
+			vLegsWon += "Rebel Beach Am-Am";
+		}
+		if (vFOREChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "FORE Championship";
+		}
+		if (vDBI == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Douche Bag Invitational";
+		}
+		if (vLastGasp == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Last Gasp";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Meh Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMegaSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vRebelBeach			= false;
+	var vFOREChampionship	= false;
+	var vDBI				= false;
+	var vLastGasp			= false;
+	var vBastards			= false;
+	var vFUOpen				= false;
+	var vBratishOpen		= false;
+	var vMGAChampionship	= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vRebelBeach = false;
+		vFOREChampionship = false;
+		vDBI = false;
+		vLastGasp = false;
+		vBastards = false;
+		vFUOpen = false;
+		vBratishOpen = false;
+		vMGAChampionship = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Bastards" && aRounds[r][4] == 1) {
+								vBastards = true;
+							}
+							if (aRounds[r][1] == "F.U. Open" && aRounds[r][4] == 1) {
+								vFUOpen = true;
+							}
+							if (aRounds[r][1] == "Bratish Open" && aRounds[r][4] == 1) {
+								vBratishOpen = true;
+							}
+							if (aRounds[r][1] == "MGA Championship" && aRounds[r][4] == 1) {
+								vMGAChampionship = true;
+							}
+							if (aRounds[r][1] == "Rebel Beach Am-Am" && aRounds[r][4] == 1) {
+								vRebelBeach = true;
+							}
+							if (aRounds[r][1] == "FORE Championship" && aRounds[r][4] == 1) {
+								vFOREChampionship = true;
+							}
+							if (aRounds[r][1] == "Douche Bag Invitational" && aRounds[r][4] == 1) {
+								vDBI = true;
+							}
+							if (aRounds[r][1] == "Last Gasp" && aRounds[r][4] == 1) {
+								vLastGasp = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vRebelBeach == true) {
+			vEventCounter += 1;
+			vLegsWon += "Rebel Beach Am-Am";
+		}
+		if (vBastards == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bastards";
+		}
+		if (vFOREChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "FORE Championship";
+		}
+		if (vFUOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "F.U. Open";
+		}
+		if (vBratishOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bratish Open";
+		}
+		if (vMGAChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "MGA Championship";
+		}
+		if (vDBI == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Douche Bag Invitational";
+		}
+		if (vLastGasp == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Last Gasp";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Mega Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMrandChokeSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vBastards			= false;
+	var vFUOpen				= false;
+	var vBratishOpen		= false;
+	var vMGAChampionship	= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vBastards = false;
+		vFUOpen = false;
+		vBratishOpen = false;
+		vMGAChampionship = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Bastards" && aRounds[r][4] == 2) {
+								vBastards = true;
+							}
+							if (aRounds[r][1] == "F.U. Open" && aRounds[r][4] == 2) {
+								vFUOpen = true;
+							}
+							if (aRounds[r][1] == "Bratish Open" && aRounds[r][4] == 2) {
+								vBratishOpen = true;
+							}
+							if (aRounds[r][1] == "MGA Championship" && aRounds[r][4] == 2) {
+								vMGAChampionship = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vBastards == true) {
+			vEventCounter += 1;
+			vLegsWon += "Bastards";
+		}
+		if (vFUOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "F.U. Open";
+		}
+		if (vBratishOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bratish Open";
+		}
+		if (vMGAChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "MGA Championship";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Mrand Choke Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMehChokeSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vRebelBeach			= false;
+	var vFOREChampionship	= false;
+	var vDBI				= false;
+	var vLastGasp			= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vRebelBeach = false;
+		vFOREChampionship = false;
+		vDBI = false;
+		vLastGasp = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Rebel Beach Am-Am" && aRounds[r][4] == 2) {
+								vRebelBeach = true;
+							}
+							if (aRounds[r][1] == "FORE Championship" && aRounds[r][4] == 2) {
+								vFOREChampionship = true;
+							}
+							if (aRounds[r][1] == "Douche Bag Invitational" && aRounds[r][4] == 2) {
+								vDBI = true;
+							}
+							if (aRounds[r][1] == "Last Gasp" && aRounds[r][4] == 2) {
+								vLastGasp = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vRebelBeach == true) {
+			vEventCounter += 1;
+			vLegsWon += "Rebel Beach Am-Am";
+		}
+		if (vFOREChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "FORE Championship";
+		}
+		if (vDBI == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Douche Bag Invitational";
+		}
+		if (vLastGasp == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Last Gasp";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Meh Choke Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LegsOfTheMegaChokeSlam(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vRebelBeach			= false;
+	var vFOREChampionship	= false;
+	var vDBI				= false;
+	var vLastGasp			= false;
+	var vBastards			= false;
+	var vFUOpen				= false;
+	var vBratishOpen		= false;
+	var vMGAChampionship	= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vLegsWon			= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		
+		vEventCounter = 0;
+		aReturnStat[vReturnIndex] = 0;
+		vRebelBeach = false;
+		vFOREChampionship = false;
+		vDBI = false;
+		vLastGasp = false;
+		vBastards = false;
+		vFUOpen = false;
+		vBratishOpen = false;
+		vMGAChampionship = false;
+		vLegsWon = "";
+		
+		for (r = 0; r < aRounds.length; r++) {
+
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+				
+							if (aRounds[r][1] == "Bastards" && aRounds[r][4] == 2) {
+								vBastards = true;
+							}
+							if (aRounds[r][1] == "F.U. Open" && aRounds[r][4] == 2) {
+								vFUOpen = true;
+							}
+							if (aRounds[r][1] == "Bratish Open" && aRounds[r][4] == 2) {
+								vBratishOpen = true;
+							}
+							if (aRounds[r][1] == "MGA Championship" && aRounds[r][4] == 2) {
+								vMGAChampionship = true;
+							}
+							if (aRounds[r][1] == "Rebel Beach Am-Am" && aRounds[r][4] == 2) {
+								vRebelBeach = true;
+							}
+							if (aRounds[r][1] == "FORE Championship" && aRounds[r][4] == 2) {
+								vFOREChampionship = true;
+							}
+							if (aRounds[r][1] == "Douche Bag Invitational" && aRounds[r][4] == 2) {
+								vDBI = true;
+							}
+							if (aRounds[r][1] == "Last Gasp" && aRounds[r][4] == 2) {
+								vLastGasp = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vRebelBeach == true) {
+			vEventCounter += 1;
+			vLegsWon += "Rebel Beach Am-Am";
+		}
+		if (vBastards == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bastards";
+		}
+		if (vFOREChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "FORE Championship";
+		}
+		if (vFUOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "F.U. Open";
+		}
+		if (vBratishOpen == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Bratish Open";
+		}
+		if (vMGAChampionship == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "MGA Championship";
+		}
+		if (vDBI == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Douche Bag Invitational";
+		}
+		if (vLastGasp == true) {
+			vEventCounter += 1;
+			if (vEventCounter > 1) {
+				vLegsWon += "<br />";
+			}
+			vLegsWon += "Last Gasp";
+		}
+		
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vEventCounter;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vLegsWon;
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Legs of the Mega Choke Slam" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
 /********************************************************************************************/
 /********************************************************************************************/
 
@@ -2699,6 +3565,322 @@ function getRecord_Chapter_LargestFieldSize(Event, Course, SeasonBegin, SeasonEn
 	}
 	
 	vReturnTitle = "Largest Field Size" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LowEventScoringAvg_Gross(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	var aDates				= new Array();
+	var aEvents				= new Array();
+	var aCourses			= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vNewDateFlag		= true;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vEventDateHold		= "01-01-1900";
+	
+	var vSeasonHold			= 0;
+	var vGolferCounter		= 0;
+	var vEventTotal			= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vLoopCounter		= 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+	
+	for (r = 0; r < aRounds.length; r++) {
+				
+		if (aRounds[r][2] == pCourse || vAllCourses) {
+		
+			if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+			
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				
+				if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+					
+					for (l = 0; l < vLoopCounter; l++) {
+						
+						if (aRounds[r][0] == aDates[l]) {
+							vNewDateFlag = false;
+						}
+					}
+					
+					if (vNewDateFlag == true) {
+						aDates[vLoopCounter] = aRounds[r][0]; //date
+						aEvents[vLoopCounter] = aRounds[r][1]; //event
+						aCourses[vLoopCounter] = aRounds[r][2]; //course
+						vLoopCounter++;
+					}
+					
+					vNewDateFlag = true;
+				}
+			}
+		}
+	}
+	
+	for (d = 0; d < aDates.length; d++) {
+		
+		vGolferCounter = 0;
+		vEventTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aDates[d] == aRounds[r][0]) {
+				vGolferCounter++;
+				vEventTotal += getFullRoundScore(aRounds, r, false);
+			}
+		}
+		
+		aReturnStat[vReturnIndex] = vEventTotal / vGolferCounter;
+		
+		aReturnGolfers[vReturnIndex] = aDates[d].substr(6,9) + ' ' + aEvents[d];
+		aReturnStat[vReturnIndex] = parseFloat(aReturnStat[vReturnIndex].toFixed(3));
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = aCourses[d];
+		
+		vReturnIndex++;
+	}
+	
+	vReturnTitle = "Lowest Event Scoring Average (Gross)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LowEventScoringAvg_Net(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	var aDates				= new Array();
+	var aEvents				= new Array();
+	var aCourses			= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vNewDateFlag		= true;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	var vEventDateHold		= "01-01-1900";
+	
+	var vSeasonHold			= 0;
+	var vGolferCounter		= 0;
+	var vEventTotal			= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vLoopCounter		= 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+	
+	for (r = 0; r < aRounds.length; r++) {
+				
+		if (aRounds[r][2] == pCourse || vAllCourses) {
+		
+			if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+			
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				
+				if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+					
+					for (l = 0; l < vLoopCounter; l++) {
+						
+						if (aRounds[r][0] == aDates[l]) {
+							vNewDateFlag = false;
+						}
+					}
+					
+					if (vNewDateFlag == true) {
+						aDates[vLoopCounter] = aRounds[r][0]; //date
+						aEvents[vLoopCounter] = aRounds[r][1]; //event
+						aCourses[vLoopCounter] = aRounds[r][2]; //course
+						vLoopCounter++;
+					}
+					
+					vNewDateFlag = true;
+				}
+			}
+		}
+	}
+	
+	for (d = 0; d < aDates.length; d++) {
+		
+		vGolferCounter = 0;
+		vEventTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aDates[d] == aRounds[r][0]) {
+				vGolferCounter++;
+				vEventTotal += getFullRoundScore(aRounds, r, true);
+			}
+		}
+		
+		aReturnStat[vReturnIndex] = vEventTotal / vGolferCounter;
+		
+		aReturnGolfers[vReturnIndex] = aDates[d].substr(6,9) + ' ' + aEvents[d];
+		aReturnStat[vReturnIndex] = parseFloat(aReturnStat[vReturnIndex].toFixed(3));
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = aCourses[d];
+		
+		vReturnIndex++;
+	}
+	
+	vReturnTitle = "Lowest Event Scoring Average (Net)" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Chapter_LowEventScoringAvg_ParX(Event, Course, SeasonBegin, SeasonEnd, ParX) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	var pParNum				= arguments[4];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	var aDates				= new Array();
+	var aEvents				= new Array();
+	var aCourses			= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vNewDateFlag		= true;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "<div style='font-size: 0.6em;'>[Par " + pParNum + "'s]</div>";
+	var vEventDateHold		= "01-01-1900";
+	
+	var vSeasonHold			= 0;
+	var vHoleCounter		= 0;
+	var vEventTotal			= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vLoopCounter		= 0;
+	
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+	
+	for (r = 0; r < aRounds.length; r++) {
+				
+		if (aRounds[r][2] == pCourse || vAllCourses) {
+		
+			if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+			
+				vSeasonHold = aRounds[r][0].substr(6,9);
+				
+				if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+					
+					for (l = 0; l < vLoopCounter; l++) {
+						
+						if (aRounds[r][0] == aDates[l]) {
+							vNewDateFlag = false;
+						}
+					}
+					
+					if (vNewDateFlag == true) {
+						aDates[vLoopCounter] = aRounds[r][0]; //date
+						aEvents[vLoopCounter] = aRounds[r][1]; //event
+						aCourses[vLoopCounter] = aRounds[r][2]; //course
+						vLoopCounter++;
+					}
+					
+					vNewDateFlag = true;
+				}
+			}
+		}
+	}
+	
+	for (d = 0; d < aDates.length; d++) {
+		
+		vHoleCounter = 0;
+		vEventTotal = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aDates[d] == aRounds[r][0]) {
+				
+				for (h = 0; h < 18; h++) {
+								
+					if (aRounds[r][h + 26] == pParNum) {
+						vHoleCounter++;
+						vEventTotal += aRounds[r][h + 8];
+					}
+				}
+			}
+		}
+		
+		aReturnStat[vReturnIndex] = vEventTotal / vHoleCounter;
+		
+		aReturnGolfers[vReturnIndex] = aDates[d].substr(6,9) + ' ' + aEvents[d];
+		aReturnStat[vReturnIndex] = parseFloat(aReturnStat[vReturnIndex].toFixed(3));
+		aReturnSeason[vReturnIndex] = "-";
+		aReturnExtraInfo[vReturnIndex] = aCourses[d];
+		
+		vReturnIndex++;
+	}
+	
+	vReturnTitle = "Lowest Event Scoring Average" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
@@ -6400,14 +7582,16 @@ function getRecord_MostScoreType_FullRound_Range(Event, Course, SeasonBegin, Sea
 			}
 		}
 		
-		vPercent = (vTotal / vHoleCounter) * 100;
-		vPercent = Math.round(vPercent * 1000) / 1000;
-		
-		aReturnGolfers[vReturnIndex] = aGolfers[g];
-		aReturnStat[vReturnIndex] = vTotal;
-		aReturnSeason[vReturnIndex] = "-";
-		aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
-		vReturnIndex++;
+		if (vTotal > 0) {
+			vPercent = (vTotal / vHoleCounter) * 100;
+			vPercent = Math.round(vPercent * 1000) / 1000;
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = vTotal;
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
+			vReturnIndex++;
+		}
 	}
 	
 	if (pOperator == "=") {
@@ -6463,7 +7647,7 @@ function getRecord_MostScoreType_FullRound_Range_SingleSeason(Event, Course, Sea
 	var vAllNonMajors		= false;
 	
 	var vReturnTitle		= "";
-	var vReturnSubTitle		= "<div style='font-size: 0.6em;'>[Single Season]</div>";
+	var vReturnSubTitle		= "";
 	
 	var vReturnIndex		= 0;
 	var vSeasonHold			= 0;
@@ -6529,14 +7713,16 @@ function getRecord_MostScoreType_FullRound_Range_SingleSeason(Event, Course, Sea
 				}
 			}
 			
-			vPercent = (vTotal / vHoleCounter) * 100;
-			vPercent = Math.round(vPercent * 1000) / 1000;
-			
-			aReturnStat[vReturnIndex] = vTotal;
-			aReturnGolfers[vReturnIndex] = aGolfers[g];
-			aReturnSeason[vReturnIndex] = vSeasonLoopHold;
-			aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
-			vReturnIndex++;
+			if (vTotal > 0) {
+				vPercent = (vTotal / vHoleCounter) * 100;
+				vPercent = Math.round(vPercent * 1000) / 1000;
+				
+				aReturnStat[vReturnIndex] = vTotal;
+				aReturnGolfers[vReturnIndex] = aGolfers[g];
+				aReturnSeason[vReturnIndex] = vSeasonLoopHold;
+				aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
+				vReturnIndex++;
+			}
 		}
 	}
 	
@@ -6909,7 +8095,7 @@ function getRecord_MostScoreType_FullRound_Range_Percent(Event, Course, SeasonBe
 			}
 		}
 		
-		if (vHoleCounter < 54) {
+		if (vHoleCounter < 54 || vTotal == 0) {
 			vTotal = 0;
 			vPercent = 0;
 		} else {
@@ -7043,7 +8229,7 @@ function getRecord_MostScoreType_FullRound_Range_SingleSeason_Percent(Event, Cou
 				}
 			}
 			
-			if (vHoleCounter < 54) {
+			if (vHoleCounter < 54 || vTotal == 0) {
 				vTotal = 0;
 				vPercent = 0;
 			} else {
@@ -7176,14 +8362,16 @@ function getRecord_MostScoreType_ParX_Range(Event, Course, SeasonBegin, SeasonEn
 			}
 		}
 		
-		vPercent = (vTotal / vHoleCounter) * 100;
-		vPercent = Math.round(vPercent * 1000) / 1000;
-		
-		aReturnGolfers[vReturnIndex] = aGolfers[g];
-		aReturnStat[vReturnIndex] = vTotal;
-		aReturnSeason[vReturnIndex] = "-";
-		aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
-		vReturnIndex++;
+		if (vTotal > 0) {
+			vPercent = (vTotal / vHoleCounter) * 100;
+			vPercent = Math.round(vPercent * 1000) / 1000;
+			
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnStat[vReturnIndex] = vTotal;
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
+			vReturnIndex++;
+		}
 	}
 	
 	if (pOperator == "=") {
@@ -7285,11 +8473,13 @@ function getRecord_CourseLowRoundAvg_Range_Gross(Event, Course, SeasonBegin, Sea
 			}
 		}
 		
-		aReturnStat[vReturnIndex] = vAverage;
-		aReturnGolfers[vReturnIndex] = aCourses[c];
-		aReturnSeason[vReturnIndex] = "-";
-		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
-		vReturnIndex++;
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vAverage;
+			aReturnGolfers[vReturnIndex] = aCourses[c];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+			vReturnIndex++;
+		}
 	}
 	
 	vReturnTitle = "Lowest Scoring Average (Gross)" + vReturnSubTitle;
@@ -7373,11 +8563,13 @@ function getRecord_CourseLowRoundAvg_Range_Net(Event, Course, SeasonBegin, Seaso
 			}
 		}
 		
-		aReturnStat[vReturnIndex] = vAverage;
-		aReturnGolfers[vReturnIndex] = aCourses[c];
-		aReturnSeason[vReturnIndex] = "-";
-		aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
-		vReturnIndex++;
+		if (vEventCounter > 0) {
+			aReturnStat[vReturnIndex] = vAverage;
+			aReturnGolfers[vReturnIndex] = aCourses[c];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = vEventCounter + " Rounds";
+			vReturnIndex++;
+		}
 	}
 	
 	vReturnTitle = "Lowest Scoring Average (Net)" + vReturnSubTitle;
