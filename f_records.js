@@ -655,6 +655,10 @@ function getRecordHeader(RecordID) {
 		case     4:		return "Legs of the Mrand Choke Slam<br />(Runner-Up - Majors)"
 		case     5:		return "Legs of the Meh Choke Slam<br />(Runner-Up - Non-Majors)"
 		case     6:		return "Legs of the Mega Choke Slam<br />(Runner Up - All 8 Events)"
+		
+		case    95:		return "From Red Key to Champion"
+		case    96:		return "Back-to-Back Tournament Wins"
+		case    97:		return "Successfully Defended Championship"
 
         default:		return "N/A";
 	}
@@ -711,6 +715,9 @@ function getRecordData(Record, Event, Course, SeasonBegin, SeasonEnd) {
 		case    63:		return getRecord_Chapter_LowEventScoringAvg_ParX(varEvent,varCourse,varSeason1,varSeason2,4);
 		case    64:		return getRecord_Chapter_LowEventScoringAvg_ParX(varEvent,varCourse,varSeason1,varSeason2,5);
 		
+		case    95:		return getRecord_Positional_RedKeyToChampion(varEvent,varCourse,varSeason1,varSeason2);
+		case    96:		return getRecord_Positional_BackToBackWins(varEvent,varCourse,varSeason1,varSeason2);
+		case    97:		return getRecord_Positional_DefendedChampionship(varEvent,varCourse,varSeason1,varSeason2);
 		case   100:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,1);
 		case   200:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,2,2);
 		case   300:		return getRecord_MostFinishPositional_Range(varEvent,varCourse,varSeason1,varSeason2,1,2);
@@ -927,6 +934,7 @@ function getRecordHeaderBreak(RecordID) {
 		case    37:
 		case    61:
 		case    64:
+		case    97:
 		/*
 		case   500:
 		case  1100:
@@ -973,7 +981,7 @@ function getRecordCategoryHeader(RecordID) {
 	switch(pRecordID) {
 		case     1:		return "MGA Misc. Records";
 		case    50:		return "Event Records";
-        case   100:		return "Placement Records";
+        case    95:		return "Placement Records";
         case  2500:		return "Earnings Records";
 		case  2945:		return "Scoring Records";
 		case  3800:		return "Score Type Records";
@@ -3881,6 +3889,358 @@ function getRecord_Chapter_LowEventScoringAvg_ParX(Event, Course, SeasonBegin, S
 	}
 	
 	vReturnTitle = "Lowest Event Scoring Average" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Positional_RedKeyToChampion(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vRedKey				= false;
+	var vChampion			= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vRedKeyToChampion	= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		vRedKey = false;
+		vChampion = false;
+		vRedKeyToChampion = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+							
+							vChampion = (calcIsWinner(aRounds,r))
+							
+							if (vRedKey == true && vChampion == true) {
+								vRedKeyToChampion++;
+							}
+							
+							vRedKey = (aRounds[r][49] == "x")
+						}
+					}
+				}
+			}
+		}
+		
+		if (vRedKeyToChampion > 0) {
+			aReturnStat[vReturnIndex] = vRedKeyToChampion;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = "-";
+			
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "From Red Key to Champion" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Positional_BackToBackWins(Event, Course, SeasonBegin, SeasonEnd) {
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	var vChampion1			= false;
+	var vChampion2			= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	var vPercent			= 0;
+	var vBacktoBackChampion	= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		vChampion1 = false;
+		vChampion2 = false;
+		vBacktoBackChampion = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+							
+							vChampion1 = (calcIsWinner(aRounds,r))
+							
+							if (vChampion1 == true && vChampion2 == true) {
+								vBacktoBackChampion++;
+							}
+							
+							vChampion2 = vChampion1;
+						}
+					}
+				}
+			}
+		}
+		
+		if (vBacktoBackChampion > 0) {
+			aReturnStat[vReturnIndex] = vBacktoBackChampion;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = "-";
+			
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Back-to-Back Tournament Wins" + vReturnSubTitle;
+	
+	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
+}
+
+
+/********************************************************************************************/
+/********************************************************************************************/
+
+
+function getRecord_Positional_DefendedChampionship(Event, Course, SeasonBegin, SeasonEnd) {
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	//``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````//
+	/**---------------------------------------------------------------------**/
+	var pEvent				= arguments[0];
+	var pCourse				= arguments[1];
+	var pSeasonBegin		= arguments[2];
+	var pSeasonEnd			= arguments[3];
+	
+	var aRounds				= new Array();		aRounds		= getData_Rounds();
+	var aGolfers			= new Array();		aGolfers	= getData_Golfers();
+	var aReturnStat			= new Array();
+	var aReturnSeason		= new Array();
+	var aReturnExtraInfo	= new Array();
+	var aReturnGolfers		= new Array();
+	var aEvents				= new Array();
+	
+	var vAllCourses			= false;
+	var vAllEvents			= false;
+	var vAllMajors			= false;
+	var vAllNonMajors		= false;
+	
+	var vReturnTitle		= "";
+	var vReturnSubTitle		= "";
+	
+	var vSeasonHold			= 0;
+	var vEventCounter		= 0;
+	var vReturnIndex		= 0;
+	var vDefendedChampion	= 0;
+	/**---------------------------------------------------------------------**/
+
+	if (pCourse	== 'All Courses')		{ vAllCourses	= true; }
+	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
+	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
+	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
+
+	for (g = 0; g < aGolfers.length; g++) {
+		aEvents[1] = false;
+		aEvents[2] = false;
+		aEvents[3] = false;
+		aEvents[4] = false;
+		aEvents[5] = false;
+		aEvents[6] = false;
+		aEvents[7] = false;
+		aEvents[8] = false;
+		vDefendedChampion = 0;
+		
+		for (r = 0; r < aRounds.length; r++) {
+			
+			if (aRounds[r][3] == aGolfers[g]) {
+				
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+				
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && checkMajor_NoArray(aRounds[r][1]) == true) || (vAllNonMajors && checkMajor_NoArray(aRounds[r][1]) == false)) {
+					
+						vSeasonHold = aRounds[r][0].substr(6,9);
+						
+						if (vSeasonHold >= pSeasonBegin && vSeasonHold <= pSeasonEnd) {
+							
+							if (aRounds[r][1] == 'Rebel Beach Am-Am') {
+								aEvents[1] = (aRounds[r][4] == 1 && aEvents[1] == true);
+								if (aEvents[1] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[1] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'Bastards') {
+								aEvents[2] = (aRounds[r][4] == 1 && aEvents[2] == true);
+								if (aEvents[2] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[2] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'FORE Championship') {
+								aEvents[3] = (aRounds[r][4] == 1 && aEvents[3] == true);
+								if (aEvents[3] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[3] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'F.U. Open') {
+								aEvents[4] = (aRounds[r][4] == 1 && aEvents[4] == true);
+								if (aEvents[4] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[4] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'Bratish Open') {
+								aEvents[5] = (aRounds[r][4] == 1 && aEvents[5] == true);
+								if (aEvents[5] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[5] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'MGA Championship') {
+								aEvents[6] = (aRounds[r][4] == 1 && aEvents[6] == true);
+								if (aEvents[6] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[6] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'Douche Bag Invitational') {
+								aEvents[7] = (aRounds[r][4] == 1 && aEvents[7] == true);
+								if (aEvents[7] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[7] = (aRounds[r][4] == 1);
+							}
+							else if (aRounds[r][1] == 'Last Gasp') {
+								aEvents[8] = (aRounds[r][4] == 1 && aEvents[8] == true);
+								if (aEvents[8] == true) {
+									vDefendedChampion++;
+								}
+								aEvents[8] = (aRounds[r][4] == 1);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (vDefendedChampion > 0) {
+			aReturnStat[vReturnIndex] = vDefendedChampion;
+			aReturnGolfers[vReturnIndex] = aGolfers[g];
+			aReturnSeason[vReturnIndex] = "-";
+			aReturnExtraInfo[vReturnIndex] = "-";
+			
+			vReturnIndex++;
+		}
+	}
+	
+	vReturnTitle = "Successfully Defended Championship" + vReturnSubTitle;
 	
 	return [aReturnGolfers, aReturnStat, aReturnSeason, aReturnExtraInfo, vReturnTitle];
 }
