@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			html_SiteHeader();
+		</script>
+		<script>
+			var url = new URL(window.location.href);
+			var varGolferIndex = url.searchParams.get("g");
+			var arrGolferData = getRoundDataForGolfer(varGolferIndex);
+		</script>
+	</head>
+	
+	
+	<!-- Body Tag -- uses global variable to dictate standard background color -->
+	<script>
+		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+	</script>
+
+	
+		<!-- Top container -->
+		<script>
+			html_TopContainer();
+		</script>
+
+
+		<!-- Sidebar/menu -->
+		<script>
+			html_NavigationPanel("GolferStats");
+		</script>
+
+
+		<!-- !PAGE CONTENT! -->
+		<div class="w3-main" style="margin-left:300px; margin-top:43px;">
+
+		
+			<!-- Header -->
+			<header class="w3-container" style="padding-top:22px">
+				<h5><b><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<script>document.write(arrGolferData[0][3]);</script> -- Career Stats</h5>
+			</header>
+			
+			
+			<script>
+				var varTotalStrokes = 0;
+				var varBestFinish = 999;
+				var varBestFinishTimes = 0;
+				var varCareerEarnings = 0;
+				var varInfoLoop = 0;
+				var arrRoundData = new Array();
+
+				for (varInfoLoop = 0; varInfoLoop < arrGolferData.length; varInfoLoop++)
+				{
+					arrRoundData = getRoundScore(arrGolferData,varInfoLoop);
+					varTotalStrokes += arrRoundData[2];
+					varCareerEarnings += arrGolferData[varInfoLoop][6];
+
+					if (arrGolferData[varInfoLoop][4] <= varBestFinish && arrGolferData[varInfoLoop][4] != 0)
+					{
+						varBestFinish = arrGolferData[varInfoLoop][4];
+					}
+				}
+
+				for (varInfoLoop = 0; varInfoLoop < arrGolferData.length; varInfoLoop++)
+				{
+					if (varBestFinish == arrGolferData[varInfoLoop][4])
+					{
+						varBestFinishTimes++;
+					}
+				}
+
+				varBestFinish = varBestFinish + getRankingSuffix(varBestFinish);
+			</script>
+			
+			
+			<div class="w3-row-padding w3-margin-bottom">
+				<div class="w3-quarter">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-right">
+							<h3><script>document.write((varTotalStrokes/arrGolferData.length).toFixed(3));</script></h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>Career Average</h4>
+					</div>
+				</div>
+				<div class="w3-quarter">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-right">
+							<h3><script>document.write(varBestFinish + ' (' + varBestFinishTimes + ')');</script></h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>Best Finish</h4>
+					</div>
+				</div>
+				<div class="w3-quarter">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-right">
+							<h3>$
+								<script>
+									// This should be a function
+									if (varCareerEarnings >= 10)
+									{
+										document.write((varCareerEarnings.toFixed(2)).padEnd(10,'0,000'));
+									}
+									else
+									{
+										document.write((varCareerEarnings.toFixed(2)).padEnd(9,'0,000'));
+									}
+								</script>
+							</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>Career "Earnings"</h4>
+					</div>
+				</div>
+				<div class="w3-quarter">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-right">
+							<h3><script>document.write(arrGolferData.length);</script></h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>Total Events</h4>
+					</div>
+				</div>
+			</div>
+			<hr>
+			
+			
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-container">
+						<h5>Career Scoring Totals</h5>
+						<table class="w3-table w3-white">
+							<tr>
+								<td>&nbsp;</td>
+								<td class="w3-center">Season</td>
+								<td class="w3-center">Events</td>
+								<td class="w3-center">Avg</td>
+								<td class="w3-center">DQs</td>
+								<td class="w3-center">Wins</td>
+								<td class="w3-center">Top 3</td>
+								<td class="w3-center">Top 10</td>
+								<td class="w3-center">"Earn"</td>
+							</tr>
+							<script>
+								var varDataLoop = 0;
+								var varEventCount = 0;
+								var varWinCount = 0;
+								var varTop3Count = 0;
+								var varTop10Count = 0;
+								var varEarnings = 0.0;
+								var varRoundScores = 0;
+								var varDQCount = 0;
+								var varTotalEvents = 0;
+								var varTotalWins = 0;
+								var varTotalTop3 = 0;
+								var varTotalTop10 = 0;
+								var varTotalEarnings = 0.0;
+								var varTotalEarningsDisp = '';
+								var varTotalRoundScores = 0;
+								var varTotalDQs = 0;
+
+								varSeasonHold = arrGolferData[0][0].substr(6,9);
+
+								for (varDataLoop = 0; varDataLoop < arrGolferData.length; varDataLoop++)
+								{
+									if (arrGolferData[varDataLoop][0].substr(6,9) != varSeasonHold)
+									{
+										document.write('<tr>');
+										document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+										document.write('<td class="w3-center">' + varSeasonHold + '</td>');
+										document.write('<td class="w3-center">' + varEventCount + '</td>');
+										document.write('<td class="w3-center">' + (varRoundScores / varEventCount).toFixed(3) + '</td>');
+										document.write('<td class="w3-center">' + varDQCount + '</td>');
+										document.write('<td class="w3-center">' + varWinCount + '</td>');
+										document.write('<td class="w3-center">' + varTop3Count + '</td>');
+										document.write('<td class="w3-center">' + varTop10Count + '</td>');
+										document.write('<td class="w3-center">$ ' + varEarnings.toFixed(2) + '</td>');
+										document.write('</tr>');
+
+										varSeasonHold = arrGolferData[varDataLoop][0].substr(6,9);
+										varTotalEvents += varEventCount;
+										varTotalWins += varWinCount;
+										varTotalTop3 += varTop3Count;
+										varTotalTop10 += varTop10Count;
+										varTotalEarnings += varEarnings;
+										varTotalRoundScores += varRoundScores;
+										varTotalDQs += varDQCount;
+										varEventCount = 0;
+										varWinCount = 0;
+										varTop3Count = 0;
+										varTop10Count = 0;
+										varEarnings = 0.0;
+										varRoundScores = 0.0;
+										varDQCount = 0;
+									}
+
+									varEventCount++;
+									if (arrGolferData[varDataLoop][4] == 1) { varWinCount++; }
+									if (arrGolferData[varDataLoop][4] == 0) { varDQCount++; }
+									if (arrGolferData[varDataLoop][4] < 4 && arrGolferData[varDataLoop][4] != 0) { varTop3Count++; }
+									if (arrGolferData[varDataLoop][4] < 11 && arrGolferData[varDataLoop][4] != 0) { varTop10Count++; }
+									varEarnings += arrGolferData[varDataLoop][6];
+									arrRoundData = getRoundScore(arrGolferData,varDataLoop);
+									varRoundScores += arrRoundData[2];
+								}
+								
+								varTotalEvents += varEventCount;
+								varTotalWins += varWinCount;
+								varTotalTop3 += varTop3Count;
+								varTotalTop10 += varTop10Count;
+								varTotalEarnings += varEarnings;
+								varTotalRoundScores += varRoundScores;
+								varTotalDQs += varDQCount;
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+								document.write('<td class="w3-center">' + varSeasonHold + '</td>');
+								document.write('<td class="w3-center">' + varEventCount + '</td>');
+								document.write('<td class="w3-center">' + (varRoundScores / varEventCount).toFixed(3) + '</td>');
+								document.write('<td class="w3-center">' + varDQCount + '</td>');
+								document.write('<td class="w3-center">' + varWinCount + '</td>');
+								document.write('<td class="w3-center">' + varTop3Count + '</td>');
+								document.write('<td class="w3-center">' + varTop10Count + '</td>');
+								document.write('<td class="w3-center">$ ' + varEarnings.toFixed(2) + '</td>');
+								document.write('</tr><tr><td>&nbsp;</td></tr>');
+
+								document.write('<tr>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td class="w3-center">Events</td>');
+								document.write('<td class="w3-center">Avg</td>');
+								document.write('<td class="w3-center">DQs</td>');
+								document.write('<td class="w3-center">Wins</td>');
+								document.write('<td class="w3-center">Top 3</td>');
+								document.write('<td class="w3-center">Top 10</td>');
+								document.write('<td class="w3-center">"Earn"</td>');
+								document.write('</tr>');
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+								document.write('<td class="w3-center">Career</td>');
+								document.write('<td class="w3-center">' + varTotalEvents + '</td>');
+								document.write('<td class="w3-center">' + (varTotalRoundScores / varTotalEvents).toFixed(3) + '</td>');
+								document.write('<td class="w3-center">' + varTotalDQs + '</td>');
+								document.write('<td class="w3-center">' + varTotalWins + '</td>');
+								document.write('<td class="w3-center">' + varTotalTop3 + '</td>');
+								document.write('<td class="w3-center">' + varTotalTop10 + '</td>');
+								document.write('<td class="w3-center">$ ' + varTotalEarnings.toFixed(2) + '</td>');
+								document.write('</tr>');
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+			<hr>
+  
+  
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-container">
+						<h5>Career ScoreType Totals</h5>
+						<table class="w3-table w3-white">
+							<tr>
+								<td>&nbsp;</td>
+								<td class="w3-center">Season</td>
+								<td class="w3-center">Eag</td>
+								<td class="w3-center">Bir</td>
+								<td class="w3-center">Par</td>
+								<td class="w3-center">Bog</td>
+								<td class="w3-center">Dbl</td>
+								<td class="w3-center">Trp</td>
+								<td class="w3-center">Wrs</td>
+							</tr>
+							<script>
+								var varDataLoop = 0;
+								var varScoreTypeLoop = 0;
+
+								var varSeasonEagles = 0;
+								var varSeasonBirdies = 0;
+								var varSeasonPars = 0;
+								var varSeasonBogeys = 0;
+								var varSeasonDblBogeys = 0;
+								var varSeasonTrpBogeys = 0;
+								var varSeasonWorseBogeys = 0;
+
+								var varTotalEagles = 0;
+								var varTotalBirdies = 0;
+								var varTotalPars = 0;
+								var varTotalBogeys = 0;
+								var varTotalDblBogeys = 0;
+								var varTotalTrpBogeys = 0;
+								var varTotalWorseBogeys = 0;
+
+								varSeasonHold = arrGolferData[0][0].substr(6,9);
+
+								for (varDataLoop = 0; varDataLoop < arrGolferData.length; varDataLoop++)
+								{
+									if (arrGolferData[varDataLoop][0].substr(6,9) != varSeasonHold)
+									{
+										document.write('<tr>');
+										document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+										document.write('<td class="w3-center">' + varSeasonHold + '</td>');
+										document.write('<td class="w3-center">' + varSeasonEagles + '</td>');
+										document.write('<td class="w3-center">' + varSeasonBirdies + '</td>');
+										document.write('<td class="w3-center">' + varSeasonPars + '</td>');
+										document.write('<td class="w3-center">' + varSeasonBogeys + '</td>');
+										document.write('<td class="w3-center">' + varSeasonDblBogeys + '</td>');
+										document.write('<td class="w3-center">' + varSeasonTrpBogeys + '</td>');
+										document.write('<td class="w3-center">' + varSeasonWorseBogeys + '</td>');
+										document.write('</tr>');
+
+										varTotalEagles += varSeasonEagles;
+										varTotalBirdies += varSeasonBirdies;
+										varTotalPars += varSeasonPars;
+										varTotalBogeys += varSeasonBogeys;
+										varTotalDblBogeys += varSeasonDblBogeys;
+										varTotalTrpBogeys += varSeasonTrpBogeys;
+										varTotalWorseBogeys += varSeasonWorseBogeys;
+
+										varSeasonHold = arrGolferData[varDataLoop][0].substr(6,9);
+										varSeasonEagles = 0;
+										varSeasonBirdies = 0;
+										varSeasonPars = 0;
+										varSeasonBogeys = 0;
+										varSeasonDblBogeys = 0;
+										varSeasonTrpBogeys = 0;
+										varSeasonWorseBogeys = 0;
+									}
+
+									for (varScoreTypeLoop = 0; varScoreTypeLoop < 18; varScoreTypeLoop++) {
+											 if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == -2)	{varSeasonEagles++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == -1)	{varSeasonBirdies++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == 0)		{varSeasonPars++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == 1)		{varSeasonBogeys++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == 2)		{varSeasonDblBogeys++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] == 3)		{varSeasonTrpBogeys++;}
+										else if (arrGolferData[varDataLoop][varScoreTypeLoop + 8] - arrGolferData[varDataLoop][varScoreTypeLoop + 26] > 3)		{varSeasonWorseBogeys++;}
+									}
+								}
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+								document.write('<td class="w3-center">' + varSeasonHold + '</td>');
+								document.write('<td class="w3-center">' + varSeasonEagles + '</td>');
+								document.write('<td class="w3-center">' + varSeasonBirdies + '</td>');
+								document.write('<td class="w3-center">' + varSeasonPars + '</td>');
+								document.write('<td class="w3-center">' + varSeasonBogeys + '</td>');
+								document.write('<td class="w3-center">' + varSeasonDblBogeys + '</td>');
+								document.write('<td class="w3-center">' + varSeasonTrpBogeys + '</td>');
+								document.write('<td class="w3-center">' + varSeasonWorseBogeys + '</td>');
+								document.write('</tr><tr><td>&nbsp;</td></tr>');
+
+								document.write('<tr>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td class="w3-center">Eag</td>');
+								document.write('<td class="w3-center">Bir</td>');
+								document.write('<td class="w3-center">Par</td>');
+								document.write('<td class="w3-center">Bog</td>');
+								document.write('<td class="w3-center">Dbl</td>');
+								document.write('<td class="w3-center">Trp</td>');
+								document.write('<td class="w3-center">Wrs</td>');
+								document.write('</tr>');
+
+								varTotalEagles += varSeasonEagles;
+								varTotalBirdies += varSeasonBirdies;
+								varTotalPars += varSeasonPars;
+								varTotalBogeys += varSeasonBogeys;
+								varTotalDblBogeys += varSeasonDblBogeys;
+								varTotalTrpBogeys += varSeasonTrpBogeys;
+								varTotalWorseBogeys += varSeasonWorseBogeys;
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+								document.write('<td class="w3-center">Career</td>');
+								document.write('<td class="w3-center">' + varTotalEagles + '</td>');
+								document.write('<td class="w3-center">' + varTotalBirdies + '</td>');
+								document.write('<td class="w3-center">' + varTotalPars + '</td>');
+								document.write('<td class="w3-center">' + varTotalBogeys + '</td>');
+								document.write('<td class="w3-center">' + varTotalDblBogeys + '</td>');
+								document.write('<td class="w3-center">' + varTotalTrpBogeys + '</td>');
+								document.write('<td class="w3-center">' + varTotalWorseBogeys + '</td>');
+								document.write('</tr>');
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+			<hr>
+  
+  
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-container">
+						<h5>Event Summaries</h5>
+						<table class="w3-table w3-white">
+							<tr>
+								<td>&nbsp;</td>
+								<td class="w3-center">Date</td>
+								<td class="w3-center">Event</td>
+								<td class="w3-center">Course</td>
+								<td class="w3-center">Gross</td>
+								<td class="w3-center">Net</td>
+								<td class="w3-center">Finish</td>
+								<td class="w3-center">Earn</td>
+							</tr>
+							<script>
+								var varFinishPos = "";
+
+								for (varDataLoop = 0; varDataLoop < arrGolferData.length; varDataLoop++)
+								{
+									arrRoundData = getRoundScore(arrGolferData,varDataLoop)
+
+									if (arrGolferData[varDataLoop][4] == 0)
+									{
+										varFinishPos = "DQ"
+									}
+									else
+									{
+										varFinishPos = arrGolferData[varDataLoop][4];
+									}
+
+									document.write('<tr>');
+									document.write('<td class="w3-center"><i class="fa fa-cubes w3-text-blue"></i></td>');
+									document.write('<td class="w3-center"><a href="resultsdetails.html?s=' + arrGolferData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferData[varDataLoop][1]) + '">' + arrGolferData[varDataLoop][0] + '</a></td>');
+									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][1] + '</td>');
+									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][2] + '</td>');
+									document.write('<td class="w3-center">' + arrRoundData[2] + '</td>');
+									document.write('<td class="w3-center">' + (arrRoundData[2] + arrGolferData[varDataLoop][7]) + '</td>');
+									document.write('<td class="w3-center">' + varFinishPos + '</td>');
+									document.write('<td class="w3-center">$ ' + arrGolferData[varDataLoop][6].toFixed(2) + '</td>');
+									document.write('</tr>');
+								}
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+			<hr>
+
+			
+			<!-- Footer -->
+			<script>
+				html_Footer();
+			</script>
+
+		</div>
+		
+		
+		<!-- DO NOT MOVE OR ALTER -->
+		<!-- Handling of menu for smaller screens -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+	</body>
+	
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			html_SiteHeader();
+		</script>
+	</head>
+	
+	
+	<!-- Body Tag -- uses global variable to dictate standard background color -->
+	<script>
+		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+	</script>
+
+	
+		<!-- Top container -->
+		<script>
+			html_TopContainer();
+		</script>
+
+
+		<!-- Sidebar/menu -->
+		<script>
+			html_NavigationPanel("Calendar");
+		</script>
+
+
+		<!-- !PAGE CONTENT! -->
+		<div class="w3-main" style="margin-left:300px; margin-top:43px;">
+
+		
+			<!-- Header -->
+			<header class="w3-container" style="padding-top:22px">
+				<script>
+					document.write('<h5><b><i class="fa ' + getGlobalVariable('Page_CalendarIcon') + '" style="color: ' + getGlobalVariable('Page_CalendarIconColor') + ';"></i>&nbsp;&nbsp;&nbsp;' + getGlobalVariable('Page_CalendarTitle') + '</h5>');
+				</script>
+			</header>
+
+			
+			<!-- Calendar iFrame -->
+			<div class="w3-container">
+				<div class="w3-padding">
+					<p>
+						<iframe src="https://calendar.google.com/calendar/embed?src=mgacolumbus%40gmail.com&ctz=America%2FDetroit" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+					</p>
+				</div>
+			</div>
+
+			
+			<!-- Footer -->
+			<script>
+				html_Footer();
+			</script>
+
+		</div>
+		
+		
+		<!-- DO NOT MOVE OR ALTER -->
+		<!-- Handling of menu for smaller screens -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+	</body>
+	
+</html>
