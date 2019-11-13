@@ -25,7 +25,7 @@ function getGlobalVariable(VariableName) {
 		case 'Navigation_TitleRecords':				return 'Records';
 		case 'Navigation_TitleResults':				return 'Results';
 		
-		case 'Page_BodyClass':						return 'w3-pale-red';
+		case 'Page_BodyClass':						return 'w3-light-grey';
 		
 		case 'Page_CalendarIcon':					return 'fa-calendar';
 		case 'Page_CalendarIconColor':				return 'blue';
