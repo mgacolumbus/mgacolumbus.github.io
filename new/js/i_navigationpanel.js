@@ -7,7 +7,7 @@ function html_NavigationPanel(Source) {
 	document.write('<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>');
 	document.write('	<div class="w3-container w3-row">');
 	document.write('		<div class="w3-col s4">');
-	document.write('			<img src="images/logo.png" class="w3-circle w3-margin-right" style="width:46px">');
+	document.write('			<img src="images/Logo.png" class="w3-circle w3-margin-right" style="width:46px">');
 	document.write('		</div>');
 	document.write('		<div class="w3-col s8 w3-bar">');
 	document.write('			<span><strong>MGA Columbus</strong><br />Stats &amp; Records</span><br>');
