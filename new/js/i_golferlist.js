@@ -7,14 +7,14 @@ function html_GolferList() {
 		
 		document.write('<tr>');
 		
-		for (gg = 0; gg < 3; gg++) {
+		for (gg = 0; gg < 2; gg++) {
 			
 			if (g < arrGolfers.length) {
 				
 				document.write('  <td><i class="fa fa-user" style="color: orange;"></i></td>');
 				document.write('  <td align="center"><a href="golferstatsdetail.html?g=' + g + '">' + arrGolfers[g] + '</a></td>');
 				
-				if (g < arrGolfers.length && gg < 2) {
+				if (g < arrGolfers.length && gg < 1) {
 					
 					g++;
 				}
