@@ -99,7 +99,7 @@
 				<div class="w3-quarter">
 					<div class="w3-container w3-teal w3-padding-16">
 						<div class="w3-right">
-							<h3>$
+							<h3>
 								<script>
 									// This should be a function
 									if (varCareerEarnings >= 10)
@@ -179,7 +179,7 @@
 										document.write('<td class="w3-center">' + varWinCount + '</td>');
 										document.write('<td class="w3-center">' + varTop3Count + '</td>');
 										document.write('<td class="w3-center">' + varTop10Count + '</td>');
-										document.write('<td class="w3-center">$ ' + varEarnings.toFixed(2) + '</td>');
+										document.write('<td class="w3-center">' + varEarnings.toFixed(2) + '</td>');
 										document.write('</tr>');
 
 										varSeasonHold = arrGolferData[varDataLoop][0].substr(6,9);
@@ -226,7 +226,7 @@
 								document.write('<td class="w3-center">' + varWinCount + '</td>');
 								document.write('<td class="w3-center">' + varTop3Count + '</td>');
 								document.write('<td class="w3-center">' + varTop10Count + '</td>');
-								document.write('<td class="w3-center">$ ' + varEarnings.toFixed(2) + '</td>');
+								document.write('<td class="w3-center">' + varEarnings.toFixed(2) + '</td>');
 								document.write('</tr><tr><td>&nbsp;</td></tr>');
 
 								document.write('<tr>');
@@ -250,7 +250,7 @@
 								document.write('<td class="w3-center">' + varTotalWins + '</td>');
 								document.write('<td class="w3-center">' + varTotalTop3 + '</td>');
 								document.write('<td class="w3-center">' + varTotalTop10 + '</td>');
-								document.write('<td class="w3-center">$ ' + varTotalEarnings.toFixed(2) + '</td>');
+								document.write('<td class="w3-center">' + varTotalEarnings.toFixed(2) + '</td>');
 								document.write('</tr>');
 							</script>
 						</table>
@@ -433,7 +433,7 @@
 									document.write('<td class="w3-center">' + arrRoundData[2] + '</td>');
 									document.write('<td class="w3-center">' + (arrRoundData[2] + arrGolferData[varDataLoop][7]) + '</td>');
 									document.write('<td class="w3-center">' + varFinishPos + '</td>');
-									document.write('<td class="w3-center">$ ' + arrGolferData[varDataLoop][6].toFixed(2) + '</td>');
+									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][6].toFixed(2) + '</td>');
 									document.write('</tr>');
 								}
 							</script>
