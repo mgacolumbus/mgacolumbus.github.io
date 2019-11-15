@@ -404,8 +404,8 @@
 								<td class="w3-center">Date</td>
 								<td class="w3-center">Event</td>
 								<td class="w3-center">Course</td>
-								<td class="w3-center">Gross</td>
-								<td class="w3-center">Net</td>
+								<td class="w3-center">Score</td>
+								<!--<td class="w3-center">Net</td>-->
 								<td class="w3-center">Finish</td>
 								<td class="w3-center">Earn</td>
 							</tr>
@@ -430,10 +430,10 @@
 									document.write('<td class="w3-center"><a href="resultsdetails.html?s=' + arrGolferData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferData[varDataLoop][1]) + '">' + arrGolferData[varDataLoop][0] + '</a></td>');
 									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][1] + '</td>');
 									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][2] + '</td>');
-									document.write('<td class="w3-center">' + arrRoundData[2] + '</td>');
-									document.write('<td class="w3-center">' + (arrRoundData[2] + arrGolferData[varDataLoop][7]) + '</td>');
-									document.write('<td class="w3-center">' + varFinishPos + '</td>');
-									document.write('<td class="w3-center">' + arrGolferData[varDataLoop][6].toFixed(2) + '</td>');
+									//document.write('<td class="w3-center">' + arrRoundData[2] + '</td>');
+									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferData[varDataLoop][3]) + '">' + (arrRoundData[2] + arrGolferData[varDataLoop][7]) + '</a></td>');
+									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferData[varDataLoop][3]) + '">' + varFinishPos + '</a></td>');
+									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferData[varDataLoop][3]) + '">' + arrGolferData[varDataLoop][6].toFixed(2) + '</a></td>');
 									document.write('</tr>');
 								}
 							</script>

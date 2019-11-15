@@ -28,11 +28,15 @@ function StartEngine() {
 	document.write('<script src="js/f_getEventIndex.js"></script>');
 	document.write('<script src="js/f_getEventName.js"></script>');
 	document.write('<script src="js/f_getGlobalVariable.js"></script>');
+	document.write('<script src="js/f_getGolferIndex.js"></script>');
 	document.write('<script src="js/f_getNavigationItem.js"></script>');
 	document.write('<script src="js/f_getParOffset.js"></script>');
 	document.write('<script src="js/f_getProgressBarColor.js"></script>');
 	document.write('<script src="js/f_getRankingSuffix.js"></script>');
+	document.write('<script src="js/f_getRoundDataForEvent.js"></script>');
 	document.write('<script src="js/f_getRoundDataForGolfer.js"></script>');
+	document.write('<script src="js/f_getRoundDataForScorecard.js"></script>');
+	document.write('<script src="js/f_getRoundDataForSeason.js"></script>');
 	document.write('<script src="js/f_getRoundScore.js"></script>');
 	document.write('<script src="js/f_getScoreType.js"></script>');
 	document.write('<script src="js/f_getTournamentWinnerDetails.js"></script>');
