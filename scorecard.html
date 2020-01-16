@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			html_SiteHeader();
+		</script>
+		<script>
+			var url = new URL(window.location.href);
+			var varSeason = url.searchParams.get("s");
+			var varEventNum = url.searchParams.get("e");
+			var varGolferNum = url.searchParams.get("g");
+			
+			var arrRoundData = new Array();
+			arrRoundData = getRoundDataForScorecard(varSeason, varEventNum, varGolferNum);
+		</script>
+	</head>
+	
+	
+	<!-- Body Tag -- uses global variable to dictate standard background color -->
+	<script>
+		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+	</script>
+
+	
+		<!-- Top container -->
+		<script>
+			html_TopContainer();
+		</script>
+
+
+		<!-- Sidebar/menu -->
+		<script>
+			html_NavigationPanel("Results");
+		</script>
+
+
+		<!-- !PAGE CONTENT! -->
+		<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+		
+			<!-- Header -->
+			<header class="w3-container" style="padding-top:22px">
+				<h5><b><i class="fa fa-cubes"></i>&nbsp;&nbsp;&nbsp;Scorecard</h5>
+			</header>
+			
+			
+			<header class="w3-container" style="padding-top:22px">
+				<script>
+					document.write('<h5><b>&nbsp;&nbsp;Golfer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="golferstatsdetail.html?g=' + getGolferIndex(arrRoundData[0][3]) + '">' + arrRoundData[0][3] + '</a></b></h5>');
+					document.write('<h5><b>&nbsp;&nbsp;Event:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resultsdetails.html?s=' + arrRoundData[0][0].substr(6,9) + '&e=' + getEventIndex(arrRoundData[0][1]) + '">' + arrRoundData[0][0].substr(6,9) + ' ' + arrRoundData[0][1] + '</a></b></h5>');
+					document.write('<h5><b>&nbsp;&nbsp;Course:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + arrRoundData[0][2] + '</a></b></h5>');
+				</script>
+			</header>
+
+
+			<div class="w3-panel w3-third w3-padding">
+				<div class="w3-row-padding">
+					<h5>Scorecard</h5>
+					<table class="w3-table">
+						<tr class="w3-grey">
+							<th class="w3-center" width="20%">Hole</th>
+							<th class="w3-center" width="30%">Mar</th>
+							<th class="w3-center" width="30%">Score</th>
+							<th class="w3-center" width="20%">+/-</th>
+						</tr>
+						<script>
+							var varFrontPar = 0;
+							var varBackPar = 0;
+							var varFrontScore = 0;
+							var varBackScore = 0;
+							var varPlusMinus = '';
+							var varPlusMinusNum = 0;
+							var varScoreColor = 'w3-white';
+							var varPlusMinusColor = 'w3-white';
+							var arrScoreType = new Array();
+							var arrParType = new Array();
+							
+							for (x = 0; x < 8; x++) {
+								arrScoreType[x] = 0;
+							}
+							
+							for (x = 0; x < 6; x++) {
+								arrParType[x] = 0;
+							}
+							
+							for (x = 1; x < 19; x++) {
+								if (x < 10) {
+									varFrontPar += arrRoundData[0][x + 25] + 1;
+									varFrontScore += arrRoundData[0][x + 7];
+								} else {
+									varBackPar += arrRoundData[0][x + 25] + 1;
+									varBackScore += arrRoundData[0][x + 7];
+								}
+								
+								if ( arrRoundData[0][x + 25] == 3) {
+									arrParType[0] += arrRoundData[0][x + 7];
+									arrParType[1]++;
+								} else if ( arrRoundData[0][x + 25] == 4) {
+									arrParType[2] += arrRoundData[0][x + 7];
+									arrParType[3]++;
+								} else if ( arrRoundData[0][x + 25] == 5) {
+									arrParType[4] += arrRoundData[0][x + 7];
+									arrParType[5]++;
+								}
+								
+								varPlusMinusNum = (varFrontScore + varBackScore) - (varFrontPar + varBackPar);
+								if (varPlusMinusNum > 0) {
+									varPlusMinus = '+ ' + varPlusMinusNum;
+								} else if (varPlusMinusNum == 0) {
+									varPlusMinus = 'E';
+								} else {
+									varPlusMinus = '- ' + (varPlusMinusNum * -1);
+								}
+								
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == -3) { varScoreColor = 'w3-yellow'; arrScoreType[0] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == -2)	{ varScoreColor = 'w3-blue'; arrScoreType[1] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == -1)	{ varScoreColor = 'w3-green'; arrScoreType[2] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == 0)	{ varScoreColor = 'w3-white'; arrScoreType[3] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == 1)	{ varScoreColor = 'w3-orange'; arrScoreType[4] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == 2)	{ varScoreColor = 'w3-red'; arrScoreType[5] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == 3)	{ varScoreColor = 'w3-brown'; arrScoreType[6] += 1; }
+								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 > 3)	{ varScoreColor = 'w3-black'; arrScoreType[7] += 1; }
+								
+								if (varPlusMinusNum > 0) {
+									varPlusMinusColor = 'w3-pale-red';
+								} else if (varPlusMinusNum < -9) {
+									varPlusMinusColor = 'w3-pale-yellow';
+								} else if (varPlusMinusNum < 0) {
+									varPlusMinusColor = 'w3-pale-green';
+								} else {
+									varPlusMinusColor = 'w3-white';
+								}
+								
+								document.write('<tr>');
+								document.write('	<th class="w3-center w3-grey">' + x + '</th>');
+								document.write('	<td class="w3-center w3-light-grey">' + (arrRoundData[0][x + 25] + 1) + '</td>');
+								document.write('	<td class="w3-center ' + varScoreColor + '">' + arrRoundData[0][x + 7] + '</td>');
+								document.write('	<td class="w3-center ' + varPlusMinusColor + '">' + varPlusMinus + '</td>');
+								document.write('</tr>');
+								
+								if (x == 9) {
+									document.write('<tr>');
+									document.write('	<th class="w3-center w3-grey">OUT</th>');
+									document.write('	<td class="w3-center w3-grey">' + varFrontPar + '</td>');
+									document.write('	<td class="w3-center w3-grey">' + varFrontScore + '</td>');
+									document.write('	<td class="w3-center w3-grey">' + varPlusMinus + '</td>');
+									document.write('</tr>');
+								}
+								
+								if (x == 18) {
+									
+									varPlusMinusNum = varBackScore - varBackPar;
+									if (varPlusMinusNum > 0) {
+										varPlusMinus = '+ ' + varPlusMinusNum;
+									} else if (varPlusMinusNum == 0) {
+										varPlusMinus = 'E';
+									} else {
+										varPlusMinus = '- ' + (varPlusMinusNum * -1);
+									}									
+									
+									document.write('<tr>');
+									document.write('	<th class="w3-center w3-grey">IN</th>');
+									document.write('	<td class="w3-center w3-grey">' + varBackPar + '</td>');
+									document.write('	<td class="w3-center w3-grey">' + varBackScore + '</td>');
+									document.write('	<td class="w3-center w3-grey">' + varPlusMinus + '</td>');
+									document.write('</tr>');
+									
+									varPlusMinusNum = (varFrontScore + varBackScore) - (varFrontPar + varBackPar);
+									if (varPlusMinusNum > 0) {
+										varPlusMinus = '+ ' + varPlusMinusNum;
+									} else if (varPlusMinusNum == 0) {
+										varPlusMinus = 'E';
+									} else {
+										varPlusMinus = '- ' + (varPlusMinusNum * -1);
+									}									
+									
+									document.write('<tr>');
+									document.write('	<th class="w3-center w3-grey">GROSS</th>');
+									document.write('	<td class="w3-center w3-light-grey">' + (varFrontPar + varBackPar) + '</td>');
+									document.write('	<td class="w3-center w3-light-grey">' + (varFrontScore + varBackScore) + '</td>');
+									document.write('	<td class="w3-center w3-light-grey">' + varPlusMinus + '</td>');
+									document.write('</tr>');
+									document.write('<tr>');
+									document.write('	<th class="w3-center w3-grey">PEN</th>');
+									document.write('	<td class="w3-center w3-light-grey">-</td>');
+									document.write('	<td class="w3-center w3-light-grey">' + arrRoundData[0][7] + '</td>');
+									document.write('	<td class="w3-center w3-light-grey">-</td>');
+									document.write('</tr>');
+									
+									varPlusMinusNum = (varFrontScore + varBackScore) - (varFrontPar + varBackPar) + arrRoundData[0][7];
+									if (varPlusMinusNum > 0) {
+										varPlusMinus = '+ ' + varPlusMinusNum;
+									} else if (varPlusMinusNum == 0) {
+										varPlusMinus = 'E';
+									} else {
+										varPlusMinus = '- ' + (varPlusMinusNum * -1);
+									}									
+									
+									document.write('<tr>');
+									document.write('	<th class="w3-center w3-grey">NET</th>');
+									document.write('	<td class="w3-center w3-light-grey">' + (varFrontPar + varBackPar) + '</td>');
+									document.write('	<td class="w3-center w3-light-grey">' + (varFrontScore + varBackScore + arrRoundData[0][7]) + '</td>');
+									document.write('	<td class="w3-center w3-light-grey">' + varPlusMinus + '</td>');
+									document.write('</tr>');
+								}
+							}
+							
+							for (x = 0; x < 8; x++) {
+								if (arrScoreType[x] == 0) {
+									arrScoreType[x] = '-';
+								}
+							}
+						</script>
+					</table>
+				</div>
+			</div>
+			
+			
+			<div class="w3-panel w3-third w3-padding">
+				<div class="w3-row-padding">
+					<h5>Round Statistics</h5>
+					<table class="w3-table w3-sand">
+						<tr>
+							<td class="w3-bar-item w3-padding" width="60%">Placement</td>
+							<script>
+								var varPlacementDisp = arrRoundData[0][4];
+								if (arrRoundData[0][4] == 0) {
+									varPlacementDisp = 'DQ';
+								}
+								document.write('<td>' + varPlacementDisp + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Earnings</td>
+							<script>
+								document.write('<td>' + arrRoundData[0][6].toFixed(2) + '</td>');
+							</script>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 4 Average</td>
+							<script>
+								document.write('<td>' + (arrParType[0] / arrParType[1]).toFixed(3) + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 5 Average</td>
+							<script>
+								document.write('<td>' + (arrParType[2] / arrParType[3]).toFixed(3) + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 6 Average</td>
+							<script>
+								document.write('<td>' + (arrParType[4] / arrParType[5]).toFixed(3) + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 4 +/-</td>
+							<script>
+								if ((arrParType[0] / arrParType[1]) == 4) {
+									document.write('<td>E</td>');
+								} else if ((arrParType[0] / arrParType[1]) > 4) {
+									document.write('<td>+ ' + (arrParType[0] - (arrParType[1] * 4)) + '</td>');
+								} else if ((arrParType[0] / arrParType[1]) < 4) {
+									document.write('<td>- ' + ((arrParType[0] - (arrParType[1] * 4)) * -1) + '</td>');
+								}
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 5 +/-</td>
+							<script>
+								if ((arrParType[2] / arrParType[3]) == 5) {
+									document.write('<td>E</td>');
+								} else if ((arrParType[2] / arrParType[3]) > 5) {
+									document.write('<td>+ ' + (arrParType[2] - (arrParType[3] * 5)) + '</td>');
+								} else if ((arrParType[2] / arrParType[3]) < 5) {
+									document.write('<td>- ' + ((arrParType[2] - (arrParType[3] * 5)) * -1) + '</td>');
+								}
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Mar 6 +/-</td>
+							<script>
+								if ((arrParType[4] / arrParType[5]) == 6) {
+									document.write('<td>E</td>');
+								} else if ((arrParType[4] / arrParType[5]) > 6) {
+									document.write('<td>+ ' + (arrParType[4] - (arrParType[5] * 6)) + '</td>');
+								} else if ((arrParType[4] / arrParType[5]) < 6) {
+									document.write('<td>- ' + ((arrParType[4] - (arrParType[5] * 6)) * -1) + '</td>');
+								}
+							</script>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Eagles</td>
+							<script>
+								document.write('<td>' + arrScoreType[0] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Birdies</td>
+							<script>
+								document.write('<td>' + arrScoreType[1] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Pars</td>
+							<script>
+								document.write('<td>' + arrScoreType[2] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Bogeys</td>
+							<script>
+								document.write('<td>' + arrScoreType[3] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Dbl Bogeys</td>
+							<script>
+								document.write('<td>' + arrScoreType[4] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Trp Bogeys</td>
+							<script>
+								document.write('<td>' + arrScoreType[5] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Quad Bogeys</td>
+							<script>
+								document.write('<td>' + arrScoreType[6] + '</td>');
+							</script>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Worse</td>
+							<script>
+								document.write('<td>' + arrScoreType[7] + '</td>');
+							</script>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td class="w3-bar-item w3-padding">Meltdown Score</td>
+							<script>
+								var varDispMeltdown = (varBackScore - varFrontScore);
+								if ((varBackScore - varFrontScore) < 0) {
+									varDispMeltdown = '- ' + ((varBackScore - varFrontScore) * -1);
+								} else {
+									varDispMeltdown = '+ ' + (varBackScore - varFrontScore);
+								}
+								document.write('<td>' + varDispMeltdown + '</td>');
+							</script>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			
+			<div class="w3-panel w3-third w3-padding">
+				<div class="w3-row-padding">
+					<h5>Legend</h5>
+					<table class="w3-table w3-sand">
+						<tr>
+							<td class="w3-bar-item w3-padding w3-yellow" width="40px"></td>
+							<td>Malbatross / Eagle</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-blue" width="40px"></td>
+							<td>Meagle / Birdie</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-green" width="40px"></td>
+							<td>Mirdie / Par</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-white" width="40px"></td>
+							<td>Mar / Bogey</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-orange" width="40px"></td>
+							<td>Mogey / Dbl Bogey</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-red" width="40px"></td>
+							<td>Dbl Mogey / Trp Bogey</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-brown" width="40px"></td>
+							<td>Trp Mogey / Quad Bogey</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-black" width="40px"></td>
+							<td>Worse</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-pale-green" width="40px"></td>
+							<td>Under Mar</td>
+						</tr>
+						<tr>
+							<td class="w3-bar-item w3-padding w3-pale-red" width="40px"></td>
+							<td>Over Mar</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			
+			<!-- Footer -->
+			<script>
+				html_Footer();
+			</script>
+
+		</div>
+		
+		
+		<!-- DO NOT MOVE OR ALTER -->
+		<!-- Handling of menu for smaller screens -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+	</body>
+	
+</html>
