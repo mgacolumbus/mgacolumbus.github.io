@@ -10,75 +10,69 @@ function getData_SingleSeasonRecordsList() {
 	return [
 		[
 			"Most Wins"
-			, "#"
+			, "record_single_season_position.html?pos=1&sb=2012&se=" + getCurrentSeason()
 			, "fa-trophy"
 			, "yellow"
 		]
 		,[
-			"Most Major Wins"
-			, "#"
-			, "fa-trophy"
-			, "yellow"
-		]
-		,[
-			"Most Non-Major Wins"
-			, "#"
-			, "fa-trophy"
-			, "yellow"
+			"Most \"Earnings\""
+			, "record_single_season_earnings.html?sb=2012&se=" + getCurrentSeason()
+			, "fa-money"
+			, "green"
 		]
 		,[
 			"Most Par or Better"
-			, "record_single_season_scoretype.html?t=4&a=1"
+			, "record_single_season_scoretype.html?t=4&a=1&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Bogey or Better"
-			, "record_single_season_scoretype.html?t=5&a=1"
+			, "record_single_season_scoretype.html?t=5&a=1&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Eagles"
-			, "record_single_season_scoretype.html?t=1&a=0"
+			, "record_single_season_scoretype.html?t=1&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Birdies"
-			, "record_single_season_scoretype.html?t=2&a=0"
+			, "record_single_season_scoretype.html?t=2&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Pars"
-			, "record_single_season_scoretype.html?t=3&a=0"
+			, "record_single_season_scoretype.html?t=3&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Bogeys"
-			, "record_single_season_scoretype.html?t=4&a=0"
+			, "record_single_season_scoretype.html?t=4&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Double Bogeys"
-			, "record_single_season_scoretype.html?t=5&a=0"
+			, "record_single_season_scoretype.html?t=5&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Triple Bogeys"
-			, "record_single_season_scoretype.html?t=6&a=0"
+			, "record_single_season_scoretype.html?t=6&a=0&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 		,[
 			"Most Worse Bogeys"
-			, "record_single_season_scoretype.html?t=6&a=2"
+			, "record_single_season_scoretype.html?t=6&a=2&sb=2012&se=" + getCurrentSeason()
 			, "fa-check-square"
-			, "green"
+			, "blue"
 		]
 	]
 }

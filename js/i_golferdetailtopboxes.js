@@ -1,6 +1,6 @@
 function html_GolferDetailTopBoxes(GolferData) {
 	/**---------------------------------------------------------------------**/
-		var pGolferRawData	=	arguments[0];
+		var pGolferRawData		=	arguments[0];
 		var varTotalStrokes		=	0;
 		var varBestFinish		=	999;
 		var varBestFinishTimes	=	0;

@@ -1,17 +1,22 @@
-function getProgressBarColor(RecordTotal, CurrentTotal, EventCount, optSeason) {
+function getProgressBarColor(LeadingTotal, LeadingTotalCount, ItemTotal, ItemTotalCount, RecordTotal, RecordTotalCount, Season) {
 	/**---------------------------------------------------------------------**/
-		var pRecordTotal			=	arguments[0] * 1;
-		var pCurrentTotal			=	arguments[1] * 1;
-		var pEventCount				=	arguments[2] * 1;
-		var pCurrentTotalSeason		=	arguments[3] * 1;
+		var pLeadingTotal			=	arguments[0] * 1;
+		var pLeadingTotalCount		=	arguments[1] * 1;
+		var pItemTotal				=	arguments[2] * 1;
+		var pItemTotalCount			=	arguments[3] * 1;
+		var pRecordTotal			=	arguments[4] * 1;
+		var pRecordTotalCount		=	arguments[5] * 1;
+		var pSeason					=	arguments[6] * 1;
 		var varCurrentSeason		=	getCurrentSeason();
 	/**---------------------------------------------------------------------**/
 	
-	if (varCurrentSeason != pCurrentTotalSeason)				{return "w3-black";}
-	if (pCurrentTotal == 0)										{return "w3-black";}
-	if (pCurrentTotal == pRecordTotal)							{return "w3-orange";}
-	if (pCurrentTotal / pEventCount >= pRecordTotal / 8)		{return "w3-yellow";}
-	if (pCurrentTotal / pEventCount < pRecordTotal / 8)			{return "w3-green";}
+	if (pItemTotal == 0)															{return "w3-black";}
+	if (pRecordTotal == 0)															{return "w3-black";}
+	if (pSeason != varCurrentSeason)												{return "w3-black";}
+	if (pRecordTotal == pItemTotal)													{return "w3-orange";}
+	if ((pItemTotal / pItemTotalCount) >= (pRecordTotal / pRecordTotalCount))		{return "w3-yellow"}
+	if ((pItemTotal / pItemTotalCount) < (pRecordTotal / pRecordTotalCount))		{return "w3-green"}
 	
-	return "w3-black";
+
+	return "w3-blue";
 }

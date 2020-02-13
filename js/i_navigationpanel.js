@@ -4,7 +4,7 @@ function html_NavigationPanel(Source) {
 		var varLinkHTML		=	"";
 	/**---------------------------------------------------------------------**/
 
-	document.write('<nav class="w3-sidebar w3-collapse w3-sand w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>');
+	document.write('<nav class="w3-sidebar w3-collapse w3-light-gray w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>');
 	document.write('	<div class="w3-container w3-row">');
 	document.write('		<div class="w3-col s4">');
 	document.write('			<a href="http://www.mgatour.com/chapters/columbus" target="_mga"><img src="images/Logo.png" class="w3-circle w3-margin-right" style="width:46px"></a>');
@@ -22,8 +22,8 @@ function html_NavigationPanel(Source) {
 	//document.write(get_NavigationItem('EventStats', varSource));
 	//document.write(get_NavigationItem('CourseStats', varSource));
 	//document.write(get_NavigationItem('ChapterStats', varSource));
-	//document.write(get_NavigationItem('Records', varSource));
 	document.write(get_NavigationItem('Results', varSource));
+	document.write(get_NavigationItem('Records', varSource));
 	document.write(get_NavigationItem('Rules', varSource));
 	document.write(get_NavigationItem('Calendar', varSource));
 	

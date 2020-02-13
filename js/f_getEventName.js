@@ -5,5 +5,13 @@ function getEventName(EventIndex) {
 			arrEvents	=	getData_Events();
 	/**---------------------------------------------------------------------**/
 	
+	if (pEvent == undefined) {
+		return "All Events";
+	}
+	
+	if (pEvent == "All Events" || pEvent == "All Majors" || pEvent == "All Non-Majors") {
+		return pEvent;
+	}
+	
 	return arrEvents[pEvent];
 }

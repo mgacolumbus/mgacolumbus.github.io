@@ -6,46 +6,46 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
 		</script>
-		<script>
+		
+		<script>	
 			var url = new URL(window.location.href);
-			var varSeason = url.searchParams.get("s");
-			var varEventNum = url.searchParams.get("e");
-			var varGolferNum = url.searchParams.get("g");
-			
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
 			var arrRoundData = new Array();
-			arrRoundData = getRoundDataForScorecard(varSeason, varEventNum, varGolferNum);
+			arrRoundData = getRoundDataForScorecard(arrURL[10], arrURL[4], arrURL[3]);
 		</script>
 	</head>
 	
 	
-	<!-- Body Tag -- uses global variable to dictate standard background color -->
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
-		<!-- Top container -->
 		<script>
 			html_TopContainer();
 		</script>
 
-
-		<!-- Sidebar/menu -->
+		
 		<script>
 			html_NavigationPanel("Results");
 		</script>
 
-
-		<!-- !PAGE CONTENT! -->
+		
 		<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
 		
-			<!-- Header -->
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-cubes"></i>&nbsp;&nbsp;&nbsp;Scorecard</h5>
+				<h5>
+					<b>
+						<i class="fa fa-cubes"></i>
+					&nbsp;&nbsp;&nbsp;Scorecard
+				</h5>
 			</header>
 			
 			
@@ -224,7 +224,7 @@
 			<div class="w3-panel w3-third w3-padding">
 				<div class="w3-row-padding">
 					<h5>Round Statistics</h5>
-					<table class="w3-table w3-sand">
+					<table class="w3-table w3-light-grey">
 						<tr>
 							<td class="w3-bar-item w3-padding" width="60%">Placement</td>
 							<script>
@@ -366,7 +366,7 @@
 			<div class="w3-panel w3-third w3-padding">
 				<div class="w3-row-padding">
 					<h5>Legend</h5>
-					<table class="w3-table w3-sand">
+					<table class="w3-table w3-light-grey">
 						<tr>
 							<td class="w3-bar-item w3-padding w3-yellow" width="40px"></td>
 							<td>Malbatross / Eagle</td>
@@ -413,7 +413,6 @@
 			</div>
 
 			
-			<!-- Footer -->
 			<script>
 				html_Footer();
 			</script>

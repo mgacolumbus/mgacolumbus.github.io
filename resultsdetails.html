@@ -6,51 +6,53 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
 		</script>
-		<script>
+		
+		<script>	
 			var url = new URL(window.location.href);
-			var varSeason = url.searchParams.get("s");
-			var varEventNum = url.searchParams.get("e");
-			var varEventName = getEventName(varEventNum);
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
+			var varEventName = getEventName(arrURL[4]);
 			var arrRounds = new Array();
-			arrRounds = getRoundDataForEvent(varSeason, varEventNum);
+			arrRounds = getRoundDataForEvent(arrURL[10], arrURL[4]);
 		</script>
 	</head>
 	
 	
-	<!-- Body Tag -- uses global variable to dictate standard background color -->
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
-		<!-- Top container -->
 		<script>
 			html_TopContainer();
 		</script>
 
-
-		<!-- Sidebar/menu -->
+		
 		<script>
 			html_NavigationPanel("Results");
 		</script>
 
-
-		<!-- !PAGE CONTENT! -->
+		
 		<div class="w3-main" style="margin-left:300px; margin-top:43px;">
 
 		
-			<!-- Header -->
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-cubes"></i> <script>document.write(varSeason + ' ' + varEventName);</script> Results</h5>
-			</header>
+				<h5>
+					<b>
+						<i class="fa fa-cubes"></i>
+					<script>document.write(arrURL[10] + ' ' + varEventName);</script> Results
+				</h5>
+			</header><br />
 			
 			
 			<div class="w3-container w3-half">
 				<h5>Event Information</h5>
-				<table class="w3-table w3-sand">
+				<table class="w3-table w3-white">
 					<tr>
 						<td>Date</td>
 						<td>
@@ -94,7 +96,7 @@
 			
 			<div class="w3-container w3-half">
 				<h5>MGA Awards</h5>
-				<table class="w3-table w3-sand">
+				<table class="w3-table w3-white">
 					<tr>
 						<td>Long Drive</td>
 						<td>
@@ -212,7 +214,7 @@
 					<div class="w3-container">
 						<hr />
 						<h5>Final Leaderboard</h5>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<th class="w3-center">Pos</th>
 								<th class="w3-center">Name</th>
@@ -234,7 +236,7 @@
 
 								for (varRoundsLoop = 0; varRoundsLoop < arrRounds.length; varRoundsLoop++)
 								{
-									if (arrRounds[varRoundsLoop][0].substr(6,9) == varSeason)
+									if (arrRounds[varRoundsLoop][0].substr(6,9) == arrURL[10])
 									{
 										if (arrRounds[varRoundsLoop][1] == varEventName)
 										{
@@ -263,12 +265,12 @@
 
 											arrRoundData = getRoundScore(arrRounds,varRoundsLoop)
 
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[0] + '</a></td>');
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[1] + '</a></td>');
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[2] + '</a></td>');
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + varDispPen + '</a></td>');
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + (arrRoundData[2] + arrRounds[varRoundsLoop][7]) + '</a></td>');
-											document.write('<td class="w3-center"><a href="scorecard.html?s=' + varSeason + '&e=' + varEventNum + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + varDispEarn + '</a></td>');
+											document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrURL[10] + '&e=' + arrURL[4] + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[0] + '</a></td>');
+											document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrURL[10] + '&e=' + arrURL[4] + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[1] + '</a></td>');
+											document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrURL[10] + '&e=' + arrURL[4] + '&g=' + getGolferIndex(arrRounds[varRoundsLoop][3]) + '">' + arrRoundData[2] + '</a></td>');
+											document.write('<td class="w3-center">' + varDispPen + '</td>');
+											document.write('<td class="w3-center">' + (arrRoundData[2] + arrRounds[varRoundsLoop][7]) + '</td>');
+											document.write('<td class="w3-center">' + varDispEarn + '</td>');
 											document.write('</tr>');
 										}
 									}
@@ -281,7 +283,6 @@
 			<hr />
 
 			
-			<!-- Footer -->
 			<script>
 				html_Footer();
 			</script>

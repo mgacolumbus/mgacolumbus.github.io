@@ -6,37 +6,41 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
+		</script>
+		
+		<script>	
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
 		</script>
 	</head>
 	
 	
-	<!-- Body Tag -- uses global variable to dictate standard background color -->
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
-		<!-- Top container -->
 		<script>
 			html_TopContainer();
 		</script>
 
-
-		<!-- Sidebar/menu -->
+		
 		<script>
 			html_NavigationPanel("Results");
 		</script>
 
-
-		<!-- !PAGE CONTENT! -->
+		
 		<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
 		
-			<!-- Header -->
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-cubes"></i> Past Tournament Results</h5>
+				<h5>
+					<b>
+						<i class="fa fa-cubes"></i>
+					Past Tournament Results
+				</h5>
 			</header>
 
 
@@ -54,7 +58,6 @@
 			<hr>
 
 			
-			<!-- Footer -->
 			<script>
 				html_Footer();
 			</script>

@@ -7,7 +7,7 @@ function html_EventWinnersList(Event) {
 	/**---------------------------------------------------------------------**/
 
 	document.write('<h5>' + vEvent + '</h5>');
-	document.write('<table class="w3-table w3-striped w3-sand">');
+	document.write('<table class="w3-table w3-striped w3-white">');
 
 	while (varCurrentSeason >= 2012) {
 

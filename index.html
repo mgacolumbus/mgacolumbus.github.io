@@ -6,8 +6,13 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
+		</script>
+		
+		<script>	
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
 		</script>
 	
 		<script>
@@ -136,9 +141,8 @@
 	</head>
 
 	
-	<!-- Body Tag -- uses global variable to dictate standard background color -->
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
@@ -160,194 +164,223 @@
 
 			<!-- Build the Event Champions section -->
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-trophy"></i> <script>document.write(varCurrentSeason)</script> Event Champions</b></h5>
+				<h5>
+					<b>
+						<i class="fa fa-trophy"></i>
+						<script>document.write(varCurrentSeason)</script> Event Champions
+					</b>
+				</h5>
 			</header>
+			
 
 			<script>
 				html_SeasonEventChampions(varCurrentSeason);
 			</script>
+			
+			
+			<div class="w3-container w3-padding">
+				<p style="font-size: 0.85em;">
+					Clicking the Event Name shows the Event Leaderboard<br />
+					Clicking the Winning Score shows the Scorecard of the Champion<br />
+					Clicking the Champion's Name shows that Golfer's career stats<br /><br />
+				</p>
+			</div>
 		  
 
 			<!-- Build the season leaders section -->
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-dashboard"></i> <script>document.write(varCurrentSeason)</script> Season Statistics</b></h5>
+				<h5>
+					<b>
+						<i class="fa fa-dashboard"></i>
+						<script>document.write(varCurrentSeason)</script> Season Statistics
+					</b>
+				</h5>
 			</header>
 
+			
 			<div class="w3-container w3-padding">
-				<p><strong><a href="record_single_season_earnings.html">Most "Earnings"</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' "Earnings"</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostEarnings[0][1],arrMostEarnings_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostEarnings_Current[0][1],varEventCount,arrMostEarnings_Current[0][1],varEventCount,arrMostEarnings[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: $<script>document.write(arrMostEarnings[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_earnings.html?sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostEarnings[0][1] + '&hdn=1">Record: $' + arrMostEarnings[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostEarnings_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostEarnings_Current[0][0] + '<br />$' + arrMostEarnings_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_earnings.html?sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostEarnings[0][1] + '&hdn=1">' + arrMostEarnings_Current[0][0] + '<br />$' + arrMostEarnings_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
 
 
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=4&a=1">Most Par or Better</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Par or Better</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostParBetter[0][1],arrMostParBetter_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostParBetter_Current[0][1],varEventCount,arrMostParBetter_Current[0][1],varEventCount,arrMostParBetter[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostParBetter[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=4&a=1&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostParBetter[0][1] + '&hdn=1">Record: ' + arrMostParBetter[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostParBetter_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostParBetter_Current[0][0] + '<br />' + arrMostParBetter_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=4&a=1&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostParBetter[0][1] + '&hdn=1">' + arrMostParBetter_Current[0][0] + '<br />' + arrMostParBetter_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=5&a=1">Most Bogey or Better</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Bogey or Better</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostBogeyBetter[0][1],arrMostBogeyBetter_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostBogeyBetter_Current[0][1],varEventCount,arrMostBogeyBetter_Current[0][1],varEventCount,arrMostBogeyBetter[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostBogeyBetter[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=5&a=1&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostBogeyBetter[0][1] + '&hdn=1">Record: ' + arrMostBogeyBetter[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostBogeyBetter_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostBogeyBetter_Current[0][0] + '<br />' + arrMostBogeyBetter_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=5&a=1&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostBogeyBetter[0][1] + '&hdn=1">' + arrMostBogeyBetter_Current[0][0] + '<br />' + arrMostBogeyBetter_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=1&a=0">Most Eagles</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Eagles</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostEagles[0][1],arrMostEagles_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostEagles_Current[0][1],varEventCount,arrMostEagles_Current[0][1],varEventCount,arrMostEagles[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostEagles[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=1&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostEagles[0][1] + '&hdn=1">Record: ' + arrMostEagles[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostEagles_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostEagles_Current[0][0] + '<br />' + arrMostEagles_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=1&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostEagles[0][1] + '&hdn=1">' + arrMostEagles_Current[0][0] + '<br />' + arrMostEagles_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=2&a=0">Most Birdies</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Birdies</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostBirdies[0][1],arrMostBirdies_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostBirdies_Current[0][1],varEventCount,arrMostBirdies_Current[0][1],varEventCount,arrMostBirdies[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostBirdies[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=2&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostBirdies[0][1] + '&hdn=1">Record: ' + arrMostBirdies[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostBirdies_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostBirdies_Current[0][0] + '<br />' + arrMostBirdies_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=2&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostBirdies[0][1] + '&hdn=1">' + arrMostBirdies_Current[0][0] + '<br />' + arrMostBirdies_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=3&a=0">Most Pars</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Pars</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostPars[0][1],arrMostPars_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostPars_Current[0][1],varEventCount,arrMostPars_Current[0][1],varEventCount,arrMostPars[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostPars[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=3&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostPars[0][1] + '&hdn=1">Record: ' + arrMostPars[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostPars_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostPars_Current[0][0] + '<br />' + arrMostPars_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=3&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostPars[0][1] + '&hdn=1">' + arrMostPars_Current[0][0] + '<br />' + arrMostPars_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=4&a=0">Most Bogeys</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Bogeys</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostBogeys[0][1],arrMostBogeys_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostBogeys_Current[0][1],varEventCount,arrMostBogeys_Current[0][1],varEventCount,arrMostBogeys[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostBogeys[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=4&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostBogeys[0][1] + '&hdn=1">Record: ' + arrMostBogeys[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostBogeys_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostBogeys_Current[0][0] + '<br />' + arrMostBogeys_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=4&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostBogeys[0][1] + '&hdn=1">' + arrMostBogeys_Current[0][0] + '<br />' + arrMostBogeys_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=5&a=0">Most Double Bogeys</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Double Bogeys</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostDoubleBogeys[0][1],arrMostDoubleBogeys_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostDoubleBogeys_Current[0][1],varEventCount,arrMostDoubleBogeys_Current[0][1],varEventCount,arrMostDoubleBogeys[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostDoubleBogeys[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=5&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostDoubleBogeys[0][1] + '&hdn=1">Record: ' + arrMostDoubleBogeys[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostDoubleBogeys_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostDoubleBogeys_Current[0][0] + '<br />' + arrMostDoubleBogeys_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=5&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostDoubleBogeys[0][1] + '&hdn=1">' + arrMostDoubleBogeys_Current[0][0] + '<br />' + arrMostDoubleBogeys_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=6&a=0">Most Triple Bogeys</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Triple Bogeys</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostTripleBogeys[0][1],arrMostTripleBogeys_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostTripleBogeys_Current[0][1],varEventCount,arrMostTripleBogeys_Current[0][1],varEventCount,arrMostTripleBogeys[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostTripleBogeys[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=6&a=0&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostTripleBogeys[0][1] + '&hdn=1">Record: ' + arrMostTripleBogeys[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostTripleBogeys_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostTripleBogeys_Current[0][0] + '<br />' + arrMostTripleBogeys_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=6&a=0&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostTripleBogeys[0][1] + '&hdn=1">' + arrMostTripleBogeys_Current[0][0] + '<br />' + arrMostTripleBogeys_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
-
+			
+			
 			<div class="w3-third w3-padding">
-				<p><strong><a href="record_single_season_scoretype.html?t=6&a=2">Most Worse Bogeys</a></strong></p>
+				<script>document.write('<p><strong>' + varCurrentSeason + ' Most Worse Bogeys</strong></p>');</script>
 				<script>
 					var disp_Color = "";
-					disp_Color = getProgressBarColor(arrMostWorseBogeys[0][1],arrMostWorseBogeys_Current[0][1],varEventCount, varCurrentSeason);
+					disp_Color = getProgressBarColor(arrMostWorseBogeys_Current[0][1],varEventCount,arrMostWorseBogeys_Current[0][1],varEventCount,arrMostWorseBogeys[0][1],8,varCurrentSeason);
 				</script>
 				<div class="w3-grey">
-					&nbsp;&nbsp;Record: <script>document.write(arrMostWorseBogeys[0][1])</script>
+					<script>document.write('&nbsp;&nbsp;<a href="record_single_season_scoretype.html?t=6&a=2&sb=2012&se=' + varCurrentSeason + '&rec=' + arrMostWorseBogeys[0][1] + '&hdn=1">Record: ' + arrMostWorseBogeys[0][1] + '</a>');</script>
 					<script>
 						document.write('<div class="w3-container w3-center w3-padding ' + disp_Color + '" style="width:' + varMostWorseBogeys_ProgressBar.toFixed(2) + '%">');
-						document.write(arrMostWorseBogeys_Current[0][0] + '<br />' + arrMostWorseBogeys_Current[0][1])
+						document.write('<a style="text-decoration: none;" href="record_single_season_scoretype.html?t=6&a=2&sb=' + varCurrentSeason + '&se=' + varCurrentSeason + '&rec=' + arrMostWorseBogeys[0][1] + '&hdn=1">' + arrMostWorseBogeys_Current[0][0] + '<br />' + arrMostWorseBogeys_Current[0][1])
 					</script>
-					</div>
+					</div></a>
 				</div>
 			</div>
-
+			
+			
+			<div class="w3-container w3-padding">
+				<p style="font-size: 0.85em;">
+					Clicking the "Record: xx" link shows the Career leaders<br />
+					Clicking the Name / Stat in the progress bar shows Current Season only
+				</p>
+			</div>
+			
 
 			<div class="w3-panel">
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-half">
 						<p><strong>Legend</strong></p>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<td class="w3-bar-item w3-button w3-padding w3-orange" width="40px"></td>
 								<td>New or Tied Record</a></td>
@@ -367,7 +400,7 @@
 						</table>
 					</div>
 				</div>
-			</div>
+			</div><br />
 
 			
 			<!-- Footer -->

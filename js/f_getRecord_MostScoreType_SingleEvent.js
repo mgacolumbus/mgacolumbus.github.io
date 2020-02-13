@@ -1,4 +1,4 @@
-function getRecord_MostScoreType_SingleSeason(Event, Course, SeasonBegin, SeasonEnd, Operator, Target, Golfer) {
+function getRecord_MostScoreType_SingleEvent(Event, Course, SeasonBegin, SeasonEnd, Operator, Target, Golfer) {
 	/**---------------------------------------------------------------------**/
 		var pEvent				=	getEventName(arguments[0]);
 		var pCourse				=	getCourseName(arguments[1]);
@@ -42,43 +42,42 @@ function getRecord_MostScoreType_SingleSeason(Event, Course, SeasonBegin, Season
 	if (pEvent	== 'All Events')		{ vAllEvents	= true; }
 	if (pEvent	== 'All Majors')		{ vAllMajors	= true; }
 	if (pEvent	== 'All Non-Majors')	{ vAllNonMajors	= true; }
-
-	for (s = 0; s < aSeasons.length; s++) {
-		
-		for (g = 0; g < aGolfers.length; g++) {
+	
+	//alert(aRounds.length);
+	
+	for (g = 0; g < aGolfers.length; g++) {
+			
+		for (r = 0; r < aRounds.length; r++) {
 			
 			vTotal = 0;
 			vHoleCounter = 0;
 			aReturnStat[vReturnIndex] = 0;
 			
-			for (r = 0; r < aRounds.length; r++) {
-				
-				if (aRounds[r][3] == aGolfers[g]) {
-				
-					if (aRounds[r][2] == pCourse || vAllCourses) {
+			if (aRounds[r][3] == aGolfers[g]) {
+			
+				if (aRounds[r][2] == pCourse || vAllCourses) {
+					
+					if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && isMajor(aRounds[r][1]) == true) || (vAllNonMajors && isMajor(aRounds[r][1]) == false)) {
 						
-						if (aRounds[r][1] == pEvent || vAllEvents || (vAllMajors && isMajor(aRounds[r][1]) == true) || (vAllNonMajors && isMajor(aRounds[r][1]) == false)) {
-							
-							if (aRounds[r][0].substr(6,9) >= pSeasonBegin && aRounds[r][0].substr(6,9) <= pSeasonEnd && aSeasons[s] == aRounds[r][0].substr(6,9)) {
-						
-								for (z = 0; z < 18; z++) {
-									
-									vHoleCounter++;
-									
-									if (pOperator == "=") {
-										if (aRounds[r][z + 8] == aRounds[r][z + 26] + vOffset) {
-											vTotal++;
-										}
+						if (aRounds[r][0].substr(6,9) >= pSeasonBegin && aRounds[r][0].substr(6,9) <= pSeasonEnd) {
+					
+							for (z = 0; z < 18; z++) {
+								
+								vHoleCounter++;
+								
+								if (pOperator == "=") {
+									if (aRounds[r][z + 8] == aRounds[r][z + 26] + vOffset) {
+										vTotal++;
 									}
-									if (pOperator == ">") {
-										if (aRounds[r][z + 8] > aRounds[r][z + 26] + vOffset) {
-											vTotal++;
-										}
+								}
+								if (pOperator == ">") {
+									if (aRounds[r][z + 8] > aRounds[r][z + 26] + vOffset) {
+										vTotal++;
 									}
-									if (pOperator == "<") {
-										if (aRounds[r][z + 8] < aRounds[r][z + 26] + vOffset) {
-											vTotal++;
-										}
+								}
+								if (pOperator == "<") {
+									if (aRounds[r][z + 8] < aRounds[r][z + 26] + vOffset) {
+										vTotal++;
 									}
 								}
 							}
@@ -87,13 +86,10 @@ function getRecord_MostScoreType_SingleSeason(Event, Course, SeasonBegin, Season
 				}
 			}
 			
-			vPercent = (vTotal / vHoleCounter) * 100;
-			vPercent = Math.round(vPercent * 1000) / 1000;
-			
 			aReturnStat[vReturnIndex] = vTotal;
 			aReturnGolfers[vReturnIndex] = aGolfers[g];
-			aReturnSeason[vReturnIndex] = aSeasons[s];
-			aReturnExtraInfo[vReturnIndex] = vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
+			aReturnSeason[vReturnIndex] = "";
+			aReturnExtraInfo[vReturnIndex] = 0;//vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
 			aReturnEvents[vReturnIndex] = (vHoleCounter * 1) / 18;
 			vReturnIndex++;
 		}

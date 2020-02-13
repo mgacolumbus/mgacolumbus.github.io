@@ -14,6 +14,25 @@
 			var url = new URL(window.location.href);
 			var arrURL = getURLParsed(url);
 		</script>
+		
+		<script>
+			var flgTopPos = false;
+			var varDispPos = arrURL[7];
+			var varDispHeader = "";
+			
+			if (arrURL[7][0] == 't') {		
+				
+				flgTopPos = true;
+				varDispPos = arrURL[7].substring(1,arrURL[7].length);
+			}
+			
+			varDispHeader = "Most ";
+			if (flgTopPos == true) {
+				varDispHeader += "Top " + varDispPos + " Finishes";
+			} else {
+				varDispHeader += varDispPos + getRankingSuffix(varDispPos) + " Place Finishes";
+			}
+		</script>
 	</head>
 
 	
@@ -39,74 +58,44 @@
 				<h5>
 					<b>
 						<i class="fa fa-trophy"></i>
-						Most Earnings in a Single Season
+						<script>
+							document.write(varDispHeader + "<br />");
+						</script>
 					</b>
 				</h5>
 			</header>
 			
-			
+
 			<div class="w3-panel">
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<script>
-						html_RecordDisplayBox(arrURL[4], arrURL[5], arrURL[1], arrURL[2], arrURL[11]);
+						html_RecordDisplayBox(arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
 					</script>
 					
 					<script>
-						html_RecordSearchBox(arrURL[0], arrURL[7], undefined, undefined, undefined, arrURL[11]);
+						html_RecordSearchBox(arrURL[0], arrURL[7]);
 					</script>
 				</div>
 			</div>
+			<hr />
 			
-
-			<div class="w3-panel">
-				<div class="w3-row-padding" style="margin:0 -16px">
-					<div class="w3-half">
-						<p><strong>Legend</strong></p>
-						<table class="w3-table w3-white">
-							<tr>
-								<td class="w3-bar-item w3-button w3-padding w3-orange" width="40px"></td>
-								<td>New or Tied Record</a></td>
-							</tr>
-							<tr>
-								<td class="w3-bar-item w3-button w3-padding w3-yellow" width="40px"></td>
-								<td>On Pace for New or Tied Record</a></td>
-							</tr>
-							<tr>
-								<td class="w3-bar-item w3-button w3-padding w3-green" width="40px"></td>
-								<td>Not On Pace for New or Tied Record</a></td>
-							</tr>
-							<tr>
-								<td class="w3-bar-item w3-button w3-padding w3-black" width="40px"></td>
-								<td>Past Season</a></td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-			<br />
 			
-
 			<div class="w3-container">
 				<script type="text/javascript">
 					var varRank = 0;
 					var varRankHold = 0;
-					var varEventCount = getCurrentSeasonEventCount();
+					var varCurrentSeason = getCurrentSeason();
 					var varRecordPrev = -9999;
 					var arrRecordArray = new Array();
 					var varProgressBarColor = "";
 					var varProgressBarWidth = 0.0;
 
-					arrRecordArray = sortMDArray(getRecord_MostEarnings_SingleSeason(arrURL[4],arrURL[5],arrURL[1],arrURL[2],arrURL[3]), 1, "desc");
+					arrRecordArray = sortMDArray(getRecord_MostPosition_Range(arrURL[4],arrURL[5],arrURL[1],arrURL[2],arrURL[7],arrURL[3]), 1, "desc");
 
 					for (r = 0; r < arrRecordArray.length; r++) {
 						
 						varRank++;
-						
-						if (arrURL[6] != undefined) {
-							varProgressBarColor = getProgressBarColor(arrRecordArray[0][1],arrRecordArray[0][4],arrRecordArray[r][1],varEventCount,arrURL[6],8,arrRecordArray[r][2]);
-						} else {
-							varProgressBarColor = "w3-black";
-						}
+						varProgressBarColor = getProgressBarColor(arrRecordArray[0][1],arrRecordArray[r][1],arrRecordArray[r][4],arrRecordArray[r][2]);
 
 						if (arrRecordArray[r][1] != varRecordPrev) {
 						
@@ -123,11 +112,12 @@
 							}
 							
 							document.write('<div class="w3-' + gvar("Site_BGColor") + '">');
+							
 							document.write('	<table width="415px" border="0">');
 							document.write('		<tr>');
 							document.write('			<td width="50px" style="font-weight: bold;">' + varRankHold + '</td>');
 							document.write('			<td width="165px" style="font-weight: bold;">' + arrRecordArray[r][0] + '</td>');
-							document.write('			<td width="200px" style="font-weight: bold;">' + arrRecordArray[r][2] + '</td>');
+							document.write('			<td width="200px" style="font-weight: bold;">' + arrRecordArray[r][4] + ' Events</td>');
 							document.write('		</tr>');
 							document.write('	</table>');
 							
@@ -142,7 +132,6 @@
 			<script>
 				html_Footer();
 			</script>
-
 		</div>
 		
 		

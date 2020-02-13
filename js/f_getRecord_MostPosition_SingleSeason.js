@@ -1,10 +1,11 @@
-function getRecord_MostEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonEnd, Golfer) {
+function getRecord_MostPosition_SingleSeason(Event, Course, SeasonBegin, SeasonEnd, Position, Golfer) {
 	/**---------------------------------------------------------------------**/
-		var pEvent				=	getEventName(arguments[0]);
-		var pCourse				=	getCourseName(arguments[1]);
+		var pEvent				=	arguments[0];
+		var pCourse				=	arguments[1];
 		var pSeasonBegin		=	arguments[2];
 		var pSeasonEnd			=	arguments[3];
-		var pGolfer				=	arguments[4];
+		var pPosition			=	arguments[4];
+		var pGolfer				=	arguments[5];
 		
 		var arrRounds			=	new Array();
 		var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers();
@@ -23,18 +24,32 @@ function getRecord_MostEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonE
 		var varReturnIndex		=	0;
 		var varEventCounter		=	0;
 		var varPercent			=	0;
+		var flgTopPos			=	false;
 	/**---------------------------------------------------------------------**/
 	
+	if (pCourse	== 'All Courses')		{ varAllCourses		= true; }
+	else { pCourse = getCourseName(pCourse); }
+	
+	
+	if (pEvent	== 'All Events')			{ varAllEvents		= true; }
+	else if (pEvent	== 'All Majors')		{ varAllMajors		= true; }
+	else if (pEvent	== 'All Non-Majors')	{ varAllNonMajors	= true; }
+	else { pEvent = getEventName(pEvent); }
+	
+
 	if (pGolfer != undefined) {
 		arrRounds = getRoundDataForGolfer(pGolfer);
 	} else {
 		arrRounds = getData_Rounds();
+	}	
+	
+	
+	if (pPosition[0] == 't') {
+		
+		flgTopPos = true;
+		pPosition = pPosition.substring(1,pPosition.length);
 	}
 	
-	if (pCourse	== 'All Courses')		{ varAllCourses	= true; }
-	if (pEvent	== 'All Events')		{ varAllEvents	= true; }
-	if (pEvent	== 'All Majors')		{ varAllMajors	= true; }
-	if (pEvent	== 'All Non-Majors')	{ varAllNonMajors	= true; }
 
 	for (s = 0; s < arrSeasons.length; s++) {
 		
@@ -54,7 +69,21 @@ function getRecord_MostEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonE
 							if (arrRounds[r][0].substr(6,9) >= pSeasonBegin && arrRounds[r][0].substr(6,9) <= pSeasonEnd && arrRounds[r][0].substr(6,9) == arrSeasons[s]) {
 
 								varEventCounter++;
-								arrReturnStat[varReturnIndex] += arrRounds[r][6];
+							
+								if (flgTopPos == true) {
+									
+									if (arrRounds[r][4] <= pPosition && arrRounds[r][4] > 0) {
+
+										arrReturnStat[varReturnIndex] += 1;
+									}		
+									
+								} else {
+									
+									if (arrRounds[r][4] == pPosition) {
+
+										arrReturnStat[varReturnIndex] += 1;
+									}								
+								}
 							}
 						}
 					}
@@ -63,7 +92,7 @@ function getRecord_MostEarnings_SingleSeason(Event, Course, SeasonBegin, SeasonE
 		
 			if (arrReturnStat[varReturnIndex] > 0) {
 				
-				arrReturnStat[varReturnIndex] = arrReturnStat[varReturnIndex].toFixed(2);
+				arrReturnStat[varReturnIndex] = arrReturnStat[varReturnIndex];
 
 				varPercent = (arrReturnStat[varReturnIndex] / varEventCounter);
 				varPercent = Math.round(varPercent * 1000) / 1000;

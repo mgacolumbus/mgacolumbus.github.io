@@ -6,13 +6,17 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
 		</script>
-		<script>
+		
+		<script>	
 			var url = new URL(window.location.href);
-			var varGolferIndex = url.searchParams.get("g");
-			var arrGolferRawData = getRoundDataForGolfer(varGolferIndex);
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
+			var arrGolferRawData = getRoundDataForGolfer(arrURL[3]);
 			var arrSeasons = getData_Seasons();
 			var arrEvents = getData_Events();
 			var arrCourses = getData_Courses();
@@ -21,7 +25,7 @@
 	
 	
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
@@ -39,7 +43,11 @@
 
 		
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<script>document.write(arrGolferRawData[0][3]);</script> -- Career Stats</h5>
+				<h5>
+					<b>
+						<i class="fa fa-user"></i>
+					&nbsp;&nbsp;&nbsp;<script>document.write(arrGolferRawData[0][3]);</script> -- Career Stats
+				</h5>
 			</header>
 			
 			
@@ -53,7 +61,7 @@
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-container">
 						<h5>Career Scoring Totals</h5>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<td>&nbsp;</td>
 								<td class="w3-center">Season</td>
@@ -121,7 +129,7 @@
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-container">
 						<h5>Career ScoreType Totals</h5>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<td>&nbsp;</td>
 								<td class="w3-center">Season</td>
@@ -185,21 +193,21 @@
 								document.write('<th colspan="99" class="w3-pale-green"><h5>Personal Bests - Single Season</h5></th>');
 								document.write('</tr>');
 								document.write('<tr class="w3-pale-green">');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=4&a=1&g=' + varGolferIndex + '">Pars or Better</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=5&a=1&g=' + varGolferIndex + '">Bogeys or Better</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=1&a=0&g=' + varGolferIndex + '">Eagles</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=2&a=0&g=' + varGolferIndex + '">Birdies</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=4&a=1&g=' + arrURL[3] + '">Pars or Better</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=5&a=1&g=' + arrURL[3] + '">Bogeys or Better</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=1&a=0&g=' + arrURL[3] + '">Eagles</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=2&a=0&g=' + arrURL[3] + '">Birdies</a></td>');
 								document.write('<td colspan="2">&nbsp;</td>');
 								document.write('</tr>');
 								document.write('<tr class="w3-pale-green">');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=3&a=0&g=' + varGolferIndex + '">Pars</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=4&a=0&g=' + varGolferIndex + '">Bogeys</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=5&a=0&g=' + varGolferIndex + '">Double Bogeys</a></td>');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=6&a=0&g=' + varGolferIndex + '">Triple Bogeys</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=3&a=0&g=' + arrURL[3] + '">Pars</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=4&a=0&g=' + arrURL[3] + '">Bogeys</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=5&a=0&g=' + arrURL[3] + '">Double Bogeys</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=6&a=0&g=' + arrURL[3] + '">Triple Bogeys</a></td>');
 								document.write('<td colspan="2">&nbsp;</td>');
 								document.write('</tr>');
 								document.write('<tr class="w3-pale-green">');
-								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=6&a=2&g=' + varGolferIndex + '">Worse Bogeys</a></td>');
+								document.write('<td class="w3-center" colspan="2"><a href="record_single_season_scoretype.html?t=6&a=2&g=' + arrURL[3] + '">Worse Bogeys</a></td>');
 								document.write('<td colspan="2">&nbsp;</td>');
 								document.write('<td colspan="2">&nbsp;</td>');
 								document.write('<td colspan="2">&nbsp;</td>');
@@ -217,7 +225,7 @@
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-container">
 						<h5>Event Summaries</h5>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<td>&nbsp;</td>
 								<td class="w3-center">Date</td>
@@ -251,8 +259,8 @@
 									document.write('<td class="w3-center">' + arrGolferRawData[varDataLoop][2] + '</td>');
 									//document.write('<td class="w3-center">' + arrRoundData[2] + '</td>');
 									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + (arrRoundData[2] + arrGolferRawData[varDataLoop][7]) + '</a></td>');
-									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + varFinishPos + '</a></td>');
-									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + arrGolferRawData[varDataLoop][6].toFixed(2) + '</a></td>');
+									document.write('<td class="w3-center">' + varFinishPos + '</td>');
+									document.write('<td class="w3-center">' + arrGolferRawData[varDataLoop][6].toFixed(2) + '</td>');
 									document.write('</tr>');
 								}
 							</script>

@@ -11,73 +11,73 @@ function get_NavigationItem(NavItem, HighlightSource) {
 	
 	switch (pNavItem) {
 		case 'Calendar':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkCalendar');
-								varNavIcon		=	getGlobalVariable('Page_CalendarIcon');
-								varNavColor		=	getGlobalVariable('Page_CalendarIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleCalendar');
+								varNavLink		=	'calendar.html';
+								varNavIcon		=	'fa-calendar';
+								varNavColor		=	'blue';
+								varNavTitle		=	'Calendar';
 								break;
 							}
 		case 'ChapterStats':	{
 								varNavLink		=	'#';
-								varNavIcon		=	getGlobalVariable('Page_ChapterStatsIcon');
-								varNavColor		=	getGlobalVariable('Page_ChapterStatsIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleChapterStats');
+								varNavIcon		=	'fa-line-chart';
+								varNavColor		=	'purple';
+								varNavTitle		=	'Chapter Stats';
 								break;
 							}
 		case 'CourseStats':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkCourseStats');
-								varNavIcon		=	getGlobalVariable('Page_CoursesIcon');
-								varNavColor		=	getGlobalVariable('Page_CoursesIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleCourseStats');
+								varNavLink		=	'coursestats.html';
+								varNavIcon		=	'fa-flag';
+								varNavColor		=	'green';
+								varNavTitle		=	'Course Stats';
 								break;
 							}
 		case 'EventStats':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkEventStats');
-								varNavIcon		=	getGlobalVariable('Page_EventStatsIcon');
-								varNavColor		=	getGlobalVariable('Page_EventStatsIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleEventStats');
+								varNavLink		=	'eventstats.html';
+								varNavIcon		=	'fa-calendar-o';
+								varNavColor		=	'red';
+								varNavTitle		=	'Event Stats';
 								break;
 							}
 		case 'GolferStats':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkGolferStats');
-								varNavIcon		=	getGlobalVariable('Page_GolferStatsIcon');
-								varNavColor		=	getGlobalVariable('Page_GolferStatsIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleGolferStats');
+								varNavLink		=	'golferstats.html';
+								varNavIcon		=	'fa-user';
+								varNavColor		=	'orange';
+								varNavTitle		=	'Golfer Stats';
 								break;
 							}
 		case 'Overview':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkOverview');
-								varNavIcon		=	getGlobalVariable('Page_OverviewIcon');
-								varNavColor		=	getGlobalVariable('Page_OverviewIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleOverview');
+								varNavLink		=	'index.html';
+								varNavIcon		=	'fa-dashboard';
+								varNavColor		=	'black';
+								varNavTitle		=	'Overview';
 								break;
 							}
 		case 'Records':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkRecords');
-								varNavIcon		=	getGlobalVariable('Page_RecordsIcon');
-								varNavColor		=	getGlobalVariable('Page_RecordsIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleRecords');
+								varNavLink		=	'recordlist.html';
+								varNavIcon		=	'fa-trophy w3-text-yellow';
+								varNavColor		=	'';
+								varNavTitle		=	'Records';
 								break;
 							}
 		case 'Results':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkResults');
-								varNavIcon		=	getGlobalVariable('Page_ResultsIcon');
-								varNavColor		=	getGlobalVariable('Page_ResultsIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleResults');
+								varNavLink		=	'results.html';
+								varNavIcon		=	'fa-cubes';
+								varNavColor		=	'brown';
+								varNavTitle		=	'Results';
 								break;
 							}
 		case 'Rules':	{
-								varNavLink		=	getGlobalVariable('Navigation_LinkRules');
-								varNavIcon		=	getGlobalVariable('Page_RulesIcon');
-								varNavColor		=	getGlobalVariable('Page_RulesIconColor');
-								varNavTitle		=	getGlobalVariable('Navigation_TitleRules');
+								varNavLink		=	'rules.html';
+								varNavIcon		=	'fa-list-alt';
+								varNavColor		=	'black';
+								varNavTitle		=	'Chapter Rules';
 								break;
 							}
 	}
 	
 	varHTML = '<a href="' + varNavLink + '" class="w3-bar-item w3-button w3-padding ';
 	if (pNavItem == pNavSource) {
-		varHTML += getGlobalVariable('Navigation_HighlightColor');
+		varHTML += 'w3-blue';
 	}
 	varHTML += '"><i class="fa ' + varNavIcon + '" style="color: ' + varNavColor + ';"></i>  ' + varNavTitle + '</a>';
 	

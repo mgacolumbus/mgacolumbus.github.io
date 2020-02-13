@@ -6,14 +6,19 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
+		</script>
+		
+		<script>	
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
 		</script>
 	</head>
 	
 	
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
@@ -31,9 +36,11 @@
 
 		
 			<header class="w3-container" style="padding-top:22px">
-				<script>
-					document.write('<h5><b><i class="fa ' + getGlobalVariable('Page_RulesIcon') + '" style="color: ' + getGlobalVariable('Page_RulesIconColor') + ';"></i>&nbsp;&nbsp;&nbsp;' + getGlobalVariable('Page_RulesTitle') + '</h5>');
-				</script>
+				<h5>
+					<b>
+						<i class="fa fa-list-alt" style="color: black;"></i>
+					&nbsp;&nbsp;&nbsp;Chapter Rules
+				</h5>
 			</header>
 
 			

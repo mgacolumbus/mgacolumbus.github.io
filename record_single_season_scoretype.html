@@ -6,22 +6,23 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
 		</script>
 		
 		<script>	
 			var url = new URL(window.location.href);
-			var varScoreType = getScoreType(url.searchParams.get("t"));
-			var varOperationType = getComparisonOperator(url.searchParams.get("a"));
-			var varDisplayType = getScoreTypeCategory(varOperationType, varScoreType);
-			var varGolfer = url.searchParams.get("g");
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
+			var varDisplayType = getScoreTypeCategory(getScoreActionType(arrURL[9]), getScoreType(arrURL[8]));
 		</script>
 	</head>
 
 	
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 		
@@ -39,14 +40,33 @@
 
 			
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-trophy"></i> Most <script>document.write(varDisplayType);</script> in a Single Season</b></h5>
+				<h5>
+					<b>
+						<i class="fa fa-trophy"></i>
+						Most <script>document.write(varDisplayType);</script> in a Single Season
+					</b>
+				</h5>
 			</header>
+			
+			
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<script>
+						html_RecordDisplayBox(arrURL[4], arrURL[5], arrURL[1], arrURL[2], arrURL[11]);
+					</script>
+					
+					<script>
+						html_RecordSearchBox(arrURL[0], arrURL[7], arrURL[8], arrURL[9], undefined, arrURL[11]);
+					</script>
+				</div>
+			</div>
+			
 
 			<div class="w3-panel">
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-half">
 						<p><strong>Legend</strong></p>
-						<table class="w3-table w3-sand">
+						<table class="w3-table w3-white">
 							<tr>
 								<td class="w3-bar-item w3-button w3-padding w3-orange" width="40px"></td>
 								<td>New or Tied Record</a></td>
@@ -82,12 +102,17 @@
 					var r = 0;
 					var varProgressBarWidth = 0.0;
 
-					arrRecordArray = sortMDArray(getRecord_MostScoreType_SingleSeason("All Events","All Courses",2012,varCurrentSeason,varOperationType,varScoreType,varGolfer), 1, "desc");
+					arrRecordArray = sortMDArray(getRecord_MostScoreType_SingleSeason(arrURL[4],arrURL[5],arrURL[1],arrURL[2],getScoreActionType(arrURL[9]),getScoreType(arrURL[8]),arrURL[3]), 1, "desc");
 
 					for (r = 0; r < arrRecordArray.length; r++) {
 						
 						varRank++;
-						varProgressBarColor = getProgressBarColor(arrRecordArray[0][1],arrRecordArray[r][1],varEventCount,arrRecordArray[r][2]);
+						
+						if (arrURL[6] != undefined) {
+							varProgressBarColor = getProgressBarColor(arrRecordArray[0][1],arrRecordArray[0][4],arrRecordArray[r][1],varEventCount,arrURL[6],8,arrRecordArray[r][2]);
+						} else {
+							varProgressBarColor = "w3-black";
+						}
 
 						if (arrRecordArray[r][1] != varRecordPrev) {
 						
@@ -103,8 +128,17 @@
 								varProgressBarWidth = 12;
 							}
 							
-							document.write('<div class="' + getGlobalVariable("Page_BodyClass") + '"><strong>&nbsp;&nbsp;' + varRankHold + '&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;' + arrRecordArray[r][0] + '&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;' + arrRecordArray[r][2] + "</strong>");
-							document.write('<div class="w3-container w3-center w3-padding ' + varProgressBarColor + '" style="width:' + varProgressBarWidth + '%">' + arrRecordArray[r][1] + '</div>');
+							document.write('<div class="w3-' + gvar("Site_BGColor") + '">');
+							
+							document.write('	<table width="415px" border="0">');
+							document.write('		<tr>');
+							document.write('			<td width="50px" style="font-weight: bold;">' + varRankHold + '</td>');
+							document.write('			<td width="165px" style="font-weight: bold;">' + arrRecordArray[r][0] + '</td>');
+							document.write('			<td width="200px" style="font-weight: bold;">' + arrRecordArray[r][2] + '</td>');
+							document.write('		</tr>');
+							document.write('	</table>');
+							
+							document.write('	<div class="w3-container w3-center w3-padding ' + varProgressBarColor + '" style="width:' + varProgressBarWidth + '%">' + arrRecordArray[r][1] + '</div>');
 							document.write('</div><br />');
 						}
 					}

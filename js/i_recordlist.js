@@ -8,7 +8,7 @@ function html_RecordList(ListType) {
 	else if (varListType == "SingleSeason")		{arrRecordList = getData_SingleSeasonRecordsList();}
 	else if (varListType == "SingleEvent")		{arrRecordList = getData_SingleEventRecordsList();}
 	
-	document.write('<table class="w3-table w3-sand">');
+	document.write('<table class="w3-table w3-white">');
 	
 	for (r = 0; r < arrRecordList.length; r++) {
 		

@@ -12,8 +12,12 @@ function html_CourseList() {
 			
 			if (c < arrCourses.length) {
 				
-				document.write('  <td><i class="fa ' + getGlobalVariable('Page_CoursesIcon') + '" style="color: ' + getGlobalVariable('Page_CoursesIconColor') + ';"></i></td>');
-				document.write('  <td align="center"><a href="#?c=' + c + '">' + arrCourses[c] + '</a></td>');
+				document.write('<td>');
+				document.write('	<i class="fa fa-flag" style="color: green;"></i>');
+				document.write('</td>');
+				document.write('<td align="center">');
+				document.write('	<a href="#?c=' + c + '">' + arrCourses[c] + '</a>');
+				document.write('</td>');
 			
 				if (c < arrCourses.length && cc < (varColumns - 1)) {
 					

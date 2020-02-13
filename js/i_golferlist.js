@@ -12,8 +12,12 @@ function html_GolferList() {
 			
 			if (g < arrGolfers.length) {
 				
-				document.write('  <td><i class="fa fa-user" style="color: orange;"></i></td>');
-				document.write('  <td align="center"><a href="golferstatsdetail.html?g=' + g + '">' + arrGolfers[g] + '</a></td>');
+				document.write('<td>');
+				document.write('	<i class="fa fa-user" style="color: orange;"></i>');
+				document.write('</td>');
+				document.write('<td align="center">');
+				document.write('<a href="golferstatsdetail.html?g=' + g + '">' + arrGolfers[g] + '</a>');
+				document.write('</td>');
 				
 				if (g < arrGolfers.length && gg < (varColumns - 1)) {
 					
