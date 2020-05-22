@@ -16,7 +16,7 @@
 		</script>
 		
 		<script>
-			var arrCourseRawData = getRoundDataForCourse(arrURL[5]);
+			var arrCourseRawData = getRoundDataForCourse(0, arrURL[5]);
 			var arrSeasons = getData_Seasons();
 			var arrEvents = getData_Events();
 			var arrCourses = getData_Courses();
@@ -45,7 +45,7 @@
 			<header class="w3-container" style="padding-top:22px">
 				<h5>
 					<b>
-						<i class="fa fa-user"></i>
+						<i class="fa fa-flag"></i>
 					&nbsp;&nbsp;&nbsp;<script>document.write(arrCourseRawData[0][2]);</script> -- Career Stats
 				</h5>
 			</header>
