@@ -1,13 +1,20 @@
 function html_CourseDetailTopBoxes(CourseData) {
 	/**---------------------------------------------------------------------**/
 		var pCourseRawData		=	arguments[0];
+		var arrRndTotal			=	new Array();
+		var vRoundTotal			=	0;
 	/**---------------------------------------------------------------------**/
+
+	for (coursernds = 0; coursernds < pCourseRawData.length; coursernds++) {
+		arrRndTotal = getRoundScore(pCourseRawData[coursernds], coursernds);
+		vRoundTotal += arrRndTotal[2];
+	}
 	
 	document.write('<div class="w3-row-padding w3-margin-bottom">');
 	document.write('	<div class="w3-quarter">');
 	document.write('		<div class="w3-container w3-green w3-padding-16">');
 	document.write('			<div class="w3-right">');
-	document.write('				<h3>' + pCourseRawData.length + '</h3>');
+	document.write('				<h3>' + vRoundTotal + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
 	document.write('			<h4>MGA Average</h4>');
@@ -16,7 +23,7 @@ function html_CourseDetailTopBoxes(CourseData) {
 	document.write('	<div class="w3-quarter">');
 	document.write('		<div class="w3-container w3-green w3-padding-16">');
 	document.write('			<div class="w3-right">');
-	document.write('				<h3>' + '6969' + ')</h3>');
+	document.write('				<h3>' + pCourseRawData.length + ')</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
 	document.write('			<h4>Total Rounds</h4>');
