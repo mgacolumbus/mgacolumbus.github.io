@@ -44,6 +44,7 @@ function StartEngine() {
 	document.write('<script src="js/f_getPlacementCount.js"></script>');
 	document.write('<script src="js/f_getProgressBarColor.js"></script>');
 	document.write('<script src="js/f_getRankingSuffix.js"></script>');
+	document.write('<script src="js/f_getRoundDataForCourse.js"></script>');
 	document.write('<script src="js/f_getRoundDataForEvent.js"></script>');
 	document.write('<script src="js/f_getRoundDataForGolfer.js"></script>');
 	document.write('<script src="js/f_getRoundDataForScorecard.js"></script>');
