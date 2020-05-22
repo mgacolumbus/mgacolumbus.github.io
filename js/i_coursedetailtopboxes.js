@@ -2,7 +2,7 @@ function html_CourseDetailTopBoxes(CourseData) {
 	/**---------------------------------------------------------------------**/
 		var pCourseRawData		=	arguments[0];
 		var arrRndTotal			=	new Array();
-		var vRoundTotal			=	0;
+		var vRoundTotal			=	0 * 1;
 	/**---------------------------------------------------------------------**/
 
 	for (coursernds = 0; coursernds < pCourseRawData.length; coursernds++) {
@@ -23,7 +23,7 @@ function html_CourseDetailTopBoxes(CourseData) {
 	document.write('	<div class="w3-quarter">');
 	document.write('		<div class="w3-container w3-green w3-padding-16">');
 	document.write('			<div class="w3-right">');
-	document.write('				<h3>' + pCourseRawData.length + ')</h3>');
+	document.write('				<h3>' + pCourseRawData.length + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
 	document.write('			<h4>Total Rounds</h4>');
