@@ -11,6 +11,7 @@ function StartEngine() {
 	document.write('<script src="js/d_seasons.js"></script>');
 	
 	/*  Javascript Includes  */
+	document.write('<script src="js/i_coursedetailtopboxes.js"></script>');
 	document.write('<script src="js/i_courselist.js"></script>');
 	document.write('<script src="js/i_eventlist.js"></script>');
 	document.write('<script src="js/i_eventwinners.js"></script>');
