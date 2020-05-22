@@ -16,7 +16,7 @@ function html_CourseList() {
 				document.write('	<i class="fa fa-flag" style="color: green;"></i>');
 				document.write('</td>');
 				document.write('<td align="center">');
-				document.write('	<a href="#?c=' + c + '">' + arrCourses[c] + '</a>');
+				document.write('	<a href="coursestatsdetail.html?c=' + c + '">' + arrCourses[c] + '</a>');
 				document.write('</td>');
 			
 				if (c < arrCourses.length && cc < (varColumns - 1)) {
