@@ -6,7 +6,7 @@ function html_CourseDetailTopBoxes(CourseData) {
 	/**---------------------------------------------------------------------**/
 
 	for (coursernds = 0; coursernds < pCourseRawData.length; coursernds++) {
-		arrRndTotal = getRoundScore(pCourseRawData[coursernds], coursernds);
+		arrRndTotal = getRoundScore(pCourseRawData, coursernds);
 		alert(arrRndTotal[2]);
 		vRoundTotal += arrRndTotal[2];
 	}
