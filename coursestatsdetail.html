@@ -78,17 +78,20 @@
 								alert("X");
 								for (varDataLoop = 0; varDataLoop < arrSeasons.length; varDataLoop++) {
 
-									document.write('<tr>');
-									document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
-									document.write('<td class="w3-center">' + arrCourseRawData[varDataLoop][0] + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],-2) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],-1) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],0) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],2) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],3) + '</td>');
-									document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],4) + '</td>');
-									document.write('</tr>');
+									if (getEventCount(arrCourseRawData,arrCourseRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) > 0) {
+
+										document.write('<tr>');
+										document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+										document.write('<td class="w3-center">' + arrCourseRawData[varDataLoop][0] + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],-2) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],-1) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],0) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],1) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],2) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],3) + '</td>');
+										document.write('<td class="w3-center">' + getScoreTypeCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],4) + '</td>');
+										document.write('</tr>');
+									}
 								}
 								
 								document.write('</tr><tr><td>&nbsp;</td></tr>');
