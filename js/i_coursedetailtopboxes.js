@@ -7,7 +7,7 @@ function html_CourseDetailTopBoxes(CourseData) {
 	document.write('	<div class="w3-quarter">');
 	document.write('		<div class="w3-container w3-green w3-padding-16">');
 	document.write('			<div class="w3-right">');
-	document.write('				<h3>' + '420.69' + '</h3>');
+	document.write('				<h3>' + pCourseRawData.length + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
 	document.write('			<h4>MGA Average</h4>');
