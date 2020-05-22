@@ -6,19 +6,26 @@
 		<meta charset="UTF-8">
 		<script src="engine.js"></script><script>StartEngine()</script>
 		<script>
-			document.write('<title>' + getGlobalVariable('SiteTitle') + '</title>');
+			document.write('<title>' + gvar('Site_Title') + '</title>');
 			html_SiteHeader();
 		</script>
-		<script>
+		
+		<script>	
 			var url = new URL(window.location.href);
-			var varCourseIndex = url.searchParams.get("c");
-			var arrCourseData = getRoundDataForCourse(0, varCourseIndex);
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
+			var arrCourseRawData = getRoundDataForCourse(arrURL[5]);
+			var arrSeasons = getData_Seasons();
+			var arrEvents = getData_Events();
+			var arrCourses = getData_Courses();
 		</script>
 	</head>
 	
 	
 	<script>
-		document.write('<body class="' + getGlobalVariable('Page_BodyClass') + '">');
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
 	</script>
 
 	
@@ -36,7 +43,11 @@
 
 		
 			<header class="w3-container" style="padding-top:22px">
-				<h5><b><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<script>document.write(arrCourseData[0][2]);</script> -- Stats Breakdown</h5>
+				<h5>
+					<b>
+						<i class="fa fa-user"></i>
+					&nbsp;&nbsp;&nbsp;<script>document.write(arrCourseRawData[0][2]);</script> -- Career Stats
+				</h5>
 			</header>
 			
 <!--			
