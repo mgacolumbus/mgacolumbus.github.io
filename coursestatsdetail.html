@@ -83,11 +83,10 @@
 										document.write('<td class="w3-center">' + arrSeasons[varDataLoop] + '</td>');
 										document.write('<td class="w3-center">' + getEventCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
 										document.write('<td class="w3-center">' + getScoringAverage(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
-										/*document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],0,0) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,1) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,3) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,10) + '</td>');
-										*/document.write('<td class="w3-center">' + getPlacementCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],0,0) + '</td>');
+										document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],3) + '</td>');
+										document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],4) + '</td>');
+										document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],5) + '</td>');
+										document.write('<td class="w3-center">' + getPlacementCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[varDataLoop],arrSeasons[varDataLoop],0,0) + '</td>');
 										document.write('</tr>');
 									}
 								}
@@ -109,11 +108,10 @@
 								document.write('<td class="w3-center">Totals</td>');
 								document.write('<td class="w3-center">' + getEventCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1]) + '</td>');
 								document.write('<td class="w3-center">' + getScoringAverage(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1]) + '</td>');
-								/*document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,0) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,1) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,3) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,10) + '</td>');
-								*/document.write('<td class="w3-center">' + getPlacementCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,0) + '</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1],3) + '</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1],4) + '</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1],5) + '</td>');
+								document.write('<td class="w3-center">' + getPlacementCount(arrCourseRawData,"","",arrCourseRawData[0][2],arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,0) + '</td>');
 								document.write('</tr>');
 							</script>
 						</table>
