@@ -6,7 +6,7 @@ function getScoringAverageParX(RoundsArray, Golfer, Event, Course, SeasonBegin, 
     	var pCourse			=	arguments[3];
     	var pSeasonBegin	=	arguments[4];
     	var pSeasonEnd		=	arguments[5];
-    	var pPar			=	arguments[6];
+    	var pPar			=	arguments[6] * 1;
 
     	var varResults		=	0;
 		var varHoleCount	=	0;
@@ -56,7 +56,7 @@ function getScoringAverageParX(RoundsArray, Golfer, Event, Course, SeasonBegin, 
 
 						for (getParHole = 0; getParHole < 18; getParHole++) {
 						
-							if (pDataArray[getAverageLoop][getParHole + 25] == pPar) {
+							if (pDataArray[getAverageLoop][getParHole + 26] == pPar) {
 								
 								varHoleCount++;
 								varStrokes += pDataArray[getAverageLoop][getParHole + 8];
