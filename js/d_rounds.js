@@ -29,34 +29,34 @@ function getData_Rounds() {
 		arrRoundInfo[22]	=	Hole 15 score
 		arrRoundInfo[23]	=	Hole 16 score
 		arrRoundInfo[24]	=	Hole 17 score
-		arrRoundInfo[24]	=	Hole 18 score
-		arrRoundInfo[25]	=	Hole 1 par
-		arrRoundInfo[26]	=	Hole 2 par
-		arrRoundInfo[27]	=	Hole 3 par
-		arrRoundInfo[28]	=	Hole 4 par
-		arrRoundInfo[29]	=	Hole 5 par
-		arrRoundInfo[30]	=	Hole 6 par
-		arrRoundInfo[31]	=	Hole 7 par
-		arrRoundInfo[32]	=	Hole 8 par
-		arrRoundInfo[33]	=	Hole 9 par
-		arrRoundInfo[34]	=	Hole 10 par
-		arrRoundInfo[35]	=	Hole 11 par
-		arrRoundInfo[36]	=	Hole 12 par
-		arrRoundInfo[37]	=	Hole 13 par
-		arrRoundInfo[38]	=	Hole 14 par
-		arrRoundInfo[39]	=	Hole 15 par
-		arrRoundInfo[40]	=	Hole 16 par
-		arrRoundInfo[41]	=	Hole 17 par
-		arrRoundInfo[42]	=	Hole 18 par
-		arrRoundInfo[43]	=	Meltdown award
-		arrRoundInfo[44]	=	Mediocre award
-		arrRoundInfo[45]	=	Gross award
-		arrRoundInfo[46]	=	Long Drive award
-		arrRoundInfo[47]	=	Closest to the Pin award
-		arrRoundInfo[48]	=	Red Key award
-		arrRoundInfo[49]	=	Rebel Beach Am-Am Partner's Name
-		arrRoundInfo[50]	=	Rebel Beach Am-Am Doubles Score
-		arrRoundInfo[50]	=	Rebel Beach Am-Am Doubles Finishing Position
+		arrRoundInfo[25]	=	Hole 18 score
+		arrRoundInfo[26]	=	Hole 1 par
+		arrRoundInfo[27]	=	Hole 2 par
+		arrRoundInfo[28]	=	Hole 3 par
+		arrRoundInfo[29]	=	Hole 4 par
+		arrRoundInfo[30]	=	Hole 5 par
+		arrRoundInfo[31]	=	Hole 6 par
+		arrRoundInfo[32]	=	Hole 7 par
+		arrRoundInfo[33]	=	Hole 8 par
+		arrRoundInfo[34]	=	Hole 9 par
+		arrRoundInfo[35]	=	Hole 10 par
+		arrRoundInfo[36]	=	Hole 11 par
+		arrRoundInfo[37]	=	Hole 12 par
+		arrRoundInfo[38]	=	Hole 13 par
+		arrRoundInfo[39]	=	Hole 14 par
+		arrRoundInfo[40]	=	Hole 15 par
+		arrRoundInfo[41]	=	Hole 16 par
+		arrRoundInfo[42]	=	Hole 17 par
+		arrRoundInfo[43]	=	Hole 18 par
+		arrRoundInfo[44]	=	Meltdown award
+		arrRoundInfo[45]	=	Mediocre award
+		arrRoundInfo[46]	=	Gross award
+		arrRoundInfo[47]	=	Long Drive award
+		arrRoundInfo[48]	=	Closest to the Pin award
+		arrRoundInfo[49]	=	Red Key award
+		arrRoundInfo[50]	=	Rebel Beach Am-Am Partner's Name
+		arrRoundInfo[51]	=	Rebel Beach Am-Am Doubles Score
+		arrRoundInfo[52]	=	Rebel Beach Am-Am Doubles Finishing Position
 	*/
 	
 	arrRoundInfo = [
@@ -1265,6 +1265,40 @@ function getData_Rounds() {
 ,[	"10-06-2019",	"Last Gasp",	"Chapel Hill",	"Mike Galvin",	21,	"",	0,	0,	7,	6,	5,	5,	6,	6,	7,	8,	6,	8,	8,	4,	5,	7,	5,	5,	4,	8,	4,	5,	3,	4,	4,	5,	4,	3,	4,	5,	4,	3,	4,	5,	4,	3,	4,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
 ,[	"10-06-2019",	"Last Gasp",	"Chapel Hill",	"Jeff Gilligan",	22,	"",	0,	0,	7,	8,	3,	8,	6,	9,	7,	5,	12,	6,	8,	5,	6,	8,	7,	6,	7,	6,	4,	5,	3,	4,	4,	5,	4,	3,	4,	5,	4,	3,	4,	5,	4,	3,	4,	4,	"",	"",	"",	"",	"",	"x",	"",	"",	""	]
 
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Connor Mazza",	0,	"",	0,	9,	3,	6,	4,	3,	5,	5,	3,	4,	5,	6,	4,	4,	5,	4,	4,	5,	3,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"x",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Jason Strickland",	1,	"W",	1.35,	1,	5,	4,	6,	2,	5,	5,	3,	5,	4,	6,	4,	6,	5,	3,	6,	6,	3,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Nick Johnston",	2,	"L",	0.9,	3,	5,	5,	6,	3,	4,	5,	3,	5,	4,	5,	4,	5,	4,	3,	5,	5,	3,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"David Knowles",	3,	"",	0.75,	2,	5,	5,	4,	4,	5,	6,	4,	5,	5,	7,	4,	5,	4,	4,	4,	5,	4,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Jay Sutter",	4,	"",	0.68,	3,	6,	5,	6,	3,	4,	6,	3,	4,	4,	8,	5,	5,	4,	3,	4,	7,	4,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Ben Reeb",	5,	"",	0.6,	6,	4,	3,	4,	3,	6,	5,	4,	7,	5,	6,	5,	5,	4,	5,	5,	5,	3,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Justin Scribner",	6,	"",	0.49,	8,	4,	5,	4,	3,	6,	6,	3,	6,	6,	6,	5,	4,	4,	4,	4,	4,	3,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"x",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Steve Sillato",	6,	"",	0.49,	8,	5,	5,	4,	3,	8,	6,	3,	5,	5,	4,	4,	4,	4,	5,	5,	4,	3,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Tim Collins",	8,	"",	0.38,	0,	6,	5,	6,	4,	5,	6,	5,	4,	5,	5,	6,	6,	5,	4,	5,	7,	4,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Matt Keller",	9,	"",	0.26,	7,	5,	4,	5,	4,	5,	5,	3,	6,	6,	6,	5,	5,	4,	3,	5,	7,	3,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Steven Baybutt",	9,	"",	0.26,	2,	6,	6,	5,	3,	5,	7,	4,	4,	5,	7,	4,	6,	4,	6,	5,	6,	4,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Matt Bigelow",	11,	"",	0.15,	0,	5,	5,	4,	5,	5,	6,	5,	6,	5,	6,	5,	5,	7,	6,	4,	6,	5,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Jason Smelser",	12,	"",	0.08,	0,	4,	8,	5,	4,	5,	5,	6,	7,	5,	7,	8,	5,	4,	6,	5,	6,	2,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Brian Zimmerschied",	13,	"",	0.06,	0,	5,	7,	6,	4,	4,	7,	4,	5,	4,	6,	5,	7,	6,	5,	4,	7,	5,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Joe Milacek",	13,	"",	0.06,	0,	6,	4,	6,	6,	7,	7,	4,	6,	5,	7,	5,	3,	7,	4,	3,	8,	4,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Doug Short",	15,	"",	0.03,	4,	7,	5,	5,	5,	5,	8,	5,	6,	5,	7,	5,	6,	4,	3,	4,	5,	4,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Gary Sutter",	15,	"",	0.03,	0,	5,	4,	5,	4,	4,	5,	5,	8,	6,	7,	6,	6,	5,	4,	6,	7,	5,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Scott Hall",	17,	"",	0,	0,	7,	6,	5,	5,	6,	6,	4,	6,	5,	6,	7,	6,	7,	5,	5,	5,	4,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"x",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Matt Arrasmith",	18,	"",	0,	0,	4,	6,	5,	5,	5,	7,	3,	7,	6,	7,	5,	7,	4,	4,	7,	6,	6,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Chris Roebuck",	19,	"",	0,	5,	8,	5,	5,	4,	5,	6,	6,	5,	5,	7,	5,	7,	5,	3,	5,	5,	5,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Eric Heberle",	19,	"",	0,	0,	4,	6,	6,	3,	7,	5,	5,	5,	5,	7,	7,	6,	8,	3,	6,	8,	5,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Doug Dickenson",	21,	"",	0,	0,	4,	5,	5,	5,	8,	8,	4,	4,	6,	7,	6,	7,	6,	4,	6,	6,	5,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Robert McArthur",	22,	"",	0,	6,	5,	6,	4,	3,	7,	6,	5,	9,	5,	4,	5,	7,	7,	3,	5,	5,	6,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"x",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Steven Merrill",	22,	"",	0,	0,	5,	6,	6,	3,	7,	5,	5,	7,	8,	7,	5,	6,	6,	3,	7,	8,	3,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Tim Koruna",	22,	"",	0,	0,	8,	6,	5,	6,	6,	8,	5,	5,	5,	7,	5,	6,	7,	6,	4,	5,	4,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Mathew Mayo",	25,	"",	0,	2,	7,	5,	6,	3,	5,	6,	4,	6,	4,	8,	6,	10,	5,	5,	6,	6,	5,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Justin Duffie",	26,	"",	0,	0,	7,	10,	5,	4,	4,	8,	4,	7,	5,	10,	9,	6,	6,	4,	4,	6,	3,	5,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Luke Maurer",	27,	"",	0,	1,	6,	6,	5,	5,	4,	6,	4,	6,	7,	8,	5,	7,	9,	5,	7,	8,	5,	7,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"x",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Justin Kudela",	28,	"",	0,	0,	5,	6,	5,	5,	5,	8,	6,	5,	8,	7,	8,	7,	5,	5,	8,	9,	6,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Joseph Faga",	29,	"",	0,	0,	6,	5,	5,	5,	7,	9,	6,	7,	8,	9,	5,	7,	8,	5,	6,	8,	4,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Patrick Affourtit",	29,	"",	0,	0,	4,	7,	6,	4,	10,	7,	6,	6,	6,	8,	6,	9,	9,	6,	5,	7,	4,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Dustin Schmidt",	31,	"",	0,	0,	7,	9,	4,	4,	5,	8,	3,	11,	7,	11,	5,	7,	6,	4,	8,	6,	6,	6,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"Jeff Gilligan",	32,	"",	0,	0,	6,	7,	6,	4,	6,	7,	5,	8,	9,	9,	7,	9,	9,	3,	6,	6,	6,	7,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"",	"",	"",	""	]
+,[	"06-07-2020",	"MGA Championship",	"Denison",	"David Korzan",	33,	"",	0,	1,	6,	8,	6,	4,	12,	8,	5,	7,	7,	9,	8,	8,	7,	3,	9,	7,	5,	4,	4,	4,	4,	3,	4,	5,	3,	4,	4,	5,	4,	5,	4,	3,	4,	4,	3,	4,	"",	"",	"",	"",	"",	"x",	"",	"",	""	]
 		
 	]
     
