@@ -7,6 +7,7 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		var pRecord				=	arguments[4];
 		var pHideBox			=	arguments[5];
 		
+		var arrGolfers			=	new Array();		arrGolfers		=	getData_Golfers();
 		var arrCourses			=	new Array();		arrCourses		=	getData_Courses();
 		var arrEvents			=	new Array();		arrEvents		=	getData_Events();
 		var arrSeasons			=	new Array();		arrSeasons		=	getData_Seasons();
@@ -35,6 +36,19 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		
 		document.write('		<p><strong>Search For:</strong></p>');
 		document.write('		<table class="w3-table w3-light-gray">');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Golfer:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="g">');
+		document.write('						<option value="">-- All Golfers --</option>');
+		
+							for (z = 0; z < arrGolfers.length; z++) {
+								document.write('<option value="' + z + '">' + arrGolfers[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
 		document.write('			<tr>');
 		document.write('				<td width="40px">Event:</td>');
 		document.write('				<td width="200px">');
@@ -68,7 +82,7 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		document.write('				<td width="200px">');
 		document.write('					<select name="sb">');
 
-							for (z = 0; z < arrEvents.length; z++) {
+							for (z = 0; z < arrSeasons.length; z++) {
 								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
 							}
 		
@@ -78,7 +92,7 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		
 							arrSeasons.reverse();
 							
-							for (z = 0; z < arrEvents.length; z++) {
+							for (z = 0; z < arrSeasons.length; z++) {
 								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
 							}
 		

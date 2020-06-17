@@ -89,7 +89,7 @@ function getRecord_MostScoreType_SingleEvent(Event, Course, SeasonBegin, SeasonE
 			aReturnStat[vReturnIndex] = vTotal;
 			aReturnGolfers[vReturnIndex] = aGolfers[g];
 			aReturnSeason[vReturnIndex] = "";
-			aReturnExtraInfo[vReturnIndex] = 0;//vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
+			aReturnExtraInfo[vReturnIndex] = aRounds[r][0].substr(6,9) + " @ " + aRounds[r][2];//vHoleCounter + " Holes<br />( " + vPercent.toFixed(3) + " % )";
 			aReturnEvents[vReturnIndex] = (vHoleCounter * 1) / 18;
 			vReturnIndex++;
 		}
