@@ -20,7 +20,7 @@ function html_NavigationPanel(Source) {
 	document.write(get_NavigationItem('Overview', varSource));
 	document.write(get_NavigationItem('GolferStats', varSource));
 	//document.write(get_NavigationItem('EventStats', varSource));
-	//document.write(get_NavigationItem('CourseStats', varSource));
+	document.write(get_NavigationItem('CourseStats', varSource));
 	//document.write(get_NavigationItem('ChapterStats', varSource));
 	document.write(get_NavigationItem('Results', varSource));
 	document.write(get_NavigationItem('Records', varSource));
