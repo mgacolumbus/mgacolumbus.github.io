@@ -1,9 +1,10 @@
-function getRecord_MostEarnings_Range(Event, Course, SeasonBegin, SeasonEnd) {
+function getRecord_MostEarnings_Range(Event, Course, SeasonBegin, SeasonEnd, Golfer) {
 	/**---------------------------------------------------------------------**/
 		var pEvent				=	getEventName(arguments[0]);
 		var pCourse				=	getCourseName(arguments[1]);
 		var pSeasonBegin		=	arguments[2];
 		var pSeasonEnd			=	arguments[3];
+		var pGolfer				=	arguments[4];
 		
 		var arrRounds			=	new Array();		arrRounds	=	getData_Rounds();
 		var arrGolfers			=	new Array();		arrGolfers	=	getData_Golfers();
@@ -22,6 +23,12 @@ function getRecord_MostEarnings_Range(Event, Course, SeasonBegin, SeasonEnd) {
 		var varEventCounter		=	0;
 		var varPercent			=	0;
 	/**---------------------------------------------------------------------**/
+
+	if (pGolfer != undefined) {
+		arrRounds = getRoundDataForGolfer(pGolfer);
+	} else {
+		arrRounds = getData_Rounds();
+	}
 	
 	if (pCourse	== 'All Courses')		{ varAllCourses	= true; }
 	if (pEvent	== 'All Events')		{ varAllEvents	= true; }
