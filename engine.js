@@ -55,6 +55,7 @@ function StartEngine() {
 	document.write('<script src="js/f_getScoreActionType.js"></script>');
 	document.write('<script src="js/f_getScoreTypeCategory.js"></script>');
 	document.write('<script src="js/f_getScoreTypeCount.js"></script>');
+	document.write('<script src="js/f_getScoreTypeCountParX.js"></script>');
 	document.write('<script src="js/f_getScoringAverage.js"></script>');
 	document.write('<script src="js/f_getScoringAverageParX.js"></script>');
 	document.write('<script src="js/f_getSeasonChampionBGColor.js"></script>');
