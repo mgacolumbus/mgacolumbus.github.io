@@ -37,7 +37,7 @@ function html_GolferDetailTopBoxes(GolferData) {
 	document.write('				<h3>' + (varTotalStrokes/pGolferRawData.length).toFixed(3) + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
-	document.write('			<h4>Career Average</h4>');
+	document.write('			<h4>Average</h4>');
 	document.write('		</div>');
 	document.write('	</div>');
 	document.write('	<div class="w3-quarter">');
@@ -55,7 +55,7 @@ function html_GolferDetailTopBoxes(GolferData) {
 	document.write('				<h3>' + formatEarnings(varCareerEarnings) + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
-	document.write('			<h4>Career "Earnings"</h4>');
+	document.write('			<h4>"Earnings"</h4>');
 	document.write('		</div>');
 	document.write('	</div>');
 	document.write('	<div class="w3-quarter">');
@@ -64,7 +64,7 @@ function html_GolferDetailTopBoxes(GolferData) {
 	document.write('				<h3>' + pGolferRawData.length + '</h3>');
 	document.write('			</div>');
 	document.write('			<div class="w3-clear"></div>');
-	document.write('			<h4>Total Events</h4>');
+	document.write('			<h4>Events</h4>');
 	document.write('		</div>');
 	document.write('	</div>');
 	document.write('</div>');
