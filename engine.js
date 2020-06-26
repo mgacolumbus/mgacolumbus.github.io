@@ -30,6 +30,7 @@ function StartEngine() {
 	/*  Global Use Functions  */
 	document.write('<script src="js/f_formatEarnings.js"></script>');
 	document.write('<script src="js/f_getComparisonOperator.js"></script>');
+	document.write('<script src="js/f_getCourseIndex.js"></script>');
 	document.write('<script src="js/f_getCourseName.js"></script>');
 	document.write('<script src="js/f_getCurrentSeason.js"></script>');
 	document.write('<script src="js/f_getCurrentSeasonEventCount.js"></script>');

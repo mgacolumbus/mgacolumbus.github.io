@@ -16,7 +16,7 @@
 		</script>
 		
 		<script>
-			var arrGolferRawData = getRoundDataForGolfer(arrURL[3]);
+			var arrGolferRawData = getRoundDataForGolfer(arrURL[3],arrURL[10]);
 			var arrSeasons = getData_Seasons();
 			var arrEvents = getData_Events();
 			var arrCourses = getData_Courses();
@@ -46,184 +46,21 @@
 				<h5>
 					<b>
 						<i class="fa fa-user"></i>
-					&nbsp;&nbsp;&nbsp;<script>document.write(arrGolferRawData[0][3]);</script> -- Career Stats
+					&nbsp;&nbsp;&nbsp;<script>document.write(arrGolferRawData[0][3] + ' -- ' + arrURL[10]);</script> Stats
 				</h5>
 			</header>
 			
 			
-			<script>
-				html_GolferDetailTopBoxes(arrGolferRawData);
-			</script>
-			<hr>
-			
-
 			<div class="w3-panel">
 				<div class="w3-row-padding" style="margin:0 -16px">
 					<div class="w3-container">
-						<h5>Career Scoring Totals by Season</h5>
-						<p style="font-size: 0.85em;">
-							( Click season for golfer details )
-						</p>
-						<table class="w3-table w3-white">
-							<tr>
-								<td>&nbsp;</td>
-								<td class="w3-center">Season</td>
-								<td class="w3-center">Events</td>
-								<td class="w3-center">Avg</td>
-								<td class="w3-center">DQs</td>
-								<td class="w3-center">Wins</td>
-								<td class="w3-center">Top 3</td>
-								<td class="w3-center">Top 10</td>
-								<td class="w3-center">"Earn"</td>
-							</tr>
-							<script>
-								var varDataLoop = 0;
-								
-								for (varDataLoop = 0; varDataLoop < arrSeasons.length; varDataLoop++) {
-									
-									if (getEventCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) > 0) {
-										document.write('<tr>');
-										document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
-										document.write('<td class="w3-center"><a href="golferstatsdetailseason.html?g=' + arrURL[3] + '&s=' + arrSeasons[varDataLoop] + '">' + arrSeasons[varDataLoop] + '</a></td>');
-										document.write('<td class="w3-center">' + getEventCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
-										document.write('<td class="w3-center">' + getScoringAverage(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],0,0) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,1) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,3) + '</td>');
-										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,10) + '</td>');
-										document.write('<td class="w3-center">' + getEarnings(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
-										document.write('</tr>');
-									}
-								}
-								
-								document.write('</tr><tr><td>&nbsp;</td></tr>');
-								document.write('<tr>');
-								document.write('<td>&nbsp;</td>');
-								document.write('<td>&nbsp;</td>');
-								document.write('<td class="w3-center">Events</td>');
-								document.write('<td class="w3-center">Avg</td>');
-								document.write('<td class="w3-center">DQs</td>');
-								document.write('<td class="w3-center">Wins</td>');
-								document.write('<td class="w3-center">Top 3</td>');
-								document.write('<td class="w3-center">Top 10</td>');
-								document.write('<td class="w3-center">"Earn"</td>');
-								document.write('</tr>');
-								
-								document.write('<tr>');
-								document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
-								document.write('<td class="w3-center">Career</td>');
-								document.write('<td class="w3-center">' + getEventCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1]) + '</td>');
-								document.write('<td class="w3-center">' + getScoringAverage(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1]) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,0) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,1) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,3) + '</td>');
-								document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,10) + '</td>');
-								document.write('<td class="w3-center">' + getEarnings(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1]) + '</td>');
-								document.write('</tr>');
-							</script>
-						</table><br /><hr /><br />
-						<h5>Career Scoretype Totals by Par</h5>
-						<p style="font-size: 0.85em;">
-							( Click Par for golfer details )
-						</p>
-						<table class="w3-table w3-white">
-							<tr>
-								<td>&nbsp;</td>
-								<td class="w3-center">&nbsp;</td>
-								<td class="w3-center">Avg</td>
-								<td class="w3-center">Eag</td>
-								<td class="w3-center">Bir</td>
-								<td class="w3-center">Par</td>
-								<td class="w3-center">Bog</td>
-								<td class="w3-center">Dbl</td>
-								<td class="w3-center">Trp</td>
-								<td class="w3-center">Wrs</td>
-							</tr>
-							<script>
-								document.write('<tr>');
-								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
-								document.write('<td class="w3-center"><a href="#">Par 3</a></td>');
-								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,3) + '</td>');
-								document.write('</tr>');
-
-								document.write('<tr>');
-								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
-								document.write('<td class="w3-center"><a href="#">Par 4</a></td>');
-								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,4) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,4) + '</td>');
-								document.write('</tr>');
-
-								document.write('<tr>');
-								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
-								document.write('<td class="w3-center"><a href="#">Par 5</a></td>');
-								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,5) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,5) + '</td>');
-								document.write('</tr>');
-							
-								document.write('</tr><tr><td>&nbsp;</td></tr>');
-
-								document.write('<tr>');
-								document.write('<td>&nbsp;</td>');
-								document.write('<td>&nbsp;</td>');
-								document.write('<td>&nbsp;</td>');
-								document.write('<td class="w3-center">Eag</td>');
-								document.write('<td class="w3-center">Bir</td>');
-								document.write('<td class="w3-center">Par</td>');
-								document.write('<td class="w3-center">Bog</td>');
-								document.write('<td class="w3-center">Dbl</td>');
-								document.write('<td class="w3-center">Trp</td>');
-								document.write('<td class="w3-center">Wrs</td>');
-								document.write('</tr>');
-
-								document.write('<tr>');
-								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
-								document.write('<td class="w3-center">Career</td>');
-								document.write('<td class="w3-center">&nbsp;</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3) + '</td>');
-								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4) + '</td>');
-								document.write('</tr>');
-							</script>
-						</table>
-					</div>
-				</div>
-			</div>
-			<hr>
-  
-  
-			<div class="w3-panel">
-				<div class="w3-row-padding" style="margin:0 -16px">
-					<div class="w3-container">
-						<h5>Event Summaries</h5>
+						<h5><script>document.write(arrURL[10])</script> Event Summaries</h5>
 						<p style="font-size: 0.85em;">
 							( Click Date for event details )<br />
 							( Click Course for course details )<br />
 							( Click Score for scorecard details )
 						</p>
-						<table class="w3-table w3-white">
+						<table class="w3-table">
 							<tr>
 								<td>&nbsp;</td>
 								<td class="w3-center">Date</td>
@@ -259,6 +96,139 @@
 									document.write('<td class="w3-center">' + arrGolferRawData[varDataLoop][6].toFixed(2) + '</td>');
 									document.write('</tr>');
 								}
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+			<hr>
+
+
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-container">
+						<h5><script>document.write(arrURL[10])</script> Scoring Totals</h5>
+						<p style="font-size: 0.85em;">
+							( Click season for golfer details )
+						</p>
+						<table class="w3-table">
+							<tr>
+								<td>&nbsp;</td>
+								<td class="w3-center">Season</td>
+								<td class="w3-center">Events</td>
+								<td class="w3-center">Avg</td>
+								<td class="w3-center">DQs</td>
+								<td class="w3-center">Wins</td>
+								<td class="w3-center">Top 3</td>
+								<td class="w3-center">Top 10</td>
+								<td class="w3-center">"Earn"</td>
+							</tr>
+							<script>
+								var varDataLoop = 0;
+								
+								for (varDataLoop = 0; varDataLoop < arrSeasons.length; varDataLoop++) {
+									
+									if (getEventCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) > 0) {
+										document.write('<tr>');
+										document.write('<td class="w3-center"><i class="fa fa-calendar w3-text-green"></i></td>');
+										document.write('<td class="w3-center">' + arrSeasons[varDataLoop] + '</td>');
+										document.write('<td class="w3-center">' + getEventCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
+										document.write('<td class="w3-center">' + getScoringAverage(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
+										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],0,0) + '</td>');
+										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,1) + '</td>');
+										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,3) + '</td>');
+										document.write('<td class="w3-center">' + getPlacementCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop],1,10) + '</td>');
+										document.write('<td class="w3-center">' + getEarnings(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[varDataLoop],arrSeasons[varDataLoop]) + '</td>');
+										document.write('</tr>');
+									}
+								}
+							</script>
+						</table><br /><hr /><br />
+
+						<h5><script>document.write(arrURL[10])</script> Scoretype Totals by Par</h5>
+						<p style="font-size: 0.85em;">
+							( Click Par for golfer details )
+						</p>
+						<table class="w3-table">
+							<tr>
+								<td>&nbsp;</td>
+								<td class="w3-center">&nbsp;</td>
+								<td class="w3-center">Avg</td>
+								<td class="w3-center">Eag</td>
+								<td class="w3-center">Bir</td>
+								<td class="w3-center">Par</td>
+								<td class="w3-center">Bog</td>
+								<td class="w3-center">Dbl</td>
+								<td class="w3-center">Trp</td>
+								<td class="w3-center">Wrs</td>
+							</tr>
+							<script>
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
+								document.write('<td class="w3-center">Par 3</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,3) + '</td>');
+								document.write('</tr>');
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
+								document.write('<td class="w3-center">Par 4</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,4) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,4) + '</td>');
+								document.write('</tr>');
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
+								document.write('<td class="w3-center">Par 5</td>');
+								document.write('<td class="w3-center">' + getScoringAverageParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3,5) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCountParX(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4,5) + '</td>');
+								document.write('</tr>');
+							
+								document.write('</tr><tr><td>&nbsp;</td></tr>');
+
+								document.write('<tr>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td>&nbsp;</td>');
+								document.write('<td class="w3-center">Eag</td>');
+								document.write('<td class="w3-center">Bir</td>');
+								document.write('<td class="w3-center">Par</td>');
+								document.write('<td class="w3-center">Bog</td>');
+								document.write('<td class="w3-center">Dbl</td>');
+								document.write('<td class="w3-center">Trp</td>');
+								document.write('<td class="w3-center">Wrs</td>');
+								document.write('</tr>');
+
+								document.write('<tr>');
+								document.write('<td class="w3-center"><i class="fa fa-bar-chart w3-text-red"></i></td>');
+								document.write('<td class="w3-center">Totals</td>');
+								document.write('<td class="w3-center">&nbsp;</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-2) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],-1) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],0) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],1) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],2) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],3) + '</td>');
+								document.write('<td class="w3-center">' + getScoreTypeCount(arrGolferRawData,arrGolferRawData[0][3],"","",arrSeasons[0],arrSeasons[arrSeasons.length - 1],4) + '</td>');
+								document.write('</tr>');
 							</script>
 						</table>
 					</div>
