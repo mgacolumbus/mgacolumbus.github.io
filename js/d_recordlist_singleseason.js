@@ -15,6 +15,12 @@ function getData_SingleSeasonRecordsList() {
 			, "yellow"
 		]
 		,[
+			"Most Runner-Ups"
+			, "record_single_season_position.html?pos=2&sb=2012&se=" + getCurrentSeason()
+			, "fa-trophy"
+			, "yellow"
+		]
+		,[
 			"Most \"Earnings\""
 			, "record_single_season_earnings.html?sb=2012&se=" + getCurrentSeason()
 			, "fa-money"
