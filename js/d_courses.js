@@ -27,6 +27,7 @@ function getData_Courses() {
 		,	"National Golf Links"
 		,	"Oakhaven"
 		,	"Phoenix"
+		,	"Pine Hill"
 		,	"Raccoon"
 		,	"Raymond Memorial"
 		,	"Rolling Meadows"
