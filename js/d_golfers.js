@@ -137,6 +137,7 @@ function getData_Golfers() {
 		"Nick Johnston",
 		"Nick Poe",
 		"Patrick Affourtit",
+		"Paul Miller",
 		"Phil Insinga",
 		"Ray Vaught",
 		"Riley Saelens",

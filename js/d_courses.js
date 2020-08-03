@@ -24,6 +24,7 @@ function getData_Courses() {
 		,	"Kyber Run"
 		,	"Links at Echo Springs"
 		,	"Links at Groveport"
+		,	"Mill Creek"
 		,	"National Golf Links"
 		,	"Oakhaven"
 		,	"Phoenix"
