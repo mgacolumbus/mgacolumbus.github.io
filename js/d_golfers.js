@@ -142,6 +142,7 @@ function getData_Golfers() {
 		"Ray Vaught",
 		"Riley Saelens",
 		"Rob Hamilton",
+		"Robby Thompson",
 		"Robert McArthur",
 		"Ryan Chiarito",
 		"Ryan Downing",
