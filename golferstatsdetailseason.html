@@ -66,6 +66,8 @@
 								<td class="w3-center">Date</td>
 								<td class="w3-center">Event</td>
 								<td class="w3-center">Course</td>
+								<td class="w3-center">Gross</td>
+								<td class="w3-center">Pen</td>
 								<td class="w3-center">Net</td>
 								<td class="w3-center">Finish</td>
 								<td class="w3-center">Earn</td>
@@ -91,9 +93,13 @@
 									document.write('<td class="w3-center"><a href="resultsdetails.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '">' + arrGolferRawData[varDataLoop][0] + '</a></td>');
 									document.write('<td class="w3-center">' + arrGolferRawData[varDataLoop][1] + '</td>');
 									document.write('<td class="w3-center"><a href="coursestatsdetail.html?c=' + getCourseIndex(arrGolferRawData[varDataLoop][2]) + '">' + arrGolferRawData[varDataLoop][2] + '</a></td>');
+
+									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + arrRoundData[2] + '</a></td>');
+									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + arrGolferRawData[varDataLoop][7] + '</a></td>');
+
 									document.write('<td class="w3-center"><a href="scorecard.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '&g=' + getGolferIndex(arrGolferRawData[varDataLoop][3]) + '">' + (arrRoundData[2] + arrGolferRawData[varDataLoop][7]) + '</a></td>');
-									document.write('<td class="w3-center">' + varFinishPos + '</td>');
-									document.write('<td class="w3-center">' + arrGolferRawData[varDataLoop][6].toFixed(2) + '</td>');
+									document.write('<td class="w3-center"><a href="resultsdetails.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '">' + varFinishPos + '</a></td>');
+									document.write('<td class="w3-center"><a href="resultsdetails.html?s=' + arrGolferRawData[varDataLoop][0].substr(6,9) + '&e=' + getEventIndex(arrGolferRawData[varDataLoop][1]) + '">' + arrGolferRawData[varDataLoop][6].toFixed(2) + '</a></td>');
 									document.write('</tr>');
 								}
 							</script>

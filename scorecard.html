@@ -53,7 +53,7 @@
 				<script>
 					document.write('<h5><b>&nbsp;&nbsp;Golfer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="golferstatsdetail.html?g=' + getGolferIndex(arrRoundData[0][3]) + '">' + arrRoundData[0][3] + '</a></b></h5>');
 					document.write('<h5><b>&nbsp;&nbsp;Event:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="resultsdetails.html?s=' + arrRoundData[0][0].substr(6,9) + '&e=' + getEventIndex(arrRoundData[0][1]) + '">' + arrRoundData[0][0].substr(6,9) + ' ' + arrRoundData[0][1] + '</a></b></h5>');
-					document.write('<h5><b>&nbsp;&nbsp;Course:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + arrRoundData[0][2] + '</a></b></h5>');
+					document.write('<h5><b>&nbsp;&nbsp;Course:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="coursestatsdetail.html?c=' + getCourseIndex(arrRoundData[0][2]) + '"">' + arrRoundData[0][2] + '</a></b></h5>');
 				</script>
 			</header>
 
@@ -64,8 +64,9 @@
 					<table class="w3-table">
 						<tr class="w3-grey">
 							<th class="w3-center" width="20%">Hole</th>
-							<th class="w3-center" width="30%">Mar</th>
-							<th class="w3-center" width="30%">Score</th>
+							<th class="w3-center" width="20%">Yds</th>
+							<th class="w3-center" width="20%">Par</th>
+							<th class="w3-center" width="20%">Score</th>
 							<th class="w3-center" width="20%">+/-</th>
 						</tr>
 						<script>
@@ -90,10 +91,10 @@
 							
 							for (x = 1; x < 19; x++) {
 								if (x < 10) {
-									varFrontPar += arrRoundData[0][x + 25] + 1;
+									varFrontPar += arrRoundData[0][x + 25];
 									varFrontScore += arrRoundData[0][x + 7];
 								} else {
-									varBackPar += arrRoundData[0][x + 25] + 1;
+									varBackPar += arrRoundData[0][x + 25];
 									varBackScore += arrRoundData[0][x + 7];
 								}
 								
@@ -126,11 +127,11 @@
 								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 == 3)	{ varScoreColor = 'w3-brown'; arrScoreType[6] += 1; }
 								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 > 3)	{ varScoreColor = 'w3-black'; arrScoreType[7] += 1; }
 								
-								if (varPlusMinusNum > 0) {
+								if (varPlusMinusNum > 18) {
 									varPlusMinusColor = 'w3-pale-red';
-								} else if (varPlusMinusNum < -9) {
-									varPlusMinusColor = 'w3-pale-yellow';
 								} else if (varPlusMinusNum < 0) {
+									varPlusMinusColor = 'w3-pale-yellow';
+								} else if (varPlusMinusNum < 18) {
 									varPlusMinusColor = 'w3-pale-green';
 								} else {
 									varPlusMinusColor = 'w3-white';
@@ -138,7 +139,8 @@
 								
 								document.write('<tr>');
 								document.write('	<th class="w3-center w3-grey">' + x + '</th>');
-								document.write('	<td class="w3-center w3-light-grey">' + (arrRoundData[0][x + 25] + 1) + '</td>');
+								document.write('	<td class="w3-center w3-light-grey">---</td>');
+								document.write('	<td class="w3-center w3-light-grey">' + (arrRoundData[0][x + 25]) + '</td>');
 								document.write('	<td class="w3-center ' + varScoreColor + '">' + arrRoundData[0][x + 7] + '</td>');
 								document.write('	<td class="w3-center ' + varPlusMinusColor + '">' + varPlusMinus + '</td>');
 								document.write('</tr>');
@@ -146,6 +148,7 @@
 								if (x == 9) {
 									document.write('<tr>');
 									document.write('	<th class="w3-center w3-grey">OUT</th>');
+									document.write('	<td class="w3-center w3-grey">---</td>');
 									document.write('	<td class="w3-center w3-grey">' + varFrontPar + '</td>');
 									document.write('	<td class="w3-center w3-grey">' + varFrontScore + '</td>');
 									document.write('	<td class="w3-center w3-grey">' + varPlusMinus + '</td>');
@@ -165,6 +168,7 @@
 									
 									document.write('<tr>');
 									document.write('	<th class="w3-center w3-grey">IN</th>');
+									document.write('	<td class="w3-center w3-grey">---</td>');
 									document.write('	<td class="w3-center w3-grey">' + varBackPar + '</td>');
 									document.write('	<td class="w3-center w3-grey">' + varBackScore + '</td>');
 									document.write('	<td class="w3-center w3-grey">' + varPlusMinus + '</td>');
@@ -181,12 +185,14 @@
 									
 									document.write('<tr>');
 									document.write('	<th class="w3-center w3-grey">GROSS</th>');
+									document.write('	<td class="w3-center w3-light-grey">-</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + (varFrontPar + varBackPar) + '</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + (varFrontScore + varBackScore) + '</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + varPlusMinus + '</td>');
 									document.write('</tr>');
 									document.write('<tr>');
 									document.write('	<th class="w3-center w3-grey">PEN</th>');
+									document.write('	<td class="w3-center w3-light-grey">-</td>');
 									document.write('	<td class="w3-center w3-light-grey">-</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + arrRoundData[0][7] + '</td>');
 									document.write('	<td class="w3-center w3-light-grey">-</td>');
@@ -203,6 +209,7 @@
 									
 									document.write('<tr>');
 									document.write('	<th class="w3-center w3-grey">NET</th>');
+									document.write('	<td class="w3-center w3-light-grey">-</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + (varFrontPar + varBackPar) + '</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + (varFrontScore + varBackScore + arrRoundData[0][7]) + '</td>');
 									document.write('	<td class="w3-center w3-light-grey">' + varPlusMinus + '</td>');
@@ -243,56 +250,56 @@
 						</tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 4 Average</td>
+							<td class="w3-bar-item w3-padding">Par 3 Average</td>
 							<script>
 								document.write('<td>' + (arrParType[0] / arrParType[1]).toFixed(3) + '</td>');
 							</script>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 5 Average</td>
+							<td class="w3-bar-item w3-padding">Par 4 Average</td>
 							<script>
 								document.write('<td>' + (arrParType[2] / arrParType[3]).toFixed(3) + '</td>');
 							</script>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 6 Average</td>
+							<td class="w3-bar-item w3-padding">Par 5 Average</td>
 							<script>
 								document.write('<td>' + (arrParType[4] / arrParType[5]).toFixed(3) + '</td>');
 							</script>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 4 +/-</td>
+							<td class="w3-bar-item w3-padding">Par 3 +/-</td>
 							<script>
-								if ((arrParType[0] / arrParType[1]) == 4) {
+								if ((arrParType[0] / arrParType[1]) == 3) {
 									document.write('<td>E</td>');
-								} else if ((arrParType[0] / arrParType[1]) > 4) {
-									document.write('<td>+ ' + (arrParType[0] - (arrParType[1] * 4)) + '</td>');
-								} else if ((arrParType[0] / arrParType[1]) < 4) {
-									document.write('<td>- ' + ((arrParType[0] - (arrParType[1] * 4)) * -1) + '</td>');
+								} else if ((arrParType[0] / arrParType[1]) > 3) {
+									document.write('<td>+ ' + (arrParType[0] - (arrParType[1] * 3)) + '</td>');
+								} else if ((arrParType[0] / arrParType[1]) < 3) {
+									document.write('<td>- ' + ((arrParType[0] - (arrParType[1] * 3)) * -1) + '</td>');
 								}
 							</script>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 5 +/-</td>
+							<td class="w3-bar-item w3-padding">Par 4 +/-</td>
 							<script>
-								if ((arrParType[2] / arrParType[3]) == 5) {
+								if ((arrParType[2] / arrParType[3]) == 4) {
 									document.write('<td>E</td>');
-								} else if ((arrParType[2] / arrParType[3]) > 5) {
-									document.write('<td>+ ' + (arrParType[2] - (arrParType[3] * 5)) + '</td>');
-								} else if ((arrParType[2] / arrParType[3]) < 5) {
-									document.write('<td>- ' + ((arrParType[2] - (arrParType[3] * 5)) * -1) + '</td>');
+								} else if ((arrParType[2] / arrParType[3]) > 4) {
+									document.write('<td>+ ' + (arrParType[2] - (arrParType[3] * 4)) + '</td>');
+								} else if ((arrParType[2] / arrParType[3]) < 4) {
+									document.write('<td>- ' + ((arrParType[2] - (arrParType[3] * 4)) * -1) + '</td>');
 								}
 							</script>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding">Mar 6 +/-</td>
+							<td class="w3-bar-item w3-padding">Par 5 +/-</td>
 							<script>
-								if ((arrParType[4] / arrParType[5]) == 6) {
+								if ((arrParType[4] / arrParType[5]) == 5) {
 									document.write('<td>E</td>');
-								} else if ((arrParType[4] / arrParType[5]) > 6) {
-									document.write('<td>+ ' + (arrParType[4] - (arrParType[5] * 6)) + '</td>');
-								} else if ((arrParType[4] / arrParType[5]) < 6) {
-									document.write('<td>- ' + ((arrParType[4] - (arrParType[5] * 6)) * -1) + '</td>');
+								} else if ((arrParType[4] / arrParType[5]) > 5) {
+									document.write('<td>+ ' + (arrParType[4] - (arrParType[5] * 5)) + '</td>');
+								} else if ((arrParType[4] / arrParType[5]) < 5) {
+									document.write('<td>- ' + ((arrParType[4] - (arrParType[5] * 5)) * -1) + '</td>');
 								}
 							</script>
 						</tr>
@@ -369,31 +376,31 @@
 					<table class="w3-table w3-light-grey">
 						<tr>
 							<td class="w3-bar-item w3-padding w3-yellow" width="40px"></td>
-							<td>Malbatross / Eagle</td>
+							<td>Eagle</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-blue" width="40px"></td>
-							<td>Meagle / Birdie</td>
+							<td>Birdie</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-green" width="40px"></td>
-							<td>Mirdie / Par</td>
+							<td>Par</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-white" width="40px"></td>
-							<td>Mar / Bogey</td>
+							<td>Bogey</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-orange" width="40px"></td>
-							<td>Mogey / Dbl Bogey</td>
+							<td>Dbl Bogey</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-red" width="40px"></td>
-							<td>Dbl Mogey / Trp Bogey</td>
+							<td>Trp Bogey</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-brown" width="40px"></td>
-							<td>Trp Mogey / Quad Bogey</td>
+							<td>Quad Bogey</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-black" width="40px"></td>
@@ -401,12 +408,16 @@
 						</tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr>
+							<td class="w3-bar-item w3-padding w3-pale-yellow" width="40px"></td>
+							<td>Under Par</td>
+						</tr>
+						<tr>
 							<td class="w3-bar-item w3-padding w3-pale-green" width="40px"></td>
-							<td>Under Mar</td>
+							<td>Under "Mar"</td>
 						</tr>
 						<tr>
 							<td class="w3-bar-item w3-padding w3-pale-red" width="40px"></td>
-							<td>Over Mar</td>
+							<td>Over "Mar"</td>
 						</tr>
 					</table>
 				</div>
