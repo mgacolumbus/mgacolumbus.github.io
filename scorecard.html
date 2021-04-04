@@ -128,13 +128,13 @@
 								if (arrRoundData[0][x + 7] - arrRoundData[0][x + 25] - 1 > 3)	{ varScoreColor = 'w3-black'; arrScoreType[7] += 1; }
 								
 								if (varPlusMinusNum > 18) {
-									varPlusMinusColor = 'w3-pale-red';
+									varPlusMinusColor = '#FF9F89';
 								} else if (varPlusMinusNum < 0) {
-									varPlusMinusColor = 'w3-pale-yellow';
+									varPlusMinusColor = '#FFFA89';
 								} else if (varPlusMinusNum < 18) {
-									varPlusMinusColor = 'w3-pale-green';
+									varPlusMinusColor = '#BBFF99';
 								} else {
-									varPlusMinusColor = 'w3-white';
+									varPlusMinusColor = '#FFFFFF';
 								}
 								
 								document.write('<tr>');
@@ -142,7 +142,7 @@
 								document.write('	<td class="w3-center w3-light-grey">---</td>');
 								document.write('	<td class="w3-center w3-light-grey">' + (arrRoundData[0][x + 25]) + '</td>');
 								document.write('	<td class="w3-center ' + varScoreColor + '">' + arrRoundData[0][x + 7] + '</td>');
-								document.write('	<td class="w3-center ' + varPlusMinusColor + '">' + varPlusMinus + '</td>');
+								document.write('	<td class="w3-center" style="background-color: ' + varPlusMinusColor + ';">' + varPlusMinus + '</td>');
 								document.write('</tr>');
 								
 								if (x == 9) {
@@ -408,15 +408,15 @@
 						</tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr>
-							<td class="w3-bar-item w3-padding w3-pale-yellow" width="40px"></td>
+							<td class="w3-bar-item w3-padding" style="background-color: #FFFA89;" width="40px"></td>
 							<td>Under Par</td>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding w3-pale-green" width="40px"></td>
+							<td class="w3-bar-item w3-padding" style="background-color: #BBFF99;" width="40px"></td>
 							<td>Under "Mar"</td>
 						</tr>
 						<tr>
-							<td class="w3-bar-item w3-padding w3-pale-red" width="40px"></td>
+							<td class="w3-bar-item w3-padding" style="background-color: #FF9F89;" width="40px"></td>
 							<td>Over "Mar"</td>
 						</tr>
 					</table>
