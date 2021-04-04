@@ -6,7 +6,7 @@ function html_EventWinnersList(Event) {
 		var varCurrentSeason	=	getCurrentSeason();
 	/**---------------------------------------------------------------------**/
 
-	document.write('<h5>' + vEvent + '</h5>');
+	document.write('<h5 style="font-weight: bold;">' + vEvent + '</h5>');
 	document.write('<table class="w3-table w3-striped w3-white">');
 
 	while (varCurrentSeason >= 2012) {
