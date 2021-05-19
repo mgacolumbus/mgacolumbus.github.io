@@ -29,6 +29,7 @@ function getData_Golfers() {
 		"Brent Isner",
 		"Brett Ewing",
 		"Brian BenVenuto",
+		"Brian Rue",
 		"Brian Zimmerschied",
 		"Brice Darbyshire",
 		"Bruce Zion",
@@ -49,6 +50,7 @@ function getData_Golfers() {
 		"Corinne Bigelow",
 		"Craig Seibert",
 		"Dan Nelson",
+		"Dan White",
 		"Dana Rose",
 		"Dave Rice",
 		"David Knowles",
@@ -68,6 +70,7 @@ function getData_Golfers() {
 		"Dustin Wood",
 		"Dylan Harbolt",
 		"Elliot Mork",
+		"Emily Valandingham",
 		"Eric Heberle",
 		"Eric Martorana",
 		"Eric Pierce",
@@ -148,6 +151,7 @@ function getData_Golfers() {
 		"Merrill Wheeler",
 		"Michael Bobowski",
 		"Michael Grote",
+		"Michael Isfort",
 		"Michael McGuire",
 		"Michael Perry",
 		"Mike Galvin",
@@ -164,6 +168,7 @@ function getData_Golfers() {
 		"Robby Thompson",
 		"Robert McArthur",
 		"Ryan Chiarito",
+		"Ryan Coady",
 		"Ryan Downing",
 		"Ryan Rainey",
 		"Sam Palumbo",
@@ -178,6 +183,7 @@ function getData_Golfers() {
 		"Steve Sillato",
 		"Steven Baybutt",
 		"Steven Merrill",
+		"Steven Murtanovski",
 		"Sundar Digumarthy",
 		"Tavis Nelson",
 		"Terry Collins",
@@ -190,11 +196,12 @@ function getData_Golfers() {
 		"Tony Szymczak",
 		"Tony Zimmerman",
 		"Trevor Boyd",
+		"Ty Wilson",
 		"William Sorokas",
 		"Zac Laumer",
 		"Zach Chillinsky",
-		"Zachary Dunham"
+		"Zachary Dunham",
 	]
-	
-	return arrGolferNames.sort();
+
+	return arrGolferNames;
 }
