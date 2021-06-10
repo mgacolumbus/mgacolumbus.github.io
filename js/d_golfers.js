@@ -30,6 +30,7 @@ function getData_Golfers() {
 		"Brett Ewing",
 		"Brian BenVenuto",
 		"Brian Rue",
+		"Brian Spangenberg",
 		"Brian Zimmerschied",
 		"Brice Darbyshire",
 		"Bruce Zion",
