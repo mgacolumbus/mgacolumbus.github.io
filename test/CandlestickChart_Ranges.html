@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['3/15/2021', 83, 83, 128, 128],
+      ['4/15/2021', 81, 81, 135, 135],
+      ['5/15/2021', 84, 84, 139, 139],
+      ['6/15/2021', 83, 83, 128, 128],
+      ['7/15/2021', 83, 83, 128, 128],
+      ['8/15/2021', 83, 83, 128, 128],
+      ['9/15/2021', 83, 83, 128, 128],
+      ['10/15/2021', 83, 83, 128, 128],
+      // Treat first row as data as well.
+    ], true);
+
+    var options = {
+      legend:'none',
+	  vAxis: {maxValue: "200"}
+    };
+
+    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+  }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+  </body>
+</html>

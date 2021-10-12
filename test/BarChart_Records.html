@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+		['Names','Wins',{role: 'annotation'},{role: 'style'},{role: 'tooltip'}],
+          ['Jason Strickland', 19, '19','color: green','Jason Strickland\nWins: 19\n78 events\n24.36% win rate'],
+          ['David Knowles', 6, '6','color: red','David Knowles\nWins: 6\n47 events\n12.77% win rate'],
+        //  ['Andy Nentwich', 5],
+        //  ['Doug Murray', 4],
+        //  ['John Leite', 3],
+        //  ['Merrill Wheeler', 3],
+        //  ['Todd Koch', 3]
+        ]);
+		
+		var chartAreaHeight = data.getNumberOfRows() * 40;
+		var chartHeight = chartAreaHeight + 80;
+		
+        var options = {
+          title: 'Most Career Wins',
+		  fontSize: 15,
+		  height: chartHeight,
+		  chartArea: {height: chartAreaHeight},
+          //width: 1200,
+          legend: { position: 'none' },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="top_x_div" style="width: 100%; height: 100%; color: black; font-weight: bold;"></div>
+  </body>
+</html>
