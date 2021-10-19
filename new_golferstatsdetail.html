@@ -61,16 +61,33 @@
 				}
 			}
 
-			var vEventCountSeason		= 0;
-			var vEventCountTotal		= 0;
-			var vEventEarningsSeason	= 0;
-			var vEventEarningsTotal		= 0;
+			var vEventCountSeason	= 0;
+			var vEventCountTotal	= 0;
+			var vEarningsSeason		= 0;
+			var vEarningsTotal		= 0;
+			var vEarningsSeason		= 0;
+			var vEarningsTotal		= 0;
+			var vWinsSeason			= 0;
+			var vWinsTotal			= 0;
+			var vRunnerUpsSeason	= 0;
+			var vRunnerUpsTotal		= 0;
+			var vCashesSeason		= 0;
+			var vCashesTotal		= 0;
+			var vDQsSeason			= 0;
+			var vDQsTotal			= 0;
+			var vTop5sSeason		= 0;
+			var vTop5sTotal			= 0;
 
 			//Perform various calculations
 			for (s = 0; s < arrSeasons.length; s++) {
 
 				vEventCountSeason = 0;
-				vEventEarningsSeason = 0;
+				vEarningsSeason = 0;
+				vWinsSeason = 0;
+				vRunnerUpsSeason = 0;
+				vTop5sSeason = 0;
+				vCashesSeason = 0;
+				vDQsSeason = 0;
 
 				for (r = 0; r < aGolferData.length; r++) {
 
@@ -83,9 +100,13 @@
 								if (aGolferData[r][0].substr(6,9) == arrSeasons[s]) {
 									
 									vEventCountSeason++;
-									vEventCountTotal++;
-									vEventEarningsSeason += aGolferData[r][6];
-									vEventEarningsTotal += aGolferData[r][6];
+									vEarningsSeason += aGolferData[r][6];
+									
+									if (aGolferData[r][4] == 1) { vWinsSeason++; }
+									if (aGolferData[r][4] == 2) { vRunnerUpsSeason++; }
+									if (aGolferData[r][4] <= 5 && aGolferData[r][4] > 0) { vTop5sSeason++; }
+									if (aGolferData[r][4] <= 16 && aGolferData[r][4] > 0) { vCashesSeason++; }
+									if (aGolferData[r][4] == 0) { vDQsSeason++; }
 								}
 							}
 						}
@@ -93,11 +114,29 @@
 				}
 
 				aDisplayData[s][1] = vEventCountSeason;
-				aDisplayData[s][2] = vEventEarningsSeason;
+				aDisplayData[s][2] = vEarningsSeason;
+				aDisplayData[s][3] = vWinsSeason;
+				aDisplayData[s][4] = vRunnerUpsSeason;
+				aDisplayData[s][5] = vTop5sSeason;
+				aDisplayData[s][6] = vCashesSeason;
+				aDisplayData[s][7] = vDQsSeason;
+				
+				vEventCountTotal += vEventCountSeason;
+				vEarningsTotal += vEarningsSeason;
+				vWinsTotal += vWinsSeason;
+				vRunnerUpsTotal += vRunnerUpsSeason;
+				vTop5sTotal += vTop5sSeason;
+				vCashesTotal += vCashesSeason;
+				vDQsTotal += vDQsSeason;
 			}
 
 			aDisplayData[arrSeasons.length][1] = vEventCountTotal;
-			aDisplayData[arrSeasons.length][2] = vEventEarningsTotal;
+			aDisplayData[arrSeasons.length][2] = vEarningsTotal;
+			aDisplayData[arrSeasons.length][3] = vWinsTotal;
+			aDisplayData[arrSeasons.length][4] = vRunnerUpsTotal;
+			aDisplayData[arrSeasons.length][5] = vTop5sTotal;
+			aDisplayData[arrSeasons.length][6] = vCashesTotal;
+			aDisplayData[arrSeasons.length][7] = vDQsTotal;
 
 
 			//Remove empty rows
@@ -136,10 +175,12 @@
 				
 				data.addColumn('string', 'Season');
 				data.addColumn('number', 'Events');
-				data.addColumn('number', 'Earnings');
-				//string
-				//data.addColumn('number', 'Salary');
-				//data.addColumn('boolean', 'Full Time Employee');
+				data.addColumn('number', 'Earned');
+				data.addColumn('number', 'Wins');
+				data.addColumn('number', '2nds');
+				data.addColumn('number', 'Top5s');
+				data.addColumn('number', 'Cashes');
+				data.addColumn('number', 'DQs');
 				
 				data.addRows(aDisplayData);
 
