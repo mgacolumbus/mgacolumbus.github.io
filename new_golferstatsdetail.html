@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+		<meta charset="UTF-8">
+
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+		</script>
+		
+		<script>	
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+		
+		<script>
+			var arrGolferRawData = getData_Rounds();
+			var arrSeasons = getData_Seasons();
+
+			var aDisplayData		= new Array();
+
+			var bAllGolfers			= false;
+			var bAllCourses			= false;
+			var bAllEvents			= false;
+			var bAllMajors			= false;
+			var bAllNonMajors		= false;
+			var aGolferData 		= new Array();
+			var vGolferDataIndex	= 0;
+
+			if (arrURL[3] == undefined)			{ bAllGolfers	= true; }
+			if (arrURL[5] == "All Courses")		{ bAllCourses	= true; }
+			if (arrURL[4] == "All Events")		{ bAllEvents	= true; }
+			if (arrURL[4] == "All Majors")		{ bAllMajors	= true; }
+			if (arrURL[4] == "All Non-Majors")	{ bAllNonMajors	= true; }
+
+			for (s = 0; s < arrSeasons.length; s++) {
+
+				aDisplayData[s] = [ arrSeasons[s].toString() ];
+			}
+			aDisplayData[arrSeasons.length] = [ "Totals" ]
+
+			//Extract only the records that match the filers
+			for (r = 0; r < arrGolferRawData.length; r++) {
+				
+				if (arrGolferRawData[r][3] == getGolferName(arrURL[3]) || bAllGolfers == true) {
+					
+					if (arrGolferRawData[r][2] == getCourseName(arrURL[5]) || bAllCourses == true) {
+
+						if (arrGolferRawData[r][1] == getEventName(arrURL[4]) || bAllEvents == true || (bAllMajors == true && isMajor(arrGolferRawData[r][1]) == true) || (bAllNonMajors == true && isMajor(arrGolferRawData[r][1]) == false)) {
+
+							if (arrGolferRawData[r][0].substr(6,9) >= arrURL[1] && arrGolferRawData[r][0].substr(6,9) <= arrURL[2]) {
+								
+								aGolferData[vGolferDataIndex] = arrGolferRawData[r];
+								vGolferDataIndex++;
+							}
+						}
+					}
+				}
+			}
+
+			var vEventCountSeason		= 0;
+			var vEventCountTotal		= 0;
+			var vEventEarningsSeason	= 0;
+			var vEventEarningsTotal		= 0;
+
+			//Perform various calculations
+			for (s = 0; s < arrSeasons.length; s++) {
+
+				vEventCountSeason = 0;
+				vEventEarningsSeason = 0;
+
+				for (r = 0; r < aGolferData.length; r++) {
+
+					if (aGolferData[r][3] == getGolferName(arrURL[3]) || bAllGolfers == true) {
+						
+						if (aGolferData[r][2] == getCourseName(arrURL[5]) || bAllCourses == true) {
+
+							if (aGolferData[r][1] == getEventName(arrURL[4]) || bAllEvents == true || (bAllMajors == true && isMajor(aGolferData[r][1]) == true) || (bAllNonMajors == true && isMajor(aGolferData[r][1]) == false)) {
+
+								if (aGolferData[r][0].substr(6,9) == arrSeasons[s]) {
+									
+									vEventCountSeason++;
+									vEventCountTotal++;
+									vEventEarningsSeason += aGolferData[r][6];
+									vEventEarningsTotal += aGolferData[r][6];
+								}
+							}
+						}
+					}
+				}
+
+				aDisplayData[s][1] = vEventCountSeason;
+				aDisplayData[s][2] = vEventEarningsSeason;
+			}
+
+			aDisplayData[arrSeasons.length][1] = vEventCountTotal;
+			aDisplayData[arrSeasons.length][2] = vEventEarningsTotal;
+
+
+			//Remove empty rows
+			var tmpIndex = 0;
+			var tmpArray = new Array();
+
+			for (z = 0; z < aDisplayData.length; z++) {
+
+				if (aDisplayData[z][1] > 0 || aDisplayData[z][0] == "Totals") {
+
+					tmpArray[tmpIndex] = aDisplayData[z];
+					tmpIndex++;
+				}
+			}
+
+			aDisplayData = new Array();
+			aDisplayData = tmpArray;
+
+		</script>
+
+
+		//****************************
+		//   Google Charts Stuff...
+		//****************************
+		<style>
+			.google-visualization-table-td { text-align: center !important; }
+		</style>
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	    <script type="text/javascript">
+			google.charts.load('current', {'packages':['table']});
+			google.charts.setOnLoadCallback(drawTable);
+
+			function drawTable() {
+				var data = new google.visualization.DataTable();
+				
+				data.addColumn('string', 'Season');
+				data.addColumn('number', 'Events');
+				data.addColumn('number', 'Earnings');
+				//string
+				//data.addColumn('number', 'Salary');
+				//data.addColumn('boolean', 'Full Time Employee');
+				
+				data.addRows(aDisplayData);
+
+				var formatter = new google.visualization.NumberFormat({pattern: '$###,##0.00'});
+			
+				formatter.format(data, 2);  
+
+				var table = new google.visualization.Table(document.getElementById('table_div'));
+
+				table.draw(data, {showRowNumber: false, sort: 'disable', width: '100%', height: '100%'});
+			}
+	    </script>
+	    //****************************
+	    //****************************
+	</head>
+
+	
+	<script>
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
+	</script>
+
+		
+		<script>
+			html_TopContainer();
+		</script>
+
+		
+		<br /><br />
+		<script>
+			html_NavigationPanel("GolferStats");
+		</script>
+
+
+		<div class="w3-main" style="margin-left:300px;margin-top:0px;">
+
+
+			<header class="w3-container" style="padding-top:22px">
+				<h5>
+					<b>
+						<i class="fa fa-user"></i>
+						&nbsp;&nbsp;&nbsp;Golfer Stats
+					</b>
+				</h5>
+			</header>
+
+
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<script>
+						html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+					</script>
+					
+					<script>
+						//alert(arrURL[8]);alert(arrURL[9]);
+						html_RecordSearchBox(arrURL[0], arrURL[7], arrURL[8], arrURL[9]);
+					</script>
+				</div>
+			</div>
+			
+
+			<hr style="background-color:#999999; height:2px; width:100%;" />
+
+			<div class="w3-container">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-container">
+
+						<h5>Placement &amp; Earnings</h5>
+
+						<div id="table_div"></div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<script>
+				html_Footer();
+			</script>
+
+		</div>
+		
+		
+		<!-- DO NOT MOVE OR ALTER -->
+		<!-- Handling of menu for smaller screens -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+	</body>
+	
+</html>
