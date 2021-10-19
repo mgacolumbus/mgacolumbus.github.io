@@ -74,8 +74,6 @@
 			var vCashesTotal		= 0;
 			var vDQsSeason			= 0;
 			var vDQsTotal			= 0;
-			var vTop5sSeason		= 0;
-			var vTop5sTotal			= 0;
 
 			//Perform various calculations
 			for (s = 0; s < arrSeasons.length; s++) {
@@ -84,7 +82,6 @@
 				vEarningsSeason = 0;
 				vWinsSeason = 0;
 				vRunnerUpsSeason = 0;
-				vTop5sSeason = 0;
 				vCashesSeason = 0;
 				vDQsSeason = 0;
 
@@ -103,7 +100,6 @@
 									
 									if (aGolferData[r][4] == 1) { vWinsSeason++; }
 									if (aGolferData[r][4] == 2) { vRunnerUpsSeason++; }
-									if (aGolferData[r][4] <= 5 && aGolferData[r][4] > 0) { vTop5sSeason++; }
 									if (aGolferData[r][4] <= 16 && aGolferData[r][4] > 0) { vCashesSeason++; }
 									if (aGolferData[r][4] == 0) { vDQsSeason++; }
 								}
@@ -116,15 +112,13 @@
 				aDisplayData[s][2] = vEarningsSeason;
 				aDisplayData[s][3] = vWinsSeason;
 				aDisplayData[s][4] = vRunnerUpsSeason;
-				aDisplayData[s][5] = vTop5sSeason;
-				aDisplayData[s][6] = vCashesSeason;
-				aDisplayData[s][7] = vDQsSeason;
+				aDisplayData[s][5] = vCashesSeason;
+				aDisplayData[s][6] = vDQsSeason;
 				
 				vEventCountTotal += vEventCountSeason;
 				vEarningsTotal += vEarningsSeason;
 				vWinsTotal += vWinsSeason;
 				vRunnerUpsTotal += vRunnerUpsSeason;
-				vTop5sTotal += vTop5sSeason;
 				vCashesTotal += vCashesSeason;
 				vDQsTotal += vDQsSeason;
 			}
@@ -133,9 +127,8 @@
 			aDisplayData[arrSeasons.length][2] = vEarningsTotal;
 			aDisplayData[arrSeasons.length][3] = vWinsTotal;
 			aDisplayData[arrSeasons.length][4] = vRunnerUpsTotal;
-			aDisplayData[arrSeasons.length][5] = vTop5sTotal;
-			aDisplayData[arrSeasons.length][6] = vCashesTotal;
-			aDisplayData[arrSeasons.length][7] = vDQsTotal;
+			aDisplayData[arrSeasons.length][5] = vCashesTotal;
+			aDisplayData[arrSeasons.length][6] = vDQsTotal;
 
 
 			//Remove empty rows
@@ -171,11 +164,10 @@
 				var data = new google.visualization.DataTable();
 				
 				data.addColumn('string', 'Season');
-				data.addColumn('number', 'Events');
+				data.addColumn('number', 'Rounds');
 				data.addColumn('number', 'Earned');
 				data.addColumn('number', 'Wins');
 				data.addColumn('number', '2nds');
-				data.addColumn('number', 'Top5s');
 				data.addColumn('number', 'Cashes');
 				data.addColumn('number', 'DQs');
 				
@@ -187,7 +179,7 @@
 
 				var table = new google.visualization.Table(document.getElementById('table_div'));
 
-				table.draw(data, {showRowNumber: false, sort: 'disable', width: '100%', height: '100%'});
+				table.draw(data, {allowHtml: true, showRowNumber: false, sort: 'disable', width: '100%', height: '100%'});
 			}
 	    </script>
 		<!-- End Google -->
