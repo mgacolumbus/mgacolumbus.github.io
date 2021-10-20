@@ -6,15 +6,15 @@ function getRoundScore(RoundArray, RoundIndex) {
 		var varBackNine			=	0;
 	/**---------------------------------------------------------------------**/
 	
-	for (s = 0; s < 18; s++)
+	for (rs = 0; rs < 18; rs++)
 	{
-		if (s < 9)
+		if (rs < 9)
 		{
-			varFrontNine += pRound[pRoundIndex][s + 8];
+			varFrontNine += pRound[pRoundIndex][rs + 8];
 		}
 		else
 		{
-			varBackNine += pRound[pRoundIndex][s + 8];
+			varBackNine += pRound[pRoundIndex][rs + 8];
 		}
 	}
 	
