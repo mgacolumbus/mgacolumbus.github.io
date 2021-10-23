@@ -90,6 +90,19 @@
 			var vHi9Total				= 0;
 			var vStrokesSeasonHold		= 0;
 			var vStrokesTotalHold		= 0;
+			var vPar3AverageSeason		= 0;
+			var vPar4AverageSeason		= 0;
+			var vPar5AverageSeason		= 0;
+			var vPar3AverageTotal		= 0;
+			var vPar4AverageTotal		= 0;
+			var vPar5AverageTotal		= 0;
+			var vPar3AverageTotalCount	= 0;
+			var vPar4AverageTotalCount	= 0;
+			var vPar5AverageTotalCount	= 0;
+			var vPar3AverageCount		= 0;
+			var vPar4AverageCount		= 0;
+			var vPar5AverageCount		= 0;
+
 
 			//Perform various calculations
 			for (s = 0; s < arrSeasons.length; s++) {
@@ -106,6 +119,12 @@
 				vLow9Season = 999;
 				vHi9Season = 0;
 				vStrokesSeasonHold = 0;
+				vPar3AverageCount = 0;
+				vPar4AverageCount = 0;
+				vPar5AverageCount = 0;
+				vPar3AverageSeason = 0;
+				vPar4AverageSeason = 0;
+				vPar5AverageSeason = 0;
 
 				for (r = 0; r < aGolferData.length; r++) {
 
@@ -155,6 +174,27 @@
 									}
 
 									vStrokesSeasonHold += vRoundHold[2];
+
+									for (pa = 26; pa < 44; pa++) {
+										
+										if (aGolferData[r][pa] == 3) {
+											
+											vPar3AverageCount++;
+											vPar3AverageSeason += aGolferData[r][pa - 18];
+										}
+
+										if (aGolferData[r][pa] == 4) {
+											
+											vPar4AverageCount++;
+											vPar4AverageSeason += aGolferData[r][pa - 18];
+										}
+
+										if (aGolferData[r][pa] == 5) {
+											
+											vPar5AverageCount++;
+											vPar5AverageSeason += aGolferData[r][pa - 18];
+										}
+									}
 								}
 							}
 						}
@@ -187,8 +227,17 @@
 				aDisplayDataScoring[s][3] = vHiRoundSeason;
 				aDisplayDataScoring[s][4] = vLow9Season;
 				aDisplayDataScoring[s][5] = vHi9Season;
+				aDisplayDataScoring[s][6] = (vPar3AverageSeason / vPar3AverageCount).toFixed(3);
+				aDisplayDataScoring[s][7] = (vPar4AverageSeason / vPar4AverageCount).toFixed(3);
+				aDisplayDataScoring[s][8] = (vPar5AverageSeason / vPar5AverageCount).toFixed(3);
 
 				vStrokesTotalHold += vStrokesSeasonHold;
+				vPar3AverageTotal += vPar3AverageSeason;
+				vPar4AverageTotal += vPar4AverageSeason;
+				vPar5AverageTotal += vPar5AverageSeason;
+				vPar3AverageTotalCount += vPar3AverageCount;
+				vPar4AverageTotalCount += vPar4AverageCount;
+				vPar5AverageTotalCount += vPar5AverageCount;
 
 				if (vLowRoundSeason < vLowRoundTotal) {
 
@@ -230,6 +279,9 @@
 			aDisplayDataScoring[arrSeasons.length][3] = vHiRoundTotal;
 			aDisplayDataScoring[arrSeasons.length][4] = vLow9Total;
 			aDisplayDataScoring[arrSeasons.length][5] = vHi9Total;
+			aDisplayDataScoring[arrSeasons.length][6] = (vPar3AverageTotal / vPar3AverageTotalCount).toFixed(3);
+			aDisplayDataScoring[arrSeasons.length][7] = (vPar4AverageTotal / vPar4AverageTotalCount).toFixed(3);
+			aDisplayDataScoring[arrSeasons.length][8] = (vPar5AverageTotal / vPar5AverageTotalCount).toFixed(3);
 
 
 			//Remove empty rows
@@ -310,15 +362,15 @@
 				data_scoring.addColumn('number', 'HighRnd');
 				data_scoring.addColumn('number', 'Low9');
 				data_scoring.addColumn('number', 'High9');
-				//data.addColumn('number', 'P3Avg');
-				//data.addColumn('number', 'P4Avg');
-				//data.addColumn('number', 'P5Avg');
+				data_scoring.addColumn('string', 'P3Avg');
+				data_scoring.addColumn('string', 'P4Avg');
+				data_scoring.addColumn('string', 'P5Avg');
 				
 				data_scoring.addRows(aDisplayDataScoring);
 
-				var formatter = new google.visualization.NumberFormat({pattern: '$####.000'});
+				//var formatter = new google.visualization.NumberFormat({pattern: '####.000'});
 			
-				formatter.format(data_scoring, 1);  
+				//formatter.format(data_scoring, 1);  
 
 				var table_scoring = new google.visualization.Table(document.getElementById('scoring_table_div'));
 
