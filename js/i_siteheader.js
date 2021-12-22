@@ -15,7 +15,9 @@ function html_SiteHeader() {
 	document.write('html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}');
 	document.write('footer {background-color: #b2b2b2; padding: 25px;}')
 	document.write('.navbar {border-radius: 0; background-color: #292929;}')
+	document.write('.panel_heading_ext {text-align: center;}')
 	document.write('.panel_footer_ext {background-color: #c2c2c2; text-align: center;}')
+	document.write('.table-condensed_ext {font-size: 12px; font-weight: bold;}')
 	document.write('</style>');
 }
 
