@@ -11,7 +11,6 @@
 			var arrURL = getURLParsed(url);
 			
 			var varDisplayCount = 0;
-			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -26,7 +25,7 @@
             <div class="media center">
                 <div class="media-body media-middle">
                     <script>
-						document.write('<h2 class="media-heading">' + varCurrentSeason + ' Season Money List</h2>')
+						document.write('<h2 class="media-heading">' + arrURL[10] + ' Season Money List</h2>')
 					</script>
                 </div>
             </div>
@@ -49,7 +48,7 @@
 						<tbody>
 							<script>
 								var arrDisplayMoney = new Array();
-								arrDisplayMoney = getMoneyList_Season(getCurrentSeason());
+								arrDisplayMoney = getMoneyList_Season(arrURL[10]);
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
