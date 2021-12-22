@@ -10,6 +10,10 @@ function StartEngine() {
 	document.write('<script src="js/d_rounds.js"></script>');
 	document.write('<script src="js/d_seasons.js"></script>');
 	
+	/*  Category Functions  */
+	document.write('<script src="js/c_getMoneyList_Season.js"></script>');
+	document.write('<script src="js/c_getWinnersList.js"></script>');
+	
 	/*  Javascript Includes  */
 	document.write('<script src="js/i_coursedetailtopboxes.js"></script>');
 	document.write('<script src="js/i_courselist.js"></script>');

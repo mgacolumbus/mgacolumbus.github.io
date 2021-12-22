@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel2();
+		</script>
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+                    <h1 class="media-heading">Event Champions</h1>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-12">
+					<table class="table table-responsive table-condensed">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Name</th>
+								<th>Event</th>
+								<th>Course</th>
+								<th>Score</th>
+								<th>Penalty</th>
+							<tr>
+						</thead>
+						<tbody>
+							<script>
+								var arrDisplayWinners = new Array();
+								arrDisplayWinners = getWinnersList();
+
+								for (d = arrDisplayWinners.length - 1; d >= 0; d--) {
+									document.write("<tr>")
+									document.write("<td>" + arrDisplayWinners[d][0] + "</td>");
+									document.write("<td>" + arrDisplayWinners[d][3] + "</td>");
+									document.write("<td>" + arrDisplayWinners[d][1] + "</td>");
+									document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
+									document.write("<td>" + getRoundScore(arrDisplayWinners, d)[2] + "</td>");
+									document.write("<td>+ " + arrDisplayWinners[d][7] + "</td>");
+									document.write("<tr>")
+								}
+							</script>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

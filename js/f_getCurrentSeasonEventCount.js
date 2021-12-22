@@ -7,14 +7,14 @@ function getCurrentSeasonEventCount() {
 			arrRounds				=	getData_Rounds();
 	/**---------------------------------------------------------------------**/
 	
-	for (e = 0; e < arrRounds.length; e += 4) {
+	for (eee = 0; eee < arrRounds.length; eee += 4) {
 
-		if (arrRounds[e][0].substr(6,9) == varCurrentSeason) {
+		if (arrRounds[eee][0].substr(6,9) == varCurrentSeason) {
 		
-			if (varDateHold != arrRounds[e][0]) {
+			if (varDateHold != arrRounds[eee][0]) {
 				
 				varEventCount++;
-				varDateHold = arrRounds[e][0];
+				varDateHold = arrRounds[eee][0];
 			}
 		}
 	}	

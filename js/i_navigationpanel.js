@@ -1,7 +1,6 @@
 function html_NavigationPanel(Source) {
 	/**---------------------------------------------------------------------**/
 		var varSource		=	arguments[0];
-		var varLinkHTML		=	"";
 	/**---------------------------------------------------------------------**/
 
 	document.write('<nav class="w3-sidebar w3-collapse w3-light-gray w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>');
@@ -38,4 +37,45 @@ function html_NavigationPanel(Source) {
 	document.write('	</div>');
 	document.write('</nav>');
 	document.write('<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>');
+}
+
+
+function html_NavigationPanel2() {
+	/**---------------------------------------------------------------------**/
+
+	/**---------------------------------------------------------------------**/
+	
+	document.write('<nav class="navbar navbar-inverse">');
+	document.write('	<div class="container-fluid">');
+	document.write('		<div class="navbar-header">');
+	document.write('			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">');
+	document.write('				<span class="icon-bar"></span>');
+	document.write('				<span class="icon-bar"></span>');
+	document.write('				<span class="icon-bar"></span>');
+	document.write('			</button>');
+	document.write('			<!--<a class="navbar-brand" href="http://mgatour.com/chapters/columbus" target="_chapter">MGA Columbus</a>-->');
+	document.write('		</div>');
+	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
+	document.write('			<ul class="nav navbar-nav">');
+	document.write('				<li><a href="index.html">Home</a></li>');
+	/*
+	document.write('				<li><a href="#">Current Season</a></li>');
+	document.write('				<li><a href="#">Results</a></li>');
+	document.write('				<li><a href="#">Stats</a></li>');
+	document.write('				<li><a href="#">Records</a></li>');
+	*/
+	document.write('				<li class="dropdown">');
+	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Social <span class="caret"></span></a>');
+	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
+	document.write('						<li><a href="https://www.facebook.com/ColumbusMga" target="_fb"><span class="fa fa-facebook-square"></span> Facebook</a></li>');
+	document.write('						<li><a href="https://twitter.com/mgacolumbus" target="_tw"><span class="fa fa-twitter-square"></span> Twitter</a></li>');
+	document.write('						<li><a href="https://www.instagram.com/mgacolumbus/" target="_ig"><span class="fa fa-instagram"></span> Instagram</a></li>');
+	document.write('						<li><a href="https://discord.gg/ygQmfyv" target="_ds"><img src="images/discord2.png" width="19px" height="19px" /> Discord</a></li>');
+	document.write('					</ul>');
+	document.write('				</li>');
+	document.write('				<li><a href="https://mgatour.com/chapters/contact-leader/1154" target="_em"><span class="fa fa-envelope"></span> Email Us</a></li>');
+	document.write('			</ul>');
+	document.write('		</div>');
+	document.write('	</div>');
+	document.write('</nav>');
 }

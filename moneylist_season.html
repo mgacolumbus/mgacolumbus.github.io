@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel2();
+		</script>
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+                    <script>
+						document.write('<h1 class="media-heading">' + varCurrentSeason + ' Season Money List</h1>')
+					</script>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-12">
+					<table class="table table-responsive table-condensed">
+						<thead>
+							<tr>
+								<th>&nbsp;</th>
+								<th>Name</th>
+								<th>Earnings</th>
+								<th>Events</th>
+							<tr>
+						</thead>
+						<tbody>
+							<script>
+								var arrDisplayMoney = new Array();
+								arrDisplayMoney = getMoneyList_Season(getCurrentSeason());
+
+								for (d = 0; d < arrDisplayMoney.length; d++) {
+									document.write("<tr>")
+									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+									document.write("<tr>")
+								}
+							</script>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

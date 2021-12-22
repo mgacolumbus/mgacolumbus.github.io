@@ -46,7 +46,7 @@ function get_NavigationItem(NavItem, HighlightSource) {
 								break;
 							}
 		case 'Overview':	{
-								varNavLink		=	'index.html';
+								varNavLink		=	'index_old.html';
 								varNavIcon		=	'fa-dashboard';
 								varNavColor		=	'black';
 								varNavTitle		=	'Overview';
