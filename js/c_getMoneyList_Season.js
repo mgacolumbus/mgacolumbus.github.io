@@ -1,6 +1,11 @@
-function getMoneyList_Season(Season) {
+function getMoneyList_Season(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin, oSeasonEnd) {
 	/**---------------------------------------------------------------------**/
-		var pSeason				=	arguments[0];
+		//var pSeason				=	arguments[0];
+		var pGolferIndex		=	arguments[0];
+		var pEventIndex			=	arguments[1];
+		var pCourseIndex		=	arguments[2];
+		var pSeasonBegin		=	arguments[3];
+		var pSeasonEnd			=	arguments[4];
 	
 		var varReturnIndex		=	0;
 		var varEventCount		=	0;
@@ -15,11 +20,13 @@ function getMoneyList_Season(Season) {
 		var arrGolfers			=	new Array();
 	/**---------------------------------------------------------------------**/
 	
-	if (pSeason != 'undefined') {
+	//if (pSeason != 'undefined') {
 	
-		arrRounds	= getData_Rounds();
+		//arrRounds	= getData_Rounds();
+		arrSeasonArray = getSpecificRounds(pGolferIndex,pEventIndex,pCourseIndex,pSeasonBegin,pSeasonEnd);
 		arrGolfers	= getData_Golfers();
-
+		
+		/*
 		for (rl = 0; rl < arrRounds.length; rl++) {
 
 			if (arrRounds[rl][0].substr(6, 9) == pSeason) {
@@ -29,6 +36,7 @@ function getMoneyList_Season(Season) {
 				varReturnIndex++;
 			}
 		}
+		*/
 		
 		varReturnIndex = 0;
 		
@@ -56,7 +64,7 @@ function getMoneyList_Season(Season) {
 				varReturnIndex++;
 			}
 		}
-	}
+	//}
 	
 	arrReturnArray.sort(function(a,b) {
 		return b[1]-a[1]

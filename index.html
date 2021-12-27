@@ -11,6 +11,7 @@
 			var arrURL = getURLParsed(url);
 			
 			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -115,7 +116,7 @@
 								<tbody>
 									<script>
 										var arrDisplayMoney = new Array();
-										arrDisplayMoney = getMoneyList_Season(getCurrentSeason());
+										arrDisplayMoney = getMoneyList_Season(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
 										varDisplayIndex = 0;
 
 										for (d = 0; d < varDisplayCount; d++) {
@@ -135,7 +136,7 @@
 						
 						<div class="panel-footer panel_footer_ext">
 							<script>
-								document.write('<a href="moneylist_season.html?s=' + getCurrentSeason() + '">View Full List</a>');
+								document.write('<a href="moneylist_season.html?sb=' + varCurrentSeason + '">View Full List</a>')
 							</script>
 						</div>
 						

@@ -27,7 +27,7 @@ function getSpecificRounds(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin
 	if (pSeasonBegin == 0 && pSeasonEnd == 0) {
 		bAllSeasons = true;
 	}
-	
+
 	if (pSeasonBegin == undefined || pSeasonEnd == undefined) {
 		bAllSeasons = true;
 	}
@@ -63,7 +63,6 @@ function getSpecificRounds(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin
 	if (bAllCourses == false) {
 		pCourse = getCourseName(pCourseIndex);
 	}
-	
 	
 	for (gsrl = 0; gsrl < arrHoldArray.length; gsrl++) {
 

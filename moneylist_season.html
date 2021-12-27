@@ -11,6 +11,7 @@
 			var arrURL = getURLParsed(url);
 			
 			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -19,14 +20,24 @@
 		<script>
 			html_NavigationPanel2();
 		</script>
+		
+		
+		<div class="container">
+			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Show / Hide Filters</button>
+			<div id="filters" class="collapse row">
+				<br />
+				<script>
+					html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+					html_RecordSearchBox(arrURL[0]);
+				</script>
+			</div>
+		</div><br /><br />
 
 		
 		<div class="container">
             <div class="media center">
                 <div class="media-body media-middle">
-                    <script>
-						document.write('<h2 class="media-heading">' + arrURL[10] + ' Season Money List</h2>')
-					</script>
+					<h2 class="media-heading">Earnings List</h2>
                 </div>
             </div>
         </div><br />
@@ -43,12 +54,13 @@
 								<th>Name</th>
 								<th>Earnings</th>
 								<th>Events</th>
+								<th>Average</th>
 							<tr>
 						</thead>
 						<tbody>
 							<script>
 								var arrDisplayMoney = new Array();
-								arrDisplayMoney = getMoneyList_Season(arrURL[10]);
+								arrDisplayMoney = getMoneyList_Season(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
@@ -56,6 +68,7 @@
 									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + (arrDisplayMoney[d][1] / arrDisplayMoney[d][2]).toFixed(3) + "</td>");
 									document.write("<tr>")
 								}
 							</script>
