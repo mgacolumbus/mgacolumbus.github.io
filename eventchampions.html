@@ -19,6 +19,18 @@
 		<script>
 			html_NavigationPanel2();
 		</script>
+		
+		
+		<div class="container">
+			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Show / Hide Filters</button>
+			<div id="filters" class="collapse row">
+				<br />
+				<script>
+					html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+					html_RecordSearchBox(arrURL[0], arrURL[7]);
+				</script>
+			</div>
+		</div><br /><br />
 
 		
 		<div class="container">
@@ -48,7 +60,7 @@
 						<tbody>
 							<script>
 								var arrDisplayWinners = new Array();
-								arrDisplayWinners = getWinnersList();
+								arrDisplayWinners = getWinnersList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
 
 								for (d = arrDisplayWinners.length - 1; d >= 0; d--) {
 									document.write("<tr>")
