@@ -11,7 +11,9 @@ function StartEngine() {
 	document.write('<script src="js/d_seasons.js"></script>');
 	
 	/*  Category Functions  */
-	document.write('<script src="js/c_getMoneyList_Season.js"></script>');
+	document.write('<script src="js/c_getAverageList.js"></script>');
+	document.write('<script src="js/c_getMoneyList.js"></script>');
+	//document.write('<script src="js/c_getMoneyList_Season.js"></script>');
 	document.write('<script src="js/c_getWinnersList.js"></script>');
 	
 	/*  Javascript Includes  */

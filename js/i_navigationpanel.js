@@ -58,10 +58,21 @@ function html_NavigationPanel2() {
 	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
 	document.write('			<ul class="nav navbar-nav">');
 	document.write('				<li><a href="index.html">Home</a></li>');
+	document.write('				<li class="dropdown">');
+	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stats <span class="caret"></span></a>');
+	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
+	document.write('						<li><a href="moneylist.html?sb=' + getCurrentSeason() + '">Earnings List</a></li>');
+	document.write('						<li><a href="averagelist.html?sb=' + getCurrentSeason() + '">Average List</a></li>');
+	document.write('					</ul>');
+	document.write('				</li>');
+	document.write('				<li class="dropdown">');
+	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Lists <span class="caret"></span></a>');
+	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
+	document.write('						<li><a href="eventchampions.html">Event Champions</a></li>');
+	document.write('					</ul>');
+	document.write('				</li>');
 	/*
-	document.write('				<li><a href="#">Current Season</a></li>');
 	document.write('				<li><a href="#">Results</a></li>');
-	document.write('				<li><a href="#">Stats</a></li>');
 	document.write('				<li><a href="#">Records</a></li>');
 	*/
 	document.write('				<li class="dropdown">');

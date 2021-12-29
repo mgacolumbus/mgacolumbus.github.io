@@ -20,6 +20,15 @@
 		<script>
 			html_NavigationPanel2();
 		</script>
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Chapter Earnings List</h2>
+                </div>
+            </div>
+        </div><br />
 		
 		
 		<div class="container">
@@ -32,15 +41,6 @@
 				</script>
 			</div>
 		</div><br /><br />
-
-		
-		<div class="container">
-            <div class="media center">
-                <div class="media-body media-middle">
-					<h2 class="media-heading">Earnings List</h2>
-                </div>
-            </div>
-        </div><br />
 	
 	
 		<div class="container">    
@@ -60,7 +60,7 @@
 						<tbody>
 							<script>
 								var arrDisplayMoney = new Array();
-								arrDisplayMoney = getMoneyList_Season(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+								arrDisplayMoney = getMoneyList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")

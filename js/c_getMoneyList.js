@@ -1,4 +1,4 @@
-function getMoneyList_Season(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin, oSeasonEnd) {
+function getMoneyList(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin, oSeasonEnd) {
 	/**---------------------------------------------------------------------**/
 		//var pSeason				=	arguments[0];
 		var pGolferIndex		=	arguments[0];
@@ -20,51 +20,36 @@ function getMoneyList_Season(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBeg
 		var arrGolfers			=	new Array();
 	/**---------------------------------------------------------------------**/
 	
-	//if (pSeason != 'undefined') {
-	
-		//arrRounds	= getData_Rounds();
-		arrSeasonArray = getSpecificRounds(pGolferIndex,pEventIndex,pCourseIndex,pSeasonBegin,pSeasonEnd);
-		arrGolfers	= getData_Golfers();
-		
-		/*
-		for (rl = 0; rl < arrRounds.length; rl++) {
 
-			if (arrRounds[rl][0].substr(6, 9) == pSeason) {
+	arrSeasonArray = getSpecificRounds(pGolferIndex,pEventIndex,pCourseIndex,pSeasonBegin,pSeasonEnd);
+	arrGolfers	= getData_Golfers();
 
-				arrSeasonArray[varReturnIndex] = arrRounds[rl];
+	varReturnIndex = 0;
 
-				varReturnIndex++;
+	for (gl = 0; gl < arrGolfers.length; gl++) {
+
+		varEarnings = 0.00;
+		varEventCount = 0;
+
+		for (sl = 0; sl < arrSeasonArray.length; sl++) {
+
+			if (arrSeasonArray[sl][3] == arrGolfers[gl]) {
+
+				varEarnings += arrSeasonArray[sl][6];
+				varEventCount++;
 			}
 		}
-		*/
-		
-		varReturnIndex = 0;
-		
-		for (gl = 0; gl < arrGolfers.length; gl++) {
-			
-			varEarnings = 0.00;
-			varEventCount = 0;
-			
-			for (sl = 0; sl < arrSeasonArray.length; sl++) {
-				
-				if (arrSeasonArray[sl][3] == arrGolfers[gl]) {
-					
-					varEarnings += arrSeasonArray[sl][6];
-					varEventCount++;
-				}
-			}
-			
-			if (varEventCount > 0) {
-				arrReturnArray[varReturnIndex] = new Array();
-				
-				arrReturnArray[varReturnIndex][0]	= arrGolfers[gl];
-				arrReturnArray[varReturnIndex][1]	= varEarnings.toFixed(2);
-				arrReturnArray[varReturnIndex][2]	= varEventCount;
-				
-				varReturnIndex++;
-			}
+
+		if (varEventCount > 0) {
+			arrReturnArray[varReturnIndex] = new Array();
+
+			arrReturnArray[varReturnIndex][0]	= arrGolfers[gl];
+			arrReturnArray[varReturnIndex][1]	= varEarnings.toFixed(2);
+			arrReturnArray[varReturnIndex][2]	= varEventCount;
+
+			varReturnIndex++;
 		}
-	//}
+	}
 	
 	arrReturnArray.sort(function(a,b) {
 		return b[1]-a[1]

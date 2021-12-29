@@ -98,9 +98,8 @@
 						<div class="panel-heading panel_heading_ext">
 							<script>
 								varDisplayCount = 8;
-								
-								document.write('Season Money List - Top ' + varDisplayCount)
 							</script>
+							Season Earnings List
 						</div>
 						
 						<div class="panel-body">
@@ -116,7 +115,7 @@
 								<tbody>
 									<script>
 										var arrDisplayMoney = new Array();
-										arrDisplayMoney = getMoneyList_Season(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
+										arrDisplayMoney = getMoneyList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
 										varDisplayIndex = 0;
 
 										for (d = 0; d < varDisplayCount; d++) {
@@ -136,7 +135,57 @@
 						
 						<div class="panel-footer panel_footer_ext">
 							<script>
-								document.write('<a href="moneylist_season.html?sb=' + varCurrentSeason + '">View Full List</a>')
+								document.write('<a href="moneylist.html?sb=' + varCurrentSeason + '">View Full List</a>')
+							</script>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							<script>
+								varDisplayCount = 8;
+							</script>
+							Season Average List
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>Name</th>
+										<th>Average</th>
+										<th>Events</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var arrDisplayMoney = new Array();
+										arrDisplayMoney = getAverageList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
+										varDisplayIndex = 0;
+
+										for (d = 0; d < varDisplayCount; d++) {
+											document.write("<tr>")
+											document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+											document.write("<tr>")
+											
+											varDisplayIndex++;
+										}
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+						<div class="panel-footer panel_footer_ext">
+							<script>
+								document.write('<a href="averagelist.html?sb=' + varCurrentSeason + '">View Full List</a>')
 							</script>
 						</div>
 						

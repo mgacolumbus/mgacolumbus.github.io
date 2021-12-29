@@ -11,6 +11,7 @@
 			var arrURL = getURLParsed(url);
 			
 			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -19,12 +20,12 @@
 		<script>
 			html_NavigationPanel2();
 		</script>
-
+		
 		
 		<div class="container">
             <div class="media center">
                 <div class="media-body media-middle">
-                    <h2 class="media-heading">Chapter Event Champions</h2>
+					<h2 class="media-heading">Chapter Average List</h2>
                 </div>
             </div>
         </div><br />
@@ -49,27 +50,25 @@
 					<table class="table table-responsive table-condensed table-condensed_ext">
 						<thead>
 							<tr>
-								<th>Date</th>
+								<th>&nbsp;</th>
 								<th>Name</th>
-								<th>Event</th>
-								<th>Course</th>
-								<th>Score</th>
-								<th>Penalty</th>
+								<th>Average</th>
+								<th>Events</th>
+								<th>Strokes</th>
 							<tr>
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayWinners = new Array();
-								arrDisplayWinners = getWinnersList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+								var arrDisplayMoney = new Array();
+								arrDisplayMoney = getAverageList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
 
-								for (d = arrDisplayWinners.length - 1; d >= 0; d--) {
+								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
-									document.write("<td>" + arrDisplayWinners[d][0] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][3] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][1] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
-									document.write("<td>" + getRoundScore(arrDisplayWinners, d)[2] + "</td>");
-									document.write("<td>+ " + arrDisplayWinners[d][7] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 									document.write("<tr>")
 								}
 							</script>
