@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+			
+			var arrRounds = new Array();
+			var arrRounds = getSpecificRounds(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+			
+			var arrSeasons = new Array();
+			var arrSeasons = getData_Seasons();
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel2();
+		</script><br /><br /><br />
+		
+		
+		<div class="container">
+            <div class="media center">
+                <h2>
+					Golfer Details
+				</h2>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<script>
+				html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+				html_RecordSearchBox(arrURL[0]);
+			</script>
+		</div><br /><br />
+		
+		
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoring Stats
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
+								<thead>
+									<tr>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Rnds</th>
+										<th style="text-align: center;">Avg<br />Score</th>
+										<th style="text-align: center;">Under<br />90</th>
+										<th style="text-align: center;">DQ's</th>
+										<th style="text-align: center;">Penalty<br />Strokes</th>
+										<th style="text-align: center;">Low<br />Rnd</th>
+										<th style="text-align: center;">Hi<br />Rnd</th>
+										<th style="text-align: center;">Low<br />9</th>
+										<th style="text-align: center;">Hi<br />9</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var arrScore = new Array();
+										var varEvents = 0;
+										var varDate = 0;
+										var varScoreHold = 0;
+										var varScore = 0;
+										var varSub90 = 0;
+										var varDQ = 0;
+										var varPenalty = 0;
+										var varHiRnd = 0;
+										var varLowRnd = 999;
+										var varHi9 = 0;
+										var varLow9 = 999;
+										
+										var varEventsTotal = 0;
+										var varScoreTotal = 0;
+										var varSub90Total = 0;
+										var varDQTotal = 0;
+										var varPenaltyTotal = 0;
+										var varHiRndTotal = 0;
+										var varLowRndTotal = 999;
+										var varHi9Total = 0;
+										var varLow9Total = 999;
+										
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													varEvents++;
+													arrScore = getRoundScore(arrRounds, rd);
+													varScoreHold = arrScore[2];
+													varScore += varScoreHold;
+													varPenalty += arrRounds[rd][7];
+													
+													if (varHiRnd < arrScore[2]) {
+														varHiRnd = arrScore[2];
+													}
+													
+													if (varLowRnd > arrScore[2]) {
+														varLowRnd = arrScore[2];
+													}
+													
+													if (varHi9 < arrScore[0]) {
+														varHi9 = arrScore[0];
+													}
+													
+													if (varHi9 < arrScore[1]) {
+														varHi9 = arrScore[1];
+													}
+													
+													if (varLow9 > arrScore[0]) {
+														varLow9 = arrScore[0];
+													}
+													
+													if (varLow9 > arrScore[1]) {
+														varLow9 = arrScore[1];
+													}
+													
+													if (varScoreHold < 90) {
+														varSub90++;
+													}
+													
+													if (arrRounds[rd][4] == 0) {
+														varDQ++;
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + varEvents + '</td>');
+												document.write('<td>' + (varScore / varEvents).toFixed(3) + '</td>');
+												document.write('<td>' + varSub90 + '</td>');
+												document.write('<td>' + varDQ + '</td>');
+												document.write('<td>' + varPenalty + '</td>');
+												document.write('<td>' + varLowRnd + '</td>');
+												document.write('<td>' + varHiRnd + '</td>');
+												document.write('<td>' + varLow9 + '</td>');
+												document.write('<td>' + varHi9 + '</td>');
+												document.write('</tr>');
+											}
+											
+											varEventsTotal += varEvents;
+											varScoreTotal += varScore;
+											varSub90Total += varSub90;
+											varDQTotal += varDQ;
+											varPenaltyTotal += varPenalty;
+											
+											if (varLowRnd < varLowRndTotal) {
+												varLowRndTotal = varLowRnd ;
+											}
+											if (varLow9 < varLow9Total) {
+												varLow9Total = varLow9;
+											}
+											if (varHiRnd > varHiRndTotal) {
+												varHiRndTotal = varHiRnd;
+											}
+											if (varHi9 > varHi9Total) {
+												varHi9Total = varHi9;
+											}
+											
+											varEvents = 0;
+											varScore = 0;
+											varSub90 = 0;
+											varDQ = 0;
+											varPenalty = 0;
+											varHiRnd = 0;
+											varLowRnd = 999;
+											varHi9 = 0;
+											varLow9 = 999;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + varEventsTotal + '</td>');
+										document.write('<td>' + (varScoreTotal / varEventsTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varSub90Total + '</td>');
+										document.write('<td>' + varDQTotal + '</td>');
+										document.write('<td>' + varPenaltyTotal + '</td>');
+										document.write('<td>' + varLowRndTotal + '</td>');
+										document.write('<td>' + varHiRndTotal + '</td>');
+										document.write('<td>' + varLow9Total + '</td>');
+										document.write('<td>' + varHi9Total + '</td>');
+										document.write('</tr>');
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Placement Stats
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
+								<thead>
+									<tr>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Avg<br />Finish</th>
+										<th style="text-align: center;">Wins</th>
+										<th style="text-align: center;">2nds</th>
+										<th style="text-align: center;">Top 5</th>
+										<th style="text-align: center;">Top 10</th>
+										<th style="text-align: center;">Top 16</th>
+										<th style="text-align: center;">Low<br />Fin</th>
+										<th style="text-align: center;">Hi<br />Fin</th>
+										<th style="text-align: center;">Earn</th>
+										<th style="text-align: center;">Avg<br />Earn</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var varEvents = 0;
+										var varEventsWithDQs = 0;
+										var varEventsWithDQsTotal = 0;
+										
+										var varPos = 0;
+										var varFinPos1 = 0;
+										var varFinPos2 = 0;
+										var varFinPosTop5 = 0;
+										var varFinPosTop10 = 0;
+										var varFinPosTop16 = 0;
+										var varLowPos = 999;
+										var varHiPos = 0;
+										var varEarnings = 0;
+										
+										var varPosTotal = 0;
+										var varFinPos1Total = 0;
+										var varFinPos2Total = 0;
+										var varFinPosTop5Total = 0;
+										var varFinPosTop10Total = 0;
+										var varFinPosTop16Total = 0;
+										var varLowPosTotal = 999;
+										var varHiPosTotal = 0;
+										var varEarningsTotal = 0;
+										
+										var varEventsTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEventsWithDQs++;
+													
+													if (arrRounds[rd][4] > 0) {
+														varEvents++;
+														varPos += arrRounds[rd][4];
+													}
+													
+													if (arrRounds[rd][4] < varLowPos && arrRounds[rd][4] > 0) {
+														varLowPos = arrRounds[rd][4];
+													}
+													
+													if (arrRounds[rd][4] > varHiPos && arrRounds[rd][4] > 0) {
+														varHiPos = arrRounds[rd][4];
+													}
+													
+													if (arrRounds[rd][4] == 1) {
+														varFinPos1++;
+													}
+													
+													if (arrRounds[rd][4] == 2) {
+														varFinPos2++;
+													}
+													
+													if (arrRounds[rd][4] <= 5 && arrRounds[rd][4] > 0) {
+														varFinPosTop5++;
+													}
+													
+													if (arrRounds[rd][4] <= 10 && arrRounds[rd][4] > 0) {
+														varFinPosTop10++;
+													}
+													
+													if (arrRounds[rd][4] <= 16 && arrRounds[rd][4] > 0) {
+														varFinPosTop16++;
+													}
+													
+													varEarnings += arrRounds[rd][6];
+												}
+											}	
+											
+											if (varEventsWithDQs > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + (varPos / varEvents).toFixed(3) + '</td>');
+												document.write('<td>' + varFinPos1 + '</td>');
+												document.write('<td>' + varFinPos2 + '</td>');
+												document.write('<td>' + varFinPosTop5 + '</td>');
+												document.write('<td>' + varFinPosTop10 + '</td>');
+												document.write('<td>' + varFinPosTop16 + '</td>');
+												document.write('<td>' + varLowPos + '</td>');
+												document.write('<td>' + varHiPos + '</td>');
+												document.write('<td>' + varEarnings.toFixed(2) + '</td>');
+												document.write('<td>' + (varEarnings / varEventsWithDQs).toFixed(2) + '</td>');
+												document.write('</tr>');
+											}
+											
+											varEventsWithDQsTotal += varEventsWithDQs;
+											varEventsTotal += varEvents;
+											varPosTotal += varPos;
+											varFinPos1Total += varFinPos1;
+											varFinPos2Total += varFinPos2;
+											varFinPosTop5Total += varFinPosTop5;
+											varFinPosTop10Total += varFinPosTop10;
+											varFinPosTop16Total += varFinPosTop16;
+											varEarningsTotal += varEarnings;
+											
+											if (varLowPos < varLowPosTotal) {
+												varLowPosTotal = varLowPos;
+											}
+											if (varHiPos > varHiPosTotal) {
+												varHiPosTotal = varHiPos;
+											}
+											
+											varEvents = 0;
+											varEventsWithDQs = 0;
+											varPos = 0;
+											varFinPos1 = 0;
+											varFinPos2 = 0;
+											varFinPosTop5 = 0;
+											varFinPosTop10 = 0;
+											varFinPosTop16 = 0;
+											varLowPos = 999;
+											varHiPos = 0;
+											varEarnings = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + (varPosTotal / varEventsTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varFinPos1Total + '</td>');
+										document.write('<td>' + varFinPos2Total + '</td>');
+										document.write('<td>' + varFinPosTop5Total + '</td>');
+										document.write('<td>' + varFinPosTop10Total + '</td>');
+										document.write('<td>' + varFinPosTop16Total + '</td>');
+										document.write('<td>' + varLowPosTotal + '</td>');
+										document.write('<td>' + varHiPosTotal + '</td>');
+										document.write('<td>' + varEarningsTotal.toFixed(2) + '</td>');
+										document.write('<td>' + (varEarningsTotal / varEventsWithDQsTotal).toFixed(2) + '</td>');
+										document.write('</tr>');
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Awards Stats
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Gross</th>
+										<th>Long<br />Drive</th>
+										<th>Close<br />Pin</th>
+										<th>Meltdown</th>
+										<th>Mediocre</th>
+										<th>Red Key</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype Stats - All
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle</th>
+										<th>Birdie</th>
+										<th>Par</th>
+										<th>Bogey</th>
+										<th>Double<br />Bogey</th>
+										<th>Triple<br />Bogey</th>
+										<th>Worse</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype % Stats - All
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle %</th>
+										<th>Birdie %</th>
+										<th>Par %</th>
+										<th>Bogey %</th>
+										<th>Double<br />Bogey %</th>
+										<th>Triple<br />Bogey %</th>
+										<th>Worse %</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype Stats - Par 3
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle</th>
+										<th>Birdie</th>
+										<th>Par</th>
+										<th>Bogey</th>
+										<th>Double<br />Bogey</th>
+										<th>Triple<br />Bogey</th>
+										<th>Worse</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype % Stats - Par 3
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle %</th>
+										<th>Birdie %</th>
+										<th>Par %</th>
+										<th>Bogey %</th>
+										<th>Double<br />Bogey %</th>
+										<th>Triple<br />Bogey %</th>
+										<th>Worse %</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype Stats - Par 4
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle</th>
+										<th>Birdie</th>
+										<th>Par</th>
+										<th>Bogey</th>
+										<th>Double<br />Bogey</th>
+										<th>Triple<br />Bogey</th>
+										<th>Worse</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype % Stats - Par 4
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle %</th>
+										<th>Birdie %</th>
+										<th>Par %</th>
+										<th>Bogey %</th>
+										<th>Double<br />Bogey %</th>
+										<th>Triple<br />Bogey %</th>
+										<th>Worse %</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype Stats - Par 5
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle</th>
+										<th>Birdie</th>
+										<th>Par</th>
+										<th>Bogey</th>
+										<th>Double<br />Bogey</th>
+										<th>Triple<br />Bogey</th>
+										<th>Worse</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							Scoretype % Stats - Par 5
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Season</th>
+										<th>Eagle %</th>
+										<th>Birdie %</th>
+										<th>Par %</th>
+										<th>Bogey %</th>
+										<th>Double<br />Bogey %</th>
+										<th>Triple<br />Bogey %</th>
+										<th>Worse %</th>
+									<tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<script>
+            html_Footer();
+        </script>
+    </body>
+</html>
