@@ -69,7 +69,7 @@
 										<th style="text-align: center;">Hi<br />Rnd</th>
 										<th style="text-align: center;">Low<br />9</th>
 										<th style="text-align: center;">Hi<br />9</th>
-									<tr>
+									</tr>
 								</thead>
 								<tbody>
 									<script>
@@ -232,11 +232,11 @@
 										<th style="text-align: center;">Hi<br />Fin</th>
 										<th style="text-align: center;">Earn</th>
 										<th style="text-align: center;">Avg<br />Earn</th>
-									<tr>
+									</tr>
 								</thead>
 								<tbody>
 									<script>
-										var varEvents = 0;
+										varEvents = 0;
 										var varEventsWithDQs = 0;
 										var varEventsWithDQsTotal = 0;
 										
@@ -388,20 +388,109 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Gross</th>
-										<th>Long<br />Drive</th>
-										<th>Close<br />Pin</th>
-										<th>Meltdown</th>
-										<th>Mediocre</th>
-										<th>Red Key</th>
-									<tr>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Gross</th>
+										<th style="text-align: center;">Long Drive</th>
+										<th style="text-align: center;">Close Pin</th>
+										<th style="text-align: center;">Meltdown</th>
+										<th style="text-align: center;">Mediocre</th>
+										<th style="text-align: center;">Red Key</th>
+									</tr>
 								</thead>
 								<tbody>
-									
+									<script>
+										varEvents = 0; 
+										var varGross = 0;
+										var varLongDrive = 0;
+										var varClosePin = 0;
+										var varMeltdown = 0;
+										var varMediocre = 0;
+										var varRedKey = 0;
+										
+										var varGrossTotal = 0;
+										var varLongDriveTotal = 0;
+										var varClosePinTotal = 0;
+										var varMeltdownTotal = 0;
+										var varMediocreTotal = 0;
+										var varRedKeyTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+												
+													if (arrRounds[rd][46] == 'x') {
+														varGross++;
+													}
+												
+													if (arrRounds[rd][47] == 'x') {
+														varLongDrive++;
+													}
+												
+													if (arrRounds[rd][48] == 'x') {
+														varClosePin++;
+													}
+												
+													if (arrRounds[rd][44] == 'x') {
+														varMeltdown++;
+													}
+												
+													if (arrRounds[rd][45] == 'x') {
+														varMediocre++;
+													}
+												
+													if (arrRounds[rd][49] == 'x') {
+														varRedKey++;
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + varGross + '</td>');
+												document.write('<td>' + varLongDrive + '</td>');
+												document.write('<td>' + varClosePin + '</td>');
+												document.write('<td>' + varMeltdown + '</td>');
+												document.write('<td>' + varMediocre + '</td>');
+												document.write('<td>' + varRedKey + '</td>');
+												document.write('</tr>');
+											}
+											
+											varGrossTotal += varGross;
+											varLongDriveTotal += varLongDrive;
+											varClosePinTotal += varClosePin;
+											varMeltdownTotal += varMeltdown;
+											varMediocreTotal += varMediocre;
+											varRedKeyTotal += varRedKey;
+											
+											varEvents = 0;
+											varGross = 0;
+											varLongDrive = 0;
+											varClosePin = 0;
+											varMeltdown = 0;
+											varMediocre = 0;
+											varRedKey = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + varGrossTotal + '</td>');
+										document.write('<td>' + varLongDriveTotal + '</td>');
+										document.write('<td>' + varClosePinTotal + '</td>');
+										document.write('<td>' + varMeltdownTotal + '</td>');
+										document.write('<td>' + varMediocreTotal + '</td>');
+										document.write('<td>' + varRedKeyTotal + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -420,21 +509,118 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle</th>
-										<th>Birdie</th>
-										<th>Par</th>
-										<th>Bogey</th>
-										<th>Double<br />Bogey</th>
-										<th>Triple<br />Bogey</th>
-										<th>Worse</th>
-									<tr>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Avg<br />Score</th>
+										<th style="text-align: center;">Eagle</th>
+										<th style="text-align: center;">Birdie</th>
+										<th style="text-align: center;">Par</th>
+										<th style="text-align: center;">Bogey</th>
+										<th style="text-align: center;">Double<br />Bogey</th>
+										<th style="text-align: center;">Triple<br />Bogey</th>
+										<th style="text-align: center;">Worse</th>
+									</tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										var varScore = 0;
+										var varScoreTotal = 0;
+										
+										var varEagle = 0;
+										var varBirdie = 0;
+										var varPar = 0;
+										var varBogey = 0;
+										var varDblBogey = 0;
+										var varTrpBogey = 0;
+										var varWorse = 0;
+										
+										var varEagleTotal = 0;
+										var varBirdieTotal = 0;
+										var varParTotal = 0;
+										var varBogeyTotal = 0;
+										var varDblBogeyTotal = 0;
+										var varTrpBogeyTotal = 0;
+										var varWorseTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														varHoles++;
+														varScore += arrRounds[rd][hd + 8];
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2) { varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1) { varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0) { varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1) { varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2) { varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3) { varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3) { varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + (varScore / varHoles).toFixed(3) + '</td>');
+												document.write('<td>' + varEagle + '</td>');
+												document.write('<td>' + varBirdie + '</td>');
+												document.write('<td>' + varPar + '</td>');
+												document.write('<td>' + varBogey + '</td>');
+												document.write('<td>' + varDblBogey + '</td>');
+												document.write('<td>' + varTrpBogey + '</td>');
+												document.write('<td>' + varWorse + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varScoreTotal += varScore;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varScore = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + (varScoreTotal / varHolesTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varEagleTotal + '</td>');
+										document.write('<td>' + varBirdieTotal + '</td>');
+										document.write('<td>' + varParTotal + '</td>');
+										document.write('<td>' + varBogeyTotal + '</td>');
+										document.write('<td>' + varDblBogeyTotal + '</td>');
+										document.write('<td>' + varTrpBogeyTotal + '</td>');
+										document.write('<td>' + varWorseTotal + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -450,21 +636,110 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle %</th>
-										<th>Birdie %</th>
-										<th>Par %</th>
-										<th>Bogey %</th>
-										<th>Double<br />Bogey %</th>
-										<th>Triple<br />Bogey %</th>
-										<th>Worse %</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Eagle %</th>
+										<th style="text-align: center;">Birdie %</th>
+										<th style="text-align: center;">Par %</th>
+										<th style="text-align: center;">Bogey %</th>
+										<th style="text-align: center;">Double<br />Bogey %</th>
+										<th style="text-align: center;">Triple<br />Bogey %</th>
+										<th style="text-align: center;">Worse %</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										
+										var varEagle = 0;
+										var varBirdie = 0;
+										var varPar = 0;
+										var varBogey = 0;
+										var varDblBogey = 0;
+										var varTrpBogey = 0;
+										var varWorse = 0;
+										
+										var varEagleTotal = 0;
+										var varBirdieTotal = 0;
+										var varParTotal = 0;
+										var varBogeyTotal = 0;
+										var varDblBogeyTotal = 0;
+										var varTrpBogeyTotal = 0;
+										var varWorseTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														varHoles++;
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2) { varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1) { varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0) { varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1) { varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2) { varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3) { varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3) { varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + ((varEagle / varHoles) * 100).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBirdie / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varPar / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varDblBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varTrpBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varWorse / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + ((varEagleTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBirdieTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varParTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varDblBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varTrpBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varWorseTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -484,21 +759,115 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle</th>
-										<th>Birdie</th>
-										<th>Par</th>
-										<th>Bogey</th>
-										<th>Double<br />Bogey</th>
-										<th>Triple<br />Bogey</th>
-										<th>Worse</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Avg<br />Score</th>
+										<th style="text-align: center;">Eagle</th>
+										<th style="text-align: center;">Birdie</th>
+										<th style="text-align: center;">Par</th>
+										<th style="text-align: center;">Bogey</th>
+										<th style="text-align: center;">Double<br />Bogey</th>
+										<th style="text-align: center;">Triple<br />Bogey</th>
+										<th style="text-align: center;">Worse</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										varEagle = 0;
+										varBirdie = 0;
+										varPar = 0;
+										varBogey = 0;
+										varDblBogey = 0;
+										varTrpBogey = 0;
+										varWorse = 0;
+										
+										varEagleTotal = 0;
+										varBirdieTotal = 0;
+										varParTotal = 0;
+										varBogeyTotal = 0;
+										varDblBogeyTotal = 0;
+										varTrpBogeyTotal = 0;
+										varWorseTotal = 0;
+										
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										var varScore = 0;
+										var varScoreTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 3) { varScore += arrRounds[rd][hd + 8]; varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + (varScore / varHoles).toFixed(3) + '</td>');
+												document.write('<td>' + varEagle + '</td>');
+												document.write('<td>' + varBirdie + '</td>');
+												document.write('<td>' + varPar + '</td>');
+												document.write('<td>' + varBogey + '</td>');
+												document.write('<td>' + varDblBogey + '</td>');
+												document.write('<td>' + varTrpBogey + '</td>');
+												document.write('<td>' + varWorse + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varScoreTotal += varScore;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varScore = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + (varScoreTotal / varHolesTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varEagleTotal + '</td>');
+										document.write('<td>' + varBirdieTotal + '</td>');
+										document.write('<td>' + varParTotal + '</td>');
+										document.write('<td>' + varBogeyTotal + '</td>');
+										document.write('<td>' + varDblBogeyTotal + '</td>');
+										document.write('<td>' + varTrpBogeyTotal + '</td>');
+										document.write('<td>' + varWorseTotal + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -514,21 +883,108 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle %</th>
-										<th>Birdie %</th>
-										<th>Par %</th>
-										<th>Bogey %</th>
-										<th>Double<br />Bogey %</th>
-										<th>Triple<br />Bogey %</th>
-										<th>Worse %</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Eagle %</th>
+										<th style="text-align: center;">Birdie %</th>
+										<th style="text-align: center;">Par %</th>
+										<th style="text-align: center;">Bogey %</th>
+										<th style="text-align: center;">Double<br />Bogey %</th>
+										<th style="text-align: center;">Triple<br />Bogey %</th>
+										<th style="text-align: center;">Worse %</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										
+										var varEagle = 0;
+										var varBirdie = 0;
+										var varPar = 0;
+										var varBogey = 0;
+										var varDblBogey = 0;
+										var varTrpBogey = 0;
+										var varWorse = 0;
+										
+										var varEagleTotal = 0;
+										var varBirdieTotal = 0;
+										var varParTotal = 0;
+										var varBogeyTotal = 0;
+										var varDblBogeyTotal = 0;
+										var varTrpBogeyTotal = 0;
+										var varWorseTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 3) { varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 3) { varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 3) { varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 3) { varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 3) { varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 3) { varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 3) { varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + ((varEagle / varHoles) * 100).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBirdie / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varPar / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varDblBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varTrpBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varWorse / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + ((varEagleTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBirdieTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varParTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varDblBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varTrpBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varWorseTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -548,21 +1004,115 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle</th>
-										<th>Birdie</th>
-										<th>Par</th>
-										<th>Bogey</th>
-										<th>Double<br />Bogey</th>
-										<th>Triple<br />Bogey</th>
-										<th>Worse</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Avg<br />Score</th>
+										<th style="text-align: center;">Eagle</th>
+										<th style="text-align: center;">Birdie</th>
+										<th style="text-align: center;">Par</th>
+										<th style="text-align: center;">Bogey</th>
+										<th style="text-align: center;">Double<br />Bogey</th>
+										<th style="text-align: center;">Triple<br />Bogey</th>
+										<th style="text-align: center;">Worse</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										varEagle = 0;
+										varBirdie = 0;
+										varPar = 0;
+										varBogey = 0;
+										varDblBogey = 0;
+										varTrpBogey = 0;
+										varWorse = 0;
+										
+										varEagleTotal = 0;
+										varBirdieTotal = 0;
+										varParTotal = 0;
+										varBogeyTotal = 0;
+										varDblBogeyTotal = 0;
+										varTrpBogeyTotal = 0;
+										varWorseTotal = 0;
+										
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										var varScore = 0;
+										var varScoreTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 4) { varScore += arrRounds[rd][hd + 8]; varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + (varScore / varHoles).toFixed(3) + '</td>');
+												document.write('<td>' + varEagle + '</td>');
+												document.write('<td>' + varBirdie + '</td>');
+												document.write('<td>' + varPar + '</td>');
+												document.write('<td>' + varBogey + '</td>');
+												document.write('<td>' + varDblBogey + '</td>');
+												document.write('<td>' + varTrpBogey + '</td>');
+												document.write('<td>' + varWorse + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varScoreTotal += varScore;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varScore = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + (varScoreTotal / varHolesTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varEagleTotal + '</td>');
+										document.write('<td>' + varBirdieTotal + '</td>');
+										document.write('<td>' + varParTotal + '</td>');
+										document.write('<td>' + varBogeyTotal + '</td>');
+										document.write('<td>' + varDblBogeyTotal + '</td>');
+										document.write('<td>' + varTrpBogeyTotal + '</td>');
+										document.write('<td>' + varWorseTotal + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -578,21 +1128,108 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle %</th>
-										<th>Birdie %</th>
-										<th>Par %</th>
-										<th>Bogey %</th>
-										<th>Double<br />Bogey %</th>
-										<th>Triple<br />Bogey %</th>
-										<th>Worse %</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Eagle %</th>
+										<th style="text-align: center;">Birdie %</th>
+										<th style="text-align: center;">Par %</th>
+										<th style="text-align: center;">Bogey %</th>
+										<th style="text-align: center;">Double<br />Bogey %</th>
+										<th style="text-align: center;">Triple<br />Bogey %</th>
+										<th style="text-align: center;">Worse %</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										
+										var varEagle = 0;
+										var varBirdie = 0;
+										var varPar = 0;
+										var varBogey = 0;
+										var varDblBogey = 0;
+										var varTrpBogey = 0;
+										var varWorse = 0;
+										
+										var varEagleTotal = 0;
+										var varBirdieTotal = 0;
+										var varParTotal = 0;
+										var varBogeyTotal = 0;
+										var varDblBogeyTotal = 0;
+										var varTrpBogeyTotal = 0;
+										var varWorseTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 4) { varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 4) { varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 4) { varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 4) { varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 4) { varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 4) { varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 4) { varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + ((varEagle / varHoles) * 100).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBirdie / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varPar / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varDblBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varTrpBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varWorse / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + ((varEagleTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBirdieTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varParTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varDblBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varTrpBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varWorseTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -612,21 +1249,115 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle</th>
-										<th>Birdie</th>
-										<th>Par</th>
-										<th>Bogey</th>
-										<th>Double<br />Bogey</th>
-										<th>Triple<br />Bogey</th>
-										<th>Worse</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Avg<br />Score</th>
+										<th style="text-align: center;">Eagle</th>
+										<th style="text-align: center;">Birdie</th>
+										<th style="text-align: center;">Par</th>
+										<th style="text-align: center;">Bogey</th>
+										<th style="text-align: center;">Double<br />Bogey</th>
+										<th style="text-align: center;">Triple<br />Bogey</th>
+										<th style="text-align: center;">Worse</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										varEagle = 0;
+										varBirdie = 0;
+										varPar = 0;
+										varBogey = 0;
+										varDblBogey = 0;
+										varTrpBogey = 0;
+										varWorse = 0;
+										
+										varEagleTotal = 0;
+										varBirdieTotal = 0;
+										varParTotal = 0;
+										varBogeyTotal = 0;
+										varDblBogeyTotal = 0;
+										varTrpBogeyTotal = 0;
+										varWorseTotal = 0;
+										
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										var varScore = 0;
+										var varScoreTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 5) { varScore += arrRounds[rd][hd + 8]; varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + (varScore / varHoles).toFixed(3) + '</td>');
+												document.write('<td>' + varEagle + '</td>');
+												document.write('<td>' + varBirdie + '</td>');
+												document.write('<td>' + varPar + '</td>');
+												document.write('<td>' + varBogey + '</td>');
+												document.write('<td>' + varDblBogey + '</td>');
+												document.write('<td>' + varTrpBogey + '</td>');
+												document.write('<td>' + varWorse + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varScoreTotal += varScore;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varScore = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + (varScoreTotal / varHolesTotal).toFixed(3) + '</td>');
+										document.write('<td>' + varEagleTotal + '</td>');
+										document.write('<td>' + varBirdieTotal + '</td>');
+										document.write('<td>' + varParTotal + '</td>');
+										document.write('<td>' + varBogeyTotal + '</td>');
+										document.write('<td>' + varDblBogeyTotal + '</td>');
+										document.write('<td>' + varTrpBogeyTotal + '</td>');
+										document.write('<td>' + varWorseTotal + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
@@ -642,21 +1373,108 @@
 						</div>
 						
 						<div class="panel-body">
-                  			<table class="table table-responsive table-condensed table-condensed_ext">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="text-align: center;">
 								<thead>
 									<tr>
-										<th>Season</th>
-										<th>Eagle %</th>
-										<th>Birdie %</th>
-										<th>Par %</th>
-										<th>Bogey %</th>
-										<th>Double<br />Bogey %</th>
-										<th>Triple<br />Bogey %</th>
-										<th>Worse %</th>
+										<th style="text-align: center;">Season</th>
+										<th style="text-align: center;">Eagle %</th>
+										<th style="text-align: center;">Birdie %</th>
+										<th style="text-align: center;">Par %</th>
+										<th style="text-align: center;">Bogey %</th>
+										<th style="text-align: center;">Double<br />Bogey %</th>
+										<th style="text-align: center;">Triple<br />Bogey %</th>
+										<th style="text-align: center;">Worse %</th>
 									<tr>
 								</thead>
 								<tbody>
-									
+									<script>										
+										varEvents = 0;
+										var varHoles = 0;
+										var varHolesTotal = 0;
+										
+										var varEagle = 0;
+										var varBirdie = 0;
+										var varPar = 0;
+										var varBogey = 0;
+										var varDblBogey = 0;
+										var varTrpBogey = 0;
+										var varWorse = 0;
+										
+										var varEagleTotal = 0;
+										var varBirdieTotal = 0;
+										var varParTotal = 0;
+										var varBogeyTotal = 0;
+										var varDblBogeyTotal = 0;
+										var varTrpBogeyTotal = 0;
+										var varWorseTotal = 0;
+										
+										for (sd = 0; sd < arrSeasons.length; sd++) {
+											
+											for (rd = 0; rd < arrRounds.length; rd++) {
+												
+												varDate = arrRounds[rd][0];
+												
+												if (varDate.substr(6,9) == arrSeasons[sd]) {
+													
+													varEvents++;
+													
+													for (hd = 0; hd < 18; hd++) {
+														
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -2 && arrRounds[rd][hd + 26] == 5) { varHoles++; varEagle++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == -1 && arrRounds[rd][hd + 26] == 5) { varHoles++; varBirdie++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 0 && arrRounds[rd][hd + 26] == 5) { varHoles++; varPar++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 1 && arrRounds[rd][hd + 26] == 5) { varHoles++; varBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 2 && arrRounds[rd][hd + 26] == 5) { varHoles++; varDblBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] == 3 && arrRounds[rd][hd + 26] == 5) { varHoles++; varTrpBogey++; }
+														if (arrRounds[rd][hd + 8] - arrRounds[rd][hd + 26] > 3 && arrRounds[rd][hd + 26] == 5) { varHoles++; varWorse++; }
+													}
+												}
+											}
+											
+											if (varEvents > 0) {
+												document.write('<tr>');
+												document.write('<td>' + arrSeasons[sd] + '</td>');
+												document.write('<td>' + ((varEagle / varHoles) * 100).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBirdie / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varPar / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varDblBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varTrpBogey / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('<td>' + ((varWorse / varHoles * 100)).toFixed(3) + '</td>');
+												document.write('</tr>');
+											}
+											
+											varHolesTotal += varHoles;
+											varEagleTotal += varEagle;
+											varBirdieTotal += varBirdie;
+											varParTotal += varPar;
+											varBogeyTotal += varBogey;
+											varDblBogeyTotal += varDblBogey;
+											varTrpBogeyTotal += varTrpBogey;
+											varWorseTotal += varWorse;
+											
+											varHoles = 0;
+											varEvents = 0;
+											varEagle = 0;
+											varBirdie = 0;
+											varPar = 0;
+											varBogey = 0;
+											varDblBogey = 0;
+											varTrpBogey = 0;
+											varWorse = 0;
+										}
+										
+										document.write('<tr style="background-color: #b9b9b9">');
+										document.write('<td>Total</td>');
+										document.write('<td>' + ((varEagleTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBirdieTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varParTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varDblBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varTrpBogeyTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('<td>' + ((varWorseTotal / varHolesTotal) * 100).toFixed(3) + '</td>');
+										document.write('</tr>');
+									</script>
 								</tbody>
 							</table>
 						</div>
