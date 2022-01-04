@@ -40,7 +40,7 @@ function getAverageList(oGolferIndex, oEventIndex, oCourseIndex, oSeasonBegin, o
 			}
 		}
 		
-		if (varEventCount > 0) {
+		if (varEventCount > 1) {
 			arrReturnArray[varReturnIndex] = new Array();
 
 			arrReturnArray[varReturnIndex][0]	= arrGolfers[gl];
