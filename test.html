@@ -1,1 +1,78 @@
-<iframe width="603" height="303" seamless frameborder="10" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRCLmqPxJug5HnJsL-i1ap7UcixrHy-9v0h8eRbWjqk2hl_dhBRoOiQIPduhmkoV9jIKpwvKp81Rver/pubchart?oid=1710984903&amp;format=interactive"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel2();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="index_old.html" style="font-weight: bold;">Click here to go to the old statistics page while I continue to build this new page out.  Check back often for updates!</a><br /><br />
+				</div>
+			</div>
+		</div>
+
+
+        <div class="container">
+            <div class="media center">
+                <div class="media-left">
+                    <img src="images/logo2.png" class="media-object" />
+                </div>
+                <div class="media-body media-middle">
+                    <h1 class="media-heading">Statistics, Records<br />&amp; Event Results</h1>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-12">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							<script>
+								varDisplayCount = 8;
+								
+								document.write('Past Champions')
+							</script>
+						</div>
+						
+						<div class="panel-body">
+                  			<iframe width="603" height="303" seamless frameborder="1" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRCLmqPxJug5HnJsL-i1ap7UcixrHy-9v0h8eRbWjqk2hl_dhBRoOiQIPduhmkoV9jIKpwvKp81Rver/pubchart?oid=1710984903&amp;format=interactive"></iframe>
+						</div>
+						
+						<div class="panel-footer panel_footer_ext">
+							<a href="eventchampions.html">View Full List</a>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>
