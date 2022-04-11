@@ -18,6 +18,7 @@ function getData_Seasons() {
 		,	2019
 		,	2020
 		,	2021
+		,	2022
 	];
 	
 	return arrSeasons.sort();
