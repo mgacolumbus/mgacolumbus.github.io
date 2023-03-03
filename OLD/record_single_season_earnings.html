@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine.js"></script><script>StartEngine()</script>
+		<script>
+			document.write('<title>' + gvar('Site_Title') + '</title>');
+			html_SiteHeader();
+		</script>
+		
+		<script>	
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+
+	
+	<script>
+		document.write('<body class="w3-' + gvar('Site_BGColor') + '">');
+	</script>
+
+		
+		<script>
+			html_TopContainer();
+		</script>
+
+
+		<script>
+			html_NavigationPanel("Records");
+		</script>
+
+
+		<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+			
+			<header class="w3-container" style="padding-top:22px">
+				<h5>
+					<b>
+						<i class="fa fa-trophy"></i>
+						Most Earnings in a Single Season
+					</b>
+				</h5>
+			</header>
+			
+			
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<script>
+						html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2], arrURL[11]);
+					</script>
+					
+					<script>
+						html_RecordSearchBox(arrURL[0], arrURL[7], undefined, undefined, undefined, arrURL[11]);
+					</script>
+				</div>
+			</div>
+			
+
+			<div class="w3-panel">
+				<div class="w3-row-padding" style="margin:0 -16px">
+					<div class="w3-half">
+						<p><strong>Legend</strong></p>
+						<table class="w3-table w3-white">
+							<tr>
+								<td class="w3-bar-item w3-button w3-padding w3-orange" width="40px"></td>
+								<td>New or Tied Record</a></td>
+							</tr>
+							<tr>
+								<td class="w3-bar-item w3-button w3-padding w3-yellow" width="40px"></td>
+								<td>On Pace for New or Tied Record</a></td>
+							</tr>
+							<tr>
+								<td class="w3-bar-item w3-button w3-padding w3-green" width="40px"></td>
+								<td>Not On Pace for New or Tied Record</a></td>
+							</tr>
+							<tr>
+								<td class="w3-bar-item w3-button w3-padding w3-black" width="40px"></td>
+								<td>Past Season</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			
+
+			<div class="w3-container">
+				<script type="text/javascript">
+					var varRank = 0;
+					var varRankHold = 0;
+					var varEventCount = getCurrentSeasonEventCount();
+					var varRecordPrev = -9999;
+					var arrRecordArray = new Array();
+					var varProgressBarColor = "";
+					var varProgressBarWidth = 0.0;
+
+					arrRecordArray = sortMDArray(getRecord_MostEarnings_SingleSeason(arrURL[4],arrURL[5],arrURL[1],arrURL[2],arrURL[3]), 1, "desc");
+
+					for (r = 0; r < arrRecordArray.length; r++) {
+						
+						varRank++;
+						
+						if (arrURL[6] != undefined) {
+							varProgressBarColor = getProgressBarColor(arrRecordArray[0][1],arrRecordArray[0][4],arrRecordArray[r][1],varEventCount,arrURL[6],8,arrRecordArray[r][2]);
+						} else {
+							varProgressBarColor = "w3-black";
+						}
+
+						if (arrRecordArray[r][1] != varRecordPrev) {
+						
+							varRankHold = varRank;
+							varRecordPrev = arrRecordArray[r][1];
+						}
+
+						if (arrRecordArray[r][1] > 0) {
+							
+							varProgressBarWidth = (arrRecordArray[r][1] / arrRecordArray[0][1]) * 100;
+							
+							if (varProgressBarWidth < 12) {
+								varProgressBarWidth = 12;
+							}
+							
+							document.write('<div class="w3-' + gvar("Site_BGColor") + '">');
+							document.write('	<table width="415px" border="0">');
+							document.write('		<tr>');
+							document.write('			<td width="50px" style="font-weight: bold;">' + varRankHold + '</td>');
+							document.write('			<td width="165px" style="font-weight: bold;">' + arrRecordArray[r][0] + '</td>');
+							document.write('			<td width="200px" style="font-weight: bold;">' + arrRecordArray[r][2] + '</td>');
+							document.write('		</tr>');
+							document.write('	</table>');
+							
+							document.write('	<div class="w3-container w3-center w3-padding ' + varProgressBarColor + '" style="width:' + varProgressBarWidth + '%">' + arrRecordArray[r][1] + '</div>');
+							document.write('</div><br />');
+						}
+					}
+				</script>
+			</div>
+
+
+			<script>
+				html_Footer();
+			</script>
+
+		</div>
+		
+		
+		<!-- DO NOT MOVE OR ALTER -->
+		<!-- Handling of menu for smaller screens -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+	</body>
+	
+</html>
