@@ -7,7 +7,7 @@ function getData_Golfers() {
 		arrGolferNames[0]	=	Golfer Name
 	*/
 	
-	return arrGolferNames = [
+    arrGolferNames = [
 		"Chris Wiford",
 		"Ben Apgar",
 		"Justin Brown",

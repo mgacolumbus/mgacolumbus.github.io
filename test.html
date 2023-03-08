@@ -7,6 +7,9 @@
         <script src="engine.js"></script><script>StartEngine();</script>
         <script>
             html_SiteHeader();
+            
+            var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
         </script>
 		
     </head>
@@ -24,7 +27,7 @@
 				<script>
 					html_PageHeader(0);
 					html_FilterBox(30030);
-					html_RankingBox();
+					html_RankingBox(arrURL);
 				</script>
 			</div>
 
