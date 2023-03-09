@@ -1,9 +1,9 @@
-function html_PageHeader(pIndex) {
+function html_PageHeader(pTitle) {
 	
-	var vIndex = arguments[0];
+	var vTitle = arguments[0];
 	
-	if (vIndex != undefined) {
-		document.write("<h2 class='w3-text-teal w3-center'>Record / Ranking Title</h2>");
+	if (vTitle != undefined) {
+		document.write("<h4 class='w3-text-red w3-center'>" + vTitle + "</h4>");
 	}
 	
 }

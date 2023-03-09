@@ -6,19 +6,30 @@ function html_SideNavbar(pOption) {
 	document.write("    <a href='javascript:void(0)' onclick='w3_close()' class='w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large' title='Close Menu'>");
 	document.write("        <i class='fa fa-remove'></i>");
 	document.write("    </a>");
-	document.write("    <h4 class='w3-bar-item'><b>Menu</b></h4>");
 	
     if (vOption == 1) {
+        document.write("    <h8 class='w3-bar-item w3-text-teal'><b>Menu</b></h8>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Golfer Stats</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Course Stats</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Event Stats</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Season Stats</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Chapter Stats</a>");
-		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Records &amp; Rankings</a>");
+		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='recordlist.html'>Records &amp; Rankings</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Achievements</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Chapter Rules</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Calendar</a>");
 	}
+    
+    if (vOption == 2) {
+        document.write("    <h8 class='w3-bar-item w3-text-teal'><b>Records &amp; Rankings</b></h8>");
+        
+        var arrRecordArray = new Array();   arrRecordArray = getData_RecordList();
+        
+        for (x = 0; x < arrRecordArray.length; x++) {
+            document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='record.html?r=" + arrRecordArray[x][0] + "'>" + arrRecordArray[x][1] + "</a>");
+        }
+        //document.write("    ");
+    }
 	
 	document.write("</nav>");
 	

@@ -22,6 +22,7 @@ function getURLParsed(URL) {
 		arrReturnArray[9]	=	Score Type Action
 		arrReturnArray[10]	=	Specific Season
 		arrReturnArray[11]	=	Hide Display and Search
+        arrReturnArray[12]  =   Record Index
 	*/
 	
 	// Page Name
@@ -113,6 +114,13 @@ function getURLParsed(URL) {
 		arrReturnArray[11] = undefined;
 	} else {
 		arrReturnArray[11] = pURL.searchParams.get("hdn");
+	}
+	
+	// Record Index
+	if (pURL.searchParams.get("r") == "" || pURL.searchParams.get("r") == undefined) {
+		arrReturnArray[12] = undefined;
+	} else {
+		arrReturnArray[12] = pURL.searchParams.get("r");
 	}
 	
 	return arrReturnArray;

@@ -1,10 +1,11 @@
 function StartEngine() {
     
     /* Data */
-    document.write("<script src='data/d_courses.js'></script>")
-    document.write("<script src='data/d_events.js'></script>")
-    document.write("<script src='data/d_golfers.js'></script>")
-    document.write("<script src='data/d_seasons.js'></script>")
+    document.write("<script src='data/d_courses.js'></script>");
+    document.write("<script src='data/d_events.js'></script>");
+    document.write("<script src='data/d_golfers.js'></script>");
+    document.write("<script src='data/d_recordlist.js'></script>");
+    document.write("<script src='data/d_seasons.js'></script>");
     
     /* HTML Includes */
     document.write("<script src='inc/html_FilterBox.js'></script>");
