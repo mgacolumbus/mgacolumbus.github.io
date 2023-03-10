@@ -123,5 +123,12 @@ function getURLParsed(URL) {
 		arrReturnArray[12] = pURL.searchParams.get("r");
 	}
 	
+	// Navigation Index
+	if (pURL.searchParams.get("n") == "" || pURL.searchParams.get("n") == undefined) {
+		arrReturnArray[13] = undefined;
+	} else {
+		arrReturnArray[13] = pURL.searchParams.get("n");
+	}
+	
 	return arrReturnArray;
 }

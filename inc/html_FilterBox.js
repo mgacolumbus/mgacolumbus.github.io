@@ -17,6 +17,10 @@ function html_FilterBox(pFilterList, pURL) {
     } else {
         document.write("          <input type='hidden' name='r' value='" + vURL[12] + "'>")
     }
+    if (vURL[13] == "" || vURL[13] == undefined) {
+    } else {
+        document.write("          <input type='hidden' name='n' value='" + vURL[13] + "'>")
+    }
     
 	if (vFilterList % 2 == 0) {
 		

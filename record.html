@@ -8,7 +8,7 @@
         <script>
             html_SiteHeader();
             
-			var arrRecordArray = new Array();   arrRecordArray = getData_RecordList();
+			var arrNavigation = new Array();   arrNavigation = getData_Navigation();
             var url = new URL(window.location.href);
 			var arrURL = getURLParsed(url);
         </script>
@@ -19,7 +19,7 @@
 	
         <script>
             html_TopNavbar();
-            html_SideNavbar(arrURL[0]);
+            html_SideNavbar(arrURL[13]);
         </script>
 
         <div class="w3-main" style="margin-left:250px">
@@ -29,8 +29,8 @@
 					if (arrURL[12] == undefined) {
 						document.write("Select a record from the menu");
 					} else {
-						html_PageHeader(arrRecordArray[arrURL[12]][2]);
-						html_FilterBox(arrRecordArray[arrURL[12]][4], arrURL);
+						html_PageHeader(arrNavigation[arrURL[12]][2]);
+						html_FilterBox(arrNavigation[arrURL[12]][5], arrURL);
 						html_RankingBox(arrURL);
 					}
 				</script>
