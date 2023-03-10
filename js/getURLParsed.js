@@ -16,13 +16,9 @@ function getURLParsed(URL) {
 		arrReturnArray[3]	=	Golfer Index
 		arrReturnArray[4]	=	Event Index
 		arrReturnArray[5]	=	Course Index
-		arrReturnArray[6]	=	Current Record Value
-		arrReturnArray[7]	=	Finishing Position
-		arrReturnArray[8]	=	Score Type
-		arrReturnArray[9]	=	Score Type Action
-		arrReturnArray[10]	=	Specific Season
-		arrReturnArray[11]	=	Hide Display and Search
-        arrReturnArray[12]  =   Record Index
+		arrReturnArray[6]	=	Specific Season
+        arrReturnArray[7]	=   Record Index
+        arrReturnArray[8]	=   Navigation Index
 	*/
 	
 	// Page Name
@@ -74,60 +70,25 @@ function getURLParsed(URL) {
 		arrReturnArray[5] = pURL.searchParams.get("c");
 	}
 	
-	// Current Record Value
-	if (pURL.searchParams.get("rec") == "" || pURL.searchParams.get("rec") == undefined) {
-		arrReturnArray[6] = undefined;
-	} else {
-		arrReturnArray[6] = pURL.searchParams.get("rec");
-	}
-	
-	// Finishing Position
-	if (pURL.searchParams.get("pos") == "" || pURL.searchParams.get("pos") == undefined) {
-		arrReturnArray[7] = undefined;
-	} else {
-		arrReturnArray[7] = pURL.searchParams.get("pos");
-	}
-	
-	// Score Type
-	if (pURL.searchParams.get("t") == "" || pURL.searchParams.get("t") == undefined) {
-		arrReturnArray[8] = undefined;
-	} else {
-		arrReturnArray[8] = pURL.searchParams.get("t");
-	}
-	
-	// Score Type Action
-	if (pURL.searchParams.get("a") == "" || pURL.searchParams.get("a") == undefined) {
-		arrReturnArray[9] = undefined;
-	} else {
-		arrReturnArray[9] = pURL.searchParams.get("a");
-	}
-	
 	// Specific Season
 	if (pURL.searchParams.get("s") == "" || pURL.searchParams.get("s") == undefined) {
-		arrReturnArray[10] = undefined;
+		arrReturnArray[6] = undefined;
 	} else {
-		arrReturnArray[10] = pURL.searchParams.get("s");
-	}
-	
-	// Hide Display and Search
-	if (pURL.searchParams.get("hdn") == "" || pURL.searchParams.get("hdn") == undefined) {
-		arrReturnArray[11] = undefined;
-	} else {
-		arrReturnArray[11] = pURL.searchParams.get("hdn");
+		arrReturnArray[6] = pURL.searchParams.get("s");
 	}
 	
 	// Record Index
 	if (pURL.searchParams.get("r") == "" || pURL.searchParams.get("r") == undefined) {
-		arrReturnArray[12] = undefined;
+		arrReturnArray[7] = undefined;
 	} else {
-		arrReturnArray[12] = pURL.searchParams.get("r");
+		arrReturnArray[7] = pURL.searchParams.get("r");
 	}
 	
 	// Navigation Index
 	if (pURL.searchParams.get("n") == "" || pURL.searchParams.get("n") == undefined) {
-		arrReturnArray[13] = undefined;
+		arrReturnArray[8] = undefined;
 	} else {
-		arrReturnArray[13] = pURL.searchParams.get("n");
+		arrReturnArray[8] = pURL.searchParams.get("n");
 	}
 	
 	return arrReturnArray;

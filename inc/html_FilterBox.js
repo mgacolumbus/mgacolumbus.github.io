@@ -13,13 +13,13 @@ function html_FilterBox(pFilterList, pURL) {
 	document.write("   <div class='w3-third w3-container'>");
 	document.write("	  <p class='w3-border w3-padding-large w3-padding-32 w3-center'>");
     
-    if (vURL[12] == "" || vURL[12] == undefined) {
+    if (vURL[7] == "" || vURL[7] == undefined) {
     } else {
-        document.write("          <input type='hidden' name='r' value='" + vURL[12] + "'>")
+        document.write("          <input type='hidden' name='r' value='" + vURL[7] + "'>")
     }
-    if (vURL[13] == "" || vURL[13] == undefined) {
+    if (vURL[8] == "" || vURL[8] == undefined) {
     } else {
-        document.write("          <input type='hidden' name='n' value='" + vURL[13] + "'>")
+        document.write("          <input type='hidden' name='n' value='" + vURL[8] + "'>")
     }
     
 	if (vFilterList % 2 == 0) {
