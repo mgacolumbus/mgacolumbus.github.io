@@ -18,17 +18,32 @@
 	
         <script>
             html_TopNavbar();
-            html_SideNavbar(2);
+            html_SideNavbar(arrURL[0]);
         </script>
 
         <div class="w3-main" style="margin-left:250px">
-            
+			
 			<div class="w3-row w3-padding-64">
 				<script>
-					html_PageHeader(0);
-					html_FilterBox(30030, arrURLrec);
-					html_RankingBox(arrURL);
+					html_PageHeader("Select a category:");
 				</script>
+			</div>
+			
+			<div class="w3-row">
+				<div class='w3-quarter w3-container'>
+					<a href="record.html?rc=0">
+						<p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-gray'>
+							Career Scoring Records
+						</p>
+					</a>
+				</div>
+				<div class='w3-quarter w3-container'>
+					<a href="record.html?rc=1">
+						<p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-gray'>
+							Season Scoring Records
+						</p>
+					</a>
+				</div>
 			</div>
 
             <script>

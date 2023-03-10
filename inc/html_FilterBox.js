@@ -98,11 +98,10 @@ function html_FilterBox(pFilterList, pURL) {
         
         document.write("</select><br /><br />");
 	}
-	/*
+	
 	if (vFilterList % 13 == 0) {
 		document.write("Hole Par: <select name='p'><option value='1'>Par 3s</option></select><br /><br />");
 	}
-    */
 	
 	document.write("           <input type='submit' value='Filter Results'>");
 	document.write("	  </p>");

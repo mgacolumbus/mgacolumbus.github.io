@@ -6,7 +6,7 @@ function html_TopNavbar() {
     
     document.write("        <a href='test.html' class='w3-bar-item w3-button w3-theme-l1'>HOME</a>");
     
-    document.write("        <a href='http://mgatour.com/chapters/columbus' target='_mga' class='w3-bar-item w3-button w3-hover-white'>MGA Chapter Page</a>");
+    document.write("        <a href='http://mgatour.com/chapters/columbus' target='_mga' class='w3-bar-item w3-button w3-hover-white'>Columbus Chapter Page</a>");
 	/*
     document.write("        <a href='#' class='w3-bar-item w3-button w3-hide-small w3-hover-white'>Values</a>");
     document.write("        <a href='#' class='w3-bar-item w3-button w3-hide-small w3-hover-white'>News</a>");

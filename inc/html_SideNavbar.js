@@ -7,7 +7,17 @@ function html_SideNavbar(pOption) {
 	document.write("        <i class='fa fa-remove'></i>");
 	document.write("    </a>");
 	
-    if (vOption == 1) {
+    if (vOption == 'record.html') {
+        document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='recordlist.html'><h8 class='w3-bar-item w3-text-teal'><b>Records &amp; Rankings</b></h8></a>");
+        
+        var arrRecordArray = new Array();   arrRecordArray = getData_RecordList();
+        
+        for (x = 0; x < arrRecordArray.length; x++) {
+            document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='record.html?r=" + arrRecordArray[x][0] + "'>" + arrRecordArray[x][1] + "</a>");
+        }
+        //document.write("    ");
+    }
+	else {
         document.write("    <h8 class='w3-bar-item w3-text-teal'><b>Menu</b></h8>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Golfer Stats</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Course Stats</a>");
@@ -19,17 +29,6 @@ function html_SideNavbar(pOption) {
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Chapter Rules</a>");
 		document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='#'>Calendar</a>");
 	}
-    
-    if (vOption == 2) {
-        document.write("    <h8 class='w3-bar-item w3-text-teal'><b>Records &amp; Rankings</b></h8>");
-        
-        var arrRecordArray = new Array();   arrRecordArray = getData_RecordList();
-        
-        for (x = 0; x < arrRecordArray.length; x++) {
-            document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='record.html?r=" + arrRecordArray[x][0] + "'>" + arrRecordArray[x][1] + "</a>");
-        }
-        //document.write("    ");
-    }
 	
 	document.write("</nav>");
 	
