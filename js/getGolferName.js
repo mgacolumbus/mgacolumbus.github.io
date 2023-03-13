@@ -6,12 +6,8 @@ function getGolferName(pGolferIndex) {
 	/**---------------------------------------------------------------------**/
 	
 	if (vGolfer == undefined) {
-		return "All Golfers";
+		return arrGolfers[0];
 	}
-	
-	if (vGolfer == "All Golfers") {
-		return vGolfer;
-	} 
 	
 	return arrGolfers[vGolfer];
 }

@@ -13,13 +13,22 @@ function getData_Navigation() {
     return arrNavigation = [
 	
 		// Main Menu Items
-        [0, "Records &amp; Rankings", "recordlist.html", "", 0],
+        [0, "MGA Chapter Page", "http://mgatour.com/chapters/columbus", "", 0],
+        [0, "Records &amp; Rankings", "recordcategory.html", "", 0],
+        
+        [0, "Testing Page", "test.html", "", 0],
+        
+        // Recordlist Options
+        [1, "Career Scoring Records", "recordlist.html?n=2", "", 0],
+        [1, "Single Season Scoring Records", "recordlist.html?n=3", "", 0],
+        [1, "Single Event Scoring Records", "recordlist.html?n=4", "", 0],
+        [1, "Single Hole Scoring Records", "recordlist.html?n=5", "", 0],
         
 		// Career Scoring Records
-		[1, "Career Wins", "record.html?n=1&r=1", "", 2310],
+		[2, "Career Wins", "record.html?r=1", "", 2310],
         
 		// Single Season Scoring Records
-		[2, "Season Wins", "record.html?n=2&r=2", "", 30030],
+		[3, "Season Wins", "record.html?r=2", "", 30030],
 		
     ]
     

@@ -18,16 +18,14 @@
 	
         <script>
             html_TopNavbar();
-            html_SideNavbar(0);
+            html_SideNavbar();
         </script>
 
         <div class="w3-main" style="margin-left:250px">
             
 			<div class="w3-row w3-padding-64">
 				<script>
-					html_PageHeader(0);
-					html_FilterBox(30030, arrURL);
-					html_RankingBox(arrURL);
+					document.write(getCurrentSeason());
 				</script>
 			</div>
 

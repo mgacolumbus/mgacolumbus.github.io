@@ -8,7 +8,8 @@ function getData_Golfers() {
 	*/
 	
     arrGolferNames = [
-		"Chris Wiford",
+		"( ALL )",
+        "Chris Wiford",
 		"Ben Apgar",
 		"Justin Brown",
 		"Jason Strickland",

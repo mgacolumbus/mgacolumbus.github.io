@@ -19,20 +19,16 @@
 	
         <script>
             html_TopNavbar();
-            html_SideNavbar(arrURL[8]);
+            html_SideNavbar();
         </script>
 
         <div class="w3-main" style="margin-left:250px">
             
 			<div class="w3-row w3-padding-64">
 				<script>
-					if (arrURL[7] == undefined) {
-						document.write("Select a record from the menu");
-					} else {
-						html_PageHeader("MUR!");
-						html_FilterBox(arrNavigation[arrURL[7]][4], arrURL);
-						html_RankingBox(arrURL);
-					}
+					html_PageHeader(arrNavigation[arrURL[7]][1]);
+					html_FilterBox(arrNavigation[arrURL[7]][4], arrURL);
+					html_RankingBox(arrURL);
 				</script>
 			</div>
 
