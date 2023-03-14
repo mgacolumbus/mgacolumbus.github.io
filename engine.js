@@ -5,7 +5,7 @@ function StartEngine() {
     document.write("<script src='data/d_events.js'></script>");
     document.write("<script src='data/d_golfers.js'></script>");
     document.write("<script src='data/d_navigation.js'></script>");
-    //document.write("<script src='data/d_recordlist.js'></script>");
+    document.write("<script src='data/d_recordlist.js'></script>");
     document.write("<script src='data/d_seasons.js'></script>");
     
     /* HTML Includes */

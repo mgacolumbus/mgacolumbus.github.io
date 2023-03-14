@@ -4,15 +4,20 @@ function getData_RecordList() {
 	/**---------------------------------------------------------------------**/
 	
 	/*
-        arrRecordList[2]    =   Record Title
-        arrRecordList[3]    =   Record Subtitle
-		arrRecordList[4]	=	Record Filter Setting
+        arrRecordList[0]    =   Category
+        arrRecordList[1]    =   Record Title
+        arrRecordList[2]    =   Record Subtitle
+		arrRecordList[3]	=	Record Filter Setting
+        arrRecordList[4]    =   URL
 	*/
 	
     arrRecordList = [
     
-        ["Alt Career Wins", "", 2310],
-        ["Alt Single-Season Wins", "", 30030]
+        //Career Scoring Records
+        [0, "Career Wins", "", 2310, "record.html?r="],
+        
+        //Single Season Scoring Records
+        [1, "Single-Season Wins", "", 30030, "record.html?r="]
         
     ]
 

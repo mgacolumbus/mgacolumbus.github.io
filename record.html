@@ -8,7 +8,7 @@
         <script>
             html_SiteHeader();
             
-			var arrNavigation = new Array();   arrNavigation = getData_Navigation();
+			var arrRecordList = new Array();   arrRecordList = getData_RecordList();
             var url = new URL(window.location.href);
 			var arrURL = getURLParsed(url);
         </script>
@@ -26,8 +26,8 @@
             
 			<div class="w3-row w3-padding-64">
 				<script>
-					html_PageHeader(arrNavigation[arrURL[7]][1]);
-					html_FilterBox(arrNavigation[arrURL[7]][4], arrURL);
+					html_PageHeader(arrRecordList[arrURL[7]][1]);
+					html_FilterBox(arrRecordList[arrURL[7]][3], arrURL);
 					html_RankingBox(arrURL);
 				</script>
 			</div>

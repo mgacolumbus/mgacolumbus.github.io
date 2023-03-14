@@ -46,7 +46,7 @@ function html_SideNavbar(pOption) {
             
             if (arrNavigation[x][0] == 0) {
                 
-                document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='" + arrNavigation[x][2] + "'>" + arrNavigation[x][1] + "</a>");
+                document.write("    <a class='w3-bar-item w3-button w3-hover-black' href='" + arrNavigation[x][4] + "'>" + arrNavigation[x][1] + "</a>");
                 
             }
             
