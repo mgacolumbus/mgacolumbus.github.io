@@ -9,6 +9,7 @@ function getData_Courses() {
 	
 	arrCourseNames = 
 	[
+		"( ALL )",
 		"Chapel Hill",
 		"Raymond Memorial",
 		"Homestead Springs",

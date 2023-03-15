@@ -9,7 +9,10 @@ function getData_Events() {
 	
 	return arrEventNames =
 	[
-			"Rebel Beach Am-Am"
+			"( ALL )"
+		,	"( MAJORS )"
+		,	"( NON-MAJORS )"
+		,	"Rebel Beach Am-Am"
 		,	"Bastards"
 		,	"MGA Championship"
 		,	"F.U. Open"

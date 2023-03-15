@@ -20,10 +20,13 @@ function StartEngine() {
     document.write("<script src='inc/html_TopNavbar.js'></script>");
     
     /* JS Functions */
+    document.write("<script src='js/getCourseName.js'></script>");
     document.write("<script src='js/getCurrentSeason.js'></script>");
+    document.write("<script src='js/getEventName.js'></script>");
     document.write("<script src='js/getGolferName.js'></script>");
     document.write("<script src='js/getRecordData.js'></script>");
     document.write("<script src='js/getURLParsed.js'></script>");
+    document.write("<script src='js/isMajor.js'></script>");
     document.write("<script src='js/sortMDArray.js'></script>");
     document.write("<script src='js/w3_close.js'></script>");
     document.write("<script src='js/w3_open.js'></script>");

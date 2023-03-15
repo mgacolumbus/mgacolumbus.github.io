@@ -9,25 +9,19 @@ function sortMDArray(arr, sortcol, sortdir) {
 
 	arrGolfers		= arrArray[0];
 	arrStats		= arrArray[1];
-	//arrSeasons		= arrArray[2];
-	//arrExtraInfo	= arrArray[3];
-	//arrEvents		= arrArray[4];
+	arrExtraInfo	= arrArray[2];
 
 	for (z = 0; z < arrGolfers.length; z++)
 	{
 		tmpGolfer		= arrGolfers[z];
 		tmpStat			= arrStats[z];
-		//tmpSeason		= arrSeasons[z];
-		//tmpExtraInfo	= arrExtraInfo[z];
-		//tmpEvents		= arrEvents[z];
+		tmpExtraInfo	= arrExtraInfo[z];
 
 		arrDisplay[z]	= new Array();
 
 		arrDisplay[z][0] = tmpGolfer;
 		arrDisplay[z][1] = tmpStat;
-		//arrDisplay[z][2] = tmpSeason;
-		//arrDisplay[z][3] = tmpExtraInfo;
-		//arrDisplay[z][4] = tmpEvents;
+		arrDisplay[z][2] = tmpExtraInfo;
 	}
 
 	arrArray = arrDisplay;

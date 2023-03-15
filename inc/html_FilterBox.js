@@ -11,7 +11,7 @@ function html_FilterBox(pFilterList, pURL) {
     
 	document.write("<form method='get'>");
 	document.write("   <div class='w3-third w3-container'>");
-	document.write("	  <p class='w3-border w3-padding-large w3-padding-32 w3-center'>");
+	document.write("	  <p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-green'>");
     
     if (vURL[7] == "" || vURL[7] == undefined) {
     } else {

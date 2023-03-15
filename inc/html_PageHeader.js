@@ -7,7 +7,7 @@ function html_PageHeader(pTitle, pSubtitle) {
 		document.write("<div class='w3-row'>");
 		document.write("	<div class='w3-container'>");
 		document.write("		<p class='w3-center'>");
-		document.write("			<h4 class='w3-text-red w3-center'>" + vTitle + "</h4>");
+		document.write("			<h3 class='w3-text-red w3-center' style='font-weight: bold;'>" + vTitle + "</h3>");
 		document.write("		</p>");
 		document.write("	</div>");
 		document.write("</div>");
