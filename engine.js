@@ -5,6 +5,7 @@ function StartEngine() {
     document.write("<script src='data/d_events.js'></script>");
     document.write("<script src='data/d_golfers.js'></script>");
     document.write("<script src='data/d_navigation.js'></script>");
+    document.write("<script src='data/d_participants.js'></script>");
     document.write("<script src='data/d_recordlist.js'></script>");
     document.write("<script src='data/d_seasons.js'></script>");
     
@@ -21,8 +22,14 @@ function StartEngine() {
     /* JS Functions */
     document.write("<script src='js/getCurrentSeason.js'></script>");
     document.write("<script src='js/getGolferName.js'></script>");
+    document.write("<script src='js/getRecordData.js'></script>");
     document.write("<script src='js/getURLParsed.js'></script>");
+    document.write("<script src='js/sortMDArray.js'></script>");
     document.write("<script src='js/w3_close.js'></script>");
     document.write("<script src='js/w3_open.js'></script>");
+	
+	/* Record Functions */
+	document.write("<script src='js/getRecordData.js'></script>");
+	document.write("<script src='js/getRecord_CareerWins.js'></script>");
 
 }
