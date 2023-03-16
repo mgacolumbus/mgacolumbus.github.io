@@ -47,7 +47,7 @@ function getURLParsed(URL) {
 	
 	// Golfer Index
 	if (pURL.searchParams.get("g") == "" || pURL.searchParams.get("g") == undefined) {
-		arrReturnArray[3] = undefined;
+		arrReturnArray[3] = 0;
 	} else {
 		arrReturnArray[3] = pURL.searchParams.get("g");
 	}
@@ -65,7 +65,7 @@ function getURLParsed(URL) {
 	
 	// Course Index
 	if (pURL.searchParams.get("c") == "" || pURL.searchParams.get("c") == undefined) {
-		arrReturnArray[5] = "All Courses";
+		arrReturnArray[5] = 0;
 	} else {
 		arrReturnArray[5] = pURL.searchParams.get("c");
 	}

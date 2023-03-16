@@ -21,6 +21,9 @@ function html_FilterBox(pFilterList, pURL) {
     } else {
         document.write("          <input type='hidden' name='n' value='" + vURL[8] + "'>")
     }
+    if (vURL[5] == "" || vURL[5] == undefined) {
+		document.write("          <input type='hidden' name='c' value='" + vURL[5] + "'>")
+	}
     
 	if (vFilterList % 2 == 0) {
 		
