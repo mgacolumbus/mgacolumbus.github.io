@@ -20,7 +20,7 @@ function getData_Navigation() {
         
         // Recordlist Options
         [1, "Career Scoring Records", "", 0, "recordlist.html?n=0"],
-        //[1, "Single Season Scoring Records", "", 0, "recordlist.html?n=1"],
+        [1, "Single Season Scoring Records", "", 0, "recordlist.html?n=1"],
         //[1, "Single Event Scoring Records", "", 0, "recordlist.html?n=2"],
         //[1, "Single Hole Scoring Records", "", 0, "recordlist.html?n=3"],
 		

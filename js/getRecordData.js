@@ -6,7 +6,7 @@ function getRecordData(pRecordID, pURL) {
 	
 	switch (vRecordID) {
 		case 1:		arrRecordData = sortMDArray(getRecord_CareerWins(arrURL), 1, "desc");	break;
-		//case 2:		arrRecordData = getRecord_SeasonWins(arrURL):	break;
+		case 2:		arrRecordData = sortMDArray(getRecord_SeasonWins(arrURL), 1, "desc");	break;
 	}
 	
 	return arrRecordData;

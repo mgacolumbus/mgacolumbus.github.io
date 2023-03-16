@@ -34,5 +34,6 @@ function StartEngine() {
 	/* Record Functions */
 	document.write("<script src='js/getRecordData.js'></script>");
 	document.write("<script src='js/getRecord_CareerWins.js'></script>");
+	document.write("<script src='js/getRecord_SeasonWins.js'></script>");
 
 }
