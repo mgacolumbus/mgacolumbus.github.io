@@ -1,9 +1,3 @@
-function alertMessage(pMessage) {
-	var vMessage = arguments[0];
-	//alert("X");
-	alert(vMessage);
-}
-
 function html_RankingBox(pURL, pRecordID) {
 	
     var arrURL = new Array();   arrURL = arguments[0];
@@ -14,12 +8,6 @@ function html_RankingBox(pURL, pRecordID) {
 
 	arrDisplay = getRecordData(vRecordID, arrURL);
 	
-
-    
-    //if a data array is passed in, skip calculating the ranking and just display it
-    //otherwise calculate the ranking based on the URL info passed in
-    
-    
     document.write("<div class='w3-twothird w3-container'>");
     document.write("    <p class='w3-center'>");
     document.write("		<table border='0' cellpadding='5px' width='100%' style='text-align: center;'>");
@@ -40,10 +28,10 @@ function html_RankingBox(pURL, pRecordID) {
 		} else {
 			document.write("			<td>" + vRank + "</td>");
 		}
-		//alert(arrDisplay[z][2]);
+		
 		document.write("			<td>" + arrDisplay[z][0] + "</td>");
 		document.write("			<td>" + arrDisplay[z][1] + "</td>");
-		document.write("			<td><button onClick='alertMessage(\"" + arrDisplay[z][2] + "\");'>More Info</button>");
+		document.write("			<td><button onClick='alert(\"" + arrDisplay[z][2] + "\");'>Details</button>");
 		document.write("		</tr>");
 		
 		vRank++;

@@ -24,6 +24,7 @@ function getRecord_CareerWins(pURL) {
 							if (arrData[x][32] >= arrSeasons[arrURL[1]] && arrData[x][32] <= arrSeasons[arrURL[2]]) {
 						
 								vCounter++;
+								vExtraInfo += "- " + arrData[x][32] + " " + arrData[x][29] + " @ " + arrData[x][28] + "\\n";
 								
 							}
 						}
@@ -37,17 +38,6 @@ function getRecord_CareerWins(pURL) {
 			
 			arrReturnGolfers[vReturnIndex] = arrUniqueGolfers[y];
 			arrReturnWinCount[vReturnIndex] = vCounter;
-			
-			for (x = 0; x < arrData.length; x++) {
-				
-				if (arrData[x][4] == 1 && arrData[x][2] == arrUniqueGolfers[y]) {
-					
-					vExtraInfo += arrData[x][32] + " " + arrData[x][29] + " @ " + arrData[x][28] + "\\n";
-					
-				}
-				
-			}
-			
 			arrExtraInfo[vReturnIndex] = vExtraInfo;
 			
 			vReturnIndex++;
