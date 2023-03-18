@@ -40,7 +40,7 @@ function getRecord_CareerEventFinish(pURL, pPosition) {
 				}
 			}
 
-		}
+		} 
 		
 		if (vCounter > 0) {
 			

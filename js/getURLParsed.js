@@ -19,6 +19,7 @@ function getURLParsed(URL) {
 		arrReturnArray[6]	=	Specific Season
         arrReturnArray[7]	=   Record Index
         arrReturnArray[8]	=   Navigation Index
+        arrReturnArray[9]	=   Minimum Events
 	*/
 	
 	// Page Name
@@ -89,6 +90,13 @@ function getURLParsed(URL) {
 		arrReturnArray[8] = undefined;
 	} else {
 		arrReturnArray[8] = pURL.searchParams.get("n");
+	}
+	
+	// Navigation Index
+	if (pURL.searchParams.get("m") == "" || pURL.searchParams.get("m") == undefined) {
+		arrReturnArray[9] = undefined;
+	} else {
+		arrReturnArray[9] = pURL.searchParams.get("m");
 	}
 	
 	return arrReturnArray;

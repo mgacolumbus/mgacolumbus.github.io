@@ -107,7 +107,19 @@ function html_FilterBox(pFilterList, pURL) {
 	}
 	
 	if (vFilterList % 13 == 0) {
-		document.write("Hole Par: <select name='p'><option value='1'>Par 3s</option></select><br /><br />");
+		document.write("Minimum Events: <select name='m'>");
+        
+        for (x = 1; x < 9; x++) {
+            document.write("<option value='" + x + "'");
+            
+            if (x == vURL[9]) {
+                document.write(" selected");
+            }
+            
+            document.write(">" + x + "</option>");
+        }
+        
+        document.write("</select><br /><br />");
 	}
 	
 	document.write("           <input type='submit' value='Filter Results'>");

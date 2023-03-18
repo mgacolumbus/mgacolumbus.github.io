@@ -1,6 +1,7 @@
-function getRecord_SeasonRunnerups(pURL) {
+function getRecord_SeasonEventFinish(pURL, pPosition) {
 	
 	var arrURL = new Array();   arrURL = arguments[0];
+	var vPosition = arguments[1];
 	var arrData	= new Array();   arrData = getData_Participants();	
 	var arrReturnGolfers = new Array();
 	var arrReturnWinCount = new Array();
@@ -10,6 +11,14 @@ function getRecord_SeasonRunnerups(pURL) {
 	var vCounter = 0;
 	var arrExtraInfo = new Array();
 	var vExtraInfo = "";
+	var vTopPosFlag = false;
+
+	if (vPosition[0] == 't') {
+		
+		vTopPosFlag = true;
+		vPosition = vPosition.substring(1,vPosition.length);
+	
+	}
 	
 	
 	for (y = 0; y < arrUniqueGolfers.length; y++) {
@@ -19,7 +28,7 @@ function getRecord_SeasonRunnerups(pURL) {
 			for (x = 0; x < arrData.length; x++) {
 				
 				//Check the filters
-				if (arrData[x][4] == 2 && arrData[x][2] == arrUniqueGolfers[y] && arrData[x][32] == arrSeasons[w]) {
+                if (((vTopPosFlag && arrData[x][4] <= vPosition && arrData[x][4] > 0) || (vTopPosFlag == false && arrData[x][4] == vPosition)) && arrData[x][2] == arrUniqueGolfers[y] && arrData[x][32] == arrSeasons[w]) {
 					if (arrURL[3] == 0 || getGolferName(arrURL[3]) == arrData[x][2]) {
 						if (arrURL[5] == 0 || getCourseName(arrURL[5]) ==  arrData[x][28]) {
 							if (arrURL[4] == 0 || getEventName(arrURL[4]) ==  arrData[x][29] || (arrURL[4] == 1 && isMajor(arrData[x][29]) == true) || (arrURL[4] == 2 && isMajor(arrData[x][29]) == false)) {
@@ -34,7 +43,7 @@ function getRecord_SeasonRunnerups(pURL) {
 					}
 				}
 				
-			}
+			} 
 		
 		
 			if (vCounter > 0) {

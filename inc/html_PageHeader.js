@@ -9,7 +9,7 @@ function html_PageHeader(pTitle, pSubtitle) {
 		document.write("		<p class='w3-center'>");
 		document.write("			<h3 class='w3-text-red w3-center' style='font-weight: bold;'>" + vTitle + "</h3>");
 		
-		if (vSubtitle != undefined && vSubtitle != "") {
+		if (vSubtitle != undefined && vSubtitle != "" && vSubtitle != "undefined") {
 			
 			document.write("			<h5 class='w3-text-red w3-center' style='font-weight: bold;'>( " + vSubtitle + " )</h5>");
 			
