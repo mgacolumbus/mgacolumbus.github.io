@@ -33,6 +33,7 @@ function StartEngine() {
 	
 	/* Record Functions */
 	document.write("<script src='js/getRecordData.js'></script>");
+	document.write("<script src='js/getRecord_CareerEventFinish.js'></script>");
 	document.write("<script src='js/getRecord_CareerRunnerups.js'></script>");
 	document.write("<script src='js/getRecord_CareerScoringAvgGross.js'></script>");
 	document.write("<script src='js/getRecord_CareerScoringAvgNet.js'></script>");
