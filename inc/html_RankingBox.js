@@ -1,11 +1,16 @@
-function html_RankingBox(pURL, pRecordID) {
+function html_RankingBox(pURL, pRecordID, pDecimals) {
 	
     var arrURL = new Array();   arrURL = arguments[0];
     var vRecordID = arguments[1];
+	var vDecimals = arguments[2];
 	var arrDisplay = new Array();
 	var vRank = 1;
 	var vStatHold = 0;
-
+	
+	if (vDecimals == undefined) {
+		vDecimals = 0;
+	}
+	
 	arrDisplay = getRecordData(vRecordID, arrURL);
 	
     document.write("<div class='w3-twothird w3-container'>");
@@ -30,7 +35,7 @@ function html_RankingBox(pURL, pRecordID) {
 		}
 		
 		document.write("			<td>" + arrDisplay[z][0] + "</td>");
-		document.write("			<td>" + arrDisplay[z][1] + "</td>");
+		document.write("			<td>" + arrDisplay[z][1].toFixed(vDecimals) + "</td>");
 		document.write("			<td><button onClick='alert(\"" + arrDisplay[z][2] + "\");'>Details</button>");
 		document.write("		</tr>");
 		

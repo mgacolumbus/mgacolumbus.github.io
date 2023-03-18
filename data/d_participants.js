@@ -4,7 +4,43 @@ function getData_Participants() {
     
     return arrParticipants = [																																				
 	
-		//	Participant ID	Tournament ID	Golfer Name	Penalty Strokes	Placement	Earnings	Playoff	Meltdown Award	Mediocre Award	Gross Award	Long Drive Award	Closest to the Pin Award	Red Key Award	Front 9 Score	Back 9 Score	Eagle Count	Birdie Count	Par Count	Bogey Count	Double Bogey Count	Triple Bogey Count	Worse Count	Par 3 Total	Par 3 Count	Par 4 Total	Par 4 Count	Par 5 Total	Par 5 Count	Course Name	Event Name	Event Date	Is Major?	Season	Month	Field Size	
+		/*
+		0	Participant ID	
+		1	Tournament ID	
+		2	Golfer Name	
+		3	Penalty Strokes	
+		4	Placement	
+		5	Earnings	
+		6	Playoff	
+		7	Meltdown Award	
+		8	Mediocre Award	
+		9	Gross Award	
+		10	Long Drive Award	
+		11	Closest to the Pin Award	
+		12	Red Key Award	
+		13	Front 9 Score	
+		14	Back 9 Score	
+		15	Eagle Count	
+		16	Birdie Count	
+		17	Par Count	
+		18	Bogey Count	
+		19	Double Bogey Count	
+		20	Triple Bogey Count	
+		21	Worse Count	
+		22	Par 3 Total	
+		23	Par 3 Count	
+		24	Par 4 Total	
+		25	Par 4 Count	
+		26	Par 5 Total	
+		27	Par 5 Count	
+		28	Course Name	
+		29	Event Name	
+		30	Event Date	
+		31	Is Major?	
+		32	Season	
+		33	Month	
+		34	Field Size	
+		*/
 		[	1,	1,	"Chris Wiford",	0,	1,	0.84,	"",	"",	"",	"x",	"",	"",	"",	56,	50,	0,	0,	3,	6,	3,	2,	4,	16,	4,	62,	10,	28,	4,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12,	],
 		[	2,	1,	"Ben Apgar",	0,	2,	0.51,	"",	"",	"",	"",	"",	"",	"",	61,	50,	0,	0,	0,	9,	5,	0,	4,	17,	4,	64,	10,	30,	4,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12,	],
 		[	3,	1,	"Justin Brown",	0,	2,	0.51,	"",	"",	"",	"",	"",	"",	"",	59,	52,	0,	0,	1,	5,	6,	3,	3,	17,	4,	65,	10,	29,	4,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12,	],
