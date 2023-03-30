@@ -31,6 +31,13 @@ function html_CategoryButtons(pCategory, pType) {
             
             document.write("        <p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-gray'>");
             document.write(arrData[x][1]);
+			
+			if (arrData[x][2] != "") {
+				
+				document.write("<br />(" + arrData[x][2] + ")");
+				
+			}
+			
             document.write("        </p>");
             document.write("    </a>");
             document.write("</div>");
@@ -40,12 +47,15 @@ function html_CategoryButtons(pCategory, pType) {
                 document.write("</div>");
 
             }
-
-            z++;
+			
+			z++;
+			
         }
 
     }
 
+	z--;
+	
     if (z % 4 != 3) {
 
         document.write("</div>");

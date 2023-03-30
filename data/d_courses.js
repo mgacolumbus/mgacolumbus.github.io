@@ -4,7 +4,7 @@ function getData_Courses() {
 	/**---------------------------------------------------------------------**/
 	
 	/*
-		arrCourseNames[0]	=	Course Name
+		0 = Course Name
 	*/
 	
 	arrCourseNames = 

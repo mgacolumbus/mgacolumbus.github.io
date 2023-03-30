@@ -1,11 +1,21 @@
 function getData_Tournaments() {
-    
-    var arrTournaments = new Array();
+    /**---------------------------------------------------------------------**/
+		var arrTournaments = new Array();
+	/**---------------------------------------------------------------------**/
+	
+	/*
+		0 - ID
+		1 - Course
+		1 - Event
+		1 - Date
+		1 - IsMajor
+		1 - Season
+		1 - Month
+		1 - Field Size
+	*/
 
-    return arrTournaments = [									
-
-        //	ID	Course	Event	Date	IsMajor	Season	Month	FieldSize	
-
+    return arrTournaments = [
+	
         [	1,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12	],
         [	2,	"Raymond Memorial",	"Bastards",	"04-22-2012",	"Y",	2012,	"April",	13	],
         [	3,	"Homestead Springs",	"FORE Championship",	"05-20-2012",	"N",	2012,	"May",	11	],

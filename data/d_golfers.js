@@ -4,7 +4,7 @@ function getData_Golfers() {
 	/**---------------------------------------------------------------------**/
 	
 	/*
-		arrGolferNames[0]	=	Golfer Name
+		0 = Golfer Name
 	*/
 	
     arrGolferNames = [

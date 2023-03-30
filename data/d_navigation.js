@@ -1,13 +1,14 @@
 function getData_Navigation() {
-    
-    var arrNavigation = new Array();
+    /**---------------------------------------------------------------------**/
+		var arrNavigation = new Array();
+	/**---------------------------------------------------------------------**/
     
     /*
-        arrNavigation[0]    =   Category
-        arrNavigation[1]    =   Title
-        arrNavigation[2]    =   Subtitle
-        arrNavigation[3]    =   Filter setting
-        arrNavigation[4]    =   URL
+        0 = Category
+        1 = Title
+        2 = Subtitle
+        3 = Filter setting
+        4 = URL
     */
     
     return arrNavigation = [

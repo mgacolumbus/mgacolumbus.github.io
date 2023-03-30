@@ -11,6 +11,7 @@ function getRecordData(pRecordID, pURL) {
 		case 4:		arrRecordData = sortMDArray(getRecord_SeasonEventFinish(arrURL, "2"), 1, "desc");	break;
 		case 5:		arrRecordData = sortMDArray(getRecord_CareerScoringAvg(arrURL, true), 1, "asc");	break;
 		case 6:		arrRecordData = sortMDArray(getRecord_CareerScoringAvg(arrURL, false), 1, "asc");	break;
+		case 7:		arrRecordData = sortMDArray(getRecord_CareerEventFinish(arrURL, "t3"), 1, "desc");	break;
 	}
 	
 	return arrRecordData;

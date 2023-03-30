@@ -13,6 +13,10 @@ function html_FilterBox(pFilterList, pURL) {
 	document.write("   <div class='w3-third w3-container'>");
 	document.write("	  <p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-gray'>");
     
+    if (vURL[4] == "" || vURL[4] == undefined) {
+    } else {
+        document.write("          <input type='hidden' name='e' value='" + vURL[4] + "'>")
+    }
     if (vURL[7] == "" || vURL[7] == undefined) {
     } else {
         document.write("          <input type='hidden' name='r' value='" + vURL[7] + "'>")

@@ -4,7 +4,7 @@ function getData_Seasons() {
 	/**---------------------------------------------------------------------**/
 	
 	/*
-		arrSeasons[0]	=	Season Year
+		0 - Season Year
 	*/
 	
 	arrSeasons = [
@@ -19,7 +19,7 @@ function getData_Seasons() {
 		,	2020
 		,	2021
 		,	2022
-		,	2023
+		//,	2023
 	];
 	
 	return arrSeasons.sort();

@@ -24,20 +24,15 @@ function getRecord_CareerEventFinish(pURL, pPosition) {
 	
 		for (x = 0; x < arrData.length; x++) {
 			
-			//Check the filters
 			if (((vTopPosFlag && arrData[x][4] <= vPosition && arrData[x][4] > 0) || (vTopPosFlag == false && arrData[x][4] == vPosition)) && arrData[x][2] == arrUniqueGolfers[y]) {
-				if (arrURL[3] == 0 || getGolferName(arrURL[3]) == arrData[x][2]) {
-					if (arrURL[5] == 0 || getCourseName(arrURL[5]) ==  arrData[x][28]) {
-						if (arrURL[4] == 0 || getEventName(arrURL[4]) ==  arrData[x][29] || (arrURL[4] == 1 && isMajor(arrData[x][29]) == true) || (arrURL[4] == 2 && isMajor(arrData[x][29]) == false)) {
-							if (arrData[x][32] >= arrSeasons[arrURL[1]] && arrData[x][32] <= arrSeasons[arrURL[2]]) {
-						
-								vCounter++;
-								vExtraInfo += "- " + arrData[x][32] + " " + arrData[x][29] + " @ " + arrData[x][28] + "\\n";
-								
-							}
-						}
-					}
+				
+				if ( isFilterMatch(arrURL[3],arrData[x][2],arrURL[5],arrData[x][28],arrURL[4],arrData[x][29],arrData[x][32],arrSeasons[arrURL[1]],arrSeasons[arrURL[2]]) ) {
+					
+					vCounter++;
+					vExtraInfo += "- " + arrData[x][32] + " " + arrData[x][29] + " @ " + arrData[x][28] + "\\n";
+				
 				}
+				
 			}
 
 		} 

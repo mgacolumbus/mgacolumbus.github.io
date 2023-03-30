@@ -4,11 +4,10 @@ function getData_Events() {
 	/**---------------------------------------------------------------------**/
 	
 	/*
-		arrEventNames[0]	=	Event Name
+		0 - Event Name
 	*/
 	
-	return arrEventNames =
-	[
+	return arrEventNames = [
 			"( ALL )"
 		,	"( MAJORS )"
 		,	"( NON-MAJORS )"
