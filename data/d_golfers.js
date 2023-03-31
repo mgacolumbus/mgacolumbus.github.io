@@ -1,10 +1,12 @@
 function getData_Golfers() {
 	/**---------------------------------------------------------------------**/
-		var arrGolferNames	=	new Array();
+		var arrGolferNames	= new Array();
 	/**---------------------------------------------------------------------**/
 	
 	/*
+	
 		0 = Golfer Name
+		
 	*/
 	
     arrGolferNames = [

@@ -1,17 +1,19 @@
 function getData_Tournaments() {
     /**---------------------------------------------------------------------**/
-		var arrTournaments = new Array();
+		var arrTournaments	= new Array();
 	/**---------------------------------------------------------------------**/
 	
 	/*
+	
 		0 - ID
 		1 - Course
-		1 - Event
-		1 - Date
-		1 - IsMajor
-		1 - Season
-		1 - Month
-		1 - Field Size
+		2 - Event
+		3 - Date
+		4 - IsMajor
+		5 - Season
+		6 - Month
+		7 - Field Size
+	
 	*/
 
     return arrTournaments = [

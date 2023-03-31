@@ -16,6 +16,7 @@ function StartEngine() {
     document.write("<script src='inc/html_PageFooter.js'></script>");
     document.write("<script src='inc/html_SideNavbar.js'></script>");
     document.write("<script src='inc/html_RankingBox.js'></script>");
+    document.write("<script src='inc/html_RecordDetailBox.js'></script>");
     document.write("<script src='inc/html_SiteHeader.js'></script>");
     document.write("<script src='inc/html_TopNavbar.js'></script>");
     

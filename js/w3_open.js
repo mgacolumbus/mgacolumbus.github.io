@@ -1,5 +1,7 @@
 // Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {
+	/**---------------------------------------------------------------------**/
+	/**---------------------------------------------------------------------**/
     
     if (mySidebar.style.display === "block") {
         

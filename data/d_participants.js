@@ -1,9 +1,10 @@
 function getData_Participants() {
 	/**---------------------------------------------------------------------**/
-		var arrParticipants = new Array();
+		var arrParticipants	= new Array();
 	/**---------------------------------------------------------------------**/
     
 	/*
+	
 		0	-	Participant ID	
 		1	-	Tournament ID	
 		2	-	Golfer Name	
@@ -39,6 +40,7 @@ function getData_Participants() {
 		32	-	Season	
 		33	-	Month	
 		34	-	Field Size	
+		
 	*/
 	
     return arrParticipants = [																																				

@@ -1,25 +1,29 @@
 function getURLParsed(URL) {
 	/**---------------------------------------------------------------------**/
-    	var pURL			=	arguments[0];
+    	var pURL			= arguments[0];
 		
-		var varURL			=	pURL.toString();
-		var varURLslash		= 	0;
-		var varURLhtml		=	varURL.indexOf(".html");
+		var arrReturnArray	= new Array();
 		
-		var arrReturnArray	=	new Array();
+		var varURL			= pURL.toString();
+		var varURLslash		= 0;
+		var varURLhtml		= varURL.indexOf(".html");
+		
 	/**---------------------------------------------------------------------**/
 	
 	/*
-		arrReturnArray[0]	=	Page Name
-		arrReturnArray[1]	=	Season Begin
-		arrReturnArray[2]	=	Season End
-		arrReturnArray[3]	=	Golfer Index
-		arrReturnArray[4]	=	Event Index
-		arrReturnArray[5]	=	Course Index
-		arrReturnArray[6]	=	Specific Season
-        arrReturnArray[7]	=   Record Index
-        arrReturnArray[8]	=   Navigation Index
-        arrReturnArray[9]	=   Minimum Events
+	
+		0	=	Page Name
+		1	=	Season Begin
+		2	=	Season End
+		3	=	Golfer Index
+		4	=	Event Index
+		5	=	Course Index
+		6	=	Specific Season
+        7	=   Record Index
+        8	=   Navigation Index
+        9	=   Minimum Events
+		10	=	X  (Array index of specific record)
+		
 	*/
 	
 	// Page Name
@@ -28,8 +32,11 @@ function getURLParsed(URL) {
 		if (varURL[u] == "/") {
 			
 			varURLslash = u;
+			
 		}
+		
 	}
+	
 	arrReturnArray[0] = varURL.substring(varURLslash + 1,varURLhtml + 5);
 	
 	// Season Begin
@@ -55,11 +62,7 @@ function getURLParsed(URL) {
 	
 	// Event Index
 	if (pURL.searchParams.get("e") == "" || pURL.searchParams.get("e") == undefined) {
-		arrReturnArray[4] = "All Events";
-	} else if (pURL.searchParams.get("e") == "-1") {
-		arrReturnArray[4] = "All Majors";
-	} else if (pURL.searchParams.get("e") == "-2") {
-		arrReturnArray[4] = "All Non-Majors";
+		arrReturnArray[4] = 0;
 	} else {
 		arrReturnArray[4] = pURL.searchParams.get("e");
 	}
@@ -92,11 +95,18 @@ function getURLParsed(URL) {
 		arrReturnArray[8] = pURL.searchParams.get("n");
 	}
 	
-	// Navigation Index
+	// Minimum Events
 	if (pURL.searchParams.get("m") == "" || pURL.searchParams.get("m") == undefined) {
 		arrReturnArray[9] = undefined;
 	} else {
 		arrReturnArray[9] = pURL.searchParams.get("m");
+	}
+	
+	// Specific Record Index
+	if (pURL.searchParams.get("x") == "" || pURL.searchParams.get("x") == undefined) {
+		arrReturnArray[10] = undefined;
+	} else {
+		arrReturnArray[10] = pURL.searchParams.get("x");
 	}
 	
 	return arrReturnArray;

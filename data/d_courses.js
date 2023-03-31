@@ -1,14 +1,15 @@
 function getData_Courses() {
 	/**---------------------------------------------------------------------**/
-		var arrCourseNames	=	new Array();
+		var arrCourseNames	= new Array();
 	/**---------------------------------------------------------------------**/
 	
 	/*
+	
 		0 = Course Name
+		
 	*/
 	
-	arrCourseNames = 
-	[
+	arrCourseNames = [
 		"( ALL )",
 		"Chapel Hill",
 		"Raymond Memorial",

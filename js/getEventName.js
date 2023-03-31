@@ -1,19 +1,22 @@
-function getEventName(EventIndex) {
+function getEventName(pEventIndex) {
 	/**---------------------------------------------------------------------**/
-    	var pEvent		=	arguments[0];
-		var arrEvents	=	new Array();
-			arrEvents	=	getData_Events();
+    	var vEventIndex	= arguments[0];
+		
+		var arrEvents	= new Array();		arrEvents	= getData_Events();
 	/**---------------------------------------------------------------------**/
 	
-	if (pEvent == undefined || pEvent == 0) {
-		return "( ALL )";
+	switch(vEventIndex) {
+		
+		case 0:
+		case "":
+		case undefined:		return "( ALL )";
+		
+		case 1:				return "( MAJORS )";
+		
+		case 2:				return "( NON-MAJORS )";
+		
+		default:			return arrEvents[vEventIndex];
+		
 	}
-	if (pEvent == 1) {
-		return "( MAJORS )";
-	}
-	if (pEvent == 2) {
-		return "( NON-MAJORS )";
-	}
-	
-	return arrEvents[pEvent];
+
 }

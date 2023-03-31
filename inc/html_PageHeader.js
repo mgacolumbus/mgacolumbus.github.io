@@ -1,9 +1,11 @@
 function html_PageHeader(pTitle, pSubtitle) {
-	
-	var vTitle = arguments[0];
-	var vSubtitle = arguments[1];
+	/**---------------------------------------------------------------------**/
+		var vTitle		= arguments[0];
+		var vSubtitle	= arguments[1];
+	/**---------------------------------------------------------------------**/
 	
 	if (vTitle != undefined) {
+		
 		document.write("<div class='w3-row'>");
 		document.write("	<div class='w3-container'>");
 		document.write("		<p class='w3-center'>");
@@ -18,6 +20,7 @@ function html_PageHeader(pTitle, pSubtitle) {
 		document.write("		</p>");
 		document.write("	</div>");
 		document.write("</div>");
+		
 	}
 	
 }

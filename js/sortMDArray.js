@@ -1,18 +1,18 @@
-function sortMDArray(arr, sortcol, sortdir) {
+function sortMDArray(pDataArray, pSortColumn, pSortDirection) {
 	/**---------------------------------------------------------------------**/
-		var arrArray	=	arguments[0];
-		var varX		=	arguments[1];
-		var varAscDesc	=	arguments[2];
+		var arrDataArray	= arguments[0];
+		var X				= arguments[1];
+		var vSortDirection	= arguments[2];
 
-		var arrDisplay	=	new Array();
+		var arrDisplay		= new Array();
 	/**---------------------------------------------------------------------**/
 
-	arrGolfers		= arrArray[0];
-	arrStats		= arrArray[1];
-	arrExtraInfo	= arrArray[2];
+	arrGolfers		= arrDataArray[0];
+	arrStats		= arrDataArray[1];
+	arrExtraInfo	= arrDataArray[2];
 
-	for (z = 0; z < arrGolfers.length; z++)
-	{
+	for (z = 0; z < arrGolfers.length; z++)	{
+		
 		tmpGolfer		= arrGolfers[z];
 		tmpStat			= arrStats[z];
 		tmpExtraInfo	= arrExtraInfo[z];
@@ -22,14 +22,15 @@ function sortMDArray(arr, sortcol, sortdir) {
 		arrDisplay[z][0] = tmpGolfer;
 		arrDisplay[z][1] = tmpStat;
 		arrDisplay[z][2] = tmpExtraInfo;
+		
 	}
 
-	arrArray = arrDisplay;
+	arrDataArray = arrDisplay;
 
-	if (varAscDesc == "asc") {
-		arrArray.sort(function(a, b) {
-						var avalue = a[varX],
-							bvalue = b[varX];
+	if (vSortDirection == "asc") {
+		arrDataArray.sort(function(a, b) {
+						var avalue = a[X],
+							bvalue = b[X];
 						if (avalue < bvalue) {
 							return -1;
 						}
@@ -40,9 +41,9 @@ function sortMDArray(arr, sortcol, sortdir) {
 					});
 	}
 	else {
-		arrArray.sort(function(a, b) {
-						var avalue = a[varX],
-							bvalue = b[varX];
+		arrDataArray.sort(function(a, b) {
+						var avalue = a[X],
+							bvalue = b[X];
 						if (avalue < bvalue) {
 							return 1;
 						}
@@ -52,6 +53,7 @@ function sortMDArray(arr, sortcol, sortdir) {
 						return 0;
 					});
 	}
-	return arrArray;
+	
+	return arrDataArray;
 	
 }

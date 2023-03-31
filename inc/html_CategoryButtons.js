@@ -1,14 +1,21 @@
 function html_CategoryButtons(pCategory, pType) {
-    
-    var vCategory = arguments[0];
-    var vType = arguments[1];
-    var z = 0;
-    var arrData = new Array();
+    /**---------------------------------------------------------------------**/
+		var vCategory	= arguments[0];
+		var vType		= arguments[1];
+		
+		var arrData		= new Array();
+		
+		var z			= 0;
+	/**---------------------------------------------------------------------**/
     
     if (vType == "Record") {
+		
         arrData = getData_RecordList();
+		
     } else if (vType == "Category") {
-        arrData = getData_Navigation();
+        
+		arrData = getData_Navigation();
+		
     }
     
     for (x = 0; x < arrData.length; x++) {
@@ -24,9 +31,13 @@ function html_CategoryButtons(pCategory, pType) {
             document.write("<div class='w3-quarter w3-container'>");
             
             if (vType == "Category") {
+				
                 document.write("    <a href='" + arrData[x][4] + "' style='text-decoration: none;'>");
+				
             } else if (vType == "Record") {
+				
                 document.write("    <a href='" + arrData[x][4] + x + "' style='text-decoration: none;'>");
+				
             }
             
             document.write("        <p class='w3-border w3-padding-large w3-padding-32 w3-center w3-light-gray'>");
