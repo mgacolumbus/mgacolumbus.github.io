@@ -23,6 +23,7 @@ function getURLParsed(URL) {
         8	=   Navigation Index
         9	=   Minimum Events
 		10	=	X  (Array index of specific record)
+		11	=	Tournament Index
 		
 	*/
 	
@@ -107,6 +108,13 @@ function getURLParsed(URL) {
 		arrReturnArray[10] = undefined;
 	} else {
 		arrReturnArray[10] = pURL.searchParams.get("x");
+	}
+	
+	// Specific Record Index
+	if (pURL.searchParams.get("t") == "" || pURL.searchParams.get("t") == undefined) {
+		arrReturnArray[11] = undefined;
+	} else {
+		arrReturnArray[11] = pURL.searchParams.get("t");
 	}
 	
 	return arrReturnArray;

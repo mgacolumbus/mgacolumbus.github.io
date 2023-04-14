@@ -8,9 +8,11 @@ function StartEngine() {
     document.write("<script src='data/d_participants.js'></script>");
     document.write("<script src='data/d_recordlist.js'></script>");
     document.write("<script src='data/d_seasons.js'></script>");
+    document.write("<script src='data/d_tournaments.js'></script>");
     
     /* HTML Includes */
     document.write("<script src='inc/html_CategoryButtons.js'></script>");
+    document.write("<script src='inc/html_EventButtons.js'></script>");
     document.write("<script src='inc/html_FilterBox.js'></script>");
     document.write("<script src='inc/html_PageHeader.js'></script>");
     document.write("<script src='inc/html_PageFooter.js'></script>");

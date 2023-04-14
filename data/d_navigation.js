@@ -18,6 +18,7 @@ function getData_Navigation() {
 		// Main Menu Items
         [0, "MGA Chapter Page", "", 0, "http://mgatour.com/chapters/columbus"],
         [0, "Records &amp; Rankings", "", 0, "recordcategory.html"],
+        [0, "Event Results", "", 0, "eventcategory.html"],
         
         //[0, "Testing Page", "", 0, "test.html"],
         
