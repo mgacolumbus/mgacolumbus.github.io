@@ -2725,6 +2725,22 @@ function getURLParsed(URL) {
 	return arrReturnArray;
 }
 
+function getWinnersList(GolferName, EventName, CourseName) {
+    const arrRounds = getData_Participants();
+    let arrReturnArray = arrRounds.filter(round => round[4] === 1);
+    if (GolferName != undefined && GolferName != '') {
+        arrReturnArray = arrReturnArray.filter(round => round[2] === GolferName);
+    }
+    if (EventName != undefined && EventName != '') {
+        arrReturnArray = arrReturnArray.filter(round => round[29] === EventName);
+    }
+    if (CourseName != undefined && CourseName != '') {
+        arrReturnArray = arrReturnArray.filter(round => round[28] === CourseName);
+    }
+    // Season Range
+    return arrReturnArray;
+}
+
 function globalVariable(VarName) {
 	switch (VarName) {
 		case 'Site_BGColor':	return 'white'; break;
@@ -2829,4 +2845,3 @@ function html_SiteHeader() {
 	document.write('.table-condensed_ext {font-size: 12px; font-weight: bold;}')
 	document.write('</style>');
 }
-
