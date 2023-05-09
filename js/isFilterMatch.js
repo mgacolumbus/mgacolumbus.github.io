@@ -1,5 +1,5 @@
 function isFilterMatch(pGolferID, pGolferName, pCourseID, pCourseName, pEventID, pEventName, pSeason, pSeasonBegin, pSeasonEnd) {
-	/**---------------------------------------------------------------------**/
+
 		var vGolferID		= arguments[0];
 		var vGolferName		= arguments[1];
 		var vCourseID		= arguments[2];
@@ -14,7 +14,6 @@ function isFilterMatch(pGolferID, pGolferName, pCourseID, pCourseName, pEventID,
 		var vCoursePass		= false;
 		var vEventPass		= false;
 		var vSeasonPass		= false;
-	/**---------------------------------------------------------------------**/
 	
 	//Event Check
 	if ( vEventID == 0 ) {

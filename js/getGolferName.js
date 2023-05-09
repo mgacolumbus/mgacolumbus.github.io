@@ -1,15 +1,12 @@
 function getGolferName(pGolferIndex) {
-	/**---------------------------------------------------------------------**/
-    	var vGolfer		= arguments[0];
-		
-		var arrGolfers	= new Array();		arrGolfers	= getData_Golfers();
-	/**---------------------------------------------------------------------**/
 	
-	if (vGolfer == undefined) {
-		
+	const arrGolfers = getData_Golfers();
+
+	if (!pGolferIndex) {
+	
 		return arrGolfers[0];
-		
-	}
 	
-	return arrGolfers[vGolfer];
+	}
+
+	return arrGolfers[pGolferIndex];
 }

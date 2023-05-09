@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		<!--
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="index_old.html" style="font-weight: bold;">Click here to go to the old statistics page while I continue to build this new page out.  Check back often for updates!</a><br /><br />
+				</div>
+			</div>
+		</div>
+		-->
+
+        <div class="container">
+            <div class="media center">
+                <div class="media-left">
+                    <img src="images/logo2.png" class="media-object" />
+                </div>
+                <div class="media-body media-middle">
+                    <h1 class="media-heading">Statistics, Records<br />&amp; Event Results</h1>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-4">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							<script>
+								varDisplayCount = 8;
+								
+								document.write('Last ' + varDisplayCount + ' Champions')
+							</script>
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Course</th>
+										<th>Score</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var arrDisplayWinners = new Array();	arrDisplayWinners = getWinnersList();
+										var varDisplayIndex = 0;
+
+										for (d = arrDisplayWinners.length - 1; varDisplayIndex < varDisplayCount; d--) {
+											document.write("<tr>")
+											document.write("<td>" + arrDisplayWinners[d][3] + "</td>");
+											document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
+											document.write("<td>" + getRoundScore(arrDisplayWinners, d)[2] + " (+" + arrDisplayWinners[d][7] + ")</td>");
+											document.write("<tr>")
+											
+											varDisplayIndex++;
+										}
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+						<div class="panel-footer panel_footer_ext">
+							<a href="eventchampions.html">View Full List</a>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							<script>
+								varDisplayCount = 8;
+							</script>
+							Season Earnings List
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>Name</th>
+										<th>Earnings</th>
+										<th>Events</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var arrDisplayMoney = new Array();
+										arrDisplayMoney = getMoneyList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
+										varDisplayIndex = 0;
+
+										for (d = 0; d < varDisplayCount; d++) {
+											document.write("<tr>")
+											document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+											document.write("<tr>")
+											
+											varDisplayIndex++;
+										}
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+						<div class="panel-footer panel_footer_ext">
+							<script>
+								document.write('<a href="moneylist.html?sb=' + varCurrentSeason + '">View Full List</a>')
+							</script>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="panel panel-primary">
+						
+						<div class="panel-heading panel_heading_ext">
+							<script>
+								varDisplayCount = 8;
+							</script>
+							Season Average List
+						</div>
+						
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>&nbsp;</th>
+										<th>Name</th>
+										<th>Average</th>
+										<th>Events</th>
+									<tr>
+								</thead>
+								<tbody>
+									<script>
+										var arrDisplayMoney = new Array();
+										arrDisplayMoney = getAverageList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
+										varDisplayIndex = 0;
+
+										for (d = 0; d < varDisplayCount; d++) {
+											document.write("<tr>")
+											document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+											document.write("<tr>")
+											
+											varDisplayIndex++;
+										}
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+						<div class="panel-footer panel_footer_ext">
+							<script>
+								document.write('<a href="averagelist.html?sb=' + varCurrentSeason + '">View Full List</a>')
+							</script>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

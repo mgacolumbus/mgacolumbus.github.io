@@ -1,23 +1,5 @@
 function getData_Tournaments() {
-    /**---------------------------------------------------------------------**/
-		var arrTournaments	= new Array();
-	/**---------------------------------------------------------------------**/
-	
-	/*
-	
-		0 - ID
-		1 - Course
-		2 - Event
-		3 - Date
-		4 - IsMajor
-		5 - Season
-		6 - Month
-		7 - Field Size
-	
-	*/
-
-    return arrTournaments = [
-	
+    return [
         [	1,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12	],
         [	2,	"Raymond Memorial",	"Bastards",	"04-22-2012",	"Y",	2012,	"April",	13	],
         [	3,	"Homestead Springs",	"FORE Championship",	"05-20-2012",	"N",	2012,	"May",	11	],
@@ -106,7 +88,5 @@ function getData_Tournaments() {
         [	86,	"Homestead Springs",	"FORE Championship",	"08-21-2022",	"N",	2022,	"August",	32	],
         [	87,	"Blues Creek",	"Douche Bag Invitational",	"09-11-2022",	"N",	2022,	"September",	43	],
         [	88,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25	],
-
-    ]
-
+    ];
 }

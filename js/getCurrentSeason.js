@@ -1,7 +1,5 @@
 function getCurrentSeason() {
-	/**---------------------------------------------------------------------**/
-		var arrSeasons	= new Array();		arrSeasons	= getData_Seasons();
-	/**---------------------------------------------------------------------**/
 	
-	return arrSeasons[arrSeasons.length - 1];
+	return getData_Seasons()[getData_Seasons().length - 1];
+
 }

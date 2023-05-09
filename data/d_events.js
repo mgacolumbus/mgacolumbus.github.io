@@ -1,15 +1,5 @@
 function getData_Events() {
-	/**---------------------------------------------------------------------**/
-		var arrEventNames	= new Array();
-	/**---------------------------------------------------------------------**/
-	
-	/*
-	
-		0 - Event Name
-		
-	*/
-	
-	return arrEventNames = [
+	return [
 		"( ALL )",
 		"( MAJORS )",
 		"( NON-MAJORS )",
@@ -21,5 +11,6 @@ function getData_Events() {
 		"FORE Championship",
 		"Douche Bag Invitational",
 		"Last Gasp",
-	]
+	];
 }
+

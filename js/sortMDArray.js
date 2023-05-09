@@ -1,11 +1,9 @@
 function sortMDArray(pDataArray, pSortColumn, pSortDirection) {
-	/**---------------------------------------------------------------------**/
 		var arrDataArray	= arguments[0];
 		var X				= arguments[1];
 		var vSortDirection	= arguments[2];
 
 		var arrDisplay		= new Array();
-	/**---------------------------------------------------------------------**/
 
 	arrGolfers		= arrDataArray[0];
 	arrStats		= arrDataArray[1];

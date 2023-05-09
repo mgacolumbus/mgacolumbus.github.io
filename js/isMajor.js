@@ -1,16 +1,7 @@
 function isMajor(pEvent) {
-	/**---------------------------------------------------------------------**/
-		var vEvent	= arguments[0];
-	/**---------------------------------------------------------------------**/
+
+	const majorEvents = ["Bastards", "F.U. Open", "Bratish Open", "MGA Championship"];
 	
-	switch (vEvent) {
-		
-		case "Bastards":
-		case "F.U. Open":
-		case "Bratish Open":
-		case "MGA Championship":	return true;
-		
-		default:					return false;
-		
-	}
+	return majorEvents.includes(pEvent);
+
 }

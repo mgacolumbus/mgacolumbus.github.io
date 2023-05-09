@@ -1,17 +1,7 @@
 function getData_Golfers() {
-	/**---------------------------------------------------------------------**/
-		var arrGolferNames	= new Array();
-	/**---------------------------------------------------------------------**/
-	
-	/*
-	
-		0 = Golfer Name
-		
-	*/
-	
-    arrGolferNames = [
+	const arrGolferNames = [
 		"( ALL )",
-        "Chris Wiford",
+		"Chris Wiford",
 		"Ben Apgar",
 		"Justin Brown",
 		"Jason Strickland",
@@ -240,7 +230,7 @@ function getData_Golfers() {
 		"Matt Simyak",
 		"Christine Rinella",
 		"Doug Calamari",
-	]
+	];
 
 	return arrGolferNames.sort();
 }

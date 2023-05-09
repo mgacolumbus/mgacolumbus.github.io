@@ -1,15 +1,5 @@
 function getData_Seasons() {
-	/**---------------------------------------------------------------------**/
-		var arrSeasons	= new Array();
-	/**---------------------------------------------------------------------**/
-	
-	/*
-	
-		0 - Season Year
-		
-	*/
-	
-	arrSeasons = [
+	return [
 		2012,
 		2013,
 		2014,
@@ -22,7 +12,5 @@ function getData_Seasons() {
 		2021,
 		2022,
 		//2023,
-	];
-	
-	return arrSeasons.sort();
+	].sort();
 }
