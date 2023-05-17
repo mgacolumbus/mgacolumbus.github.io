@@ -1,3 +1,71 @@
+function getAverageList(URL) {
+	var arrFilters = new Array();
+	var arrSeasonArray = new Array();
+	const scoresByGolfer = new Map();
+	
+	for (let x = URL[1]; x <= URL[2]; x++) {
+		if (URL[4] == '-2') {arrFilters[31] = 'Y';}
+		else if (URL[4] == '-3') {arrFilters[31] = 'N';}
+		else if (URL[4] != '-1') {arrFilters[29] = getEventName(URL[4]);}
+		
+		if (URL[3] != '-1') {arrFilters[2] = getGolferName(URL[3]);}
+		if (URL[5] != '-1') {arrFilters[28] = getCourseName(URL[5]);}
+		
+		arrFilters[32] = x;
+		arrSeasonArray = getData_Participants(arrFilters);
+		
+		for (let i = 0; i < arrSeasonArray.length; i++) {
+		  const golfer = arrSeasonArray[i][2];
+		  const strokes = (arrSeasonArray[i][13] + arrSeasonArray[i][14]);
+		  
+		  if (!scoresByGolfer.has(golfer)) {
+			scoresByGolfer.set(golfer, { strokes: 0, eventCount: 0 });
+		  }
+		  
+		  scoresByGolfer.get(golfer).strokes += strokes;
+		  scoresByGolfer.get(golfer).eventCount++;
+		}
+	}
+
+	var arrReturnArray = Array.from(scoresByGolfer, ([golfer, scoringObj]) => {
+	  const strokes = scoringObj.strokes;
+	  const eventCount = scoringObj.eventCount;
+	  return [golfer, (strokes / eventCount).toFixed(3), eventCount];
+	});
+	
+	arrReturnArray = arrReturnArray.filter(events => events[2] > 1);
+	
+	arrReturnArray.sort(function(a,b) {return a[1]-b[1]});
+	
+	var varPositionHold	= 0;
+	var varAverageHold	= 0;
+	var varReturnIndex = 0;
+	
+	for (pl = 0; pl < arrReturnArray.length; pl++) {
+		
+		if (varAverageHold != arrReturnArray[varReturnIndex][1]) {
+			varAverageHold = arrReturnArray[varReturnIndex][1];
+			varPositionHold = (pl + 1);
+			arrReturnArray[varReturnIndex][3] = (pl + 1);
+		} else {
+			arrReturnArray[varReturnIndex][3] = varPositionHold;
+		}
+		
+		varReturnIndex++;
+	}
+	
+	return arrReturnArray;
+}
+
+function getCourseName(pCourseIndex) {
+	switch (pCourseIndex) {
+		case '-1'	: return 'All Courses'; break;
+	}
+	
+	const arrCourses = getData_Courses();
+	return arrCourses[pCourseIndex];
+}
+
 function getCurrentSeason() {
 	const seasons = getData_Seasons();
 	return seasons[seasons.length - 1];
@@ -5,290 +73,23 @@ function getCurrentSeason() {
 
 function getData_Courses() {
 	return [
-		"Chapel Hill",
-		"Raymond Memorial",
-		"Homestead Springs",
-		"Champions",
-		"Phoenix",
-		"Raccoon",
-		"Upper Lansdowne",
-		"Thorn Apple",
-		"St. Albans",
-		"Cumberland Trail",
-		"Links at Echo Springs",
-		"Split Rock",
-		"Rolling Meadows",
-		"Kyber Run",
-		"Turnberry",
-		"Links at Groveport",
-		"Oakhaven",
-		"Blues Creek",
-		"Willow Run",
-		"Westchester",
-		"Foxfire",
-		"Royal American",
-		"Blacklick Woods",
-		"Timberview",
-		"Denison",
-		"National Golf Links",
-		"Darby Creek",
-		"The Ridge",
-		"Crystal Springs",
-		"Clover Valley",
-		"Blackhawk",
-		"Pine Hill",
-		"Mill Creek",
+		"Chapel Hill","Raymond Memorial","Homestead Springs","Champions","Phoenix","Raccoon","Upper Lansdowne","Thorn Apple","St. Albans","Cumberland Trail","Links at Echo Springs","Split Rock","Rolling Meadows","Kyber Run","Turnberry","Links at Groveport","Oakhaven","Blues Creek","Willow Run","Westchester","Foxfire","Royal American","Blacklick Woods","Timberview","Denison","National Golf Links","Darby Creek","The Ridge","Crystal Springs","Clover Valley","Blackhawk","Pine Hill","Mill Creek",
 	].sort();
 }
 
 function getData_Events() {
 	return [
-		"Rebel Beach Am-Am",
-		"Bastards",
-		"MGA Championship",
-		"F.U. Open",
-		"Bratish Open",
-		"FORE Championship",
-		"Douche Bag Invitational",
-		"Last Gasp"
+		"Rebel Beach Am-Am","Bastards","MGA Championship","F.U. Open","Bratish Open","FORE Championship","Douche Bag Invitational","Last Gasp"
 	]
 }
 
 function getData_Golfers() {
 	return [
-		"Chris Wiford",
-		"Ben Apgar",
-		"Justin Brown",
-		"Jason Strickland",
-		"Eric Pierce",
-		"Jason Nicholas",
-		"Tony Zimmerman",
-		"Derrick Hitchens",
-		"John LaRue",
-		"Jeff Gilligan",
-		"Giang Nguyen",
-		"Doug Wiford",
-		"Todd Koch",
-		"Phil Insinga",
-		"Michael Bobowski",
-		"Kim Niswander",
-		"Anthony Seasly",
-		"David Safier",
-		"Jim Frawley",
-		"Jim Schaffranek",
-		"Doug Murray",
-		"Jordan Schaffranek",
-		"David Robertson",
-		"Ryan Downing",
-		"Tim Collins",
-		"Ryan Rainey",
-		"Jeremy Gary",
-		"Marvin Koch",
-		"Jimmy Fedrick",
-		"Eric Martorana",
-		"Marcus Mattson",
-		"Jack Weber",
-		"Scott Rainey",
-		"Mitch Frazier",
-		"Kirk Lammers",
-		"Bruce Zion",
-		"Chris Wineinger",
-		"Jeff Nasci",
-		"Terry Collins",
-		"Dustin Schmidt",
-		"Chad Schoch",
-		"John Leite",
-		"Jordan Adams",
-		"DJ Maley",
-		"Josh Stephens",
-		"Merrill Wheeler",
-		"David Knowles",
-		"Matt Bigelow",
-		"Michael Grote",
-		"Connor Mazza",
-		"Andy Nentwich",
-		"Dave Rice",
-		"Joe Milacek",
-		"Jeff Gilbert",
-		"Dustin Wood",
-		"Steve Sillato",
-		"Jay Sutter",
-		"Johnnie Jarrell",
-		"Frank Galilei",
-		"Chip Chapman",
-		"Joel Schumm",
-		"Joe Cortez",
-		"Craig Seibert",
-		"Matt Bugbee",
-		"John Stamper",
-		"Trevor Boyd",
-		"Kevin George",
-		"Brent Isner",
-		"Zach Chillinsky",
-		"Brad Wallace",
-		"Patrick Affourtit",
-		"Tony Szymczak",
-		"Kyle Ratajczak",
-		"Justin Kudela",
-		"Chris Roebuck",
-		"Sam Steinberg",
-		"Jeff Beckman",
-		"Gary Sutter",
-		"Bill Ludwig",
-		"Graydon Spanner",
-		"Scott Hall",
-		"Braedon Crowe",
-		"Jonathan Stone",
-		"Ken Byers",
-		"Doug Short",
-		"Chuck Jackson",
-		"Brian Zimmerschied",
-		"Jared Pickens",
-		"Tony Perrin",
-		"Bryan Sockol",
-		"Steve Bongard",
-		"Matt Keller",
-		"Todd Hamilton",
-		"Ryan Chiarito",
-		"Bob Krause",
-		"Anthony Cable",
-		"Joe Ritch",
-		"Justin Scribner",
-		"Ben Reeb",
-		"Zac Laumer",
-		"Sam Palumbo",
-		"Robert McArthur",
-		"Jonathan Reeb",
-		"Andy Klausing",
-		"Brian BenVenuto",
-		"James Treboni",
-		"Zachary Dunham",
-		"Charles Fitch",
-		"Ian Schambach",
-		"Mike Hardie",
-		"Riley Saelens",
-		"Mathew Mayo",
-		"Dylan Harbolt",
-		"Jason Smelser",
-		"Mike Galvin",
-		"Jacob Wollenberg",
-		"Justin Butt",
-		"Matt Arrasmith",
-		"Jason Tolman",
-		"Joe Kelly",
-		"Brice Darbyshire",
-		"Tim Koruna",
-		"William Sorokas",
-		"Kasey Lacourse",
-		"Rob Hamilton",
-		"Matt Subosits",
-		"Bryan Riegger",
-		"Luke Eschenbrenner",
-		"Tim Blausey",
-		"Ray Vaught",
-		"Scott Mulligan",
-		"David Orr",
-		"Justin Higgins",
-		"Marc Johnson",
-		"Adam Sheppard",
-		"Seth Wehner",
-		"Steven Baybutt",
-		"Joshua Treadway",
-		"Eric Heberle",
-		"John Barry",
-		"Karl Schedler",
-		"Dan Nelson",
-		"Scott Howland",
-		"Steve Friday",
-		"Nick Johnston",
-		"Doug Dickenson",
-		"Steven Merrill",
-		"Justin Duffie",
-		"Luke Maurer",
-		"Joe Faga",
-		"David Korzan",
-		"Brad Schimmoeller",
-		"Arun RajanBabu",
-		"Brett Ewing",
-		"Chad King",
-		"Fred Miller",
-		"Jay Patel",
-		"John Young",
-		"Corinne Bigelow",
-		"Elliot Mork",
-		"Brent Huddleston",
-		"Chris Pike",
-		"Sundar Digumarthy",
-		"Nick Poe",
-		"Paul Miller",
-		"Robby Thompson",
-		"Christopher Dillon",
-		"Brandon Clarke",
-		"Brad Bever",
-		"Dana Rose",
-		"Kurt Ritzman",
-		"Derek Shannon",
-		"Marty Leedy",
-		"Matthew Schaade",
-		"Gregory Hetterscheidt",
-		"Alex Fredericks",
-		"Michael McGuire",
-		"Bradley Rose",
-		"Michael Perry",
-		"Christopher Martin",
-		"Justin Liu",
-		"Jim McGuire",
-		"Tavis Nelson",
-		"David Kunkleman",
-		"Ian Willinger",
-		"Keith Overly",
-		"Brian Rue",
-		"Ty Wilson",
-		"Michael Isfort",
-		"Steven Murtanovski",
-		"Ryan Coady",
-		"Dan White",
-		"Emily Valandingham",
-		"Brian Spangenberg",
-		"Nicholas Jewson",
-		"Patrick Queen",
-		"John Hanley",
-		"Joe Medici",
-		"Kalib Amos",
-		"Tucker Wilkinson",
-		"Ward Huddleston",
-		"Kevin Bindel",
-		"Doug Hart",
-		"Hamza Khaliq",
-		"David Lacki",
-		"Alex Passafiume",
-		"Tony Rose",
-		"Matt Sleeper",
-		"Tim Tribbie",
-		"David Moore",
-		"Devin Johnson",
-		"Josh Belknap",
-		"Troy Wagner",
-		"Justin Tuente",
-		"Brad Rose",
-		"Dan Loper",
-		"Michael Rocco",
-		"Ben Gramza",
-		"Zachary Amos",
-		"Jay Carleton",
-		"Mike Freeland",
-		"Brian Tiemeier",
-		"Brent Ferrell",
-		"Gary Grant",
-		"Michael Skaff",
-		"Martin Dillinger",
-		"Matt Simyak",
-		"Christine Rinella",
-		"Doug Calamari",
+		"Chris Wiford","Ben Apgar","Justin Brown","Jason Strickland","Eric Pierce","Jason Nicholas","Tony Zimmerman","Derrick Hitchens","John LaRue","Jeff Gilligan","Giang Nguyen","Doug Wiford","Todd Koch","Phil Insinga","Michael Bobowski","Kim Niswander","Anthony Seasly","David Safier","Jim Frawley","Jim Schaffranek","Doug Murray","Jordan Schaffranek","David Robertson","Ryan Downing","Tim Collins","Ryan Rainey","Jeremy Gary","Marvin Koch","Jimmy Fedrick","Eric Martorana","Marcus Mattson","Jack Weber","Scott Rainey","Mitch Frazier","Kirk Lammers","Bruce Zion","Chris Wineinger","Jeff Nasci","Terry Collins","Dustin Schmidt","Chad Schoch","John Leite","Jordan Adams","DJ Maley","Josh Stephens","Merrill Wheeler","David Knowles","Matt Bigelow","Michael Grote","Connor Mazza","Andy Nentwich","Dave Rice","Joe Milacek","Jeff Gilbert","Dustin Wood","Steve Sillato","Jay Sutter","Johnnie Jarrell","Frank Galilei","Chip Chapman","Joel Schumm","Joe Cortez","Craig Seibert","Matt Bugbee","John Stamper","Trevor Boyd","Kevin George","Brent Isner","Zach Chillinsky","Brad Wallace","Patrick Affourtit","Tony Szymczak","Kyle Ratajczak","Justin Kudela","Chris Roebuck","Sam Steinberg","Jeff Beckman","Gary Sutter","Bill Ludwig","Graydon Spanner","Scott Hall","Braedon Crowe","Jonathan Stone","Ken Byers","Doug Short","Chuck Jackson","Brian Zimmerschied","Jared Pickens","Tony Perrin","Bryan Sockol","Steve Bongard","Matt Keller","Todd Hamilton","Ryan Chiarito","Bob Krause","Anthony Cable","Joe Ritch","Justin Scribner","Ben Reeb","Zac Laumer","Sam Palumbo","Robert McArthur","Jonathan Reeb","Andy Klausing","Brian BenVenuto","James Treboni","Zachary Dunham","Charles Fitch","Ian Schambach","Mike Hardie","Riley Saelens","Mathew Mayo","Dylan Harbolt","Jason Smelser","Mike Galvin","Jacob Wollenberg","Justin Butt","Matt Arrasmith","Jason Tolman","Joe Kelly","Brice Darbyshire","Tim Koruna","William Sorokas","Kasey Lacourse","Rob Hamilton","Matt Subosits","Bryan Riegger","Luke Eschenbrenner","Tim Blausey","Ray Vaught","Scott Mulligan","David Orr","Justin Higgins","Marc Johnson","Adam Sheppard","Seth Wehner","Steven Baybutt","Joshua Treadway","Eric Heberle","John Barry","Karl Schedler","Dan Nelson","Scott Howland","Steve Friday","Nick Johnston","Doug Dickenson","Steven Merrill","Justin Duffie","Luke Maurer","Joe Faga","David Korzan","Brad Schimmoeller","Arun RajanBabu","Brett Ewing","Chad King","Fred Miller","Jay Patel","John Young","Corinne Bigelow","Elliot Mork","Brent Huddleston","Chris Pike","Sundar Digumarthy","Nick Poe","Paul Miller","Robby Thompson","Christopher Dillon","Brandon Clarke","Brad Bever","Dana Rose","Kurt Ritzman","Derek Shannon","Marty Leedy","Matthew Schaade","Gregory Hetterscheidt","Alex Fredericks","Michael McGuire","Bradley Rose","Michael Perry","Christopher Martin","Justin Liu","Jim McGuire","Tavis Nelson","David Kunkleman","Ian Willinger","Keith Overly","Brian Rue","Ty Wilson","Michael Isfort","Steven Murtanovski","Ryan Coady","Dan White","Emily Valandingham","Brian Spangenberg","Nicholas Jewson","Patrick Queen","John Hanley","Joe Medici","Kalib Amos","Tucker Wilkinson","Ward Huddleston","Kevin Bindel","Doug Hart","Hamza Khaliq","David Lacki","Alex Passafiume","Tony Rose","Matt Sleeper","Tim Tribbie","David Moore","Devin Johnson","Josh Belknap","Troy Wagner","Justin Tuente","Brad Rose","Dan Loper","Michael Rocco","Ben Gramza","Zachary Amos","Jay Carleton","Mike Freeland","Brian Tiemeier","Brent Ferrell","Gary Grant","Michael Skaff","Martin Dillinger","Matt Simyak","Christine Rinella","Doug Calamari",
 	].sort();
 }
 
-function getData_Participants() {
+function getData_Participants(Filters) {
 	/*
 		0	-	Participant ID	
 		1	-	Tournament ID	
@@ -327,7 +128,7 @@ function getData_Participants() {
 		34	-	Field Size	
 	*/
 	
-    return [																																				
+	let arrParticipants = [																																				
 	
 		[	1,	1,	"Chris Wiford",	0,	1,	0.84,	"",	"",	"",	"x",	"",	"",	"",	56,	50,	0,	0,	3,	6,	3,	2,	4,	16,	4,	62,	10,	28,	4,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12,	],
 		[	2,	1,	"Ben Apgar",	0,	2,	0.51,	"",	"",	"",	"",	"",	"",	"",	61,	50,	0,	0,	0,	9,	5,	0,	4,	17,	4,	64,	10,	30,	4,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12,	],
@@ -2487,28 +2288,25 @@ function getData_Participants() {
 		[	2069,	88,	"Michael Skaff",	0,	23,	0,	"",	"",	"",	"",	"",	"",	"",	62,	66,	0,	0,	1,	1,	2,	7,	7,	28,	4,	74,	11,	26,	3,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25,	],
 		[	2070,	88,	"Jeff Gilligan",	0,	24,	0,	"",	"",	"",	"",	"",	"",	"x",	66,	68,	0,	0,	0,	2,	2,	4,	10,	23,	4,	85,	11,	26,	3,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25,	],
 
-	]
-
+	];
+	
+	for (x = 0; x < Filters.length; x++) {
+		if (Filters[x] != undefined && Filters[x] != '') {
+			arrParticipants = arrParticipants.filter(participant => participant[x] == Filters[x]);
+		}
+	}
+	
+	return arrParticipants;
 }
 
 function getData_Seasons() {
 	return [
-		2012,
-		2013,
-		2014,
-		2015,
-		2016,
-		2017,
-		2018,
-		2019,
-		2020,
-		2021,
-		2022,
+		2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,
 		//2023,
 	].sort();
 }
 
-function getData_Tournaments() {
+function getData_Tournaments(Filters) {
     /*
 		0 = Tournament ID
 		1 = Course Name
@@ -2520,7 +2318,7 @@ function getData_Tournaments() {
 		7 = Field Size
 	*/
 	
-	return [
+	let arrTournaments = [
         [	1,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12	],
         [	2,	"Raymond Memorial",	"Bastards",	"04-22-2012",	"Y",	2012,	"April",	13	],
         [	3,	"Homestead Springs",	"FORE Championship",	"05-20-2012",	"N",	2012,	"May",	11	],
@@ -2610,18 +2408,101 @@ function getData_Tournaments() {
         [	87,	"Blues Creek",	"Douche Bag Invitational",	"09-11-2022",	"N",	2022,	"September",	43	],
         [	88,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25	],
     ];
+	
+	for (x = 0; x < Filters.length; x++) {
+		if (Filters[x] != undefined && Filters[x] != '') {
+			arrTournaments = arrTournaments.filter(tourney => tourney[x] == Filters[x]);
+		}
+	}
+	
+	return arrTournaments;
+}
+
+function getEventName(pEventIndex) {
+	switch (pEventIndex) {
+		case '-1'	: return 'All Events'; break;
+		case '-2'	: return 'All Majors'; break;
+		case '-3'	: return 'All Non-Majors'; break;
+	}
+	
+	const arrEvents = getData_Events();
+	return arrEvents[pEventIndex];
+}
+
+function getGolferName(pGolferIndex) {
+	switch (pGolferIndex) {
+		case '-1'	: return 'All Golfers'; break;
+	}
+	
+	const arrGolfers = getData_Golfers();
+	return arrGolfers[pGolferIndex];
+}
+
+function getSeasonMoneyList(URL) {
+	var arrFilters = new Array();
+	var arrSeasonArray = new Array();
+	const earningsByGolfer = new Map();
+	
+	for (let x = URL[1]; x <= URL[2]; x++) {
+		if (URL[4] == '-2') {arrFilters[31] = 'Y';}
+		else if (URL[4] == '-3') {arrFilters[31] = 'N';}
+		else if (URL[4] != '-1') {arrFilters[29] = getEventName(URL[4]);}
+		
+		if (URL[3] != '-1') {arrFilters[2] = getGolferName(URL[3]);}
+		if (URL[5] != '-1') {arrFilters[28] = getCourseName(URL[5]);}
+		
+		arrFilters[32] = x;
+		arrSeasonArray = getData_Participants(arrFilters);
+		
+		for (let i = 0; i < arrSeasonArray.length; i++) {
+		  const golfer = arrSeasonArray[i][2];
+		  const earnings = arrSeasonArray[i][5];
+		  
+		  if (!earningsByGolfer.has(golfer)) {
+			earningsByGolfer.set(golfer, { earnings: 0, eventCount: 0 });
+		  }
+		  
+		  earningsByGolfer.get(golfer).earnings += earnings;
+		  earningsByGolfer.get(golfer).eventCount++;
+		}
+	}
+
+	var arrReturnArray = Array.from(earningsByGolfer, ([golfer, earningsObj]) => {
+	  const earnings = earningsObj.earnings.toFixed(2);
+	  const eventCount = earningsObj.eventCount;
+	  return [golfer, earnings, eventCount];
+	}).filter(([, earnings]) => parseFloat(earnings) > 0);
+	
+	arrReturnArray.sort(function(a,b) {return b[1]-a[1]});
+	
+	var varPositionHold	= 0;
+	var varEarningsHold	= 0;
+	var varReturnIndex = 0;
+	
+	for (pl = 0; pl < arrReturnArray.length; pl++) {
+		
+		if (varEarningsHold != arrReturnArray[varReturnIndex][1]) {
+			varEarningsHold = arrReturnArray[varReturnIndex][1];
+			varPositionHold = (pl + 1);
+			arrReturnArray[varReturnIndex][3] = (pl + 1);
+		} else {
+			arrReturnArray[varReturnIndex][3] = varPositionHold;
+		}
+		
+		varReturnIndex++;
+	}
+	
+	return arrReturnArray;
 }
 
 function getURLParsed(URL) {
-	/**---------------------------------------------------------------------**/
-    	var pURL			=	arguments[0];
-		
-		var varURL = URL.toString();
-		var varURLslash = varURL.lastIndexOf('/');
-		var varURLhtml = varURL.indexOf(".html");
-		
-		var arrReturnArray	=	new Array();
-	/**---------------------------------------------------------------------**/
+	const { searchParams } = URL;
+
+	const varURL = URL.toString();
+	const varURLslash = varURL.lastIndexOf('/');
+	const varURLhtml = varURL.indexOf(".html");
+
+	const arrReturnArray = [];
 	
 	/*
 		arrReturnArray[0]	=	Page Name
@@ -2637,108 +2518,27 @@ function getURLParsed(URL) {
 		arrReturnArray[10]	=	Specific Season
 		arrReturnArray[11]	=	Hide Display and Search
 	*/
-	
-	// Page Name
-	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
-	
-	// Season Begin
-	if (pURL.searchParams.get("sb") == "" || pURL.searchParams.get("sb") == undefined) {
-		arrReturnArray[1] = 2012;
-	} else {
-		arrReturnArray[1] = pURL.searchParams.get("sb");
-	}
-	
-	// Season End
-	if (pURL.searchParams.get("se") == "" || pURL.searchParams.get("se") == undefined) {
-		arrReturnArray[2] = getCurrentSeason();
-	} else {
-		arrReturnArray[2] = pURL.searchParams.get("se");
-	}
-	
-	// Golfer Index
-	if (pURL.searchParams.get("g") == "" || pURL.searchParams.get("g") == undefined) {
-		arrReturnArray[3] = undefined;
-	} else {
-		arrReturnArray[3] = pURL.searchParams.get("g");
-	}
-	
-	// Event Index
-	if (pURL.searchParams.get("e") == "" || pURL.searchParams.get("e") == undefined) {
-		arrReturnArray[4] = "All Events";
-	} else if (pURL.searchParams.get("e") == "-1") {
-		arrReturnArray[4] = "All Majors";
-	} else if (pURL.searchParams.get("e") == "-2") {
-		arrReturnArray[4] = "All Non-Majors";
-	} else {
-		arrReturnArray[4] = pURL.searchParams.get("e");
-	}
-	
-	// Course Index
-	if (pURL.searchParams.get("c") == "" || pURL.searchParams.get("c") == undefined) {
-		arrReturnArray[5] = "All Courses";
-	} else {
-		arrReturnArray[5] = pURL.searchParams.get("c");
-	}
-	
-	// Current Record Value
-	if (pURL.searchParams.get("rec") == "" || pURL.searchParams.get("rec") == undefined) {
-		arrReturnArray[6] = undefined;
-	} else {
-		arrReturnArray[6] = pURL.searchParams.get("rec");
-	}
-	
-	// Finishing Position
-	if (pURL.searchParams.get("pos") == "" || pURL.searchParams.get("pos") == undefined) {
-		arrReturnArray[7] = undefined;
-	} else {
-		arrReturnArray[7] = pURL.searchParams.get("pos");
-	}
-	
-	// Score Type
-	if (pURL.searchParams.get("t") == "" || pURL.searchParams.get("t") == undefined) {
-		arrReturnArray[8] = undefined;
-	} else {
-		arrReturnArray[8] = pURL.searchParams.get("t");
-	}
-	
-	// Score Type Action
-	if (pURL.searchParams.get("a") == "" || pURL.searchParams.get("a") == undefined) {
-		arrReturnArray[9] = undefined;
-	} else {
-		arrReturnArray[9] = pURL.searchParams.get("a");
-	}
-	
-	// Specific Season
-	if (pURL.searchParams.get("s") == "" || pURL.searchParams.get("s") == undefined) {
-		arrReturnArray[10] = undefined;
-	} else {
-		arrReturnArray[10] = pURL.searchParams.get("s");
-	}
-	
-	// Hide Display and Search
-	if (pURL.searchParams.get("hdn") == "" || pURL.searchParams.get("hdn") == undefined) {
-		arrReturnArray[11] = undefined;
-	} else {
-		arrReturnArray[11] = pURL.searchParams.get("hdn");
-	}
-	
-	return arrReturnArray;
-}
 
-function getWinnersList(GolferName, EventName, CourseName) {
-    const arrRounds = getData_Participants();
-    let arrReturnArray = arrRounds.filter(round => round[4] === 1);
-    if (GolferName != undefined && GolferName != '') {
-        arrReturnArray = arrReturnArray.filter(round => round[2] === GolferName);
-    }
-    if (EventName != undefined && EventName != '') {
-        arrReturnArray = arrReturnArray.filter(round => round[29] === EventName);
-    }
-    if (CourseName != undefined && CourseName != '') {
-        arrReturnArray = arrReturnArray.filter(round => round[28] === CourseName);
-    }
-    // Season Range
-    return arrReturnArray;
+	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
+	arrReturnArray[1] = searchParams.get("sb") ?? 2012;
+	arrReturnArray[2] = searchParams.get("se") ?? getCurrentSeason();
+	arrReturnArray[3] = searchParams.get("g") ?? '-1';
+	arrReturnArray[4] = searchParams.get("e") ?? '-1';
+	/*
+	arrReturnArray[4] = searchParams.get("e") == "-1" ? "All Events"
+		: searchParams.get("e") == "-2" ? "All Majors"
+		: searchParams.get("e") == "-3" ? "All Non-Majors"
+		: searchParams.get("e") ?? "UNK";
+	*/
+	arrReturnArray[5] = searchParams.get("c") ?? '-1';
+	arrReturnArray[6] = searchParams.get("rec");
+	arrReturnArray[7] = searchParams.get("pos");
+	arrReturnArray[8] = searchParams.get("t");
+	arrReturnArray[9] = searchParams.get("a");
+	arrReturnArray[10] = searchParams.get("s") ?? getCurrentSeason();
+	arrReturnArray[11] = searchParams.get("hdn");
+
+	return arrReturnArray;
 }
 
 function globalVariable(VarName) {
@@ -2759,7 +2559,7 @@ function html_NavigationPanel() {
 	document.write('				<span class="icon-bar"></span>');
 	document.write('				<span class="icon-bar"></span>');
 	document.write('			</button>');
-	document.write('			<a class="navbar-brand" href="index.html">Home</a>');
+	document.write('			<a class="navbar-brand" href="index_new.html">Home</a>');
 	document.write('		</div>');
 	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
 	document.write('			<ul class="nav navbar-nav">');
@@ -2819,6 +2619,155 @@ function html_Footer() {
 	document.write('		Powered by <a href="https://www.w3schools.com/" target="_blank">w3schools</a>');
 	document.write('	</p>');
 	document.write('</footer>');
+}
+
+function html_RecordDisplayBox(Golfer, Event, Course, SeasonBegin, SeasonEnd, optHideBox) {
+	/**---------------------------------------------------------------------**/
+		var pGolfer			=	arguments[0];
+		var pEvent			=	arguments[1];
+		var pCourse			=	arguments[2];
+		var pSeasonBegin	=	arguments[3];
+		var pSeasonEnd		=	arguments[4];
+		var pHideBox		=	arguments[5];
+	/**---------------------------------------------------------------------**/
+	
+	if (pHideBox != 1) {
+	
+		document.write('<div class="w3-half">');
+		document.write('	<p><strong>Displaying:</p>');
+		document.write('	<table class="w3-table w3-white">');
+		document.write('		<tr>');
+		document.write('			<td width="40px">Golfer:</td>');
+		document.write('			<td width="200px">' + getGolferName(pGolfer) + '<br /></td>');
+		document.write('		</tr>');
+		document.write('		<tr>');
+		document.write('			<td width="40px">Event:</td>');
+		document.write('			<td width="200px">' + getEventName(pEvent) + '<br /></td>');
+		document.write('		</tr>');
+		document.write('		<tr>');
+		document.write('			<td width="40px">Course:</td>');
+		document.write('			<td width="200px">' + getCourseName(pCourse) + '<br /></td>');
+		document.write('		</tr>');
+		document.write('		<tr>');
+		document.write('			<td width="40px">Seasons:</td>');
+		document.write('			<td width="200px">' + pSeasonBegin + '&nbsp;&nbsp;to&nbsp;&nbsp;' + pSeasonEnd + '</td>');
+		document.write('		</tr>');
+		document.write('	</table></strong>');
+		document.write('</div>');
+	}
+}
+
+function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActionType, optRecord, optHideBox) {
+	
+		var pPageName			=	arguments[0];
+		var pPosition			=	arguments[1];
+		var pScoreType			=	arguments[2];
+		var pScoreActionType	=	arguments[3];
+		var pRecord				=	arguments[4];
+		var pHideBox			=	arguments[5];
+		
+		var arrGolfers			=	new Array();		arrGolfers		=	getData_Golfers();
+		var arrCourses			=	new Array();		arrCourses		=	getData_Courses();
+		var arrEvents			=	new Array();		arrEvents		=	getData_Events();
+		var arrSeasons			=	new Array();		arrSeasons		=	getData_Seasons();
+	
+	
+	if (pHideBox != 1) {
+	
+		document.write('<div class="w3-half">');
+		document.write('	<form action="' + pPageName + '" method="get">');
+		
+		if (pPosition != undefined) {
+			document.write('		<input type="hidden" name="pos" value="' + pPosition + '" />');
+		}
+		
+		if (pScoreType != undefined) {
+			document.write('		<input type="hidden" name="t" value="' + pScoreType + '" />');
+		}
+		
+		if (pScoreActionType != undefined) {
+			document.write('		<input type="hidden" name="a" value="' + pScoreActionType + '" />');
+		}
+		
+		if (pRecord != undefined) {
+			document.write('		<input type="hidden" name="rec" value="' + pScoreActionType + '" />');
+		}
+		
+		document.write('		<p><strong>Search For:</strong></p>');
+		document.write('		<table class="w3-table w3-light-gray">');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Golfer:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="g">');
+		document.write('						<option value="-1">-- All Golfers --</option>');
+		
+							for (z = 0; z < arrGolfers.length; z++) {
+								document.write('<option value="' + z + '">' + arrGolfers[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Event:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="e">');
+		document.write('						<option value="-1">-- All Events --</option>');
+		document.write('						<option value="-2">-- All Majors --</option>');
+		document.write('						<option value="-3">-- All Non-Majors --</option>');
+		
+							for (z = 0; z < arrEvents.length; z++) {
+								document.write('<option value="' + z + '">' + arrEvents[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Course:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="c">');
+		document.write('						<option value="-1">-- All Courses --</option>');
+		
+							for (z = 0; z < arrCourses.length; z++) {
+								document.write('<option value="' + z + '">' + arrCourses[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Seasons:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="sb">');
+
+							for (z = 0; z < arrSeasons.length; z++) {
+								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('					&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;');
+		document.write('					<select name="se">');
+		
+							arrSeasons.reverse();
+							
+							for (z = 0; z < arrSeasons.length; z++) {
+								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('			<tr>');
+		document.write('				<td width="40px">&nbsp;</td>');
+		document.write('				<td width="200px">');
+		document.write('					<input type="submit" value="Search..."/>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('		</table>');
+		document.write('	</form>');
+		document.write('</div>');
+	}
 }
 
 function html_SiteHeader() {

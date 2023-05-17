@@ -57,7 +57,10 @@
 								</thead>
 								<tbody>
 									<script>
-										var arrDisplayWinners = new Array();	arrDisplayWinners = getWinnersList();
+										var arrFilters = new Array();
+										arrFilters[4] = 1;
+										
+										var arrDisplayWinners = new Array();	arrDisplayWinners = getData_Participants(arrFilters);
 										var varDisplayIndex = 0;
 
 										for (d = arrDisplayWinners.length - 1; varDisplayIndex < varDisplayCount; d--) {
@@ -104,8 +107,8 @@
 								<tbody>
 									<script>
 										var arrDisplayMoney = new Array();
-										arrDisplayMoney = getMoneyList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
-										varDisplayIndex = 0;
+										arrURL[1] = varCurrentSeason;
+										arrDisplayMoney = getSeasonMoneyList(arrURL);
 
 										for (d = 0; d < varDisplayCount; d++) {
 											document.write("<tr>")
@@ -114,8 +117,6 @@
 											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
 											document.write("<tr>")
-											
-											varDisplayIndex++;
 										}
 									</script>
 								</tbody>
@@ -138,7 +139,7 @@
 							<script>
 								varDisplayCount = 8;
 							</script>
-							Season Average List
+							Season Average List - Min 2 Events
 						</div>
 						
 						<div class="panel-body">
@@ -153,13 +154,12 @@
 								</thead>
 								<tbody>
 									<script>
-										var arrDisplayMoney = new Array();
-										arrDisplayMoney = getAverageList(undefined,undefined,undefined,varCurrentSeason,varCurrentSeason);
+										var arrDisplayMoney = getAverageList(arrURL);
 										varDisplayIndex = 0;
 
 										for (d = 0; d < varDisplayCount; d++) {
 											document.write("<tr>")
-											document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");

@@ -1,4 +1,11 @@
 <script src="engine_new.js"></script>
 <script>
-    document.write( getWinnersList('Jason Strickland','Bratish Open','Phoenix') );
+
+	var url = new URL(window.location.href);
+	var arrURL = getURLParsed(url);
+	
+	//arrFilters = new Array();
+	
+    document.write( arrURL );
+	
 </script>

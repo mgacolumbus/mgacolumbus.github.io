@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<script src="engine.js"></script><script>StartEngine()</script>
+		<script src="engine_new.js"></script>
 		<script>
-			document.write('<title>' + gvar('Site_Title') + '</title>');
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
 			html_SiteHeader();
 				
 			var url = new URL(window.location.href);
@@ -17,7 +17,7 @@
 	<body class="w3-white">
 		
 		<script>
-			html_NavigationPanel2();
+			html_NavigationPanel();
 		</script><br /><br /><br />
 
 		
@@ -59,18 +59,29 @@
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayWinners = new Array();
-								arrDisplayWinners = getWinnersList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+								var arrFilters = new Array();
+								
+								arrFilters[4] = 1;
+								if (arrURL[3] != '-1') {arrFilters[2] = getGolferName(arrURL[3])};
+								if (arrURL[5] != '-1') {arrFilters[28] = getCourseName(arrURL[5])};
+								
+								if (arrURL[4] == '-2') {arrFilters[31] = 'Y';}
+								else if (arrURL[4] == '-3') {arrFilters[31] = 'N';}
+								else if (arrURL[4] != '-1') {arrFilters[29] = getEventName(arrURL[4]);}
+								
+								var arrDisplayWinners = getData_Participants(arrFilters);
 
 								for (d = arrDisplayWinners.length - 1; d >= 0; d--) {
-									document.write("<tr>")
-									document.write("<td>" + arrDisplayWinners[d][0] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][3] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][1] + "</td>");
-									document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
-									document.write("<td>" + getRoundScore(arrDisplayWinners, d)[2] + "</td>");
-									document.write("<td>+ " + arrDisplayWinners[d][7] + "</td>");
-									document.write("<tr>")
+									if (arrDisplayWinners[d][32] >= arrURL[1] && arrDisplayWinners[d][32] <= arrURL[2]) {
+										document.write("<tr>")
+										document.write("<td>" + arrDisplayWinners[d][30] + "</td>");
+										document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
+										document.write("<td>" + arrDisplayWinners[d][29] + "</td>");
+										document.write("<td>" + arrDisplayWinners[d][28] + "</td>");
+										document.write("<td>" + (arrDisplayWinners[d][13] + arrDisplayWinners[d][14]) + "</td>");
+										document.write("<td>+ " + arrDisplayWinners[d][3] + "</td>");
+										document.write("<tr>")
+									}
 								}
 							</script>
 						</tbody>

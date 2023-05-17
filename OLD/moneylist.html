@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<script src="engine.js"></script><script>StartEngine()</script>
+		<script src="engine_new.js"></script>
 		<script>
-			document.write('<title>' + gvar('Site_Title') + '</title>');
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
 			html_SiteHeader();
 				
 			var url = new URL(window.location.href);
@@ -18,7 +18,7 @@
 	<body class="w3-white">
 		
 		<script>
-			html_NavigationPanel2();
+			html_NavigationPanel();
 		</script><br /><br /><br />
 
 		
@@ -59,8 +59,7 @@
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = new Array();
-								arrDisplayMoney = getMoneyList(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
+								var arrDisplayMoney = getSeasonMoneyList(arrURL);
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
