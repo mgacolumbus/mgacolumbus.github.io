@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Scoring Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="averagelist.html"><div class="panel-footer panel_footer_ext">Scoring Average (Gross)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="averagelistnet.html"><div class="panel-footer panel_footer_ext">Scoring Average (Net)</div></a>
+					</div>
+				</div>
+				<!--
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="averagelist.html"><div class="panel-footer panel_footer_ext">View Full List</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="averagelist.html"><div class="panel-footer panel_footer_ext">View Full List</div></a>
+					</div>
+				</div>
+				-->
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

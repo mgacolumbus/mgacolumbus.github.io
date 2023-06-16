@@ -1,94 +1,3 @@
-function getAverageList(URL) {
-	var arrFilters = new Array();
-	var arrSeasonArray = new Array();
-	const scoresByGolfer = new Map();
-	
-	for (let x = URL[1]; x <= URL[2]; x++) {
-		if (URL[4] == '-2') {arrFilters[31] = 'Y';}
-		else if (URL[4] == '-3') {arrFilters[31] = 'N';}
-		else if (URL[4] != '-1') {arrFilters[29] = getEventName(URL[4]);}
-		
-		if (URL[3] != '-1') {arrFilters[2] = getGolferName(URL[3]);}
-		if (URL[5] != '-1') {arrFilters[28] = getCourseName(URL[5]);}
-		
-		arrFilters[32] = x;
-		arrSeasonArray = getData_Participants(arrFilters);
-		
-		for (let i = 0; i < arrSeasonArray.length; i++) {
-		  const golfer = arrSeasonArray[i][2];
-		  const strokes = (arrSeasonArray[i][13] + arrSeasonArray[i][14]);
-		  
-		  if (!scoresByGolfer.has(golfer)) {
-			scoresByGolfer.set(golfer, { strokes: 0, eventCount: 0 });
-		  }
-		  
-		  scoresByGolfer.get(golfer).strokes += strokes;
-		  scoresByGolfer.get(golfer).eventCount++;
-		}
-	}
-
-	var arrReturnArray = Array.from(scoresByGolfer, ([golfer, scoringObj]) => {
-	  const strokes = scoringObj.strokes;
-	  const eventCount = scoringObj.eventCount;
-	  return [golfer, (strokes / eventCount).toFixed(3), eventCount];
-	});
-	
-	arrReturnArray = arrReturnArray.filter(events => events[2] > 1);
-	
-	arrReturnArray.sort(function(a,b) {return a[1]-b[1]});
-	
-	var varPositionHold	= 0;
-	var varAverageHold	= 0;
-	var varReturnIndex = 0;
-	
-	for (pl = 0; pl < arrReturnArray.length; pl++) {
-		
-		if (varAverageHold != arrReturnArray[varReturnIndex][1]) {
-			varAverageHold = arrReturnArray[varReturnIndex][1];
-			varPositionHold = (pl + 1);
-			arrReturnArray[varReturnIndex][3] = (pl + 1);
-		} else {
-			arrReturnArray[varReturnIndex][3] = varPositionHold;
-		}
-		
-		varReturnIndex++;
-	}
-	
-	return arrReturnArray;
-}
-
-function getCourseName(pCourseIndex) {
-	switch (pCourseIndex) {
-		case '-1'	: return 'All Courses'; break;
-	}
-	
-	const arrCourses = getData_Courses();
-	return arrCourses[pCourseIndex];
-}
-
-function getCurrentSeason() {
-	const seasons = getData_Seasons();
-	return seasons[seasons.length - 1];
-}
-
-function getData_Courses() {
-	return [
-		"Chapel Hill","Raymond Memorial","Homestead Springs","Champions","Phoenix","Raccoon","Upper Lansdowne","Thorn Apple","St. Albans","Cumberland Trail","Links at Echo Springs","Split Rock","Rolling Meadows","Kyber Run","Turnberry","Links at Groveport","Oakhaven","Blues Creek","Willow Run","Westchester","Foxfire","Royal American","Blacklick Woods","Timberview","Denison","National Golf Links","Darby Creek","The Ridge","Crystal Springs","Clover Valley","Blackhawk","Pine Hill","Mill Creek",
-	].sort();
-}
-
-function getData_Events() {
-	return [
-		"Rebel Beach Am-Am","Bastards","MGA Championship","F.U. Open","Bratish Open","FORE Championship","Douche Bag Invitational","Last Gasp"
-	]
-}
-
-function getData_Golfers() {
-	return [
-		"Chris Wiford","Ben Apgar","Justin Brown","Jason Strickland","Eric Pierce","Jason Nicholas","Tony Zimmerman","Derrick Hitchens","John LaRue","Jeff Gilligan","Giang Nguyen","Doug Wiford","Todd Koch","Phil Insinga","Michael Bobowski","Kim Niswander","Anthony Seasly","David Safier","Jim Frawley","Jim Schaffranek","Doug Murray","Jordan Schaffranek","David Robertson","Ryan Downing","Tim Collins","Ryan Rainey","Jeremy Gary","Marvin Koch","Jimmy Fedrick","Eric Martorana","Marcus Mattson","Jack Weber","Scott Rainey","Mitch Frazier","Kirk Lammers","Bruce Zion","Chris Wineinger","Jeff Nasci","Terry Collins","Dustin Schmidt","Chad Schoch","John Leite","Jordan Adams","DJ Maley","Josh Stephens","Merrill Wheeler","David Knowles","Matt Bigelow","Michael Grote","Connor Mazza","Andy Nentwich","Dave Rice","Joe Milacek","Jeff Gilbert","Dustin Wood","Steve Sillato","Jay Sutter","Johnnie Jarrell","Frank Galilei","Chip Chapman","Joel Schumm","Joe Cortez","Craig Seibert","Matt Bugbee","John Stamper","Trevor Boyd","Kevin George","Brent Isner","Zach Chillinsky","Brad Wallace","Patrick Affourtit","Tony Szymczak","Kyle Ratajczak","Justin Kudela","Chris Roebuck","Sam Steinberg","Jeff Beckman","Gary Sutter","Bill Ludwig","Graydon Spanner","Scott Hall","Braedon Crowe","Jonathan Stone","Ken Byers","Doug Short","Chuck Jackson","Brian Zimmerschied","Jared Pickens","Tony Perrin","Bryan Sockol","Steve Bongard","Matt Keller","Todd Hamilton","Ryan Chiarito","Bob Krause","Anthony Cable","Joe Ritch","Justin Scribner","Ben Reeb","Zac Laumer","Sam Palumbo","Robert McArthur","Jonathan Reeb","Andy Klausing","Brian BenVenuto","James Treboni","Zachary Dunham","Charles Fitch","Ian Schambach","Mike Hardie","Riley Saelens","Mathew Mayo","Dylan Harbolt","Jason Smelser","Mike Galvin","Jacob Wollenberg","Justin Butt","Matt Arrasmith","Jason Tolman","Joe Kelly","Brice Darbyshire","Tim Koruna","William Sorokas","Kasey Lacourse","Rob Hamilton","Matt Subosits","Bryan Riegger","Luke Eschenbrenner","Tim Blausey","Ray Vaught","Scott Mulligan","David Orr","Justin Higgins","Marc Johnson","Adam Sheppard","Seth Wehner","Steven Baybutt","Joshua Treadway","Eric Heberle","John Barry","Karl Schedler","Dan Nelson","Scott Howland","Steve Friday","Nick Johnston","Doug Dickenson","Steven Merrill","Justin Duffie","Luke Maurer","Joe Faga","David Korzan","Brad Schimmoeller","Arun RajanBabu","Brett Ewing","Chad King","Fred Miller","Jay Patel","John Young","Corinne Bigelow","Elliot Mork","Brent Huddleston","Chris Pike","Sundar Digumarthy","Nick Poe","Paul Miller","Robby Thompson","Christopher Dillon","Brandon Clarke","Brad Bever","Dana Rose","Kurt Ritzman","Derek Shannon","Marty Leedy","Matthew Schaade","Gregory Hetterscheidt","Alex Fredericks","Michael McGuire","Bradley Rose","Michael Perry","Christopher Martin","Justin Liu","Jim McGuire","Tavis Nelson","David Kunkleman","Ian Willinger","Keith Overly","Brian Rue","Ty Wilson","Michael Isfort","Steven Murtanovski","Ryan Coady","Dan White","Emily Valandingham","Brian Spangenberg","Nicholas Jewson","Patrick Queen","John Hanley","Joe Medici","Kalib Amos","Tucker Wilkinson","Ward Huddleston","Kevin Bindel","Doug Hart","Hamza Khaliq","David Lacki","Alex Passafiume","Tony Rose","Matt Sleeper","Tim Tribbie","David Moore","Devin Johnson","Josh Belknap","Troy Wagner","Justin Tuente","Brad Rose","Dan Loper","Michael Rocco","Ben Gramza","Zachary Amos","Jay Carleton","Mike Freeland","Brian Tiemeier","Brent Ferrell","Gary Grant","Michael Skaff","Martin Dillinger","Matt Simyak","Christine Rinella","Doug Calamari",
-	].sort();
-}
-
 function getData_Participants(Filters) {
 	/*
 		0	-	Participant ID	
@@ -2287,6 +2196,91 @@ function getData_Participants(Filters) {
 		[	2068,	88,	"Joe Faga",	0,	22,	0,	"",	"",	"",	"",	"",	"",	"",	63,	58,	0,	0,	0,	2,	8,	4,	4,	19,	4,	77,	11,	25,	3,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25,	],
 		[	2069,	88,	"Michael Skaff",	0,	23,	0,	"",	"",	"",	"",	"",	"",	"",	62,	66,	0,	0,	1,	1,	2,	7,	7,	28,	4,	74,	11,	26,	3,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25,	],
 		[	2070,	88,	"Jeff Gilligan",	0,	24,	0,	"",	"",	"",	"",	"",	"",	"x",	66,	68,	0,	0,	0,	2,	2,	4,	10,	23,	4,	85,	11,	26,	3,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25,	],
+		
+		[	2071,	89,	"Robert McArthur",	5,	1,	1.26,	"",	"",	"",	"x",	"",	"",	"",	38,	42,	0,	4,	5,	6,	3,	0,	0,	14,	4,	48,	10,	18,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2072,	89,	"John Young",	5,	2,	0.77,	"",	"",	"",	"",	"",	"",	"",	43,	39,	0,	1,	6,	11,	0,	0,	0,	16,	4,	46,	10,	20,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2073,	89,	"Steven Baybutt",	4,	2,	0.77,	"",	"",	"",	"",	"",	"",	"",	41,	42,	0,	1,	8,	6,	3,	0,	0,	15,	4,	48,	10,	20,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2074,	89,	"David Knowles",	9,	4,	0.63,	"",	"",	"",	"",	"",	"",	"",	40,	40,	0,	2,	7,	8,	1,	0,	0,	14,	4,	45,	10,	21,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2075,	89,	"Ben Gramza",	3,	5,	0.56,	"",	"",	"",	"",	"",	"",	"",	41,	46,	0,	2,	4,	8,	3,	1,	0,	15,	4,	51,	10,	21,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2076,	89,	"Dylan Greer",	6,	6,	0.49,	"",	"",	"",	"",	"x",	"",	"",	43,	42,	0,	1,	8,	4,	5,	0,	0,	14,	4,	49,	10,	22,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2077,	89,	"Connor Mazza",	11,	7,	0.42,	"",	"",	"",	"",	"",	"",	"",	44,	41,	0,	1,	5,	10,	2,	0,	0,	17,	4,	46,	10,	22,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2078,	89,	"Doug Hart",	0,	8,	0.32,	"",	"",	"",	"",	"",	"",	"",	46,	51,	0,	0,	3,	7,	6,	2,	0,	18,	4,	56,	10,	23,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2079,	89,	"Ryan Carey",	2,	8,	0.32,	"",	"",	"",	"",	"",	"",	"",	45,	50,	0,	0,	8,	3,	4,	1,	2,	13,	4,	59,	10,	23,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2080,	89,	"Jason Strickland",	4,	10,	0.18,	"",	"",	"",	"",	"",	"",	"",	47,	47,	0,	0,	1,	14,	1,	2,	0,	15,	4,	55,	10,	24,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2081,	89,	"John Stamper",	0,	10,	0.18,	"",	"",	"",	"",	"",	"",	"",	46,	52,	0,	0,	3,	8,	3,	4,	0,	18,	4,	56,	10,	24,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2082,	89,	"Jason Smelser",	2,	12,	0.07,	"",	"",	"",	"",	"",	"",	"",	48,	49,	0,	1,	3,	4,	8,	2,	0,	18,	4,	57,	10,	22,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2083,	89,	"Michael Perry",	0,	13,	0.06,	"",	"",	"",	"",	"",	"",	"",	51,	49,	0,	0,	3,	7,	5,	1,	2,	18,	4,	52,	10,	30,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2084,	89,	"Steve Clay",	3,	14,	0.05,	"",	"",	"",	"",	"",	"x",	"",	54,	45,	0,	0,	5,	7,	2,	2,	2,	14,	4,	57,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2085,	89,	"Ronald Anderson",	0,	15,	0.03,	"",	"",	"",	"",	"",	"",	"",	57,	48,	0,	0,	2,	5,	7,	3,	1,	19,	4,	58,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2086,	89,	"Tim Collins",	3,	15,	0.03,	"",	"",	"",	"",	"",	"",	"",	49,	53,	0,	0,	4,	6,	5,	2,	1,	15,	4,	63,	10,	24,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2087,	89,	"Marty Leedy",	0,	17,	0,	"",	"",	"",	"",	"",	"",	"",	54,	52,	0,	0,	2,	6,	7,	1,	2,	17,	4,	63,	10,	26,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2088,	89,	"Justin Scribner",	4,	18,	0,	"",	"",	"",	"",	"",	"",	"",	50,	53,	0,	0,	1,	7,	7,	2,	1,	21,	4,	55,	10,	27,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2089,	89,	"Paul Miller",	0,	18,	0,	"",	"",	"",	"",	"",	"",	"",	57,	50,	0,	0,	2,	8,	2,	4,	2,	18,	4,	62,	10,	27,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2090,	89,	"Eric Heberle",	0,	20,	0,	"",	"",	"x",	"",	"",	"",	"",	53,	55,	0,	1,	0,	7,	5,	3,	2,	26,	4,	58,	10,	24,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2091,	89,	"Sam Palumbo",	1,	20,	0,	"",	"x",	"",	"",	"",	"",	"",	50,	57,	0,	1,	3,	3,	5,	3,	3,	20,	4,	64,	10,	23,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2092,	89,	"Mike Freeland",	0,	22,	0,	"",	"",	"",	"",	"",	"",	"",	53,	57,	0,	0,	0,	7,	6,	3,	2,	18,	4,	64,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2093,	89,	"Steve Hile",	5,	23,	0,	"",	"",	"",	"",	"",	"",	"",	51,	55,	0,	0,	3,	6,	5,	1,	3,	17,	4,	63,	10,	26,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2094,	89,	"Kevin Bindel",	0,	24,	0,	"",	"",	"",	"",	"",	"",	"",	58,	55,	0,	0,	0,	5,	3,	10,	0,	22,	4,	64,	10,	27,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2095,	89,	"Bob Parker",	5,	25,	0,	"",	"",	"",	"",	"",	"",	"",	52,	57,	0,	0,	2,	4,	6,	4,	2,	18,	4,	63,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2096,	89,	"David Kunkleman",	0,	25,	0,	"",	"",	"",	"",	"",	"",	"",	59,	55,	0,	0,	4,	3,	4,	3,	4,	22,	4,	69,	10,	23,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2097,	89,	"Jake Diegel",	2,	25,	0,	"",	"",	"",	"",	"",	"",	"",	57,	55,	0,	0,	0,	5,	8,	2,	3,	21,	4,	64,	10,	27,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2098,	89,	"Matt Arrasmith",	0,	28,	0,	"",	"",	"",	"",	"",	"",	"",	60,	55,	0,	0,	0,	6,	4,	5,	3,	21,	4,	66,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2099,	89,	"Justin Kudela",	0,	29,	0,	"",	"",	"",	"",	"",	"",	"",	62,	56,	0,	0,	0,	5,	6,	2,	5,	22,	4,	68,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2100,	89,	"Patrick Affourtit",	0,	29,	0,	"",	"",	"",	"",	"",	"",	"",	61,	57,	0,	0,	0,	3,	7,	4,	4,	23,	4,	67,	10,	28,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		[	2101,	89,	"Jeff Gilligan",	0,	31,	0,	"",	"",	"",	"",	"",	"",	"x",	68,	64,	0,	0,	1,	3,	3,	3,	8,	25,	4,	75,	10,	32,	4,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31,	],
+		
+		[	2102,	90,	"Kurt Ritzman",	1,	1,	1.35,	"",	"",	"",	"",	"",	"",	"",	41,	45,	0,	0,	10,	4,	3,	0,	1,	17,	4,	48,	10,	21,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2103,	90,	"John Young",	6,	2,	0.9,	"",	"",	"",	"x",	"",	"",	"",	42,	42,	0,	3,	3,	9,	3,	0,	0,	16,	4,	45,	10,	23,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2104,	90,	"Dylan Greer",	5,	3,	0.71,	"",	"",	"",	"",	"x",	"x",	"",	42,	45,	0,	0,	10,	3,	4,	0,	1,	14,	4,	51,	10,	22,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2105,	90,	"Robert McArthur",	7,	3,	0.71,	"",	"",	"",	"",	"",	"",	"",	41,	44,	0,	0,	6,	11,	1,	0,	0,	16,	4,	47,	10,	22,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2106,	90,	"David Knowles",	9,	5,	0.56,	"",	"x",	"",	"",	"",	"",	"",	37,	48,	0,	2,	6,	8,	0,	1,	1,	15,	4,	44,	10,	26,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2107,	90,	"Doug Hart",	0,	5,	0.56,	"",	"",	"",	"",	"",	"",	"",	44,	50,	0,	0,	3,	9,	5,	1,	0,	17,	4,	51,	10,	26,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2108,	90,	"Ryan Carey",	2,	7,	0.45,	"",	"",	"",	"",	"",	"",	"",	47,	46,	0,	1,	7,	4,	3,	2,	1,	12,	4,	56,	10,	25,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2109,	90,	"Brent Isner",	4,	8,	0.3,	"",	"",	"",	"",	"",	"",	"",	48,	45,	0,	0,	2,	12,	3,	1,	0,	18,	4,	51,	10,	24,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2110,	90,	"Eric Heberle",	0,	8,	0.3,	"",	"",	"",	"",	"",	"",	"",	44,	53,	0,	1,	1,	12,	1,	1,	2,	16,	4,	52,	10,	29,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2111,	90,	"Paul Miller",	0,	8,	0.3,	"",	"",	"",	"",	"",	"",	"",	46,	51,	0,	0,	4,	5,	7,	2,	0,	18,	4,	53,	10,	26,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2112,	90,	"Fred Miller",	2,	11,	0.11,	"",	"",	"x",	"",	"",	"",	"",	47,	49,	0,	0,	2,	9,	6,	1,	0,	18,	4,	52,	10,	26,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2113,	90,	"John Hanley",	0,	11,	0.11,	"",	"",	"",	"",	"",	"",	"",	51,	47,	0,	0,	3,	9,	3,	1,	2,	16,	4,	52,	10,	30,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2114,	90,	"John Stamper",	0,	13,	0.07,	"",	"",	"",	"",	"",	"",	"",	53,	46,	0,	0,	4,	6,	4,	3,	1,	16,	4,	55,	10,	28,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2115,	90,	"Michael Perry",	0,	14,	0.05,	"",	"",	"",	"",	"",	"",	"",	49,	51,	0,	0,	2,	9,	3,	3,	1,	19,	4,	51,	10,	30,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2116,	90,	"Sam Palumbo",	0,	15,	0.04,	"",	"",	"",	"",	"",	"",	"",	51,	52,	0,	0,	2,	7,	5,	2,	2,	20,	4,	57,	10,	26,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2117,	90,	"Michael McGuire",	0,	16,	0.02,	"",	"",	"",	"",	"",	"",	"",	53,	51,	0,	0,	0,	9,	5,	3,	1,	17,	4,	56,	10,	31,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2118,	90,	"David Lacki",	0,	17,	0,	"",	"",	"",	"",	"",	"",	"",	54,	51,	0,	0,	2,	7,	3,	4,	2,	19,	4,	57,	10,	29,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2119,	90,	"David Kunkleman",	0,	18,	0,	"",	"",	"",	"",	"",	"",	"",	56,	50,	0,	0,	2,	5,	4,	7,	0,	17,	4,	60,	10,	29,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2120,	90,	"Steve Hile",	4,	18,	0,	"",	"",	"",	"",	"",	"",	"",	53,	49,	0,	0,	5,	4,	5,	0,	4,	21,	4,	57,	10,	24,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2121,	90,	"Bob Parker",	4,	20,	0,	"",	"",	"",	"",	"",	"",	"",	53,	51,	0,	0,	0,	10,	2,	6,	0,	16,	4,	56,	10,	32,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2122,	90,	"Jason Strickland",	4,	21,	0,	"",	"",	"",	"",	"",	"",	"",	57,	49,	0,	0,	4,	4,	4,	4,	2,	19,	4,	59,	10,	28,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2123,	90,	"Jake Diegel",	0,	22,	0,	"",	"",	"",	"",	"",	"",	"",	60,	52,	0,	0,	1,	5,	7,	3,	2,	21,	4,	63,	10,	28,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		[	2124,	90,	"Jeff Gilligan",	0,	23,	0,	"",	"",	"",	"",	"",	"",	"x",	65,	68,	0,	0,	0,	1,	6,	3,	8,	21,	4,	75,	10,	37,	4,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23,	],
+		
+		[	2125,	91,	"Connor Mazza",	10,	0,	0,	"",	"",	"",	"x",	"",	"",	"",	40,	36,	0,	3,	9,	5,	1,	0,	0,	11,	4,	44,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2126,	91,	"Sundar Digumarthy",	0,	1,	1.35,	"",	"",	"",	"",	"",	"",	"",	45,	37,	0,	2,	5,	10,	1,	0,	0,	14,	4,	44,	10,	24,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2127,	91,	"Steve Clay",	3,	2,	0.9,	"",	"",	"",	"",	"",	"",	"",	43,	39,	0,	0,	11,	5,	1,	1,	0,	16,	4,	45,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2128,	91,	"Robert McArthur",	6,	3,	0.75,	"",	"",	"",	"",	"",	"",	"",	40,	40,	0,	1,	9,	7,	1,	0,	0,	15,	4,	44,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2129,	91,	"John Young",	6,	4,	0.68,	"",	"",	"",	"",	"",	"",	"",	41,	40,	0,	2,	7,	7,	2,	0,	0,	14,	4,	47,	10,	20,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2130,	91,	"Graydon Spanner",	2,	5,	0.56,	"",	"",	"",	"",	"",	"",	"",	41,	46,	0,	1,	5,	8,	4,	0,	0,	16,	4,	49,	10,	22,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2131,	91,	"Paul Miller",	0,	5,	0.56,	"",	"x",	"",	"",	"",	"",	"",	41,	48,	0,	2,	3,	9,	2,	2,	0,	15,	4,	47,	10,	27,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2132,	91,	"Doug Hart",	0,	7,	0.41,	"",	"",	"",	"",	"",	"",	"",	46,	44,	0,	0,	7,	5,	5,	1,	0,	17,	4,	50,	10,	23,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2133,	91,	"Kurt Ritzman",	2,	7,	0.41,	"",	"",	"",	"",	"",	"",	"",	49,	39,	0,	1,	8,	6,	0,	2,	1,	15,	4,	54,	10,	19,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2134,	91,	"Michael Perry",	0,	9,	0.3,	"",	"",	"",	"",	"x",	"",	"",	47,	44,	0,	2,	2,	8,	5,	1,	0,	18,	4,	51,	10,	22,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2135,	91,	"Brad Schimmoeller",	5,	10,	0.15,	"",	"",	"",	"",	"",	"",	"",	45,	42,	0,	0,	9,	5,	3,	0,	1,	16,	4,	50,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2136,	91,	"Joe Milacek",	5,	10,	0.15,	"",	"",	"",	"",	"",	"",	"",	44,	43,	0,	0,	6,	9,	3,	0,	0,	16,	4,	50,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2137,	91,	"Tim Collins",	2,	10,	0.15,	"",	"",	"",	"",	"",	"",	"",	43,	47,	0,	1,	4,	8,	4,	1,	0,	14,	4,	50,	10,	26,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2138,	91,	"David Knowles",	9,	13,	0.05,	"",	"",	"",	"",	"",	"",	"",	42,	42,	0,	2,	8,	4,	2,	2,	0,	19,	4,	47,	10,	18,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2139,	91,	"Jason Smelser",	2,	13,	0.05,	"",	"",	"",	"",	"",	"",	"",	44,	47,	0,	1,	6,	6,	3,	0,	2,	13,	4,	53,	10,	25,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2140,	91,	"Ryan Carey",	2,	13,	0.05,	"",	"",	"",	"",	"",	"",	"",	45,	46,	0,	0,	6,	7,	3,	2,	0,	15,	4,	55,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2141,	91,	"Jason Strickland",	4,	16,	0.02,	"",	"",	"x",	"",	"",	"",	"",	44,	47,	0,	1,	4,	8,	4,	0,	1,	16,	4,	54,	10,	21,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2142,	91,	"John Hanley",	0,	17,	0,	"",	"",	"",	"",	"",	"",	"",	49,	47,	0,	0,	5,	6,	4,	2,	1,	16,	4,	55,	10,	25,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2143,	91,	"Eric Heberle",	0,	18,	0,	"",	"",	"",	"",	"",	"",	"",	52,	45,	0,	0,	5,	6,	3,	3,	1,	13,	4,	58,	10,	26,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2144,	91,	"Fred Miller",	2,	19,	0,	"",	"",	"",	"",	"",	"",	"",	48,	48,	0,	1,	4,	5,	5,	2,	1,	17,	4,	56,	10,	23,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2145,	91,	"John Stamper",	0,	20,	0,	"",	"",	"",	"",	"",	"",	"",	51,	48,	0,	0,	4,	6,	4,	3,	1,	17,	4,	56,	10,	26,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2146,	91,	"Ben Gramza",	3,	21,	0,	"",	"",	"",	"",	"",	"",	"",	51,	46,	0,	2,	3,	1,	10,	2,	0,	17,	4,	51,	10,	29,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2147,	91,	"Justin Kudela",	0,	22,	0,	"",	"",	"",	"",	"",	"",	"",	51,	50,	0,	0,	2,	6,	7,	3,	0,	17,	4,	57,	10,	27,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2148,	91,	"Steven Boggus",	3,	22,	0,	"",	"",	"",	"",	"",	"",	"",	51,	47,	0,	0,	4,	8,	3,	2,	1,	17,	4,	56,	10,	25,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2149,	91,	"Jake Diegel",	0,	24,	0,	"",	"",	"",	"",	"",	"",	"",	52,	50,	0,	0,	2,	8,	5,	2,	1,	17,	4,	63,	10,	22,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2150,	91,	"Matt Arrasmith",	0,	25,	0,	"",	"",	"",	"",	"",	"",	"",	52,	52,	0,	0,	3,	6,	3,	4,	2,	17,	4,	62,	10,	25,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2151,	91,	"Jeff Gilligan",	0,	26,	0,	"",	"",	"",	"",	"",	"",	"",	56,	49,	0,	0,	2,	7,	5,	2,	2,	18,	4,	61,	10,	26,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
+		[	2152,	91,	"Patrick Affourtit",	0,	27,	0,	"",	"",	"",	"",	"",	"x",	"x",	51,	56,	0,	1,	1,	5,	5,	3,	3,	15,	4,	62,	10,	30,	4,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28,	],
 
 	];
 	
@@ -2297,500 +2291,4 @@ function getData_Participants(Filters) {
 	}
 	
 	return arrParticipants;
-}
-
-function getData_Seasons() {
-	return [
-		2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,
-		//2023,
-	].sort();
-}
-
-function getData_Tournaments(Filters) {
-    /*
-		0 = Tournament ID
-		1 = Course Name
-		2 = Event Name
-		3 = Event Date
-		4 = IsMajor?
-		5 = Season
-		6 = Month
-		7 = Field Size
-	*/
-	
-	let arrTournaments = [
-        [	1,	"Chapel Hill",	"Rebel Beach Am-Am",	"03-25-2012",	"N",	2012,	"March",	12	],
-        [	2,	"Raymond Memorial",	"Bastards",	"04-22-2012",	"Y",	2012,	"April",	13	],
-        [	3,	"Homestead Springs",	"FORE Championship",	"05-20-2012",	"N",	2012,	"May",	11	],
-        [	4,	"Champions",	"F.U. Open",	"06-24-2012",	"Y",	2012,	"June",	11	],
-        [	5,	"Phoenix",	"Bratish Open",	"07-15-2012",	"Y",	2012,	"July",	11	],
-        [	6,	"Raccoon",	"MGA Championship",	"08-12-2012",	"Y",	2012,	"August",	12	],
-        [	7,	"Upper Lansdowne",	"Douche Bag Invitational",	"09-16-2012",	"N",	2012,	"September",	13	],
-        [	8,	"Thorn Apple",	"Last Gasp",	"10-14-2012",	"N",	2012,	"October",	9	],
-        [	9,	"St. Albans",	"Rebel Beach Am-Am",	"04-07-2013",	"N",	2013,	"April",	26	],
-        [	10,	"Cumberland Trail",	"Bastards",	"04-28-2013",	"Y",	2013,	"April",	18	],
-        [	11,	"Thorn Apple",	"FORE Championship",	"05-19-2013",	"N",	2013,	"May",	19	],
-        [	12,	"Chapel Hill",	"F.U. Open",	"06-02-2013",	"Y",	2013,	"June",	14	],
-        [	13,	"Links at Echo Springs",	"Bratish Open",	"07-14-2013",	"Y",	2013,	"July",	21	],
-        [	14,	"Raccoon",	"MGA Championship",	"08-18-2013",	"Y",	2013,	"August",	19	],
-        [	15,	"Split Rock",	"Douche Bag Invitational",	"09-08-2013",	"N",	2013,	"September",	15	],
-        [	16,	"Rolling Meadows",	"Last Gasp",	"10-20-2013",	"N",	2013,	"October",	10	],
-        [	17,	"Split Rock",	"Bastards",	"04-27-2014",	"Y",	2014,	"April",	9	],
-        [	18,	"Raccoon",	"FORE Championship",	"05-18-2014",	"N",	2014,	"May",	6	],
-        [	19,	"Kyber Run",	"F.U. Open",	"06-08-2014",	"Y",	2014,	"June",	4	],
-        [	20,	"Thorn Apple",	"Rebel Beach Am-Am",	"06-29-2014",	"N",	2014,	"June",	6	],
-        [	21,	"Turnberry",	"Bratish Open",	"07-13-2014",	"Y",	2014,	"July",	6	],
-        [	22,	"Chapel Hill",	"MGA Championship",	"08-17-2014",	"Y",	2014,	"August",	5	],
-        [	23,	"Cumberland Trail",	"Douche Bag Invitational",	"09-07-2014",	"N",	2014,	"September",	6	],
-        [	24,	"Links at Groveport",	"Last Gasp",	"10-12-2014",	"N",	2014,	"October",	6	],
-        [	25,	"Links at Echo Springs",	"Rebel Beach Am-Am",	"03-29-2015",	"N",	2015,	"March",	8	],
-        [	26,	"Thorn Apple",	"Bastards",	"04-19-2015",	"Y",	2015,	"April",	9	],
-        [	27,	"Raccoon",	"FORE Championship",	"05-17-2015",	"N",	2015,	"May",	12	],
-        [	28,	"Oakhaven",	"F.U. Open",	"06-14-2015",	"Y",	2015,	"June",	12	],
-        [	29,	"Homestead Springs",	"Bratish Open",	"07-12-2015",	"Y",	2015,	"July",	11	],
-        [	30,	"Kyber Run",	"MGA Championship",	"08-09-2015",	"Y",	2015,	"August",	17	],
-        [	31,	"Blues Creek",	"Douche Bag Invitational",	"09-13-2015",	"N",	2015,	"September",	16	],
-        [	32,	"Willow Run",	"Last Gasp",	"10-11-2015",	"N",	2015,	"October",	11	],
-        [	33,	"Westchester",	"Rebel Beach Am-Am",	"04-17-2016",	"N",	2016,	"April",	20	],
-        [	34,	"Chapel Hill",	"Bastards",	"04-24-2016",	"Y",	2016,	"April",	19	],
-        [	35,	"Links at Echo Springs",	"FORE Championship",	"05-22-2016",	"N",	2016,	"May",	17	],
-        [	36,	"Foxfire",	"F.U. Open",	"06-12-2016",	"Y",	2016,	"June",	12	],
-        [	37,	"Royal American",	"Bratish Open",	"07-17-2016",	"Y",	2016,	"July",	17	],
-        [	38,	"Cumberland Trail",	"MGA Championship",	"08-21-2016",	"Y",	2016,	"August",	17	],
-        [	39,	"Blacklick Woods",	"Douche Bag Invitational",	"09-11-2016",	"N",	2016,	"September",	19	],
-        [	40,	"Split Rock",	"Last Gasp",	"10-02-2016",	"N",	2016,	"October",	15	],
-        [	41,	"Timberview",	"Rebel Beach Am-Am",	"04-23-2017",	"N",	2017,	"April",	22	],
-        [	42,	"Kyber Run",	"Bastards",	"05-07-2017",	"Y",	2017,	"May",	17	],
-        [	43,	"Denison",	"F.U. Open",	"06-11-2017",	"Y",	2017,	"June",	16	],
-        [	44,	"National Golf Links",	"Bratish Open",	"07-09-2017",	"Y",	2017,	"July",	21	],
-        [	45,	"Darby Creek",	"MGA Championship",	"08-13-2017",	"Y",	2017,	"August",	16	],
-        [	46,	"Links at Groveport",	"FORE Championship",	"08-28-2017",	"N",	2017,	"August",	14	],
-        [	47,	"St. Albans",	"Douche Bag Invitational",	"09-10-2017",	"N",	2017,	"September",	16	],
-        [	48,	"Westchester",	"Last Gasp",	"10-01-2017",	"N",	2017,	"October",	16	],
-        [	49,	"Willow Run",	"Rebel Beach Am-Am",	"04-08-2018",	"N",	2018,	"April",	28	],
-        [	50,	"The Ridge",	"Bastards",	"04-29-2018",	"Y",	2018,	"April",	23	],
-        [	51,	"St. Albans",	"FORE Championship",	"05-20-2018",	"N",	2018,	"May",	26	],
-        [	52,	"Champions",	"F.U. Open",	"06-10-2018",	"Y",	2018,	"June",	23	],
-        [	53,	"Crystal Springs",	"Bratish Open",	"07-15-2018",	"Y",	2018,	"July",	26	],
-        [	54,	"Cumberland Trail",	"MGA Championship",	"08-05-2018",	"Y",	2018,	"August",	33	],
-        [	55,	"Blues Creek",	"Douche Bag Invitational",	"08-26-2018",	"N",	2018,	"August",	22	],
-        [	56,	"Links at Echo Springs",	"Last Gasp",	"09-23-2018",	"N",	2018,	"September",	16	],
-        [	57,	"Westchester",	"Rebel Beach Am-Am",	"04-07-2019",	"N",	2019,	"April",	44	],
-        [	58,	"Clover Valley",	"Bastards",	"04-28-2019",	"Y",	2019,	"April",	39	],
-        [	59,	"Darby Creek",	"MGA Championship",	"05-19-2019",	"Y",	2019,	"May",	44	],
-        [	60,	"Oakhaven",	"F.U. Open",	"06-09-2019",	"Y",	2019,	"June",	38	],
-        [	61,	"Royal American",	"Bratish Open",	"07-14-2019",	"Y",	2019,	"July",	41	],
-        [	62,	"Blackhawk",	"FORE Championship",	"08-04-2019",	"N",	2019,	"August",	35	],
-        [	63,	"Kyber Run",	"Douche Bag Invitational",	"09-08-2019",	"N",	2019,	"September",	26	],
-        [	64,	"Chapel Hill",	"Last Gasp",	"10-06-2019",	"N",	2019,	"October",	23	],
-        [	65,	"Denison",	"MGA Championship",	"06-07-2020",	"Y",	2020,	"June",	34	],
-        [	66,	"Oakhaven",	"F.U. Open",	"06-28-2020",	"Y",	2020,	"June",	31	],
-        [	67,	"Royal American",	"Rebel Beach Am-Am",	"07-12-2020",	"N",	2020,	"July",	24	],
-        [	68,	"Pine Hill",	"Bratish Open",	"07-26-2020",	"Y",	2020,	"July",	35	],
-        [	69,	"Mill Creek",	"Bastards",	"08-02-2020",	"Y",	2020,	"August",	30	],
-        [	70,	"Clover Valley",	"FORE Championship",	"08-22-2020",	"N",	2020,	"August",	36	],
-        [	71,	"St. Albans",	"Douche Bag Invitational",	"09-20-2020",	"N",	2020,	"September",	32	],
-        [	72,	"Blues Creek",	"Last Gasp",	"10-04-2020",	"N",	2020,	"October",	28	],
-        [	73,	"Cumberland Trail",	"Rebel Beach Am-Am",	"04-18-2021",	"N",	2021,	"April",	56	],
-        [	74,	"Blacklick Woods",	"Bastards",	"05-16-2021",	"Y",	2021,	"May",	55	],
-        [	75,	"Darby Creek",	"MGA Championship",	"06-06-2021",	"Y",	2021,	"June",	48	],
-        [	76,	"Chapel Hill",	"F.U. Open",	"06-27-2021",	"Y",	2021,	"June",	44	],
-        [	77,	"Pine Hill",	"Bratish Open",	"07-18-2021",	"Y",	2021,	"July",	54	],
-        [	78,	"The Ridge",	"FORE Championship",	"08-08-2021",	"N",	2021,	"August",	39	],
-        [	79,	"Links at Echo Springs",	"Douche Bag Invitational",	"09-12-2021",	"N",	2021,	"September",	42	],
-        [	80,	"Mill Creek",	"Last Gasp",	"10-03-2021",	"N",	2021,	"October",	30	],
-        [	81,	"Kyber Run",	"Rebel Beach Am-Am",	"04-10-2022",	"N",	2022,	"April",	48	],
-        [	82,	"Cumberland Trail",	"Bastards",	"05-01-2022",	"Y",	2022,	"May",	44	],
-        [	83,	"Chapel Hill",	"MGA Championship",	"06-05-2022",	"Y",	2022,	"June",	46	],
-        [	84,	"Oakhaven",	"F.U. Open",	"06-26-2022",	"Y",	2022,	"June",	41	],
-        [	85,	"Links at Echo Springs",	"Bratish Open",	"08-07-2022",	"Y",	2022,	"August",	34	],
-        [	86,	"Homestead Springs",	"FORE Championship",	"08-21-2022",	"N",	2022,	"August",	32	],
-        [	87,	"Blues Creek",	"Douche Bag Invitational",	"09-11-2022",	"N",	2022,	"September",	43	],
-        [	88,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25	],
-    ];
-	
-	for (x = 0; x < Filters.length; x++) {
-		if (Filters[x] != undefined && Filters[x] != '') {
-			arrTournaments = arrTournaments.filter(tourney => tourney[x] == Filters[x]);
-		}
-	}
-	
-	return arrTournaments;
-}
-
-function getEventName(pEventIndex) {
-	switch (pEventIndex) {
-		case '-1'	: return 'All Events'; break;
-		case '-2'	: return 'All Majors'; break;
-		case '-3'	: return 'All Non-Majors'; break;
-	}
-	
-	const arrEvents = getData_Events();
-	return arrEvents[pEventIndex];
-}
-
-function getGolferName(pGolferIndex) {
-	switch (pGolferIndex) {
-		case '-1'	: return 'All Golfers'; break;
-	}
-	
-	const arrGolfers = getData_Golfers();
-	return arrGolfers[pGolferIndex];
-}
-
-function getSeasonMoneyList(URL) {
-	var arrFilters = new Array();
-	var arrSeasonArray = new Array();
-	const earningsByGolfer = new Map();
-	
-	for (let x = URL[1]; x <= URL[2]; x++) {
-		if (URL[4] == '-2') {arrFilters[31] = 'Y';}
-		else if (URL[4] == '-3') {arrFilters[31] = 'N';}
-		else if (URL[4] != '-1') {arrFilters[29] = getEventName(URL[4]);}
-		
-		if (URL[3] != '-1') {arrFilters[2] = getGolferName(URL[3]);}
-		if (URL[5] != '-1') {arrFilters[28] = getCourseName(URL[5]);}
-		
-		arrFilters[32] = x;
-		arrSeasonArray = getData_Participants(arrFilters);
-		
-		for (let i = 0; i < arrSeasonArray.length; i++) {
-		  const golfer = arrSeasonArray[i][2];
-		  const earnings = arrSeasonArray[i][5];
-		  
-		  if (!earningsByGolfer.has(golfer)) {
-			earningsByGolfer.set(golfer, { earnings: 0, eventCount: 0 });
-		  }
-		  
-		  earningsByGolfer.get(golfer).earnings += earnings;
-		  earningsByGolfer.get(golfer).eventCount++;
-		}
-	}
-
-	var arrReturnArray = Array.from(earningsByGolfer, ([golfer, earningsObj]) => {
-	  const earnings = earningsObj.earnings.toFixed(2);
-	  const eventCount = earningsObj.eventCount;
-	  return [golfer, earnings, eventCount];
-	}).filter(([, earnings]) => parseFloat(earnings) > 0);
-	
-	arrReturnArray.sort(function(a,b) {return b[1]-a[1]});
-	
-	var varPositionHold	= 0;
-	var varEarningsHold	= 0;
-	var varReturnIndex = 0;
-	
-	for (pl = 0; pl < arrReturnArray.length; pl++) {
-		
-		if (varEarningsHold != arrReturnArray[varReturnIndex][1]) {
-			varEarningsHold = arrReturnArray[varReturnIndex][1];
-			varPositionHold = (pl + 1);
-			arrReturnArray[varReturnIndex][3] = (pl + 1);
-		} else {
-			arrReturnArray[varReturnIndex][3] = varPositionHold;
-		}
-		
-		varReturnIndex++;
-	}
-	
-	return arrReturnArray;
-}
-
-function getURLParsed(URL) {
-	const { searchParams } = URL;
-
-	const varURL = URL.toString();
-	const varURLslash = varURL.lastIndexOf('/');
-	const varURLhtml = varURL.indexOf(".html");
-
-	const arrReturnArray = [];
-	
-	/*
-		arrReturnArray[0]	=	Page Name
-		arrReturnArray[1]	=	Season Begin
-		arrReturnArray[2]	=	Season End
-		arrReturnArray[3]	=	Golfer Index
-		arrReturnArray[4]	=	Event Index
-		arrReturnArray[5]	=	Course Index
-		arrReturnArray[6]	=	Current Record Value
-		arrReturnArray[7]	=	Finishing Position
-		arrReturnArray[8]	=	Score Type
-		arrReturnArray[9]	=	Score Type Action
-		arrReturnArray[10]	=	Specific Season
-		arrReturnArray[11]	=	Hide Display and Search
-	*/
-
-	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
-	arrReturnArray[1] = searchParams.get("sb") ?? 2012;
-	arrReturnArray[2] = searchParams.get("se") ?? getCurrentSeason();
-	arrReturnArray[3] = searchParams.get("g") ?? '-1';
-	arrReturnArray[4] = searchParams.get("e") ?? '-1';
-	/*
-	arrReturnArray[4] = searchParams.get("e") == "-1" ? "All Events"
-		: searchParams.get("e") == "-2" ? "All Majors"
-		: searchParams.get("e") == "-3" ? "All Non-Majors"
-		: searchParams.get("e") ?? "UNK";
-	*/
-	arrReturnArray[5] = searchParams.get("c") ?? '-1';
-	arrReturnArray[6] = searchParams.get("rec");
-	arrReturnArray[7] = searchParams.get("pos");
-	arrReturnArray[8] = searchParams.get("t");
-	arrReturnArray[9] = searchParams.get("a");
-	arrReturnArray[10] = searchParams.get("s") ?? getCurrentSeason();
-	arrReturnArray[11] = searchParams.get("hdn");
-
-	return arrReturnArray;
-}
-
-function globalVariable(VarName) {
-	switch (VarName) {
-		case 'Site_BGColor':	return 'white'; break;
-		case 'Site_Title':		return 'Site rewrite in progress'; break;
-		
-		default:				return 'NOPE';
-	}
-}
-
-function html_NavigationPanel() {
-	document.write('<nav class="navbar navbar-inverse navbar-fixed-top">');
-	document.write('	<div class="container-fluid">');
-	document.write('		<div class="navbar-header">');
-	document.write('			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">');
-	document.write('				<span class="icon-bar"></span>');
-	document.write('				<span class="icon-bar"></span>');
-	document.write('				<span class="icon-bar"></span>');
-	document.write('			</button>');
-	document.write('			<a class="navbar-brand" href="index_new.html">Home</a>');
-	document.write('		</div>');
-	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
-	document.write('			<ul class="nav navbar-nav">');
-	document.write('				<li class="dropdown">');
-	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stats <span class="caret"></span></a>');
-	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Current Season Stats</a></li>');
-	document.write('						<li><a href="golferdetails.html">Golfer Stats</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Course Stats</a></li>');
-	document.write('						<!--<li><a href="#">Event Stats</a></li>-->');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Stats</a></li>');
-	document.write('					</ul>');
-	document.write('				</li>');
-	document.write('				<li><a href="#" style="text-decoration: line-through;">Event Results</a></li>');
-	document.write('				<li class="dropdown">');
-	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Records <span class="caret"></span></a>');
-	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Scoring Records</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Placement Records</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Awards Records</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
-	document.write('					</ul>');
-	document.write('				</li>');
-	document.write('				<li class="dropdown">');
-	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Lists <span class="caret"></span></a>');
-	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Event Scorecards</a></li>');
-	document.write('						<li><a href="eventchampions.html">Event Champions</a></li>');
-	document.write('					</ul>');
-	document.write('				</li>');
-	document.write('				<li class="dropdown">');
-	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Social Media <span class="caret"></span></a>');
-	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="https://www.facebook.com/ColumbusMga" target="_fb"><span class="fa fa-facebook-square"></span>&nbsp;&nbsp;Facebook</a></li>');
-	document.write('						<li><a href="https://twitter.com/mgacolumbus" target="_tw"><span class="fa fa-twitter-square"></span>&nbsp;&nbsp;Twitter</a></li>');
-	document.write('						<li><a href="https://www.instagram.com/mgacolumbus/" target="_ig"><span class="fa fa-instagram"></span>&nbsp;&nbsp;Instagram</a></li>');
-	document.write('						<li><a href="https://discord.gg/ygQmfyv" target="_ds"><img src="images/discord2.png" width="19px" height="19px" />&nbsp;&nbsp;Discord</a></li>');
-	document.write('					</ul>');
-	document.write('				</li>');
-	document.write('				<li class="dropdown">');
-	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Misc. Stuff <span class="caret"></span></a>');
-	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="https://mgatour.com/chapters/contact-leader/1154" target="_em"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Contact Us</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Rules</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Calendar</a></li>');
-	document.write('					</ul>');
-	document.write('				</li>');
-	document.write('			</ul>');
-	document.write('		</div>');
-	document.write('	</div>');
-	document.write('</nav>');
-}
-
-function html_Footer() {
-	document.write('<footer class="w3-container w3-padding-16 w3-' + globalVariable('Site_BGColor') + '">');
-    document.write('	<p style="text-align: center;">');
-	document.write('		Powered by <a href="https://www.w3schools.com/" target="_blank">w3schools</a>');
-	document.write('	</p>');
-	document.write('</footer>');
-}
-
-function html_RecordDisplayBox(Golfer, Event, Course, SeasonBegin, SeasonEnd, optHideBox) {
-	/**---------------------------------------------------------------------**/
-		var pGolfer			=	arguments[0];
-		var pEvent			=	arguments[1];
-		var pCourse			=	arguments[2];
-		var pSeasonBegin	=	arguments[3];
-		var pSeasonEnd		=	arguments[4];
-		var pHideBox		=	arguments[5];
-	/**---------------------------------------------------------------------**/
-	
-	if (pHideBox != 1) {
-	
-		document.write('<div class="w3-half">');
-		document.write('	<p><strong>Displaying:</p>');
-		document.write('	<table class="w3-table w3-white">');
-		document.write('		<tr>');
-		document.write('			<td width="40px">Golfer:</td>');
-		document.write('			<td width="200px">' + getGolferName(pGolfer) + '<br /></td>');
-		document.write('		</tr>');
-		document.write('		<tr>');
-		document.write('			<td width="40px">Event:</td>');
-		document.write('			<td width="200px">' + getEventName(pEvent) + '<br /></td>');
-		document.write('		</tr>');
-		document.write('		<tr>');
-		document.write('			<td width="40px">Course:</td>');
-		document.write('			<td width="200px">' + getCourseName(pCourse) + '<br /></td>');
-		document.write('		</tr>');
-		document.write('		<tr>');
-		document.write('			<td width="40px">Seasons:</td>');
-		document.write('			<td width="200px">' + pSeasonBegin + '&nbsp;&nbsp;to&nbsp;&nbsp;' + pSeasonEnd + '</td>');
-		document.write('		</tr>');
-		document.write('	</table></strong>');
-		document.write('</div>');
-	}
-}
-
-function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActionType, optRecord, optHideBox) {
-	
-		var pPageName			=	arguments[0];
-		var pPosition			=	arguments[1];
-		var pScoreType			=	arguments[2];
-		var pScoreActionType	=	arguments[3];
-		var pRecord				=	arguments[4];
-		var pHideBox			=	arguments[5];
-		
-		var arrGolfers			=	new Array();		arrGolfers		=	getData_Golfers();
-		var arrCourses			=	new Array();		arrCourses		=	getData_Courses();
-		var arrEvents			=	new Array();		arrEvents		=	getData_Events();
-		var arrSeasons			=	new Array();		arrSeasons		=	getData_Seasons();
-	
-	
-	if (pHideBox != 1) {
-	
-		document.write('<div class="w3-half">');
-		document.write('	<form action="' + pPageName + '" method="get">');
-		
-		if (pPosition != undefined) {
-			document.write('		<input type="hidden" name="pos" value="' + pPosition + '" />');
-		}
-		
-		if (pScoreType != undefined) {
-			document.write('		<input type="hidden" name="t" value="' + pScoreType + '" />');
-		}
-		
-		if (pScoreActionType != undefined) {
-			document.write('		<input type="hidden" name="a" value="' + pScoreActionType + '" />');
-		}
-		
-		if (pRecord != undefined) {
-			document.write('		<input type="hidden" name="rec" value="' + pScoreActionType + '" />');
-		}
-		
-		document.write('		<p><strong>Search For:</strong></p>');
-		document.write('		<table class="w3-table w3-light-gray">');
-		document.write('			<tr>');
-		document.write('				<td width="40px">Golfer:</td>');
-		document.write('				<td width="200px">');
-		document.write('					<select name="g">');
-		document.write('						<option value="-1">-- All Golfers --</option>');
-		
-							for (z = 0; z < arrGolfers.length; z++) {
-								document.write('<option value="' + z + '">' + arrGolfers[z] + '</option>');
-							}
-		
-		document.write('					</select>');
-		document.write('				</td>');
-		document.write('			</tr>');
-		document.write('			<tr>');
-		document.write('				<td width="40px">Event:</td>');
-		document.write('				<td width="200px">');
-		document.write('					<select name="e">');
-		document.write('						<option value="-1">-- All Events --</option>');
-		document.write('						<option value="-2">-- All Majors --</option>');
-		document.write('						<option value="-3">-- All Non-Majors --</option>');
-		
-							for (z = 0; z < arrEvents.length; z++) {
-								document.write('<option value="' + z + '">' + arrEvents[z] + '</option>');
-							}
-		
-		document.write('					</select>');
-		document.write('				</td>');
-		document.write('			</tr>');
-		document.write('			<tr>');
-		document.write('				<td width="40px">Course:</td>');
-		document.write('				<td width="200px">');
-		document.write('					<select name="c">');
-		document.write('						<option value="-1">-- All Courses --</option>');
-		
-							for (z = 0; z < arrCourses.length; z++) {
-								document.write('<option value="' + z + '">' + arrCourses[z] + '</option>');
-							}
-		
-		document.write('					</select>');
-		document.write('				</td>');
-		document.write('			</tr>');
-		document.write('			<tr>');
-		document.write('				<td width="40px">Seasons:</td>');
-		document.write('				<td width="200px">');
-		document.write('					<select name="sb">');
-
-							for (z = 0; z < arrSeasons.length; z++) {
-								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
-							}
-		
-		document.write('					</select>');
-		document.write('					&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;');
-		document.write('					<select name="se">');
-		
-							arrSeasons.reverse();
-							
-							for (z = 0; z < arrSeasons.length; z++) {
-								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
-							}
-		
-		document.write('					</select>');
-		document.write('				</td>');
-		document.write('			</tr>');
-		document.write('			<tr>');
-		document.write('				<td width="40px">&nbsp;</td>');
-		document.write('				<td width="200px">');
-		document.write('					<input type="submit" value="Search..."/>');
-		document.write('				</td>');
-		document.write('			</tr>');
-		document.write('		</table>');
-		document.write('	</form>');
-		document.write('</div>');
-	}
-}
-
-function html_SiteHeader() {
-	document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
-	document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">');
-	document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>');
-	document.write('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>');
-	document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
-	
-	//document.write('<meta charset="UTF-8">');
-	document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
-	document.write('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">');
-	document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">');
-	document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
-	
-	document.write('<title>' + globalVariable('Site_Title') + '</title>');
-	
-	document.write('<style>');
-	document.write('html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}');
-	document.write('footer {background-color: #b2b2b2; padding: 25px;}')
-	document.write('.navbar {border-radius: 0; background-color: #191919;}')
-	document.write('.panel_heading_ext {text-align: center;}')
-	document.write('.panel_footer_ext {background-color: #c2c2c2; text-align: center;}')
-	document.write('.table-condensed_ext {font-size: 12px; font-weight: bold;}')
-	document.write('</style>');
 }
