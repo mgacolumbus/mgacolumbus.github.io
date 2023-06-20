@@ -29,6 +29,7 @@ function html_NavigationPanel() {
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Placement Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Awards Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
+	document.write('						<li><a href="#" style="text-decoration: line-through;">Misc. Records</a></li>');
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li class="dropdown">');

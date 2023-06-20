@@ -2,6 +2,7 @@ document.write("<script src='data/getData_Courses.js'></script>");
 document.write("<script src='data/getData_Events.js'></script>");
 document.write("<script src='data/getData_Golfers.js'></script>");
 document.write("<script src='data/getData_Participants.js'></script>");
+document.write("<script src='data/getData_Scores.js'></script>");
 document.write("<script src='data/getData_Seasons.js'></script>");
 document.write("<script src='data/getData_Tournaments.js'></script>");
 
@@ -17,8 +18,10 @@ document.write("<script src='js/getCourseName.js'></script>");
 document.write("<script src='js/getCurrentSeason.js'></script>");
 document.write("<script src='js/getEventName.js'></script>");
 document.write("<script src='js/getGolferName.js'></script>");
+document.write("<script src='js/getScoretypeRecord.js'></script>");
+document.write("<script src='js/getScoreTypeTitle.js'></script>");
 document.write("<script src='js/getSeasonMoneyList.js'></script>");
-document.write("<script src='js/getURLParsed.js'></script>");
+document.write("<script src='js/getURLParsed.js'></script>");//
 
 
 function globalVariable(VarName) {
