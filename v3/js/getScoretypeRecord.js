@@ -31,7 +31,7 @@ function getScoretypeRecord(URL) {
 			else if (URL[8] == "-10" && arrScoresArray[i][7] <= 0) {
 				scoresByGolfer.get(golfer).scoreCount++;
 			}
-			else if (URL[8] == "-9" && arrScoresArray[i][7] < 0) {
+			else if (URL[8] == "-9" && arrScoresArray[i][7] <= 1) {
 				scoresByGolfer.get(golfer).scoreCount++;
 			}
 			else if (arrScoresArray[i][7] == URL[8]) {
