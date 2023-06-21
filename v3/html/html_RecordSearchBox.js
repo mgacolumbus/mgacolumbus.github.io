@@ -15,7 +15,7 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 	
 	if (pHideBox != 1) {
 	
-		document.write('<div class="w3-half">');
+		document.write('<div class="w3-half"><br /><br />');
 		document.write('	<form action="' + pPageName + '" method="get">');
 		
 		if (pPosition != undefined) {
@@ -82,7 +82,7 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		document.write('				<td width="200px">');
 		document.write('					<select name="sb">');
 
-							arrSeasons.reverse();
+							arrSeasons.sort();
 							
 							for (z = 0; z < arrSeasons.length; z++) {
 								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
@@ -92,8 +92,25 @@ function html_RecordSearchBox(PageName, optPosition, optScoreType, optScoreActio
 		document.write('					&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;');
 		document.write('					<select name="se">');
 		
+							arrSeasons.reverse();
+							
 							for (z = 0; z < arrSeasons.length; z++) {
 								document.write('<option value="' + arrSeasons[z] + '">' + arrSeasons[z] + '</option>');
+							}
+		
+		document.write('					</select>');
+		document.write('				</td>');
+		document.write('			</tr>');
+		document.write('			<tr>');
+		document.write('				<td width="40px">Min Events:</td>');
+		document.write('				<td width="200px">');
+		document.write('					<select name="min">');
+		
+							var zz = 0 * 1;
+							
+							for (z = 0; z < 8; z++) {
+								zz = (z * 1) + 1;
+								document.write('<option value="' + zz + '">' + zz + '</option>');
 							}
 		
 		document.write('					</select>');

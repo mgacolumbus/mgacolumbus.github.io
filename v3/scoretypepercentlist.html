@@ -25,7 +25,7 @@
 		<div class="container">
             <div class="media center">
                 <div class="media-body media-middle">
-					<h2 class="media-heading">Chapter Average List (Gross)</h2>
+					<h2 class="media-heading">Best <script>document.write(getScoreTypeTitle(arrURL[8]));</script> %</h2>
                 </div>
             </div>
         </div><br />
@@ -37,7 +37,7 @@
 				<br />
 				<script>
 					html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2], undefined, arrURL[12]);
-					html_RecordSearchBox(arrURL[0]);
+					html_RecordSearchBox(arrURL[0], undefined, arrURL[8]);
 				</script>
 			</div>
 		</div><br /><br />
@@ -52,20 +52,22 @@
 							<tr>
 								<th>&nbsp;</th>
 								<th>Name</th>
-								<th>Average</th>
+								<th>%</th>
+								<th>Count</th>
 								<th>Events</th>
 							<tr>
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = getAverageList(arrURL);
+								var arrDisplayMoney = getScoretypePercentRecord(arrURL);
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
 									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + " %</td>");//" / " + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + ((arrDisplayMoney[d][1] * arrDisplayMoney[d][2]) / 100).toFixed() + "/" + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + (arrDisplayMoney[d][2] / 18) + "</td>");
 									document.write("<tr>")
 								}
 							</script>

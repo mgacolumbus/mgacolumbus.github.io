@@ -1,4 +1,4 @@
-function getScoretypeRecord(URL) {
+function getScoretypePercentRecord(URL) {
 	var arrFilters = new Array();
 	var arrScoresArray = new Array();
 	const scoresByGolfer = new Map();
@@ -44,7 +44,7 @@ function getScoretypeRecord(URL) {
 	var arrReturnArray = Array.from(scoresByGolfer, ([golfer, scoresObj]) => {
 		const scoreCount = scoresObj.scoreCount;
 		const holeCount = scoresObj.holeCount;
-		return [golfer, scoreCount, holeCount];
+		return [golfer, ((scoreCount / holeCount) * 100).toFixed(3), holeCount];
 	});
 	
 	arrReturnArray = arrReturnArray.filter(scoreCount => scoreCount[2] >= (URL[12] * 18));

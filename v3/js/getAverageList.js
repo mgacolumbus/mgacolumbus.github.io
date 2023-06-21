@@ -39,7 +39,7 @@ function getAverageList(URL, GrossNet) {
 	  return [golfer, ((strokes + penalty) / eventCount).toFixed(3), eventCount];
 	});
 	
-	arrReturnArray = arrReturnArray.filter(events => events[2] > 1);
+	arrReturnArray = arrReturnArray.filter(events => events[2] >= URL[12]);
 	
 	arrReturnArray.sort(function(a,b) {return a[1]-b[1]});
 	

@@ -36,8 +36,8 @@
 			<div id="filters" class="collapse row">
 				<br />
 				<script>
-					html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2]);
-					html_RecordSearchBox(arrURL[0],undefined,arrURL[8]);
+					html_RecordDisplayBox(arrURL[3], arrURL[4], arrURL[5], arrURL[1], arrURL[2], undefined, arrURL[12]);
+					html_RecordSearchBox(arrURL[0], undefined, arrURL[8]);
 				</script>
 			</div>
 		</div><br /><br />
@@ -65,9 +65,9 @@
 									document.write("<tr>")
 									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");//" / " + arrDisplayMoney[d][2] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + "/" + arrDisplayMoney[d][2] + "</td>");//" / " + arrDisplayMoney[d][2] + "</td>");
 									document.write("<td>" + (arrDisplayMoney[d][2] / 18) + "</td>");
-									document.write("<td>" + ((arrDisplayMoney[d][1] / arrDisplayMoney[d][2]) * 100).toFixed(2) + " %</td>");
+									document.write("<td>" + ((arrDisplayMoney[d][1] / arrDisplayMoney[d][2]) * 100).toFixed(3) + " %</td>");
 									document.write("<tr>")
 								}
 							</script>

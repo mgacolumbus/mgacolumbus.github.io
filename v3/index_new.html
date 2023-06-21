@@ -139,7 +139,7 @@
 							<script>
 								varDisplayCount = 8;
 							</script>
-							Season Average List - Min 2 Events
+							Season Average List - (Min 1/2 Events)
 						</div>
 						
 						<div class="panel-body">
@@ -154,6 +154,8 @@
 								</thead>
 								<tbody>
 									<script>
+										var eventCount = getCurrentSeasonEventCount();
+										arrURL[12] = (eventCount / 2).toFixed()
 										var arrDisplayMoney = getAverageList(arrURL);
 										varDisplayIndex = 0;
 

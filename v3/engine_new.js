@@ -16,12 +16,14 @@ document.write("<script src='js/getAverageList.js'></script>");
 document.write("<script src='js/getAverageListNet.js'></script>");
 document.write("<script src='js/getCourseName.js'></script>");
 document.write("<script src='js/getCurrentSeason.js'></script>");
+document.write("<script src='js/getCurrentSeasonEventCount.js'></script>");
 document.write("<script src='js/getEventName.js'></script>");
 document.write("<script src='js/getGolferName.js'></script>");
 document.write("<script src='js/getScoretypeRecord.js'></script>");
+document.write("<script src='js/getScoretypePercentRecord.js'></script>");
 document.write("<script src='js/getScoreTypeTitle.js'></script>");
 document.write("<script src='js/getSeasonMoneyList.js'></script>");
-document.write("<script src='js/getURLParsed.js'></script>");//
+document.write("<script src='js/getURLParsed.js'></script>");
 
 
 function globalVariable(VarName) {
