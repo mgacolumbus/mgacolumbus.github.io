@@ -3,7 +3,7 @@ function getLowestRound(URL, GrossNet) {
 	const scoresByGolfer = new Map();
 	
 	for (let x = URL[1]; x <= URL[2]; x++) {
-		arrSeasonArray = getData_Participants(getFilterSettings(URL, x));
+		arrSeasonArray = getData_Participants(getFilterSettings_Participant(URL, x));
 		
 		for (let i = 0; i < arrSeasonArray.length; i++) {
 			const id = "" + arrSeasonArray[i][2] + arrSeasonArray[i][30];
@@ -44,32 +44,15 @@ function getLowestRound(URL, GrossNet) {
 	  
 		return [
 			-1,
+			(strokes + penalty),
 			golfer,
 			course,
 			eventname,
-			(strokes + penalty),
 			date
 		];
 	});
 	
-	arrReturnArray.sort(function(a,b) {return a[4]-b[4]});
+	arrReturnArray.sort(function(a,b) {return a[1]-b[1]});
 	
-	var varPositionHold	= 0;
-	var varScoreHold	= 0;
-	var z = 0;
-	
-	for (pl = 0; pl < arrReturnArray.length; pl++) {
-		
-		if (varScoreHold != arrReturnArray[z][4]) {
-			varScoreHold = arrReturnArray[z][4];
-			varPositionHold = (pl + 1);
-			arrReturnArray[z][0] = (pl + 1);
-		} else {
-			arrReturnArray[z][0] = varPositionHold;
-		}
-		
-		z++;
-	}
-	
-	return arrReturnArray;
+	return getListPositions(arrReturnArray);
 }

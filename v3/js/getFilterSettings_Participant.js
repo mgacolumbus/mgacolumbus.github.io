@@ -1,4 +1,4 @@
-function getFilterSettings(URL, LoopValue) {
+function getFilterSettings_Participant(URL, SeasonLoop) {
 	var arrFilters = new Array();
 	
 	//Event Filter
@@ -13,7 +13,9 @@ function getFilterSettings(URL, LoopValue) {
 	if (URL[5] != '-1') {arrFilters[28] = getCourseName(URL[5]);}
 	
 	//Season Filter
-	arrFilters[32] = LoopValue;
+	if (SeasonLoop >= 2012) {
+		arrFilters[32] = SeasonLoop;
+	}
 	
 	return arrFilters;
 }

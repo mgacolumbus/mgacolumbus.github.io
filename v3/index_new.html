@@ -157,17 +157,14 @@
 										var eventCount = getCurrentSeasonEventCount();
 										arrURL[12] = (eventCount / 2).toFixed()
 										var arrDisplayMoney = getAverageList(arrURL);
-										varDisplayIndex = 0;
 
 										for (d = 0; d < varDisplayCount; d++) {
 											document.write("<tr>")
-											document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 											document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+											document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 											document.write("<tr>")
-											
-											varDisplayIndex++;
 										}
 									</script>
 								</tbody>

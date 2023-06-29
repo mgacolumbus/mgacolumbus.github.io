@@ -60,14 +60,8 @@
 						<tbody>
 							<script>
 								var arrFilters = new Array();
-								
+								arrFilters = getFilterSettings_Participant(arrURL);
 								arrFilters[4] = 1;
-								if (arrURL[3] != '-1') {arrFilters[2] = getGolferName(arrURL[3])};
-								if (arrURL[5] != '-1') {arrFilters[28] = getCourseName(arrURL[5])};
-								
-								if (arrURL[4] == '-2') {arrFilters[31] = 'Y';}
-								else if (arrURL[4] == '-3') {arrFilters[31] = 'N';}
-								else if (arrURL[4] != '-1') {arrFilters[29] = getEventName(arrURL[4]);}
 								
 								var arrDisplayWinners = getData_Participants(arrFilters);
 

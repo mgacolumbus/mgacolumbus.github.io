@@ -27,6 +27,7 @@ function html_NavigationPanel() {
 	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
 	document.write('						<li><a href="scoringrecords.html">Scoring Records</a></li>');
 	document.write('						<li><a href="placementrecords.html">Placement Records</a></li>');
+	document.write('						<li><a href="scoretyperecords.html">Scoretype Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Awards Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Misc. Records</a></li>');
