@@ -63,11 +63,11 @@
 
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + (arrDisplayMoney[d][1] / arrDisplayMoney[d][2]).toFixed(3) + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + (arrDisplayMoney[d][1] / arrDisplayMoney[d][3]).toFixed(3) + "</td>");
 									document.write("<tr>")
 								}
 							</script>
