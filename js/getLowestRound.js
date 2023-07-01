@@ -48,7 +48,8 @@ function getLowestRound(URL, GrossNet) {
 			golfer,
 			course,
 			eventname,
-			date
+			date,
+			penalty
 		];
 	});
 	

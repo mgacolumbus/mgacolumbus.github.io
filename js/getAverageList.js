@@ -40,7 +40,9 @@ function getAverageList(URL, GrossNet) {
 			-1,
 			((strokes + penalty) / eventCount).toFixed(3),
 			golfer,
-			eventCount
+			eventCount,
+			strokes,
+			penalty
 		];
 	});
 	

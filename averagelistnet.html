@@ -9,9 +9,6 @@
 				
 			var url = new URL(window.location.href);
 			var arrURL = getURLParsed(url);
-			
-			var varDisplayCount = 0;
-			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -52,20 +49,24 @@
 							<tr>
 								<th>&nbsp;</th>
 								<th>Name</th>
-								<th>Average</th>
+								<th>Strokes</th>
+								<th>Penalty</th>
 								<th>Events</th>
+								<th>Average</th>
 							<tr>
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = getAverageList(arrURL, 'Net');
+								var arrDisplay = getAverageList(arrURL, 'Net');
 
-								for (d = 0; d < arrDisplayMoney.length; d++) {
+								for (d = 0; d < arrDisplay.length; d++) {
 									document.write("<tr>")
-									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + arrDisplay[d][0] + "</td>");
+									document.write("<td>" + arrDisplay[d][2] + "</td>");
+									document.write("<td>" + arrDisplay[d][4] + "</td>");
+									document.write("<td>" + arrDisplay[d][5] + "</td>");
+									document.write("<td>" + arrDisplay[d][3] + "</td>");
+									document.write("<td>" + arrDisplay[d][1] + "</td>");
 									document.write("<tr>")
 								}
 							</script>

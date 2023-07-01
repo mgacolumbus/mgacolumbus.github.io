@@ -9,9 +9,6 @@
 				
 			var url = new URL(window.location.href);
 			var arrURL = getURLParsed(url);
-			
-			var varDisplayCount = 0;
-			var varCurrentSeason = getCurrentSeason();
 		</script>
 	</head>
 	
@@ -51,11 +48,11 @@
 						<thead>
 							<tr>
 								<th>&nbsp;</th>
-								<th>Name</th>
-								<th>Score</th>
 								<th>Date</th>
-								<th>Course</th>
+								<th>Name</th>
 								<th>Event</th>
+								<th>Course</th>
+								<th>Score</th>
 							<tr>
 						</thead>
 						<tbody>
@@ -65,11 +62,11 @@
 								for (d = 0; d < arrDisplayMoney.length; d++) {
 									document.write("<tr>")
 									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][5] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
 									document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
 									document.write("<tr>")
 								}
 							</script>
