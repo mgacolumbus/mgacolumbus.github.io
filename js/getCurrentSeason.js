@@ -1,5 +1,4 @@
 function getCurrentSeason() {
-	
-	return getData_Seasons()[getData_Seasons().length - 1];
-
+	const seasons = getData_Seasons();
+	return seasons[seasons.length - 1];
 }

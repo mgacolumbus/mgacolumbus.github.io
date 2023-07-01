@@ -1,7 +1,9 @@
-function getCourseName(courseIndex) {
+function getCourseName(pCourseIndex) {
+	switch (pCourseIndex) {
+		case undefined	:
+		case '-1'		: return 'All Courses'; break;
+	}
 	
-	const courses = getData_Courses();
-	
-	return courseIndex ? courses[courseIndex] : "( ALL )";
-
+	const arrCourses = getData_Courses();
+	return arrCourses[pCourseIndex];
 }

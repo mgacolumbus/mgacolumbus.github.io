@@ -7,7 +7,7 @@ function html_NavigationPanel() {
 	document.write('				<span class="icon-bar"></span>');
 	document.write('				<span class="icon-bar"></span>');
 	document.write('			</button>');
-	document.write('			<a class="navbar-brand" href="index_new.html">Home</a>');
+	document.write('			<a class="navbar-brand" href="index.html">Home</a>');
 	document.write('		</div>');
 	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
 	document.write('			<ul class="nav navbar-nav">');

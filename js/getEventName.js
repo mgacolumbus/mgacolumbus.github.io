@@ -1,22 +1,11 @@
 function getEventName(pEventIndex) {
-	
-	var arrEvents = getData_Events();
-
-	switch(pEventIndex) {
-		
-		case 0:
-		case "":
-		case undefined:
-			return "( ALL )";
-		
-		case 1:
-			return "( MAJORS )";
-		
-		case 2:
-			return "( NON-MAJORS )";
-		
-		default:
-			return arrEvents[pEventIndex];
+	switch (pEventIndex) {
+		case undefined	:
+		case '-1'		: return 'All Events'; break;
+		case '-2'		: return 'All Majors'; break;
+		case '-3'		: return 'All Non-Majors'; break;
 	}
-
+	
+	const arrEvents = getData_Events();
+	return arrEvents[pEventIndex];
 }

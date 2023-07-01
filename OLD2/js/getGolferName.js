@@ -1,9 +1,12 @@
 function getGolferName(pGolferIndex) {
-	switch (pGolferIndex) {
-		case undefined	:
-		case '-1'		: return 'All Golfers'; break;
-	}
 	
 	const arrGolfers = getData_Golfers();
+
+	if (!pGolferIndex) {
+	
+		return arrGolfers[0];
+	
+	}
+
 	return arrGolfers[pGolferIndex];
 }

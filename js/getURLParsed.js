@@ -1,121 +1,47 @@
 function getURLParsed(URL) {
-	/**---------------------------------------------------------------------**/
-    	var pURL			= arguments[0];
-		
-		var arrReturnArray	= new Array();
-		
-		var varURL			= pURL.toString();
-		var varURLslash		= 0;
-		var varURLhtml		= varURL.indexOf(".html");
-		
-	/**---------------------------------------------------------------------**/
+	const { searchParams } = URL;
+
+	const varURL = URL.toString();
+	const varURLslash = varURL.lastIndexOf('/');
+	const varURLhtml = varURL.indexOf(".html");
+
+	const arrReturnArray = [];
 	
 	/*
-	
-		0	=	Page Name
-		1	=	Season Begin
-		2	=	Season End
-		3	=	Golfer Index
-		4	=	Event Index
-		5	=	Course Index
-		6	=	Specific Season
-        7	=   Record Index
-        8	=   Navigation Index
-        9	=   Minimum Events
-		10	=	X  (Array index of specific record)
-		11	=	Tournament Index
-		
+		arrReturnArray[0]	=	Page Name
+		arrReturnArray[1]	=	Season Begin
+		arrReturnArray[2]	=	Season End
+		arrReturnArray[3]	=	Golfer Index
+		arrReturnArray[4]	=	Event Index
+		arrReturnArray[5]	=	Course Index
+		arrReturnArray[6]	=	Current Record Value
+		arrReturnArray[7]	=	Finishing Position
+		arrReturnArray[8]	=	Score Type
+		arrReturnArray[9]	=	Score Type Action
+		arrReturnArray[10]	=	Specific Season
+		arrReturnArray[11]	=	Hide Display and Search
+		arrReturnArray[12]	=	Minimum Events
 	*/
-	
-	// Page Name
-	for (u = 0; u < varURL.length; u++) {
-		
-		if (varURL[u] == "/") {
-			
-			varURLslash = u;
-			
-		}
-		
-	}
-	
-	arrReturnArray[0] = varURL.substring(varURLslash + 1,varURLhtml + 5);
-	
-	// Season Begin
-	if (pURL.searchParams.get("sb") == "" || pURL.searchParams.get("sb") == undefined) {
-		arrReturnArray[1] = 2012;
-	} else {
-		arrReturnArray[1] = pURL.searchParams.get("sb");
-	}
-	
-	// Season End
-	if (pURL.searchParams.get("se") == "" || pURL.searchParams.get("se") == undefined) {
-		arrReturnArray[2] = getCurrentSeason();
-	} else {
-		arrReturnArray[2] = pURL.searchParams.get("se");
-	}
-	
-	// Golfer Index
-	if (pURL.searchParams.get("g") == "" || pURL.searchParams.get("g") == undefined) {
-		arrReturnArray[3] = 0;
-	} else {
-		arrReturnArray[3] = pURL.searchParams.get("g");
-	}
-	
-	// Event Index
-	if (pURL.searchParams.get("e") == "" || pURL.searchParams.get("e") == undefined) {
-		arrReturnArray[4] = 0;
-	} else {
-		arrReturnArray[4] = pURL.searchParams.get("e");
-	}
-	
-	// Course Index
-	if (pURL.searchParams.get("c") == "" || pURL.searchParams.get("c") == undefined) {
-		arrReturnArray[5] = 0;
-	} else {
-		arrReturnArray[5] = pURL.searchParams.get("c");
-	}
-	
-	// Specific Season
-	if (pURL.searchParams.get("s") == "" || pURL.searchParams.get("s") == undefined) {
-		arrReturnArray[6] = undefined;
-	} else {
-		arrReturnArray[6] = pURL.searchParams.get("s");
-	}
-	
-	// Record Index
-	if (pURL.searchParams.get("r") == "" || pURL.searchParams.get("r") == undefined) {
-		arrReturnArray[7] = undefined;
-	} else {
-		arrReturnArray[7] = pURL.searchParams.get("r");
-	}
-	
-	// Navigation Index
-	if (pURL.searchParams.get("n") == "" || pURL.searchParams.get("n") == undefined) {
-		arrReturnArray[8] = undefined;
-	} else {
-		arrReturnArray[8] = pURL.searchParams.get("n");
-	}
-	
-	// Minimum Events
-	if (pURL.searchParams.get("m") == "" || pURL.searchParams.get("m") == undefined) {
-		arrReturnArray[9] = undefined;
-	} else {
-		arrReturnArray[9] = pURL.searchParams.get("m");
-	}
-	
-	// Specific Record Index
-	if (pURL.searchParams.get("x") == "" || pURL.searchParams.get("x") == undefined) {
-		arrReturnArray[10] = undefined;
-	} else {
-		arrReturnArray[10] = pURL.searchParams.get("x");
-	}
-	
-	// Specific Record Index
-	if (pURL.searchParams.get("t") == "" || pURL.searchParams.get("t") == undefined) {
-		arrReturnArray[11] = undefined;
-	} else {
-		arrReturnArray[11] = pURL.searchParams.get("t");
-	}
-	
+
+	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
+	arrReturnArray[1] = searchParams.get("sb") ?? 2012;
+	arrReturnArray[2] = searchParams.get("se") ?? getCurrentSeason();
+	arrReturnArray[3] = searchParams.get("g") ?? '-1';
+	arrReturnArray[4] = searchParams.get("e") ?? '-1';
+	/*
+	arrReturnArray[4] = searchParams.get("e") == "-1" ? "All Events"
+		: searchParams.get("e") == "-2" ? "All Majors"
+		: searchParams.get("e") == "-3" ? "All Non-Majors"
+		: searchParams.get("e") ?? "UNK";
+	*/
+	arrReturnArray[5] = searchParams.get("c") ?? '-1';
+	arrReturnArray[6] = searchParams.get("rec");
+	arrReturnArray[7] = searchParams.get("pos");
+	arrReturnArray[8] = searchParams.get("t");
+	arrReturnArray[9] = searchParams.get("a");
+	arrReturnArray[10] = searchParams.get("s") ?? getCurrentSeason();
+	arrReturnArray[11] = searchParams.get("hdn");
+	arrReturnArray[12] = searchParams.get("min") ?? 1;
+
 	return arrReturnArray;
 }
