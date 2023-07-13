@@ -17,5 +17,11 @@ function getFilterSettings_Score(URL, SeasonLoop) {
 		arrFilters[14] = SeasonLoop;
 	}
 	
+	//Specific Par
+	if (URL[13] == '3') {arrFilters[4] = 3}
+	else if (URL[13] == '4') {arrFilters[4] = 4}
+	else if (URL[13] == '5') {arrFilters[4] = 5}
+	else if (URL[13] == '-1') { arrFilters[4] = undefined; }
+	
 	return arrFilters;
 }

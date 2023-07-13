@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Placement Records</h2>
+                </div>
+            </div>
+        </div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">All-Time Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=1"><div class="panel-footer panel_footer_ext">Wins</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=1&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Winning %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=2"><div class="panel-footer panel_footer_ext">Runner-Ups</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=2&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Runner-Ups %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t3"><div class="panel-footer panel_footer_ext">Top 3s</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t3&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Top 3 %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t10"><div class="panel-footer panel_footer_ext">Top 10s</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t10&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Top 10 %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t16"><div class="panel-footer panel_footer_ext">Cashes</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t16&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Cashes %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_earnings.html"><div class="panel-footer panel_footer_ext">Earnings</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_earnings.html?perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Average Earnings</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=0"><div class="panel-footer panel_footer_ext">Disqualifications</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=0&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Disqualification %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext" style="text-decoration: line-through">Total Slam Legs (All)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext" style="text-decoration: line-through">Mrand Slam Legs (Majors)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext" style="text-decoration: line-through">Meh Slam Legs (Non-Majors)</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>--><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Season Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=1&ss=Y"><div class="panel-footer panel_footer_ext">Season Wins</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=1&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season Winning %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=2&ss=Y"><div class="panel-footer panel_footer_ext">Season Runner-Ups</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=2&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season Runner-Ups %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t3&ss=Y"><div class="panel-footer panel_footer_ext">Season Top 3s</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t3&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season Top 3 %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t10&ss=Y"><div class="panel-footer panel_footer_ext">Season Top 10s</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t10&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season Top 10 %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t16&ss=Y"><div class="panel-footer panel_footer_ext">Season Cashes</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=t16&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season Cashes %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_earnings.html?fl=2310&ss=Y"><div class="panel-footer panel_footer_ext">Season Earnings</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_earnings.html?perc=Y&fl=2310&ss=Y"><div class="panel-footer panel_footer_ext">Season Avg Earnings</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=0&ss=Y"><div class="panel-footer panel_footer_ext">Season DQ's</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_position.html?pos=0&ss=Y&perc=Y&fl=2310"><div class="panel-footer panel_footer_ext">Season DQ %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

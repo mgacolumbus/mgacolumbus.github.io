@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Scoring Records</h2>
+                </div>
+            </div>
+        </div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">All-Time Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_average.html?fl=2310"><div class="panel-footer panel_footer_ext">Scoring Average (Gross)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_average.html?gn=Net&fl=2310"><div class="panel-footer panel_footer_ext">Scoring Average (Net)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_averagebypar.html?fl=46410"><div class="panel-footer panel_footer_ext">Scoring Avg By Par</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_highesthole.html?fl=2730"><div class="panel-footer panel_footer_ext">Highest Single Hole</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_lowestround.html"><div class="panel-footer panel_footer_ext">Lowest Round (Gross)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_lowestround.html?gn=Net"><div class="panel-footer panel_footer_ext">Lowest Round (Net)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_lowestfrontback.html"><div class="panel-footer panel_footer_ext">Lowest Front/Back</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Season Records</h2>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_average.html?ss=Y"><div class="panel-footer panel_footer_ext">Season Scoring Avg (Gross)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_average.html?ss=Y&gn=Net"><div class="panel-footer panel_footer_ext">Season Scoring Avg (Net)</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_averagebypar.html?fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Scoring Avg by Par</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

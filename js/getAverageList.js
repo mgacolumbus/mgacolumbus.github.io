@@ -1,12 +1,15 @@
-function getAverageList(URL, GrossNet) {
+function getAverageList(URL) {
 	var arrSeasonArray = new Array();
 	const scoresByGolfer = new Map();
+	var id = "";
 	
 	for (let x = URL[1]; x <= URL[2]; x++) {
 		arrSeasonArray = getData_Participants(getFilterSettings_Participant(URL, x));
 		
 		for (let i = 0; i < arrSeasonArray.length; i++) {
-			const id = "" + arrSeasonArray[i][2];
+			
+			if (URL[16] == "Y") { id = "" + arrSeasonArray[i][2] + arrSeasonArray[i][32]; }
+			else { id = "" + arrSeasonArray[i][2]; };
 
 			if (!scoresByGolfer.has(id)) {
 				scoresByGolfer.set(
@@ -15,7 +18,8 @@ function getAverageList(URL, GrossNet) {
 						golfer: "",
 						strokes: 0,
 						eventCount: 0,
-						penalty: 0
+						penalty: 0,
+						season: ""
 					}
 				);
 			}
@@ -23,8 +27,9 @@ function getAverageList(URL, GrossNet) {
 			scoresByGolfer.get(id).golfer = arrSeasonArray[i][2];
 			scoresByGolfer.get(id).strokes += (arrSeasonArray[i][13] + arrSeasonArray[i][14]);
 			scoresByGolfer.get(id).eventCount++;
+			scoresByGolfer.get(id).season = arrSeasonArray[i][32];
 
-			if (GrossNet == 'Net') {
+			if (URL[14] == 'Net') {
 				scoresByGolfer.get(id).penalty += arrSeasonArray[i][3];
 			}
 		}
@@ -35,6 +40,7 @@ function getAverageList(URL, GrossNet) {
 		const strokes = scoringObj.strokes;
 		const penalty = scoringObj.penalty;
 		const eventCount = scoringObj.eventCount;
+		const season = scoringObj.season;
 
 		return [
 			-1,
@@ -42,7 +48,8 @@ function getAverageList(URL, GrossNet) {
 			golfer,
 			eventCount,
 			strokes,
-			penalty
+			penalty,
+			season
 		];
 	});
 	

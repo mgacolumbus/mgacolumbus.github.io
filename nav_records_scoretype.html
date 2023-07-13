@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Scoretype Records</h2>
+                </div>
+            </div>
+        </div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">All-Time Records</h2>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-10&fl=2730"><div class="panel-footer panel_footer_ext">Most Pars &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-10&fl=46410"><div class="panel-footer panel_footer_ext">Par &amp; Better %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-9&fl=2730"><div class="panel-footer panel_footer_ext">Most Bogeys &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-9&fl=46410"><div class="panel-footer panel_footer_ext">Bogey &amp; Better %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-2&fl=2730"><div class="panel-footer panel_footer_ext">Most Eagles</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-2&fl=46410"><div class="panel-footer panel_footer_ext">Eagles %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-1&fl=2730"><div class="panel-footer panel_footer_ext">Most Birdies</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-1&fl=46410"><div class="panel-footer panel_footer_ext">Birdies %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=0&fl=2730"><div class="panel-footer panel_footer_ext">Most Pars</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=0&fl=46410"><div class="panel-footer panel_footer_ext">Pars %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=1&fl=2730"><div class="panel-footer panel_footer_ext">Most Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=1&fl=46410"><div class="panel-footer panel_footer_ext">Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=2&fl=2730"><div class="panel-footer panel_footer_ext">Most Double Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=2&fl=46410"><div class="panel-footer panel_footer_ext">Double Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=3&fl=2730"><div class="panel-footer panel_footer_ext">Most Triple Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=3&fl=46410"><div class="panel-footer panel_footer_ext">Triple Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=4&fl=2730"><div class="panel-footer panel_footer_ext">Most Worse Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=4&fl=46410"><div class="panel-footer panel_footer_ext">Worse Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=10&fl=2730"><div class="panel-footer panel_footer_ext">Dbl Bogeys &amp; Worse</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=10&fl=46410"><div class="panel-footer panel_footer_ext">Dbl Bogeys &amp; Worse %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Season Records</h2>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-10&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Pars &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-10&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Par &amp; Better %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-9&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Bogeys &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-9&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Bogey &amp; Better %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-2&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Eagles</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-2&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Eagles %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-1&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Birdies</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-1&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Birdies %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=0&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Pars</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=0&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Pars %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=1&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=1&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=2&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Double Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=2&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Double Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=3&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Triple Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=3&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Triple Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=4&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Worse Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=4&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Worse Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=10&fl=2730&ss=Y"><div class="panel-footer panel_footer_ext">Season Dbl Bogeys &amp; Worse</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=10&fl=46410&ss=Y"><div class="panel-footer panel_footer_ext">Season Dbl Bog &amp; Worse %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Event Records</h2>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-10&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Pars &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-10&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Par &amp; Better %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-9&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Bogeys &amp; Better</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-9&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Bogey &amp; Better %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-2&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Eagles</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-2&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Eagles %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=-1&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Birdies</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=-1&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Birdies %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=0&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Pars</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=0&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Pars %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=1&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=1&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=2&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Double Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=2&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Double Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=3&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Triple Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=3&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Triple Bogeys %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=4&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Worse Bogeys</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=4&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Worse Bogeys %</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?t=10&fl=2730&sev=Y"><div class="panel-footer panel_footer_ext">Event Dbl Bogeys &amp; Worse</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_scoretype.html?perc=Y&t=10&fl=46410&sev=Y"><div class="panel-footer panel_footer_ext">Event Dbl Bogeys &amp; Worse %</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

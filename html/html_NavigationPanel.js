@@ -11,6 +11,7 @@ function html_NavigationPanel() {
 	document.write('		</div>');
 	document.write('		<div class="collapse navbar-collapse" id="myNavbar">');
 	document.write('			<ul class="nav navbar-nav">');
+	/*
 	document.write('				<li class="dropdown">');
 	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stats <span class="caret"></span></a>');
 	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
@@ -22,22 +23,27 @@ function html_NavigationPanel() {
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li><a href="#" style="text-decoration: line-through;">Event Results</a></li>');
+	*/
 	document.write('				<li class="dropdown">');
 	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Records <span class="caret"></span></a>');
 	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
-	document.write('						<li><a href="scoringrecords.html">Scoring Records</a></li>');
-	document.write('						<li><a href="placementrecords.html">Placement Records</a></li>');
-	document.write('						<li><a href="scoretyperecords.html">Scoretype Records</a></li>');
+	document.write('						<li><a href="nav_records_scoring.html">Scoring Records</a></li>');
+	document.write('						<li><a href="nav_records_placement.html">Placement Records</a></li>');
+	document.write('						<li><a href="nav_records_scoretype.html">Scoretype Records</a></li>');
+	/*
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Awards Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Misc. Records</a></li>');
+	*/
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li class="dropdown">');
 	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Lists <span class="caret"></span></a>');
 	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
+	/*
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Event Scorecards</a></li>');
-	document.write('						<li><a href="eventchampions.html">Event Champions</a></li>');
+	*/
+	document.write('						<li><a href="list_champions.html">Event Champions</a></li>');
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li class="dropdown">');
@@ -53,8 +59,10 @@ function html_NavigationPanel() {
 	document.write('					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Misc. Stuff <span class="caret"></span></a>');
 	document.write('					<ul class="dropdown-menu navbar-nav" style="background-color: #292929;">');
 	document.write('						<li><a href="https://mgatour.com/chapters/contact-leader/1154" target="_em"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Contact Us</a></li>');
+	/*
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Rules</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Calendar</a></li>');
+	*/
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('			</ul>');

@@ -1,4 +1,4 @@
-function getLowestRound(URL, GrossNet) {
+function getLowestRound(URL) {
 	var arrSeasonArray = new Array();
 	const scoresByGolfer = new Map();
 	
@@ -28,7 +28,7 @@ function getLowestRound(URL, GrossNet) {
 			scoresByGolfer.get(id).strokes = (arrSeasonArray[i][13] + arrSeasonArray[i][14]);
 			scoresByGolfer.get(id).date = arrSeasonArray[i][30];
 
-			if (GrossNet == 'Net') {
+			if (URL[14] == 'Net') {
 				scoresByGolfer.get(id).penalty = arrSeasonArray[i][3];
 			}
 		}

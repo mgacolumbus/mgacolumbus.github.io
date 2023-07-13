@@ -9,7 +9,7 @@ function getScoreTypeTitle(TypeID) {
 		case "2":		return "Double Bogeys";
 		case "3":		return "Triple Bogeys";
 		case "4":		return "Worse Bogeys";
-		case "10":		return "Bogeys or Worse";
+		case "10":		return "Double Bogeys or Worse";
 		
 		default:		return "Unknown";
 	}
