@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+		
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<script>
+						var pageHeader = "Most ";
+						
+						if (arrURL[20] == "grs") { pageHeader = pageHeader + "Gross "; }
+						else if (arrURL[20] == "mlt") { pageHeader = pageHeader + "Meltdown "; }
+						else if (arrURL[20] == "med") { pageHeader = pageHeader + "Mediocre "; }
+						else if (arrURL[20] == "red") { pageHeader = pageHeader + "Red Key "; }
+						else if (arrURL[20] == "lng") { pageHeader = pageHeader + "Long Drive "; }
+						else if (arrURL[20] == "cls") { pageHeader = pageHeader + "Closest to the Pin "; }
+						
+						pageHeader = pageHeader + "Awards";
+						
+						if (arrURL[16] == "Y") {
+							pageHeader = "Single-Season " + pageHeader;
+						}
+						
+						document.write('<h2 class="media-heading">' + pageHeader + '</h2>');
+					</script>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Show / Hide Filters</button>
+			<div id="filters" class="collapse row">
+				<br />
+				<script>
+					html_RecordDisplayBox(arrURL);
+					html_RecordSearchBox(arrURL);
+				</script>
+			</div>
+		</div><br /><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-12">
+					<table class="table table-responsive table-condensed table-condensed_ext">
+						<thead>
+							<tr>
+								<th>&nbsp;</th>
+								<th>Name</th>
+								<script>
+									if (arrURL[16] == "Y") {
+										document.write('<th>Season</th>');
+									}
+								</script>
+								<th>Awards</th>
+								<th>Events</th>
+							<tr>
+						</thead>
+						<tbody>
+							<script>
+								var arrDisplay = getAwards(arrURL);
+
+								for (d = 0; d < arrDisplay.length; d++) {
+									document.write("<tr>")
+									document.write("<td>" + arrDisplay[d][0] + "</td>");
+									document.write("<td>" + arrDisplay[d][2] + "</td>");
+									
+									if (arrURL[16] == "Y") {
+										document.write("<td>" + arrDisplay[d][4] + "</td>");
+									};
+									
+									document.write("<td>" + arrDisplay[d][1] + "</td>");
+									document.write("<td>" + arrDisplay[d][3] + "</td>");
+									document.write("<tr>")
+								}
+							</script>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

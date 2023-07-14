@@ -13,6 +13,7 @@ document.write("<script src='html/html_RecordSearchBox.js'></script>");
 document.write("<script src='html/html_SiteHeader.js'></script>");
 
 document.write("<script src='js/getAverageList.js'></script>");
+document.write("<script src='js/getAwards.js'></script>");
 document.write("<script src='js/getCourseName.js'></script>");
 document.write("<script src='js/getCurrentSeason.js'></script>");
 document.write("<script src='js/getCurrentSeasonEventCount.js'></script>");

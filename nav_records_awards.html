@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Awards Records</h2>
+                </div>
+            </div>
+        </div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">All-Time Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=grs"><div class="panel-footer panel_footer_ext">Most Gross Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=mlt"><div class="panel-footer panel_footer_ext">Most Meltdown Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=med"><div class="panel-footer panel_footer_ext">Most Mediocre Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=red"><div class="panel-footer panel_footer_ext">Most Red Key Awards</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=lng"><div class="panel-footer panel_footer_ext">Most Long Drive Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=cls"><div class="panel-footer panel_footer_ext">Most Closest Pin Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?aw=tot"><div class="panel-footer panel_footer_ext">Total Awards</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Season Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=grs"><div class="panel-footer panel_footer_ext">Season Gross Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=mlt"><div class="panel-footer panel_footer_ext">Season Meltdown Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=med"><div class="panel-footer panel_footer_ext">Season Mediocre Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=red"><div class="panel-footer panel_footer_ext">Season Red Key Awards</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=lng"><div class="panel-footer panel_footer_ext">Season Long Drive Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=cls"><div class="panel-footer panel_footer_ext">Season Closest Pin Awards</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_awards.html?ss=Y&aw=tot"><div class="panel-footer panel_footer_ext">Season Total Awards</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

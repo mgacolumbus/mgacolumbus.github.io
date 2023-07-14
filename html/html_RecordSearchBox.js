@@ -21,6 +21,7 @@ function html_RecordSearchBox(URL){
 		if (URL[16] != undefined)	{ document.write('		<input type="hidden" name="ss" value="' + URL[16] + '" />'); }
 		if (URL[17] != undefined)	{ document.write('		<input type="hidden" name="sev" value="' + URL[17] + '" />'); }
 		if (URL[18] != undefined)	{ document.write('		<input type="hidden" name="fl" value="' + URL[18] + '" />'); }
+		if (URL[20] != undefined)	{ document.write('		<input type="hidden" name="aw" value="' + URL[20] + '" />'); }
 		
 		document.write('		<p><strong>Search For:</strong></p>');
 		document.write('		<table class="w3-table w3-light-gray">');

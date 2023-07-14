@@ -30,8 +30,8 @@ function html_NavigationPanel() {
 	document.write('						<li><a href="nav_records_scoring.html">Scoring Records</a></li>');
 	document.write('						<li><a href="nav_records_placement.html">Placement Records</a></li>');
 	document.write('						<li><a href="nav_records_scoretype.html">Scoretype Records</a></li>');
+	document.write('						<li><a href="nav_records_awards.html">Awards Records</a></li>');
 	/*
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Awards Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Misc. Records</a></li>');
 	*/

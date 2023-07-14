@@ -28,6 +28,7 @@ function getURLParsed(URL) {
 		arrReturnArray[17]	=	Is Single Event?
 		arrReturnArray[18]	=	Filter List Setting
 		arrReturnArray[19]	=	Minimum Holes Played
+		arrReturnArray[20]	=	Award Type
 	*/
 
 	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
@@ -50,6 +51,7 @@ function getURLParsed(URL) {
 	arrReturnArray[17] = searchParams.get("sev") ?? 'N';
 	arrReturnArray[18] = searchParams.get("fl") ?? 210;
 	arrReturnArray[19] = searchParams.get("mh") ?? 1;
+	arrReturnArray[20] = searchParams.get("aw") ?? "tot";
 
 	return arrReturnArray;
 }
