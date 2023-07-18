@@ -236,5 +236,7 @@ function getData_Golfers() {
 		"Bob Parker",
 		"Jake Diegel",
 		"Steven Boggus",
+		"Timothy Morgan",
+		"Bart Starner",
 	].sort();
 }

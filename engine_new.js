@@ -32,6 +32,7 @@ document.write("<script src='js/getScoreTypeTitle.js'></script>");
 document.write("<script src='js/getScoringAverageByPar.js'></script>");
 document.write("<script src='js/getSeasonMoneyList.js'></script>");
 document.write("<script src='js/getURLParsed.js'></script>");
+document.write("<script src='js/getYardsPerStroke.js'></script>");
 
 
 function globalVariable(VarName) {

@@ -33,8 +33,8 @@ function html_NavigationPanel() {
 	document.write('						<li><a href="nav_records_awards.html">Awards Records</a></li>');
 	/*
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Misc. Records</a></li>');
 	*/
+	document.write('						<li><a href="nav_records_misc.html">Misc. Records</a></li>');
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li class="dropdown">');
