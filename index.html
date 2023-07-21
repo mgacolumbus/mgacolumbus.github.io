@@ -157,7 +157,8 @@
 								<tbody>
 									<script>
 										var eventCount = getCurrentSeasonEventCount();
-										arrURL[12] = (eventCount / 2).toFixed()
+										arrURL[12] = (eventCount / 2).toFixed();
+										arrURL[21] = "a";
 										var arrDisplayMoney = getAverageList(arrURL);
 
 										for (d = 0; d < varDisplayCount; d++) {
@@ -175,7 +176,7 @@
 						
 						<div class="panel-footer panel_footer_ext">
 							<script>
-								document.write('<a href="rank_average.html?sb=' + varCurrentSeason + '&min=' + arrURL[12] + '&fl=2310">View Full List</a>')
+								document.write('<a href="rank_average.html?sb=' + varCurrentSeason + '&min=' + arrURL[12] + '&fl=2310&srt=a">View Full List</a>')
 							</script>
 						</div>
 						

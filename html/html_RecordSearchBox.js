@@ -22,6 +22,7 @@ function html_RecordSearchBox(URL){
 		if (URL[17] != undefined)	{ document.write('		<input type="hidden" name="sev" value="' + URL[17] + '" />'); }
 		if (URL[18] != undefined)	{ document.write('		<input type="hidden" name="fl" value="' + URL[18] + '" />'); }
 		if (URL[20] != undefined)	{ document.write('		<input type="hidden" name="aw" value="' + URL[20] + '" />'); }
+		if (URL[21] != undefined)	{ document.write('		<input type="hidden" name="srt" value="' + URL[21] + '" />'); }
 		
 		document.write('		<p><strong>Search For:</strong></p>');
 		document.write('		<table class="w3-table w3-light-gray">');

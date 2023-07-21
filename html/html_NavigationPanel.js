@@ -44,6 +44,9 @@ function html_NavigationPanel() {
 	document.write('						<li><a href="#" style="text-decoration: line-through;">Event Scorecards</a></li>');
 	*/
 	document.write('						<li><a href="list_champions.html">Event Champions</a></li>');
+	document.write('						<li><a href="list_meltdownchamps.html">Champions + Meltdown</a></li>');
+	document.write('						<li><a href="list_holesinone.html">Holes in One</a></li>');
+	document.write('						<li><a href="list_longdriveclosepin.html">Long Drive &amp; Closest Pin</a></li>');
 	document.write('					</ul>');
 	document.write('				</li>');
 	document.write('				<li class="dropdown">');

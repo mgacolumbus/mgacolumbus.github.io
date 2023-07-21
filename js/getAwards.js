@@ -9,6 +9,7 @@ function getAwards(URL) {
 		for (let i = 0; i < arrSeasonArray.length; i++) {
 			
 			if (URL[16] == "Y") { id = "" + arrSeasonArray[i][2] + arrSeasonArray[i][32]; }
+			else if (URL[17] == "Y") { id = "" + arrSeasonArray[i][2] + arrSeasonArray[i][30]; }
 			else { id = "" + arrSeasonArray[i][2]; };
 
 			if (!scoresByGolfer.has(id)) {
@@ -23,7 +24,9 @@ function getAwards(URL) {
 						longdrive: 0,
 						closepin: 0,
 						season: "",
-						events: 0
+						events: 0,
+						eventt: "",
+						course: ""
 					}
 				);
 			}
@@ -38,6 +41,8 @@ function getAwards(URL) {
 			if ((URL[20] == "cls" || URL[20] == "tot") && arrSeasonArray[i][11] == "x") { scoresByGolfer.get(id).closepin++; }
 			
 			scoresByGolfer.get(id).season = arrSeasonArray[i][32];
+			scoresByGolfer.get(id).eventt = arrSeasonArray[i][29];
+			scoresByGolfer.get(id).course = arrSeasonArray[i][28];
 			scoresByGolfer.get(id).events++;
 		}
 	}
@@ -54,6 +59,8 @@ function getAwards(URL) {
 		const closepin = scoringObj.closepin;
 		const events = scoringObj.events;
 		const season = scoringObj.season;
+		const eventt = scoringObj.eventt;
+		const course = scoringObj.course;
 		
 		if (URL[20] == "grs") { vStat = gross; }
 		else if (URL[20] == "mlt") { vStat = meltdown; }
@@ -68,13 +75,16 @@ function getAwards(URL) {
 			vStat,
 			golfer,
 			events,
-			season
+			season,
+			eventt,
+			course
 		];
 	});
 	
 	arrReturnArray = arrReturnArray.filter(events => events[1] > 0);
 	
-	arrReturnArray.sort(function(a,b) {return b[1]-a[1]});
+	if (URL[21] == "a") { arrReturnArray.sort(function(a,b) {return a[1]-b[1]}); }
+	else { arrReturnArray.sort(function(a,b) {return b[1]-a[1]}); }
 	
 	return getListPositions(arrReturnArray);
 }

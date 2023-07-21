@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+			
+			var arrFilters = new Array();
+			arrFilters[0] = arrURL[22];
+			var arrParticipants = getData_Participants(arrFilters);
+			
+			arrFilters = [];
+			arrFilters[1] = arrURL[22];
+			var arrScores = getData_Scores(arrFilters);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+        <div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2>Event Scorecard</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+			
+				<div class="col-sm-12">
+					<div class="panel panel-primary">
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="font-size: 14px;">
+								<tbody>
+									<tr>
+										<th>Event Date:</th>
+										<td><script>document.write(arrParticipants[0][30]);</script></td>
+									</tr>
+									<tr>
+										<th>Golfer:</th>
+										<td><script>document.write(arrParticipants[0][2]);</script></td>
+									</tr>
+									<tr>
+										<th>Event:</th>
+										<td><script>document.write(arrParticipants[0][29]);</script></td>
+									</tr>
+									<tr>
+										<th>Course:</th>
+										<td><script>document.write(arrParticipants[0][28]);</script></td>
+									</tr>
+									<tr>
+										<th>Field Size:</th>
+										<td><script>document.write(arrParticipants[0][34]);</script></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+					
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Tee</th>
+										<th>Hole</th>
+										<th>Par</th>
+										<th>Yds</th>
+										<th>Score</th>
+										<th>+ / -</th>
+									<tr>
+								</thead>
+								<tbody class="w3-center">
+									<script>
+										for (z = 0; z < arrScores.length; z++) {
+											if (z == 9) {
+												document.write("<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>");
+											}
+											
+											document.write("<tr>");
+											document.write("<td>" + arrScores[z][3] + "</td>");
+											document.write("<td>" + arrScores[z][2] + "</td>");
+											document.write("<td>" + arrScores[z][4] + "</td>");
+											document.write("<td>" + arrScores[z][5] + "</td>");
+											document.write("<td>" + arrScores[z][6] + "</td>");
+											
+											dispPlusMinus = "";
+											if (arrScores[z][7] > 0) { dispPlusMinus = "+"; }
+											
+											dispScore = "";
+											if (arrScores[z][7] == 0) { dispScore = "E"; }
+											else { dispScore = arrScores[z][7]; }
+											
+											dispColor = "";
+											if (arrScores[z][7] == -2) { dispColor = "w3-yellow"; }
+											else if (arrScores[z][7] == -1) { dispColor = "w3-blue"; }
+											else if (arrScores[z][7] == 0) { dispColor = "w3-green"; }
+											else if (arrScores[z][7] == 1) { dispColor = "w3-white"; }
+											else if (arrScores[z][7] == 2) { dispColor = "w3-orange"; }
+											else if (arrScores[z][7] == 3) { dispColor = "w3-red"; }
+											else if (arrScores[z][7] > 3) { dispColor = "w3-brown"; }
+											
+											document.write("<td class='" + dispColor + "'>" + dispPlusMinus + dispScore + "</td>");
+											document.write("</tr>");
+										}
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+					
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<tbody>
+									<tr>
+										<th>Placement</th>
+										<td><script>document.write(arrParticipants[0][4]);</script></td>
+									</tr>
+									<tr>
+										<th>Earnings</th>
+										<td><script>document.write(arrParticipants[0][5]);</script></td>
+									</tr>
+									<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+									<tr>
+										<th>Front 9</th>
+										<td><script>document.write(arrParticipants[0][13]);</script></td>
+									</tr>
+									<tr>
+										<th>Back 9</th>
+										<td><script>document.write(arrParticipants[0][14]);</script></td>
+									</tr>
+									<tr>
+										<th>Gross</th>
+										<td><script>document.write((arrParticipants[0][13] + arrParticipants[0][14]));</script></td>
+									</tr>
+									<tr>
+										<th>Net</th>
+										<td><script>document.write((arrParticipants[0][13] + arrParticipants[0][14] + arrParticipants[0][3]));</script></td>
+									</tr>
+									<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+									<tr>
+										<th>Par 3 Avg</th>
+										<td><script>document.write((arrParticipants[0][22] / arrParticipants[0][23]).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Par 4 Avg</th>
+										<td><script>document.write((arrParticipants[0][24] / arrParticipants[0][25]).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Par 5 Avg</th>
+										<td><script>document.write((arrParticipants[0][26] / arrParticipants[0][27]).toFixed(3));</script></td>
+									</tr>
+									<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+									<tr>
+										<th>Meltdown</th>
+										<td><script>document.write((arrParticipants[0][14] - arrParticipants[0][13]));</script></td>
+									</tr>
+									<tr>
+										<th>Awards</th>
+										<td>
+											-<br />
+											-<br />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+					
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<tbody>
+									<tr>
+										<th width="50%">Eagle</th>
+										<th class="w3-yellow w3-center"><script>document.write(arrParticipants[0][15]);</script></th>
+									</tr>
+									<tr>
+										<th>Birdie</th>
+										<th class="w3-blue w3-center"><script>document.write(arrParticipants[0][16]);</script></th>
+									</tr>
+									<tr>
+										<th>Par</th>
+										<th class="w3-green w3-center"><script>document.write(arrParticipants[0][17]);</script></th>
+									</tr>
+									<tr>
+										<th>Bogey</th>
+										<th class="w3-white w3-center"><script>document.write(arrParticipants[0][18]);</script></th>
+									</tr>
+									<tr>
+										<th>Double Bogey</th>
+										<th class="w3-orange w3-center"><script>document.write(arrParticipants[0][19]);</script></th>
+									</tr>
+									<tr>
+										<th>Triple Bogey</th>
+										<th class="w3-red w3-center"><script>document.write(arrParticipants[0][20]);</script></th>
+									</tr>
+									<tr>
+										<th>Worse</th>
+										<th class="w3-brown w3-center"><script>document.write(arrParticipants[0][21]);</script></th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div><br><br>
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

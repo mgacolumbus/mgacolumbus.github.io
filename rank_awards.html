@@ -37,6 +37,9 @@
 						if (arrURL[16] == "Y") {
 							pageHeader = "Single-Season " + pageHeader;
 						}
+						if (arrURL[17] == "Y") {
+							pageHeader = "Single-Event " + pageHeader;
+						}
 						
 						document.write('<h2 class="media-heading">' + pageHeader + '</h2>');
 					</script>
@@ -67,12 +70,20 @@
 								<th>&nbsp;</th>
 								<th>Name</th>
 								<script>
-									if (arrURL[16] == "Y") {
+									if (arrURL[16] == "Y" || arrURL[17] == "Y") {
 										document.write('<th>Season</th>');
 									}
+									if (arrURL[17] == "Y") {
+										document.write('<th>Event</th>');
+										document.write('<th>Course</th>');
+									}
+									
+									document.write('<th>Awards</th>');
+									
+									if (arrURL[17] != "Y") {
+										document.write('<th>Events</th>');
+									}
 								</script>
-								<th>Awards</th>
-								<th>Events</th>
 							<tr>
 						</thead>
 						<tbody>
@@ -84,12 +95,20 @@
 									document.write("<td>" + arrDisplay[d][0] + "</td>");
 									document.write("<td>" + arrDisplay[d][2] + "</td>");
 									
-									if (arrURL[16] == "Y") {
+									if (arrURL[16] == "Y" || arrURL[17] == "Y") {
 										document.write("<td>" + arrDisplay[d][4] + "</td>");
 									};
+									if (arrURL[17] == "Y") {
+										document.write("<td>" + arrDisplay[d][5] + "</td>");
+										document.write("<td>" + arrDisplay[d][6] + "</td>");
+									}
 									
 									document.write("<td>" + arrDisplay[d][1] + "</td>");
-									document.write("<td>" + arrDisplay[d][3] + "</td>");
+									
+									if (arrURL[17] != "Y") {
+										document.write("<td>" + arrDisplay[d][3] + "</td>");
+									}
+									
 									document.write("<tr>")
 								}
 							</script>

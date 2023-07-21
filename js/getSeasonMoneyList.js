@@ -53,7 +53,8 @@ function getSeasonMoneyList(URL) {
 	arrReturnArray = arrReturnArray.filter(earnings => earnings[3] >= URL[12]);
 	arrReturnArray = arrReturnArray.filter(earnings => earnings[1] > 0);
 	
-	arrReturnArray.sort(function(a,b) {return b[1]-a[1]});
+	if (URL[21] == "a") { arrReturnArray.sort(function(a,b) {return a[1]-b[1]}); }
+	else { arrReturnArray.sort(function(a,b) {return b[1]-a[1]}); }
 	
 	return getListPositions(arrReturnArray);
 }

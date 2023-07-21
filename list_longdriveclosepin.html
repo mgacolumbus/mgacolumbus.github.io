@@ -17,17 +17,18 @@
 		<script>
 			html_NavigationPanel();
 		</script><br /><br /><br />
-		
+
 		
 		<div class="container">
             <div class="media center">
                 <div class="media-body media-middle">
-					<h2 class="media-heading">Lowest Round (<script>document.write(arrURL[14]);</script>)</h2>
+                    <h2 class="media-heading">Long Drive &amp; Closest Pin</h2>
+					<h5>[ Won both awards in the same event ]</h5>
                 </div>
             </div>
         </div><br />
 		
-		
+		<!--
 		<div class="container">
 			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Show / Hide Filters</button>
 			<div id="filters" class="collapse row">
@@ -37,17 +38,8 @@
 					html_RecordSearchBox(arrURL);
 				</script>
 			</div>
-		</div><br />
-		
-		
-		<div class="container">
-            <div class="media center">
-                <div class="media-body media-middle">
-					<h6>[ Click on a score to see the event scorecard ]</h6>
-                </div>
-            </div>
-        </div><br /><br />
-	
+		</div><br /><br />
+		-->
 	
 		<div class="container">    
 			<div class="row">
@@ -56,35 +48,41 @@
 					<table class="table table-responsive table-condensed table-condensed_ext">
 						<thead>
 							<tr>
-								<th>&nbsp;</th>
 								<th>Date</th>
 								<th>Name</th>
 								<th>Event</th>
 								<th>Course</th>
 								<th>Score</th>
+								<th>Field</th>
 							<tr>
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = getLowestRound(arrURL);
+								var arrFilters = new Array();
+								arrFilters = getFilterSettings_Participant(arrURL);
+								arrFilters[10] = "x";
+								arrFilters[11] = "x";
+								
+								var arrDisplay = getData_Participants(arrFilters);
+								var arrFieldSize = new Array();
 
-								for (d = 0; d < arrDisplayMoney.length; d++) {
-									document.write("<tr>")
-									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][5] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
-									
-									if (arrURL[14] == "Net") {
-										document.write("<td><a href='scorecard.html?pid=" + arrDisplayMoney[d][7] + "'>" + arrDisplayMoney[d][1] + " (+" + arrDisplayMoney[d][6] + ")</a></td>");
+								for (d = arrDisplay.length - 1; d >= 0; d--) {
+									if (arrDisplay[d][32] >= arrURL[1] && arrDisplay[d][32] <= arrURL[2]) {
+										document.write("<tr>");
+										document.write("<td>" + arrDisplay[d][30] + "</td>");
+										document.write("<td>" + arrDisplay[d][2] + "</td>");
+										document.write("<td>" + arrDisplay[d][29] + "</td>");
+										document.write("<td>" + arrDisplay[d][28] + "</td>");
+										document.write("<td>" + (arrDisplay[d][13] + arrDisplay[d][14]) + " (+" + arrDisplay[d][3] +  ")</td>");
+										
+										arrFilters = [];
+										arrFilters[0] = arrDisplay[d][1];
+										
+										arrFieldSize = getData_Tournaments(arrFilters);
+										document.write("<td>" + arrFieldSize[0][7] + "</td>");
+										
+										document.write("</tr>");
 									}
-									else {
-										document.write("<td><a href='scorecard.html?pid=" + arrDisplayMoney[d][7] + "'>" + arrDisplayMoney[d][1] + "</a></td>");
-									};
-									
-									document.write("</a>");
-									document.write("</tr>");
 								}
 							</script>
 						</tbody>

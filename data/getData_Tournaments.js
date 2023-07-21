@@ -101,7 +101,7 @@ function getData_Tournaments(Filters) {
         [	88,	"Denison",	"Last Gasp",	"10-02-2022",	"N",	2022,	"October",	25	],
 		[	89,	"Kyber Run",	"Bastards",	"04-30-2023",	"Y",	2023,	"April",	31	],
 		[	90,	"Raccoon",	"MGA Championship",	"05-21-2023",	"Y",	2023,	"May",	23	],
-		[	91,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	0	],
+		[	91,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28	],
 		[	92,	"Westchester",	"Bratish Open",	"07-16-2023",	"Y",	2023,	"July",	24	],
     ];
 	
