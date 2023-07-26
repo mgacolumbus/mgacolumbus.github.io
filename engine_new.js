@@ -21,6 +21,7 @@ document.write("<script src='js/getEventName.js'></script>");
 document.write("<script src='js/getFilterSettings_Participant.js'></script>");
 document.write("<script src='js/getFilterSettings_Score.js'></script>");
 document.write("<script src='js/getGolferName.js'></script>");
+document.write("<script src='js/getHardestHole.js'></script>");
 document.write("<script src='js/getHighestHoleScore.js'></script>");
 document.write("<script src='js/getListPositions.js'></script>");
 document.write("<script src='js/getLowestFrontBack.js'></script>");

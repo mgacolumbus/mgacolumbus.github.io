@@ -142,7 +142,12 @@
 								<tbody>
 									<tr>
 										<th>Placement</th>
-										<td><script>document.write(arrParticipants[0][4]);</script></td>
+										<td>
+											<script>
+												if (arrParticipants[0][4] == "0") { arrParticipants[0][4] = "DQ"; }
+												document.write(arrParticipants[0][4]);
+											</script>
+										</td>
 									</tr>
 									<tr>
 										<th>Earnings</th>
@@ -181,13 +186,31 @@
 									<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 									<tr>
 										<th>Meltdown</th>
-										<td><script>document.write((arrParticipants[0][14] - arrParticipants[0][13]));</script></td>
+										<td>
+											<script>
+												if (arrParticipants[0][14] - arrParticipants[0][13] < 0) {
+													document.write((arrParticipants[0][14] - arrParticipants[0][13]));
+												} else {
+													document.write("+" + (arrParticipants[0][14] - arrParticipants[0][13]));
+												}
+											</script>
+										</td>
 									</tr>
 									<tr>
 										<th>Awards</th>
 										<td>
-											-<br />
-											-<br />
+											<script>
+												dispAwards = "";
+												
+												if (arrParticipants[0][9] == "x") { dispAwards += "- Gross<br />"; }
+												if (arrParticipants[0][8] == "x") { dispAwards += "- Mediocre<br />"; }
+												if (arrParticipants[0][7] == "x") { dispAwards += "- Meltdown<br />"; }
+												if (arrParticipants[0][10] == "x") { dispAwards += "- Long Drive<br />"; }
+												if (arrParticipants[0][11] == "x") { dispAwards += "- Closest Pin<br />"; }
+												if (arrParticipants[0][12] == "x") { dispAwards += "- Red Key<br />"; }
+												
+												document.write(dispAwards);
+											</script>
 										</td>
 									</tr>
 								</tbody>

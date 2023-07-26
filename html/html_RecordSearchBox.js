@@ -158,6 +158,18 @@ function html_RecordSearchBox(URL){
 			document.write('				</td>');
 			document.write('			</tr>');
 		}
+		
+		if (URL[18] % 19 == 0) {
+			document.write('			<tr>');
+			document.write('				<td width="40px">Show Tee Info:</td>');
+			document.write('				<td width="200px">');
+			document.write('					<select name="xt">');
+			document.write('						<option value="N">No</option>');
+			document.write('						<option value="Y">Yes</option>');
+			document.write('					</select>');
+			document.write('				</td>');
+			document.write('			</tr>');
+		}
 
 		document.write('			<tr>');
 		document.write('				<td width="40px">&nbsp;</td>');

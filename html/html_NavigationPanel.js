@@ -31,9 +31,7 @@ function html_NavigationPanel() {
 	document.write('						<li><a href="nav_records_placement.html">Placement Records</a></li>');
 	document.write('						<li><a href="nav_records_scoretype.html">Scoretype Records</a></li>');
 	document.write('						<li><a href="nav_records_awards.html">Awards Records</a></li>');
-	/*
-	document.write('						<li><a href="#" style="text-decoration: line-through;">Chapter Records</a></li>');
-	*/
+	document.write('						<li><a href="nav_records_chapter.html">Chapter Records</a></li>');
 	document.write('						<li><a href="nav_records_misc.html">Misc. Records</a></li>');
 	document.write('					</ul>');
 	document.write('				</li>');

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			document.write('<title>' + globalVariable('Site_Title') + '</title>');
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2 class="media-heading">Chapter Records</h2>
+                </div>
+            </div>
+        </div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">All-Time Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext">Largest Event</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext">Hardest Course</div></a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="rank_hardesthole.html?fl=46410"><div class="panel-footer panel_footer_ext">Hardest Hole</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		<!--
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Season Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext">meh</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+
+		
+		<div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h4 class="media-heading" style="color: #cd143c;">Single-Event Records</h2>
+                </div>
+            </div>
+        </div><br />
+	
+	
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<a href="#"><div class="panel-footer panel_footer_ext">meh</div></a>
+					</div>
+				</div>
+				
+			</div>
+		</div><br />
+		-->
+        
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

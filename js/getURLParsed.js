@@ -31,6 +31,7 @@ function getURLParsed(URL) {
 		arrReturnArray[20]	=	Award Type
 		arrReturnArray[21]	=	Sort direction
 		arrReturnArray[22]	=	Participant ID
+		arrReturnArray[23]	=	Show Tee Info
 	*/
 
 	arrReturnArray[0] = varURL.substring(varURLslash + 1, varURL.lastIndexOf('.html') + 5);
@@ -56,6 +57,7 @@ function getURLParsed(URL) {
 	arrReturnArray[20] = searchParams.get("aw") ?? "tot";
 	arrReturnArray[21] = searchParams.get("srt") ?? "d";
 	arrReturnArray[22] = searchParams.get("pid");
+	arrReturnArray[23] = searchParams.get("xt") ?? "N";
 
 	return arrReturnArray;
 }
