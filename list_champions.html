@@ -37,7 +37,7 @@
 					html_RecordSearchBox(arrURL);
 				</script>
 			</div>
-		</div><br /><br />
+		</div><br />
 	
 	
 		<div class="container">    
@@ -70,8 +70,8 @@
 										document.write("<td>" + arrDisplay[d][30] + "</td>");
 										document.write("<td>" + arrDisplay[d][2] + "</td>");
 										document.write("<td>" + arrDisplay[d][29] + "</td>");
-										document.write("<td>" + arrDisplay[d][28] + "</td>");
-										document.write("<td>" + (arrDisplay[d][13] + arrDisplay[d][14]) + "</td>");
+										document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][28]) + "'>" + arrDisplay[d][28] + "</a></td>");
+										document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][0] + "'>" + (arrDisplay[d][13] + arrDisplay[d][14]) + "</a></td>");
 										document.write("<td>+ " + arrDisplay[d][3] + "</td>");
 										
 										arrFilters = [];

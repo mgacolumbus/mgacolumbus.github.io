@@ -45,7 +45,7 @@
 					html_RecordSearchBox(arrURL);
 				</script>
 			</div>
-		</div><br /><br />
+		</div><br />
 	
 	
 		<div class="container">    
@@ -81,10 +81,15 @@
 									if (arrURL[16] == "Y" || arrURL[17] == "Y") { document.write("<td>" + arrDisplay[d][6] + "</td>"); }
 									if (arrURL[17] == "Y") {
 										document.write("<td>" + arrDisplay[d][7] + "</td>");
-										document.write("<td>" + arrDisplay[d][8] + "</td>");
+										document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][8]) + "'>" + arrDisplay[d][8] + "</a></td>");
 									}
-									document.write("<td>" + arrDisplay[d][1] + "</td>");
-									document.write("<td>" + arrDisplay[d][4] + "</td>");
+									if (arrURL[17] == "Y") {
+										document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][10] + "'>" + arrDisplay[d][1] + "</a></td>");
+										document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][10] + "'>" + arrDisplay[d][4] + "</a></td>");
+									} else {
+										document.write("<td>" + arrDisplay[d][1] + "</td>");
+										document.write("<td>" + arrDisplay[d][4] + "</td>");
+									}
 									document.write("<td>" + arrDisplay[d][5] + "</td>");
 									document.write("<td>" + arrDisplay[d][3] + "</td>");
 									document.write("<tr>")

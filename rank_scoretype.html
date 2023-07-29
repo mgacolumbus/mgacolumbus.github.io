@@ -48,7 +48,7 @@
 					html_RecordSearchBox(arrURL);
 				</script>
 			</div>
-		</div><br /><br />
+		</div><br />
 	
 	
 		<div class="container">    
@@ -93,14 +93,14 @@
 									
 									if (arrURL[17] == 'Y') {
 										document.write("<td>" + arrDisplay[d][5] + "</td>");
-										document.write("<td>" + arrDisplay[d][6] + "</td>");
+										document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][6]) + "'>" + arrDisplay[d][6] + "</a></td>");
 									}
 									
-									if (arrURL[15] == 'Y') { document.write("<td>" + arrDisplay[d][1] + " %</td>"); }
-									else { document.write("<td>" + arrDisplay[d][1] + "</td>"); }
+									if (arrURL[15] == 'Y') { document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + arrDisplay[d][1] + " %</a></td>"); }
+									else { document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + arrDisplay[d][1] + "</a></td>"); }
 									
-									if (arrURL[15] == 'Y') { document.write("<td>" + ((arrDisplay[d][1] * arrDisplay[d][3]) / 100).toFixed() + "</td>"); }
-									else { document.write("<td>" + ((arrDisplay[d][1] / arrDisplay[d][3]) * 100).toFixed(3) + " %</td>"); }
+									if (arrURL[15] == 'Y') { document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + ((arrDisplay[d][1] * arrDisplay[d][3]) / 100).toFixed() + "</a></td>"); }
+									else { document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + ((arrDisplay[d][1] / arrDisplay[d][3]) * 100).toFixed(3) + " %</a></td>"); }
 									
 									document.write("<td>" + arrDisplay[d][3] + "</td>");
 									if (arrURL[13] == undefined) { document.write("<td>" + (arrDisplay[d][3] / 18) + "</td>"); }

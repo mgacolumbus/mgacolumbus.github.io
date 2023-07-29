@@ -68,8 +68,8 @@
 										for (d = arrDisplayWinners.length - 1; varDisplayIndex < varDisplayCount; d--) {
 											document.write("<tr>")
 											document.write("<td>" + arrDisplayWinners[d][2] + "</td>");
-											document.write("<td>" + arrDisplayWinners[d][28] + "</td>");
-											document.write("<td>" + (arrDisplayWinners[d][13] + arrDisplayWinners[d][14]) + " (+" + arrDisplayWinners[d][3] + ")</td>");
+											document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplayWinners[d][28]) + "'>" + arrDisplayWinners[d][28] + "</a></td>");
+											document.write("<td><a href='scorecard.html?pid=" + arrDisplayWinners[d][0] + "'>" + (arrDisplayWinners[d][13] + arrDisplayWinners[d][14]) + " (+" + arrDisplayWinners[d][3] + ")</a></td>");
 											document.write("<tr>")
 											
 											varDisplayIndex++;

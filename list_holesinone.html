@@ -54,6 +54,7 @@
 								<th>Tee</th>
 								<th>Hole</th>
 								<th>Yards</th>
+								<th>Score</th>
 							<tr>
 						</thead>
 						<tbody>
@@ -69,10 +70,11 @@
 									document.write("<td>" + arrDisplay[d][12] + "</td>");
 									document.write("<td>" + arrDisplay[d][9] + "</td>");
 									document.write("<td>" + arrDisplay[d][11] + "</td>");
-									document.write("<td>" + arrDisplay[d][10] + "</td>");
+									document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][10]) + "'>" + arrDisplay[d][10] + "</a></td>");
 									document.write("<td>" + arrDisplay[d][3] + "</td>");
 									document.write("<td>" + arrDisplay[d][2] + "</td>");
 									document.write("<td>" + arrDisplay[d][5] + "</td>");
+									document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][1] + "'>" + arrDisplay[d][6] + "</a></td>");
 									document.write("</tr>")
 								}
 							</script>

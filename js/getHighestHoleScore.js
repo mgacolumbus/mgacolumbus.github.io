@@ -19,7 +19,8 @@ function getHighestHoleScore(URL) {
 						yards: 0,
 						par: 0,
 						score: 0,
-						date: ""
+						date: "",
+						pid: ""
 					}
 				);
 			}
@@ -32,6 +33,7 @@ function getHighestHoleScore(URL) {
 			scoresByGolfer.get(id).par = arrScoresArray[i][4];
 			scoresByGolfer.get(id).score = arrScoresArray[i][6];
 			scoresByGolfer.get(id).date = arrScoresArray[i][12];
+			scoresByGolfer.get(id).pid = arrScoresArray[i][1];
 		}
 	}
 	
@@ -46,6 +48,7 @@ function getHighestHoleScore(URL) {
 		const par = scoresObj.par;
 		const score = scoresObj.score;
 		const date = scoresObj.date;
+		const pid = scoresObj.pid;
 		
 		return [
 			-1,
@@ -56,7 +59,8 @@ function getHighestHoleScore(URL) {
 			tee,
 			yards,
 			par,
-			date
+			date,
+			pid
 		];
 	});
 	

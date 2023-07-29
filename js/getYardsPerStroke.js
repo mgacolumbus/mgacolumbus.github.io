@@ -22,7 +22,8 @@ function getYardsPerStroke(URL) {
 						season: "",
 						eventt: "",
 						course: "",
-						par: 0
+						par: 0,
+						pid: ""
 					}
 				);
 			}
@@ -35,6 +36,7 @@ function getYardsPerStroke(URL) {
 			scoresByGolfer.get(id).eventt = arrScoresArray[i][11];
 			scoresByGolfer.get(id).course = arrScoresArray[i][10];
 			scoresByGolfer.get(id).par = arrScoresArray[i][4];
+			scoresByGolfer.get(id).pid = arrScoresArray[i][1];
 		}
 	}
 	
@@ -47,6 +49,7 @@ function getYardsPerStroke(URL) {
 		const eventt = scoresObj.eventt;
 		const course = scoresObj.course;
 		const par = scoresObj.par;
+		const pid = scoresObj.pid;
 		
 		return [
 			-1,
@@ -58,7 +61,8 @@ function getYardsPerStroke(URL) {
 			season,
 			eventt,
 			course,
-			par
+			par,
+			pid
 		];
 	});
 	

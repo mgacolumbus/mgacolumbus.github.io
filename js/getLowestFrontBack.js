@@ -18,7 +18,8 @@ function getLowestFrontBack(URL) {
 						eventname: "",
 						strokes: 0,
 						date: "",
-						side: ""
+						side: "",
+						pid: ""
 					}
 				);
 			}
@@ -29,6 +30,7 @@ function getLowestFrontBack(URL) {
 			scoresByGolfer.get(id).strokes = arrSeasonArray[i][13];
 			scoresByGolfer.get(id).date = arrSeasonArray[i][30];
 			scoresByGolfer.get(id).side = "Front";
+			scoresByGolfer.get(id).pid = arrSeasonArray[i][0];
 			
 			//Back 9
 			id = "" + arrSeasonArray[i][2] + arrSeasonArray[i][30] + "Back";
@@ -42,7 +44,8 @@ function getLowestFrontBack(URL) {
 						eventname: "",
 						strokes: 0,
 						date: "",
-						side: ""
+						side: "",
+						pid: ""
 					}
 				);
 			}
@@ -53,6 +56,7 @@ function getLowestFrontBack(URL) {
 			scoresByGolfer.get(id).strokes = arrSeasonArray[i][14];
 			scoresByGolfer.get(id).date = arrSeasonArray[i][30];
 			scoresByGolfer.get(id).side = "Back";
+			scoresByGolfer.get(id).pid = arrSeasonArray[i][0];
 		}
 	}
 
@@ -63,6 +67,7 @@ function getLowestFrontBack(URL) {
 		const strokes = scoringObj.strokes;
 		const date = scoringObj.date;
 		const side = scoringObj.side;
+		const pid = scoringObj.pid;
 	  
 		return [
 			-1,
@@ -71,7 +76,8 @@ function getLowestFrontBack(URL) {
 			course,
 			eventname,
 			date,
-			side
+			side,
+			pid
 		];
 	});
 	

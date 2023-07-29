@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="engine_new.js"></script>
+		<script>
+			html_SiteHeader();
+				
+			var url = new URL(window.location.href);
+			var arrURL = getURLParsed(url);
+			
+			var varDisplayCount = 0;
+			var varCurrentSeason = getCurrentSeason();
+			
+			var arrFilters = new Array();
+			arrFilters = getFilterSettings_Participant(arrURL);
+			var arrParticipants = getData_Participants(arrFilters);
+			
+			arrFilters = [];
+			arrFilters = getFilterSettings_Score(arrURL);
+			var arrScores = getData_Scores(arrFilters);
+			
+			arrFilters = [];
+			arrFilters[1] = getCourseName(arrURL[5])
+			var arrTournaments = getData_Tournaments(arrFilters)
+		</script>
+	</head>
+	
+	<body class="w3-white">
+		
+		<script>
+			html_NavigationPanel();
+		</script><br /><br /><br />
+
+        <div class="container">
+            <div class="media center">
+                <div class="media-body media-middle">
+					<h2>Course Statistics</h2>
+                </div>
+            </div>
+        </div><br />
+		
+		
+		<div class="container">
+			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Show / Hide Filters</button>
+			<div id="filters" class="collapse row">
+				<br />
+				<script>
+					html_RecordDisplayBox(arrURL);
+					html_RecordSearchBox(arrURL);
+				</script>
+			</div>
+		</div><br /><br />
+	
+	
+		<div class="container">    
+			<div class="row">
+			
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="font-size: 14px;">
+								<tbody>
+									<tr>
+										<th>Course Name:</th>
+										<td><script>document.write(arrParticipants[0][28]);</script></td>
+									</tr>
+									<tr>
+										<th>Course Par:</th>
+										<td>
+											<script>
+												var parDisp = 0;
+												var yardsDisp = 0;
+												var yardsCnt = 0;
+												for (z = 0; z < arrScores.length; z++) {
+													if (z < 18) { parDisp += arrScores[z][4]; }
+													if (arrScores[z][3] == "Middle" && yardsCnt < 18) {
+														yardsDisp += arrScores[z][5];
+														yardsCnt++;
+													}
+												}
+												document.write(parDisp);
+											</script>
+										</td>
+									</tr>
+									<tr>
+										<th>Field Yards:</th>
+										<td><script>document.write(yardsDisp);</script></td>
+									</tr>
+									<tr>
+										<th>Total Rounds:</th>
+										<td><script>document.write(arrParticipants.length);</script></td>
+									</tr>
+									<tr>
+										<th>Avg Field Size:</th>
+										<td>
+											<script>
+												var fieldSizeTotal = 0;
+												var strokesTotal = 0;
+												var penaltyTotal = 0;
+												var par3Total = 0;	var par4Total = 0;	var par5Total = 0;
+												var par3Cnt = 0;	var par4Cnt = 0; 	var par5Cnt = 0;
+												for (z = 0; z < arrParticipants.length; z++) {
+													strokesTotal += arrParticipants[z][13] + arrParticipants[z][14];
+													penaltyTotal += arrParticipants[z][3];
+													par3Total += arrParticipants[z][22];
+													par3Cnt += arrParticipants[z][23];
+													par4Total += arrParticipants[z][24];
+													par4Cnt += arrParticipants[z][25];
+													par5Total += arrParticipants[z][26];
+													par5Cnt += arrParticipants[z][27];
+												}
+												
+												for (z = 0; z < arrTournaments.length; z++) {
+													fieldSizeTotal += arrTournaments[z][7];
+												}
+												
+												document.write((fieldSizeTotal / arrTournaments.length).toFixed(3));
+											</script>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext" style="font-size: 14px;">
+								<tbody>
+									<tr>
+										<th>Scoring Avg (Gross):</th>
+										<td><script>document.write((strokesTotal / arrParticipants.length).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Scoring Avg (Net):</th>
+										<td><script>document.write(((strokesTotal + penaltyTotal) / arrParticipants.length).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Par 3 Avg:</th>
+										<td><script>document.write((par3Total / par3Cnt).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Par 4 Avg:</th>
+										<td><script>document.write((par4Total / par4Cnt).toFixed(3));</script></td>
+									</tr>
+									<tr>
+										<th>Par 5 Avg:</th>
+										<td><script>document.write((par5Total / par5Cnt).toFixed(3));</script></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	
+		<div class="container">    
+			<div class="row">
+				
+				<div class="col-sm-5">
+					<div class="panel panel-primary">
+					
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Hole</th>
+										<th>Par</th>
+										<th>Field<br />Yardage</th>
+										<th>All Scores<br />To Par</th>
+									<tr>
+								</thead>
+								<tbody class="w3-center">
+									<script>
+										var arrDispScores = new Array();
+										var holeTemp = 0;
+										
+										arrDispScores = [
+											[1, 0, 0, 0, 0],
+											[2, 0, 0, 0, 0],
+											[3, 0, 0, 0, 0],
+											[4, 0, 0, 0, 0],
+											[5, 0, 0, 0, 0],
+											[6, 0, 0, 0, 0],
+											[7, 0, 0, 0, 0],
+											[8, 0, 0, 0, 0],
+											[9, 0, 0, 0, 0],
+											[10, 0, 0, 0, 0],
+											[11, 0, 0, 0, 0],
+											[12, 0, 0, 0, 0],
+											[13, 0, 0, 0, 0],
+											[14, 0, 0, 0, 0],
+											[15, 0, 0, 0, 0],
+											[16, 0, 0, 0, 0],
+											[17, 0, 0, 0, 0],
+											[18, 0, 0, 0, 0],
+										];
+										
+										for (z = 0; z < arrScores.length; z++) {
+											holeTemp = (arrScores[z][2] - 1);
+											
+											arrDispScores[holeTemp][0] = arrScores[z][2];
+											arrDispScores[holeTemp][1] = arrScores[z][4];
+											if (arrScores[z][3] == "Middle") { arrDispScores[holeTemp][2] = arrScores[z][5]; }
+											arrDispScores[holeTemp][3] += arrScores[z][7];
+											arrDispScores[holeTemp][4]++;
+										}
+										
+										for (z = 0; z < 18; z++) {
+											//if (z == 9) { document.write("<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>"); }
+										
+											document.write("<tr>");
+											document.write("<td>" + arrDispScores[z][0] + "</td>");
+											document.write("<td>" + arrDispScores[z][1] + "</td>");
+											document.write("<td>" + arrDispScores[z][2] + "</td>");
+											if (arrDispScores[z][3] < 0) {
+												document.write("<td>" + (arrDispScores[z][3] / arrDispScores[z][4]).toFixed(3) + "</td>");
+											} else {
+												document.write("<td>+" + (arrDispScores[z][3] / arrDispScores[z][4]).toFixed(3) + "</td>");
+											}
+											document.write("</tr>");
+										}
+										
+										document.write("<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>");
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-sm-7">
+					<div class="panel panel-primary">
+					
+						<div class="panel-body">
+                  			<table class="table table-responsive table-condensed table-condensed_ext">
+								<thead>
+									<tr>
+										<th>Hole</th>
+										<th>Eagle</th>
+										<th>Birdie</th>
+										<th>Par</th>
+										<th>Bogey</th>
+										<th>Dbl<br />Bogey</th>
+										<th>Trp<br />Bogey</th>
+										<th>Worse<br />Bogey</th>
+									<tr>
+								</thead>
+								<tbody class="w3-center">
+									<script>
+										var arrDispScores = new Array();
+										var holeTemp = 0;
+										
+										arrDispScores = [
+											[1, 0, 0, 0, 0, 0, 0, 0],
+											[2, 0, 0, 0, 0, 0, 0, 0],
+											[3, 0, 0, 0, 0, 0, 0, 0],
+											[4, 0, 0, 0, 0, 0, 0, 0],
+											[5, 0, 0, 0, 0, 0, 0, 0],
+											[6, 0, 0, 0, 0, 0, 0, 0],
+											[7, 0, 0, 0, 0, 0, 0, 0],
+											[8, 0, 0, 0, 0, 0, 0, 0],
+											[9, 0, 0, 0, 0, 0, 0, 0],
+											[10, 0, 0, 0, 0, 0, 0, 0],
+											[11, 0, 0, 0, 0, 0, 0, 0],
+											[12, 0, 0, 0, 0, 0, 0, 0],
+											[13, 0, 0, 0, 0, 0, 0, 0],
+											[14, 0, 0, 0, 0, 0, 0, 0],
+											[15, 0, 0, 0, 0, 0, 0, 0],
+											[16, 0, 0, 0, 0, 0, 0, 0],
+											[17, 0, 0, 0, 0, 0, 0, 0],
+											[18, 0, 0, 0, 0, 0, 0, 0],
+										];
+										
+										for (z = 0; z < arrScores.length; z++) {
+											holeTemp = (arrScores[z][2] - 1);
+											
+											arrDispScores[holeTemp][0] = arrScores[z][2];
+											if (arrScores[z][7] == -2) { arrDispScores[holeTemp][1]++; }
+											if (arrScores[z][7] == -1) { arrDispScores[holeTemp][2]++; }
+											if (arrScores[z][7] == 0) { arrDispScores[holeTemp][3]++; }
+											if (arrScores[z][7] == 1) { arrDispScores[holeTemp][4]++; }
+											if (arrScores[z][7] == 2) { arrDispScores[holeTemp][5]++; }
+											if (arrScores[z][7] == 3) { arrDispScores[holeTemp][6]++; }
+											if (arrScores[z][7] > 3) { arrDispScores[holeTemp][7]++; }
+										}
+										
+										for (z = 0; z < 18; z++) {
+											document.write("<tr>");
+											document.write("<td>" + arrDispScores[z][0] + "</td>");
+											document.write("<td>" + arrDispScores[z][1] + "</td>");
+											document.write("<td>" + arrDispScores[z][2] + "</td>");
+											document.write("<td>" + arrDispScores[z][3] + "</td>");
+											document.write("<td>" + arrDispScores[z][4] + "</td>");
+											document.write("<td>" + arrDispScores[z][5] + "</td>");
+											document.write("<td>" + arrDispScores[z][6] + "</td>");
+											document.write("<td>" + arrDispScores[z][7] + "</td>");
+											document.write("</tr>");
+										}
+										
+										var scoretypeTotal = 0;
+										
+										document.write("<tr>");
+										document.write("<td>Totals</td>");
+										
+										for (y = 1; y < 8; y++) {
+											
+											scoretypeTotal = 0;
+											
+											for (z = 0; z < 18; z++) {
+												
+												scoretypeTotal += arrDispScores[z][y];
+											}
+											
+											document.write("<td>" + scoretypeTotal + "</td>");
+										}
+										
+										document.write("</tr>");
+										
+									</script>
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div><br /><br />
+
+        <script>
+            html_Footer();
+        </script>
+    </body>
+</html>

@@ -21,7 +21,8 @@ function getScoretypeRecord(URL) {
 						holeCount: 0,
 						season: "",
 						eventt: "",
-						course: ""
+						course: "",
+						pid: ""
 					}
 				);
 			}
@@ -47,6 +48,7 @@ function getScoretypeRecord(URL) {
 			scoresByGolfer.get(id).season = arrScoresArray[i][14];
 			scoresByGolfer.get(id).eventt = arrScoresArray[i][11];
 			scoresByGolfer.get(id).course = arrScoresArray[i][10];
+			scoresByGolfer.get(id).pid = arrScoresArray[i][1];
 		}
 	}
 	
@@ -59,6 +61,7 @@ function getScoretypeRecord(URL) {
 		const season = scoresObj.season;
 		const eventt = scoresObj.eventt;
 		const course = scoresObj.course;
+		const pid = scoresObj.pid;
 		
 		if (URL[15] == 'Y') { vStat = ((scoreCount / holeCount) * 100).toFixed(3); }
 		else { vStat = scoreCount; };
@@ -70,7 +73,8 @@ function getScoretypeRecord(URL) {
 			holeCount,
 			season,
 			eventt,
-			course
+			course,
+			pid
 		];
 	});
 	

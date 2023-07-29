@@ -38,15 +38,6 @@
 				</script>
 			</div>
 		</div><br />
-		
-		
-		<div class="container">
-            <div class="media center">
-                <div class="media-body media-middle">
-					<h6>[ Click on a score to see the event scorecard ]</h6>
-                </div>
-            </div>
-        </div><br /><br />
 	
 	
 		<div class="container">    
@@ -66,21 +57,21 @@
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = getLowestRound(arrURL);
+								var arrDisplay = getLowestRound(arrURL);
 
-								for (d = 0; d < arrDisplayMoney.length; d++) {
+								for (d = 0; d < arrDisplay.length; d++) {
 									document.write("<tr>")
-									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][5] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
+									document.write("<td>" + arrDisplay[d][0] + "</td>");
+									document.write("<td>" + arrDisplay[d][5] + "</td>");
+									document.write("<td>" + arrDisplay[d][2] + "</td>");
+									document.write("<td>" + arrDisplay[d][4] + "</td>");
+									document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][3]) + "'>" + arrDisplay[d][3] + "</a></td>");
 									
 									if (arrURL[14] == "Net") {
-										document.write("<td><a href='scorecard.html?pid=" + arrDisplayMoney[d][7] + "'>" + arrDisplayMoney[d][1] + " (+" + arrDisplayMoney[d][6] + ")</a></td>");
+										document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + arrDisplay[d][1] + " (+" + arrDisplay[d][6] + ")</a></td>");
 									}
 									else {
-										document.write("<td><a href='scorecard.html?pid=" + arrDisplayMoney[d][7] + "'>" + arrDisplayMoney[d][1] + "</a></td>");
+										document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][7] + "'>" + arrDisplay[d][1] + "</a></td>");
 									};
 									
 									document.write("</a>");

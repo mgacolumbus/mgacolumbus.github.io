@@ -20,5 +20,6 @@ function html_SiteHeader() {
 	document.write('.panel_heading_ext {text-align: center;}')
 	document.write('.panel_footer_ext {background-color: #c2c2c2; text-align: center;}')
 	document.write('.table-condensed_ext {font-size: 12px;}')// font-weight: bold;
+	document.write('.link {text-decoration: underline;}')// font-weight: bold;
 	document.write('</style>');
 }

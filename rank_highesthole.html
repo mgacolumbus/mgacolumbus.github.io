@@ -38,7 +38,7 @@
 					html_RecordSearchBox(arrURL);
 				</script>
 			</div>
-		</div><br /><br />
+		</div><br />
 	
 	
 		<div class="container">    
@@ -61,19 +61,19 @@
 						</thead>
 						<tbody>
 							<script>
-								var arrDisplayMoney = getHighestHoleScore(arrURL);
+								var arrDisplay = getHighestHoleScore(arrURL);
 
-								for (d = 0; d < arrDisplayMoney.length; d++) {
+								for (d = 0; d < arrDisplay.length; d++) {
 									document.write("<tr>")
-									document.write("<td>" + arrDisplayMoney[d][0] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][8] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][2] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][3] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][4] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][5] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][6] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][7] + "</td>");
-									document.write("<td>" + arrDisplayMoney[d][1] + "</td>");
+									document.write("<td>" + arrDisplay[d][0] + "</td>");
+									document.write("<td>" + arrDisplay[d][8] + "</td>");
+									document.write("<td>" + arrDisplay[d][2] + "</td>");
+									document.write("<td><a href='coursestats.html?c=" + getCourseID(arrDisplay[d][3]) + "'>" + arrDisplay[d][3] + "</a></td>");
+									document.write("<td>" + arrDisplay[d][4] + "</td>");
+									document.write("<td>" + arrDisplay[d][5] + "</td>");
+									document.write("<td>" + arrDisplay[d][6] + "</td>");
+									document.write("<td>" + arrDisplay[d][7] + "</td>");
+									document.write("<td><a href='scorecard.html?pid=" + arrDisplay[d][9] + "'>" + arrDisplay[d][1] + "</a></td>");
 									document.write("<tr>")
 								}
 							</script>
