@@ -238,5 +238,6 @@ function getData_Golfers() {
 		"Steven Boggus",
 		"Timothy Morgan",
 		"Bart Starner",
+		"Brett Bonner",
 	].sort();
 }
