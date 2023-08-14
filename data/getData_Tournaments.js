@@ -104,6 +104,7 @@ function getData_Tournaments(Filters) {
 		[	91,	"Chapel Hill",	"F.U. Open",	"06-11-2023",	"Y",	2023,	"June",	28	],
 		[	92,	"Westchester",	"Bratish Open",	"07-16-2023",	"Y",	2023,	"July",	24	],
 		[	93,	"Oakhaven",	"Rebel Beach Am-Am",	"08-06-2023",	"N",	2023,	"August",	27	],
+		[	94,	"Rolling Meadows",	"FORE Championship",	"08-13-2023",	"N",	2023,	"August",	30	],
     ];
 	
 	for (x = 0; x < Filters.length; x++) {
