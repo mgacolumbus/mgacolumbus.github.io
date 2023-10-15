@@ -105,6 +105,8 @@ function getData_Tournaments(Filters) {
 		[	92,	"Westchester",	"Bratish Open",	"07-16-2023",	"Y",	2023,	"July",	24	],
 		[	93,	"Oakhaven",	"Rebel Beach Am-Am",	"08-06-2023",	"N",	2023,	"August",	27	],
 		[	94,	"Rolling Meadows",	"FORE Championship",	"08-13-2023",	"N",	2023,	"August",	30	],
+        [	95,	"Pine Hill",	"Douche Bag Invitational",	"09-10-2023",	"N",	2023,	"September",	20	],
+        [	96,	"Mill Creek",	"Last Gasp",	"10-01-2023",	"N",	2023,	"October",	19	],
     ];
 	
 	for (x = 0; x < Filters.length; x++) {
